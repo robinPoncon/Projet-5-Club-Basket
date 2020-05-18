@@ -1,0 +1,109 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+}
+
+#name
+{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    padding-left: 1%;
+    font-size: 1em;
+    margin-top: 15px;
+}
+
+#nomClub
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+#nomClub a
+{
+    color: white;
+    font-size: 1.5em;
+}
+
+#connexion
+{
+    margin-top: 10px;
+    padding-right: 1%;
+    font-weight: bold;
+    display: flex;
+}
+
+#connexion a, #connexion p
+{
+    color: white;
+    padding-right: 10px;
+}
+
+#connexion p
+{
+    font-size: 1.5em;
+    margin-top: 0px;
+}
+
+#connexion a:hover, #name a:hover
+{
+    color: #ef8108;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+nav
+{
+    background-color: #074592;
+    height: 60px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+img
+{
+    width: 160px;
+    margin-top: -82px;
+}
+
+nav a
+{
+    color: white;
+    font-size: 2em;
+    font-family: "Alegre Sans";
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+nav li
+{
+    list-style: none;
+    margin-top: -4px;
+}
+
+nav a:hover
+{
+    color: #ef8108;
+}
+
+#nav
+{
+    background-color: #074592;
+    padding: 1px;
+}
+
+#navigation-left, #navigation-right
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+#navigation-right
+{
+    margin-left: -40px;
+}

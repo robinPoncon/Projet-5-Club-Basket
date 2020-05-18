@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('CSS/front.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <div id="nav">{% include "front/nav-front.html.twig" %}</div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
