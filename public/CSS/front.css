@@ -10,7 +10,7 @@ html, body
     font-weight: bold;
     color: white;
     padding-left: 1%;
-    font-size: 1em;
+    font-size: 1.5em;
     margin-top: 15px;
 }
 
@@ -23,7 +23,6 @@ html, body
 #nomClub a
 {
     color: white;
-    font-size: 1.5em;
 }
 
 #connexion
@@ -32,6 +31,7 @@ html, body
     padding-right: 1%;
     font-weight: bold;
     display: flex;
+    font-size: 1.3em;
 }
 
 #connexion a, #connexion p
@@ -42,7 +42,6 @@ html, body
 
 #connexion p
 {
-    font-size: 1.5em;
     margin-top: 0px;
 }
 
@@ -53,7 +52,7 @@ html, body
 
 a
 {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 nav
@@ -68,7 +67,7 @@ nav
 img
 {
     width: 160px;
-    margin-top: -82px;
+    margin-top: -74px;
 }
 
 nav a
@@ -95,15 +94,85 @@ nav a:hover
 {
     background-color: #074592;
     padding: 1px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+
 }
 
 #navigation-left, #navigation-right
 {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    margin-top: 15px;
 }
 
-#navigation-right
+.active
 {
-    margin-left: -40px;
+    color: #ef8108;
+}
+
+h1
+{
+    text-align: center;
+    color: #074592;
+    padding-top: 170px;
+}
+
+.menu
+{
+    justify-content: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+                                                        /* CONTACT */
+
+#contact
+{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px !important;
+}
+
+#labelContactSurname, #labelContactName, #labelContactEmail, #labelContactObjet, #labelContactMessage
+{
+    color: white;
+    background-color: #074592;
+    border-radius: 5px;
+    margin-right: 20px;
+    width: 20%;
+    text-align: center;
+}
+
+.inputContact
+{
+    color: white;
+    margin-bottom: 40px;
+    background-color: #074592;
+    padding: 8px;
+    border: 2px #074592 solid;
+    border-radius: 5px;
+}
+
+#submitContact
+{
+    background-color: #074592;
+    width: 40%;
+    margin: auto;
+    margin-bottom: 20px !important;
+    color: white;
+}
+
+#submitContact:hover
+{
+    background-color: #ef8108;
+}
+
+
+.divContact
+{
+    display: flex;
+    width: 80%;
+    margin: auto;
 }

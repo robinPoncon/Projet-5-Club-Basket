@@ -1,39 +1,39 @@
 {% block nav %}
     <div id="nomClub">
-        <h1 id="name"><a href="{{ path("home") }}">BCM MEXIMIEUX BASKET</a></h1>
+        <h2 id="name"><a href="{{ path("home") }}">BCM MEXIMIEUX BASKET</a></h2>
         <div id="connexion">
             <a href="#"> Connexion </a>
             <p> | </p>
             <a href="#"> Inscription </a>
         </div>
     </div>
-    <nav>
-        <ul id="navigation-left">
-            <li>
+    <nav class="menu">
+        <div id="navigation-left">
+            <p>
                 <a href="{{ path("home") }}"> Accueil </a>
-            </li>
-            <li>
+            </p>
+            <p>
                 <a href="#"> LE CLUB </a>
-            </li>
-            <li>
+            </p>
+            <p>
                 <a href="#"> EQUIPES </a>
-            </li>
-        </ul>
+            </p>
+        </div>
 
         <div id="logo">
             <a href="{{ path("home") }}"><img src="pictures/logo-meximieux.png" alt="logo club de basket de Meximieux"></a>
         </div>
 
-        <ul id="navigation-right">
-            <li>
+        <div id="navigation-right">
+            <p>
                 <a href="#"> PHOTOS </a>
-            </li>
-            <li>
+            </p>
+            <p>
                 <a href="#"> TOURNOIS </a>
-            </li>
-            <li>
-                <a href="#"> CONTACT </a>
-            </li>
-        </ul>
+            </p>
+            <p>
+                <a href="{{ path("contact") }}"> CONTACT </a>
+            </p>
+        </div>
     </nav>
 {% endblock %}
