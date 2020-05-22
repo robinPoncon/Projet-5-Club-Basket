@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -58,12 +59,7 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add("objet", ChoiceType::class, [
-                "choices" => [
-                    "Information" => "info",
-                    "Inscription" => "inscription",
-                    "Devenir Sponsor" => "sponsor",
-                    "Autre" => "autre"
-                ],
+                "choices" => $this->getChoices(),
                 "label_attr" => [
                     "class" => "form-control",
                     "id" => "labelContactObjet"
@@ -95,7 +91,18 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+
         ]);
+    }
+
+    public function getChoices()
+    {
+        $choices = Contact::OBJET;
+        $output = [];
+        foreach($choices as $k => $v)
+        {
+            $output[$v] = $k;
+        }
+        return $output;
     }
 }
