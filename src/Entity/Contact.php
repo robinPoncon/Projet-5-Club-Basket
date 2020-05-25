@@ -14,22 +14,22 @@ class Contact
 
     /**
      * @var string|null
-     * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=100)
+     * @Assert\NotBlank(message="test")
+     * @Assert\Length(min=2, max=100, minMessage = "Votre nom doit contenir au moins 2 caractères")
      */
     private $surname;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=100)
+     * @Assert\Length(min=2, max=100, minMessage = "Votre prénom doit contenir au moins 2 caractères")
      */
     private $name;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\Email(message="Veuillez entrer une adresse email valide")
      */
     private $email;
 
@@ -41,7 +41,7 @@ class Contact
     /**
      * @var string|null
      * @Assert\NotBlank()
-     * @Assert\Length(min=10)
+     * @Assert\Length(min=10, minMessage="Votre message doit contenir au moins 10 caractères")
      */
     private $message;
 

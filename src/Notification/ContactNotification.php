@@ -26,12 +26,13 @@ class ContactNotification
 
     public function notify(Contact $contact)
     {
+
         $message = (new \Swift_Message("test"))
             ->setSubject($contact->getObjetType())
+            ->setFrom(array($contact->getEmail() => "ContactBCM"))
             ->setTo("basket.meximieux.contact@gmail.com")
-            ->setFrom("basket.meximieux.contact@gmail.com")
             ->setReplyTo($contact->getEmail())
-            ->setBody($this->renderer->render("emails/contact.html.twig", [
+            ->setBody($this->renderer->render("emails/contact-email.html.twig", [
                 "contact" => $contact
             ]), "text/html");
 

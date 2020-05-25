@@ -70,22 +70,71 @@ img
     margin-top: -74px;
 }
 
-nav a
+nav a, #nav-team
 {
     color: white;
     font-size: 2em;
-    font-family: "Alegre Sans";
+    font-family: "Alegre Sans", serif;
     padding-left: 20px;
     padding-right: 20px;
+    cursor: pointer;
+}
+
+#bloc-team
+{
+    margin-right: -55px;
+    margin-left: 15px;
+    padding-left: 10px;
+    padding-top: 30px;
+    background-color: #074592;
+    position: relative;
+    top: -10px;
+    display: none;
+    border-radius: 5px;
+}
+
+#bloc-team p
+{
+    color: white;
+    font-size: 1.5em;
+    font-family: "Alegre Sans", serif;
+    cursor: pointer;
+}
+
+#bloc-team a
+{
+    color: white;
+    font-size: 1.3em;
+    font-family: "Alegre Sans", serif;
+    cursor: pointer;
+}
+
+#girlTeam
+{
+    padding-left: 6px;
+    position: relative;
+    top: -3px;
+}
+
+#boyTeam
+{
+    margin-left: -18px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+#listGirl
+{
+    padding-left: 5px;
 }
 
 nav li
 {
-    list-style: none;
+    list-style-type: none;
     margin-top: -4px;
 }
 
-nav a:hover
+nav a:hover, #nav-team:hover, #bloc-team p:hover, #bloc-team a:hover
 {
     color: #ef8108;
 }
@@ -115,8 +164,9 @@ nav a:hover
 h1
 {
     text-align: center;
-    color: #074592;
+    color: black;
     padding-top: 170px;
+    padding-bottom: 30px;
 }
 
 .menu
@@ -126,14 +176,39 @@ h1
     margin-bottom: 10px;
 }
 
-                                                        /* CONTACT */
-
-#contact
+ul
 {
-    width: 80%;
-    margin: auto;
-    margin-top: 50px !important;
+    padding: 0;
 }
+
+.sous
+{
+    display: none;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav ul li
+{
+    position: relative;
+}
+
+nav > ul li:hover #bloc-team
+{
+    display: block;
+}
+
+nav > ul li ul li:hover .sous
+{
+    display: block;
+}
+
+
+
+
+
+
+                                                        /* CONTACT */
 
 #labelContactSurname, #labelContactName, #labelContactEmail, #labelContactObjet, #labelContactMessage
 {
@@ -158,7 +233,7 @@ h1
 #submitContact
 {
     background-color: #074592;
-    width: 40%;
+    width: 20%;
     margin: auto;
     margin-bottom: 20px !important;
     color: white;
@@ -169,10 +244,21 @@ h1
     background-color: #ef8108;
 }
 
-
 .divContact
 {
-    display: flex;
     width: 80%;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px !important;
+}
+
+.errorContact
+{
+    color: #ef8108;
+}
+
+.contactField
+{
+    display: flex;
 }

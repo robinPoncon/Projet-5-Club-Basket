@@ -6,8 +6,55 @@
     <h1> Nous contacter </h1>
 
     {{ form_start(formContact) }}
+        <div class="divContact">
+            <div class="errorContact">
+                {{ form_errors(formContact.surname) }}
+            </div>
+            <div class="contactField">
+                {{ form_label(formContact.surname) }}
+                {{ form_widget(formContact.surname) }}
+            </div>
+        </div>
 
-        {{ form_widget(formContact) }}
+        <div class="divContact">
+            <div class="errorContact">
+                {{ form_errors(formContact.name) }}
+            </div>
+            <div class="contactField">
+                {{ form_label(formContact.name) }}
+                {{ form_widget(formContact.name) }}
+            </div>
+        </div>
+
+        <div class="divContact">
+            <div class="errorContact">
+                {{ form_errors(formContact.email) }}
+            </div>
+            <div class="contactField">
+                {{ form_label(formContact.email) }}
+                {{ form_widget(formContact.email) }}
+            </div>
+        </div>
+
+        <div class="divContact">
+            <div class="errorContact">
+                {{ form_errors(formContact.objet) }}
+            </div>
+            <div class="contactField">
+                {{ form_label(formContact.objet) }}
+                {{ form_widget(formContact.objet) }}
+            </div>
+        </div>
+
+        <div class="divContact">
+            <div class="errorContact">
+                {{ form_errors(formContact.message) }}
+            </div>
+            <div class="contactField">
+                {{ form_label(formContact.message) }}
+                {{ form_widget(formContact.message) }}
+            </div>
+        </div>
 
         <button id="submitContact" class="form-control" type="submit">Envoyer</button>
 

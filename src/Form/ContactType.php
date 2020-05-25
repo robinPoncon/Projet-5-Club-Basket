@@ -26,9 +26,6 @@ class ContactType extends AbstractType
                     "placeholder" => "Votre nom",
                     "class" => "form-control inputContact"
                 ],
-                'row_attr' => [
-                    'class' => 'divContact'
-                ]
             ])
             ->add("name", TextType::class, [
                 "label" => "Prénom",
@@ -40,9 +37,6 @@ class ContactType extends AbstractType
                     "placeholder" => "Votre prénom",
                     "class" => "form-control inputContact"
                 ],
-                'row_attr' => [
-                    'class' => 'divContact'
-                ]
             ])
             ->add("email", EmailType::class, [
                 "label" => "Email",
@@ -54,9 +48,6 @@ class ContactType extends AbstractType
                     "placeholder" => "Votre email",
                     "class" => "form-control inputContact"
                 ],
-                'row_attr' => [
-                    'class' => 'divContact'
-                ]
             ])
             ->add("objet", ChoiceType::class, [
                 "choices" => $this->getChoices(),
@@ -67,12 +58,9 @@ class ContactType extends AbstractType
                 "attr" => [
                     "class" => "form-control inputContact"
                 ],
-                'row_attr' => [
-                    'class' => 'divContact'
-                ]
             ])
             ->add("message", TextareaType::class, [
-                "label" => "Votre message",
+                "label" => "Message",
                 "label_attr" => [
                     "class" => "form-control",
                     "id" => "labelContactMessage"
@@ -81,9 +69,6 @@ class ContactType extends AbstractType
                     "placeholder" => "Votre message",
                     "class" => "form-control inputContact"
                 ],
-                'row_attr' => [
-                    'class' => 'divContact'
-                ]
             ])
         ;
     }

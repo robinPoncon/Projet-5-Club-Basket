@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Equipe {{ equipe.name }} </h1>
+
+    <p> Adresse : {{ equipe.address }}</p>
+
+    <p> Horaire Entrainement : {{ equipe.horaire | date("H:i") }}</p>
+{% endblock %}

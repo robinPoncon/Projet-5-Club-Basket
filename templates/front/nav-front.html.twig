@@ -8,32 +8,41 @@
         </div>
     </div>
     <nav class="menu">
-        <div id="navigation-left">
-            <p>
-                <a href="{{ path("home") }}"> Accueil </a>
-            </p>
-            <p>
-                <a href="#"> LE CLUB </a>
-            </p>
-            <p>
-                <a href="#"> EQUIPES </a>
-            </p>
-        </div>
+        <ul id="navigation-left">
+            <li><a href="{{ path("home") }}"> Accueil </a></li>
+
+            <li><a href="#"> LE CLUB </a></li>
+
+            <li><a href="#" id="nav-team"> EQUIPES </a>
+                <ul id="bloc-team">
+                    <li class="d-flex justify-content-between"><a href="#" id="boyTeam"> Garçons </a>
+                        <ul class="sous" id="listBoy">
+                            <li><a href="{{ path("equipe", {"name": "DM3"}) }}"> DM3 </a></li>
+                            <li><a href="{{ path("equipe", {"name": "DM1"}) }}"> DM1 </a></li>
+                            <li><a href="#"> U19 </a></li>
+                            <li><a href="#"> U17 </a></li>
+                        </ul>
+                    </li>
+                    <li class="d-flex justify-content-between"><a href="#" id="girlTeam"> Filles </a>
+                        <ul class="sous" id="listGirl">
+                            <li><a href="#"> DF2 </a></li>
+                            <li><a href="#"> U17 </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
         <div id="logo">
-            <a href="{{ path("home") }}"><img src="pictures/logo-meximieux.png" alt="logo club de basket de Meximieux"></a>
+            <a href="{{ path("home") }}"><img src="{{ asset("pictures/logo-meximieux.png") }}" alt="logo club de basket de Meximieux"></a>
         </div>
 
-        <div id="navigation-right">
-            <p>
-                <a href="#"> PHOTOS </a>
-            </p>
-            <p>
-                <a href="#"> TOURNOIS </a>
-            </p>
-            <p>
-                <a href="{{ path("contact") }}"> CONTACT </a>
-            </p>
-        </div>
+        <ul id="navigation-right">
+            <li><a href="#"> PHOTOS </a></li>
+
+            <li><a href="#"> TOURNOIS </a></li>
+
+            <li><a href="{{ path("contact") }}"> CONTACT </a></li>
+        </ul>
     </nav>
 {% endblock %}
