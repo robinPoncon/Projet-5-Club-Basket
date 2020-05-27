@@ -5,5 +5,5 @@
 
     <p> Adresse : {{ equipe.address }}</p>
 
-    <p> Horaire Entrainement : {{ equipe.horaire | date("H:i") }}</p>
+    <p> Horaire Entrainement : le {{ equipe.day }} à {{ equipe.horaire | date("H:i") }}</p>
 {% endblock %}

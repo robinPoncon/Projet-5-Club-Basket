@@ -32,6 +32,11 @@ class Equipe
      */
     private $horaire;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $day;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Equipe
     public function setHoraire(\DateTimeInterface $horaire): self
     {
         $this->horaire = $horaire;
+
+        return $this;
+    }
+
+    public function getDay(): ?string
+    {
+        return $this->day;
+    }
+
+    public function setDay(string $day): self
+    {
+        $this->day = $day;
 
         return $this;
     }
