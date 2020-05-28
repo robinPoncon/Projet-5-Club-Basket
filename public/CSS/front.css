@@ -80,17 +80,23 @@ nav a, #nav-team
     cursor: pointer;
 }
 
+#triangle
+{
+
+}
+
 #bloc-team
 {
-    margin-right: -55px;
-    margin-left: 15px;
-    padding-left: 10px;
+    text-align: center;
+    margin-left: 11px;
+    padding-left: 14px;
     padding-top: 30px;
     background-color: #074592;
     position: relative;
     top: -10px;
     display: none;
     border-radius: 5px;
+    margin-right: 13px;
 }
 
 #bloc-team p
@@ -114,6 +120,7 @@ nav a, #nav-team
     padding-left: 6px;
     position: relative;
     top: -3px;
+    z-index: 100;
 }
 
 #boyTeam
@@ -121,11 +128,27 @@ nav a, #nav-team
     margin-left: -18px;
     position: relative;
     padding-bottom: 20px;
+    z-index: 100;
+}
+
+#listBoy
+{
+    left: 69px;
+    border-radius: 5px;
+    top: -8px;
+    padding-top: 12px;
+    background-color: #074592;
+    position: absolute;
 }
 
 #listGirl
 {
-    padding-left: 5px;
+    left: 69px;
+    border-radius: 5px;
+    top: -55px;
+    padding-top: 57px;
+    background-color: #074592;
+    position: absolute;
 }
 
 nav li
@@ -185,7 +208,7 @@ ul
 {
     display: none;
     width: 100%;
-    z-index: 1000;
+    z-index: 99;
 }
 
 nav ul li
@@ -261,4 +284,12 @@ nav > ul li ul li:hover .sous
 .contactField
 {
     display: flex;
+}
+
+#SuccessContact
+{
+    top: 150px;
+    position: relative;
+    text-align: center;
+    margin: auto;
 }

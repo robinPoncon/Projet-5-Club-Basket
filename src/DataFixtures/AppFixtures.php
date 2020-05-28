@@ -12,6 +12,8 @@ class AppFixtures extends Fixture
     {
         $name = "DM3";
         $name2 = "DM1";
+        $widgetId = "5bb7c95f45a3b523e8a6c9ce";
+        $widgetId2 = "5bb7c7900277290a8910ae9a";
         $adresse = "n°5 Meximieux";
         $adresse2 = "n°5 Meximieux";
         $horaire = new \DateTime("20:30");
@@ -27,11 +29,13 @@ class AppFixtures extends Fixture
                ->setAddress($adresse)
                ->setHoraire($horaire)
                ->setDay($day)
+               ->setWidgetId($widgetId)
         ;
         $equipe2->setName($name2)
             ->setAddress($adresse2)
             ->setHoraire($horaire2)
             ->setDay($day2)
+            ->setWidgetId($widgetId2)
         ;
 
         $manager->persist($equipe);

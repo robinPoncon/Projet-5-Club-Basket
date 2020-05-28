@@ -37,6 +37,11 @@ class Equipe
      */
     private $day;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $widgetId;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Equipe
     public function setDay(string $day): self
     {
         $this->day = $day;
+
+        return $this;
+    }
+
+    public function getWidgetId(): ?string
+    {
+        return $this->widgetId;
+    }
+
+    public function setWidgetId(string $widgetId): self
+    {
+        $this->widgetId = $widgetId;
 
         return $this;
     }

@@ -1,5 +1,10 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+	{% for message in app.flashes('success') %}
+		<div id="SuccessContact" class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
 	<h1> Bienvenue sur l'accueil !</h1>
 {% endblock %}

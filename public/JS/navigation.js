@@ -11,6 +11,10 @@ $('.menu a, #connexion a').each(function(){
     }
 });
 
-
+$("h1").click(function(){
+    $.get('https://scorenco.com/widget/5bb7c95f45a3b523e8a6c9ce/', function( data ) {
+        $('#result').html( data );
+    }, 'json');
+})
 
 

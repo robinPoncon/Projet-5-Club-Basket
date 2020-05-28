@@ -16,6 +16,7 @@ class Contact
      * @var string|null
      * @Assert\NotBlank(message="test")
      * @Assert\Length(min=2, max=100, minMessage = "Votre nom doit contenir au moins 2 caractères")
+     * @Assert\Regex(pattern="/\d/", match=false, message="Votre nom ne doit pas contenir des chiffres")
      */
     private $surname;
 
@@ -23,6 +24,7 @@ class Contact
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100, minMessage = "Votre prénom doit contenir au moins 2 caractères")
+     * @Assert\Regex(pattern="/\d/", match=false, message="Votre nom ne doit pas contenir des chiffres")
      */
     private $name;
 

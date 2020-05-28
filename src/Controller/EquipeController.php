@@ -16,6 +16,7 @@ class EquipeController extends AbstractController
      */
     public function index(Equipe $equipe)
     {
+
         return $this->render("equipe/team.html.twig", [
             'equipe' => $equipe
         ]);

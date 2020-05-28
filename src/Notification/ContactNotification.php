@@ -29,7 +29,7 @@ class ContactNotification
 
         $message = (new \Swift_Message("test"))
             ->setSubject($contact->getObjetType())
-            ->setFrom(array($contact->getEmail() => "ContactBCM"))
+            ->setFrom(array("basket.meximieux.contact@gmail.com" => "ContactBCM"))
             ->setTo("basket.meximieux.contact@gmail.com")
             ->setReplyTo($contact->getEmail())
             ->setBody($this->renderer->render("emails/contact-email.html.twig", [
