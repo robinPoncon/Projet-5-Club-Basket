@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Inscription {% endblock %}
+
+{% block body %}
+    <h1> Formulaire d'inscription </h1>
+
+    {{ form_start(formRegistration) }}
+    <div class="divRegistration">
+        <div class="errorRegistration">
+            {{ form_errors(formRegistration.username) }}
+        </div>
+        <div class="registrationField">
+            {{ form_label(formRegistration.username) }}
+            {{ form_widget(formRegistration.username) }}
+        </div>
+    </div>
+
+    <div class="divRegistration">
+        <div class="errorRegistration">
+            {{ form_errors(formRegistration.email) }}
+        </div>
+        <div class="registrationField">
+            {{ form_label(formRegistration.email) }}
+            {{ form_widget(formRegistration.email) }}
+        </div>
+    </div>
+
+    <div class="divRegistration">
+        <div class="errorRegistration">
+            {{ form_errors(formRegistration.password) }}
+        </div>
+        <div class="registrationField">
+            {{ form_label(formRegistration.password) }}
+            {{ form_widget(formRegistration.password) }}
+        </div>
+    </div>
+
+    <div class="divRegistration">
+        <div class="errorRegistration">
+            {{ form_errors(formRegistration.confirm_password) }}
+        </div>
+        <div class="registrationField">
+            {{ form_label(formRegistration.confirm_password) }}
+            {{ form_widget(formRegistration.confirm_password) }}
+        </div>
+    </div>
+
+    <button class="form-control submit" type="submit">Inscription</button>
+
+    {{ form_end(formRegistration) }}
+
+{% endblock %}

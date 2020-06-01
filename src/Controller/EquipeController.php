@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EquipeController extends AbstractController
 {
     /**
-     * @Route("/equipe/{name}", name="equipe")
+     * @Route("equipe/{type}/{name}", name="equipe")
      * @param Equipe $equipe
      * @return Response
      */

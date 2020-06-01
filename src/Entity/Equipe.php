@@ -23,6 +23,11 @@ class Equipe
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $address;
@@ -42,6 +47,10 @@ class Equipe
      */
     private $widgetId;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,6 +64,18 @@ class Equipe
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

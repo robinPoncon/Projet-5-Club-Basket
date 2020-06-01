@@ -139,6 +139,9 @@ nav a, #nav-team
     padding-top: 12px;
     background-color: #074592;
     position: absolute;
+    display: none;
+    width: 100%;
+    z-index: 99;
 }
 
 #listGirl
@@ -149,6 +152,9 @@ nav a, #nav-team
     padding-top: 57px;
     background-color: #074592;
     position: absolute;
+    display: none;
+    width: 100%;
+    z-index: 99;
 }
 
 nav li
@@ -181,7 +187,7 @@ nav a:hover, #nav-team:hover, #bloc-team p:hover, #bloc-team a:hover
 
 .active
 {
-    color: #ef8108;
+    color: #ef8108 !important;
 }
 
 h1
@@ -204,13 +210,6 @@ ul
     padding: 0;
 }
 
-.sous
-{
-    display: none;
-    width: 100%;
-    z-index: 99;
-}
-
 nav ul li
 {
     position: relative;
@@ -221,7 +220,7 @@ nav > ul li:hover #bloc-team
     display: block;
 }
 
-nav > ul li ul li:hover .sous
+nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 {
     display: block;
 }
@@ -233,41 +232,35 @@ nav > ul li ul li:hover .sous
 
                                                         /* CONTACT */
 
-#labelContactSurname, #labelContactName, #labelContactEmail, #labelContactObjet, #labelContactMessage
+.label
 {
-    color: white;
-    background-color: #074592;
-    border-radius: 5px;
+    color: white !important;
+    background-color: #074592 !important;
     margin-right: 20px;
-    width: 20%;
+    width: 30% !important;
     text-align: center;
 }
 
-.inputContact
+.input
 {
-    color: white;
-    margin-bottom: 40px;
-    background-color: #074592;
-    padding: 8px;
-    border: 2px #074592 solid;
-    border-radius: 5px;
+    margin-bottom: 40px !important;
 }
 
-#submitContact
+.submit
 {
-    background-color: #074592;
-    width: 20%;
-    margin: auto;
+    background-color: #074592 !important;
+    width: 20% !important;
+    margin: auto !important;
     margin-bottom: 20px !important;
-    color: white;
+    color: white !important;
 }
 
-#submitContact:hover
+.submit:hover
 {
-    background-color: #ef8108;
+    background-color: #ef8108 !important;
 }
 
-.divContact
+.divContact, .divRegistration
 {
     width: 80%;
     margin: auto;
@@ -276,12 +269,20 @@ nav > ul li ul li:hover .sous
     margin-top: 20px !important;
 }
 
-.errorContact
+.connectField
+{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    margin-top: 20px !important;
+}
+
+.errorContact, .errorRegistration
 {
     color: #ef8108;
 }
 
-.contactField
+.contactField, .registrationField
 {
     display: flex;
 }
@@ -292,4 +293,11 @@ nav > ul li ul li:hover .sous
     position: relative;
     text-align: center;
     margin: auto;
+}
+
+/* EQUIPE */
+
+.score
+{
+    height: 500px !important;
 }

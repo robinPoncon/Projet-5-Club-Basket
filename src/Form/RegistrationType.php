@@ -2,41 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactType extends AbstractType
+class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('surname', TextType::class, [
-                "label" => "Nom",
+            ->add('username', TextType::class, [
+                "label" => "Nom d'utilisateur",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
                 "attr" => [
-                    "placeholder" => "Votre nom",
+                    "placeholder" => "Votre nom d'utilisateur",
                     "class" => "form-control input"
                 ]
             ])
-            ->add("name", TextType::class, [
-                "label" => "Prénom",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "Votre prénom",
-                    "class" => "form-control input"
-                ]
-            ])
-            ->add("email", EmailType::class, [
+            ->add('email', EmailType::class, [
                 "label" => "Email",
                 "label_attr" => [
                     "class" => "form-control label",
@@ -46,22 +36,23 @@ class ContactType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add("objet", ChoiceType::class, [
-                "choices" => $this->getChoices(),
+            ->add('password', PasswordType::class, [
+                "label" => "Mot de passe",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
                 "attr" => [
+                    "placeholder" => "Votre mot de passe",
                     "class" => "form-control input"
                 ]
             ])
-            ->add("message", TextareaType::class, [
-                "label" => "Message",
+            ->add("confirm_password", PasswordType::class, [
+                "label" => "Confirmation mot de passe",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
                 "attr" => [
-                    "placeholder" => "Votre message",
+                    "placeholder" => "Confirmer votre mot de passe",
                     "class" => "form-control input"
                 ]
             ])
@@ -71,18 +62,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-
+            'data_class' => User::class,
         ]);
-    }
-
-    public function getChoices()
-    {
-        $choices = Contact::OBJET;
-        $output = [];
-        foreach($choices as $k => $v)
-        {
-            $output[$v] = $k;
-        }
-        return $output;
     }
 }

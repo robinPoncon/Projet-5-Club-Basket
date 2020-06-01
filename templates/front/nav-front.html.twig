@@ -2,9 +2,9 @@
     <div id="nomClub">
         <h2 id="name"><a href="{{ path("home") }}">BCM MEXIMIEUX BASKET</a></h2>
         <div id="connexion">
-            <a href="#"> Connexion </a>
+            <a href="{{ path("security_login") }}"> Connexion </a>
             <p> | </p>
-            <a href="#"> Inscription </a>
+            <a href="{{ path("security_registration") }}"> Inscription </a>
         </div>
     </div>
     <nav class="menu">
@@ -16,16 +16,16 @@
             <li><a href="#" id="nav-team"> EQUIPES </a>
                 <ul id="bloc-team">
                     <li class="d-flex justify-content-between"><a href="#" id="boyTeam"> Garçons </a>
-                        <ul class="sous" id="listBoy">
-                            <li><a href="{{ path("equipe", {"name": "DM3"}) }}"> DM3 </a></li>
-                            <li><a href="{{ path("equipe", {"name": "DM1"}) }}"> DM1 </a></li>
+                        <ul id="listBoy">
+                            <li><a href="{{ path("equipe", {"name": "DM3", "type": "garçons"}) }}"> DM3 </a></li>
+                            <li><a href="{{ path("equipe", {"name": "DM1", "type": "garçons"}) }}"> DM1 </a></li>
                             <li><a href="#"> U19 </a></li>
                             <li><a href="#"> U17 </a></li>
                         </ul>
                     </li>
                     <li class="d-flex justify-content-between"><a href="#" id="girlTeam"> Filles </a>
-                        <ul class="sous" id="listGirl">
-                            <li><a href="#"> DF2 </a></li>
+                        <ul id="listGirl">
+                            <li><a href="{{ path("equipe", {"name": "DF2", "type": "filles"}) }}"> DF2 </a></li>
                             <li><a href="#"> U17 </a></li>
                         </ul>
                     </li>
