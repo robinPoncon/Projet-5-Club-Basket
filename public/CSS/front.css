@@ -4,6 +4,11 @@ html, body
     padding: 0;
 }
 
+li
+{
+    list-style-type: none;
+}
+
 #name
 {
     text-align: center;
@@ -159,9 +164,9 @@ nav a, #nav-team
 
 nav li
 {
-    list-style-type: none;
     margin-top: -4px;
 }
+
 
 nav a:hover, #nav-team:hover, #bloc-team p:hover, #bloc-team a:hover
 {
@@ -188,6 +193,12 @@ nav a:hover, #nav-team:hover, #bloc-team p:hover, #bloc-team a:hover
 .active
 {
     color: #ef8108 !important;
+}
+
+.activeCompte
+{
+    background-color: #dd650f !important;
+    color: white !important;
 }
 
 h1
@@ -295,9 +306,69 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     margin: auto;
 }
 
-/* EQUIPE */
+                                        /* EQUIPE */
 
 .score
 {
     height: 500px !important;
 }
+
+
+                                        /* Compte */
+
+.menu-compte
+{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    position: relative;
+    top: 134px;
+}
+
+.menu-compte a
+{
+    color: white;
+    padding: 12.5px;
+    display: block;
+}
+
+.menu-compte a:hover
+{
+    color: white;
+}
+
+.menu-compte div
+{
+    background-color: #074592;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-right: 5px white solid;
+}
+
+#compte4
+{
+    border-right: 0;
+}
+
+.testdiv
+{
+    width: 58px !important;
+    height: 50px;
+    background-color: #074592 !important;
+    margin-top: -34px;
+    margin-bottom: -10px;
+    margin-left: -57px;
+}
+
+.barre
+{
+    width: 10px;
+    height: 80px;
+    transform: rotate(45deg);
+    background-color: white;
+    margin-top: -25px;
+    margin-bottom: -50px;
+    margin-left: 14px;
+}
+

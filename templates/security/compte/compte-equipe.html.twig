@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %} compte equipes {% endblock %}
+
+{% block body %}
+    {% include "security/compte/compte.nav.html.twig" %}
+    <h1> Gestion des équipes </h1>
+
+    <ul>Equipes garçons :
+        {% for equipe in equipes %}
+            {% if equipe.type == "garçons" %}
+                <li><a href="{{ path("equipe", {"name":  equipe.name , "type": equipe.type }) }}">
+                        {{ equipe.name }}</a>
+                </li>
+                <li><a href="{{ path("modifierEquipe", {"id": equipe.id}) }}">Modifier</a></li>
+                <li><a href="#">Supprimer</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <ul> Equipes filles :
+        {% for equipe in equipes %}
+            {% if equipe.type == "filles" %}
+                <li><a href="{{ path("equipe", {"name":  equipe.name , "type": equipe.type }) }}">
+                        {{ equipe.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
