@@ -271,7 +271,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     background-color: #ef8108 !important;
 }
 
-.divContact, .divRegistration
+.divForm
 {
     width: 80%;
     margin: auto;
@@ -288,14 +288,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     margin-top: 20px !important;
 }
 
-.errorContact, .errorRegistration
+.errorForm
 {
-    color: #ef8108;
-}
-
-.contactField, .registrationField
-{
-    display: flex;
+    color: #dd650f;
 }
 
 #SuccessContact

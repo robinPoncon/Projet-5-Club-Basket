@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Equipe;
 use App\Form\EquipeType;
+use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,34 +15,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class EquipeController extends AbstractController
 {
     /**
-     * @Route("equipe/{type}/{name}", name="equipe")
+     * @Route("equipe/{type}/{slug}", name="equipe")
      * @param Equipe $equipe
+     * @param ConvocationRepository $convocationRepository
      * @return Response
      */
-    public function index(Equipe $equipe)
+    public function index(Equipe $equipe, ConvocationRepository $convocationRepository)
     {
-
+        $convocations = $convocationRepository->findByEquipesId($equipe->getId());
         return $this->render("equipe/team.html.twig", [
-            'equipe' => $equipe
+            'equipe' => $equipe,
+            "convocations" => $convocations
         ]);
     }
 
     /**
-     * @Route("compte/equipes", name="equipes")
-     * @param EquipeRepository $repository
+     * @Route("admin/equipes", name="equipes")
      * @return Response
      */
-    public function findAll(EquipeRepository $repository)
+    public function findAll()
     {
-        $equipes = $repository->findAll();
-        return $this->render("security/compte/compte-equipe.html.twig", [
-           "equipes" => $equipes
-        ]);
-
+        return $this->render("security/admin/compte-equipe.html.twig");
     }
 
     /**
-     * @Route("compte/equipes/modifier/{id}", name="modifierEquipe")
+     * @Route("admin/equipes/modifier/{slug}", name="modifierEquipe")
      */
     public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager)
     {
@@ -62,4 +60,5 @@ class EquipeController extends AbstractController
             "formEquipe" => $form->createView()
         ]);
     }
+
 }

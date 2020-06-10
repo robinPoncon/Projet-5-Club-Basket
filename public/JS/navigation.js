@@ -25,6 +25,8 @@ $(document).ready(function() {
             var regExpUsers = RegExp("utilisateurs");
             var regExpArticles = RegExp("articles");
             var regExpEquipes = RegExp("equipes");
+            console.log(path);
+            console.log(this.href);
             if (regExpCompte.test(path)){
                 $("#compte1").addClass("activeCompte");
             }

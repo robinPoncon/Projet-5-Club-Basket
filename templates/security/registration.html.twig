@@ -6,41 +6,41 @@
     <h1> Formulaire d'inscription </h1>
 
     {{ form_start(formRegistration) }}
-    <div class="divRegistration">
-        <div class="errorRegistration">
+    <div class="divForm">
+        <div class="errorForm">
             {{ form_errors(formRegistration.username) }}
         </div>
-        <div class="registrationField">
+        <div class="d-flex">
             {{ form_label(formRegistration.username) }}
             {{ form_widget(formRegistration.username) }}
         </div>
     </div>
 
-    <div class="divRegistration">
-        <div class="errorRegistration">
+    <div class="divForm">
+        <div class="errorForm">
             {{ form_errors(formRegistration.email) }}
         </div>
-        <div class="registrationField">
+        <div class="d-flex">
             {{ form_label(formRegistration.email) }}
             {{ form_widget(formRegistration.email) }}
         </div>
     </div>
 
-    <div class="divRegistration">
-        <div class="errorRegistration">
+    <div class="divForm">
+        <div class="errorForm">
             {{ form_errors(formRegistration.password) }}
         </div>
-        <div class="registrationField">
+        <div class="d-flex">
             {{ form_label(formRegistration.password) }}
             {{ form_widget(formRegistration.password) }}
         </div>
     </div>
 
-    <div class="divRegistration">
-        <div class="errorRegistration">
+    <div class="divForm">
+        <div class="errorForm">
             {{ form_errors(formRegistration.confirm_password) }}
         </div>
-        <div class="registrationField">
+        <div class="d-flex">
             {{ form_label(formRegistration.confirm_password) }}
             {{ form_widget(formRegistration.confirm_password) }}
         </div>

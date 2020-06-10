@@ -1,7 +1,36 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+    {% include "security/admin/compte.nav.html.twig" %}
     <h1>Modifier l'équipe</h1>
     {{ form_start(formEquipe) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEquipe.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEquipe.name) }}
+                {{ form_widget(formEquipe.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEquipe.type) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEquipe.type) }}
+                {{ form_widget(formEquipe.type) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEquipe.widgetId) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEquipe.widgetId) }}
+                {{ form_widget(formEquipe.widgetId) }}
+            </div>
+        </div>
+        <button class="form-control submit" type="submit">Modifier</button>
     {{ form_end(formEquipe) }}
 {% endblock %}

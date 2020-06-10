@@ -1,4 +1,4 @@
-{% block nav %}
+
     <div id="nomClub">
         <h2 id="name"><a href="{{ path("home") }}">BCM MEXIMIEUX BASKET</a></h2>
         <div id="connexion">
@@ -23,16 +23,22 @@
                 <ul id="bloc-team">
                     <li class="d-flex justify-content-between"><a href="#" id="boyTeam"> Garçons </a>
                         <ul id="listBoy">
-                            <li><a href="{{ path("equipe", {"name": "DM3", "type": "garçons"}) }}"> DM3 </a></li>
-                            <li><a href="{{ path("equipe", {"name": "DM1", "type": "garçons"}) }}"> DM1 </a></li>
-                            <li><a href="#"> U19 </a></li>
-                            <li><a href="#"> U17 </a></li>
+                            {% for equipe in equipes.findAll() %}
+                                {% if equipe.type == "garçons" %}
+                                    <li><a href="{{ path("equipe", {"slug": equipe.slug, "type": equipe.type}) }}">
+                                            {{ equipe.name }} </a></li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="d-flex justify-content-between"><a href="#" id="girlTeam"> Filles </a>
                         <ul id="listGirl">
-                            <li><a href="{{ path("equipe", {"name": "DF2", "type": "filles"}) }}"> DF2 </a></li>
-                            <li><a href="#"> U17 </a></li>
+                            {% for equipe in equipes.findAll() %}
+                                {% if equipe.type == "filles" %}
+                                    <li><a href="{{ path("equipe", {"slug": equipe.slug, "type": equipe.type}) }}">
+                                        {{ equipe.name }} </a></li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>
@@ -51,4 +57,3 @@
             <li><a href="{{ path("contact") }}"> CONTACT </a></li>
         </ul>
     </nav>
-{% endblock %}

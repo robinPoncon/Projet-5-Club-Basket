@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\EquipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=EquipeRepository::class)
@@ -28,24 +31,26 @@ class Equipe
     private $type;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $address;
-
-    /**
-     * @ORM\Column(type="time")
-     */
-    private $horaire;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $day;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $widgetId;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Convocation::class, mappedBy="equipes", orphanRemoval=true)
+     */
+    private $convocations;
+
+    public function __construct()
+    {
+        $this->convocations = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -76,42 +81,6 @@ class Equipe
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getHoraire(): ?\DateTimeInterface
-    {
-        return $this->horaire;
-    }
-
-    public function setHoraire(\DateTimeInterface $horaire): self
-    {
-        $this->horaire = $horaire;
-
-        return $this;
-    }
-
-    public function getDay(): ?string
-    {
-        return $this->day;
-    }
-
-    public function setDay(string $day): self
-    {
-        $this->day = $day;
-
-        return $this;
-    }
-
     public function getWidgetId(): ?string
     {
         return $this->widgetId;
@@ -120,6 +89,49 @@ class Equipe
     public function setWidgetId(string $widgetId): self
     {
         $this->widgetId = $widgetId;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Convocation[]
+     */
+    public function getConvocations(): Collection
+    {
+        return $this->convocations;
+    }
+
+    public function addConvocation(Convocation $convocation): self
+    {
+        if (!$this->convocations->contains($convocation)) {
+            $this->convocations[] = $convocation;
+            $convocation->setEquipes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConvocation(Convocation $convocation): self
+    {
+        if ($this->convocations->contains($convocation)) {
+            $this->convocations->removeElement($convocation);
+            // set the owning side to null (unless already changed)
+            if ($convocation->getEquipes() === $this) {
+                $convocation->setEquipes(null);
+            }
+        }
 
         return $this;
     }
