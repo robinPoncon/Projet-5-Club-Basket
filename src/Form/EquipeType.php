@@ -42,19 +42,6 @@ class EquipeType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add('trainings', EntityType::class, [
-                "class" => Training::class,
-                "choice_label" => "day",
-                "multiple" => true,
-                "label" => "Entrainement",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "class" => "form-control input"
-                ]
-            ])
-
             ->add('widgetId', TextType::class, [
                 "label" => "Widget scorenco",
                 "label_attr" => [

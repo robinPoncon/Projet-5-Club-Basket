@@ -33,9 +33,37 @@ class EquipeController extends AbstractController
      * @Route("admin/equipes", name="equipes")
      * @return Response
      */
-    public function findAll()
+    public function show()
     {
         return $this->render("security/admin/compte-equipe.html.twig");
+    }
+
+    /**
+     * @Route("admin/equipes/ajouter", name="ajouterEquipe")
+     */
+    public function addTeam(Request $request, EntityManagerInterface $manager)
+    {
+        $equipe = new Equipe();
+
+        $form = $this->createForm(EquipeType::class, $equipe);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($equipe);
+            $manager->flush();
+
+            return $this->redirectToRoute("equipe", [
+                "type" => $equipe->getType(),
+                "slug" => $equipe->getSlug()
+            ]);
+        }
+
+        return $this->render("equipe/add.html.twig", [
+            "equipe" => $equipe,
+            "formEquipe" => $form->createView()
+        ]);
+
     }
 
     /**
@@ -52,13 +80,27 @@ class EquipeController extends AbstractController
             $manager->persist($equipe);
             $manager->flush();
 
-            return $this->redirectToRoute("equipes");
+            return $this->redirectToRoute("equipe", [
+                "type" => $equipe->getType(),
+                "slug" => $equipe->getSlug()
+            ]);
         }
 
         return $this->render("equipe/edit.html.twig", [
             "equipe" => $equipe,
             "formEquipe" => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("admin/equipes/delete/{id}", name="supprimerEquipe")
+     */
+    public function delete(Equipe $equipe, Request $request, EntityManagerInterface $manager)
+    {
+        $manager->remove($equipe);
+        $manager->flush();
+
+        return $this->redirectToRoute("equipes");
     }
 
 }

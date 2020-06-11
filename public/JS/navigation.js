@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
     var path = window.location.href; // On récupère l'url
 
     $('.menu a, #connexion a').each(function () {
@@ -76,7 +76,20 @@ $(document).ready(function() {
         $("#compte4").css("background-color", "#074592");
     });
 
-});
+    
+
+    function deleteEquipe(id)
+    {
+        $("#confirm" + id).css("display", "inline-block");
+    console.log(id);
+    }
+
+    function cancelEquipe(id)
+    {
+        $("#confirm" + id).css("visibility", "hidden");
+
+    }
+
 
 
 

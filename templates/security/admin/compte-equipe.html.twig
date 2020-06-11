@@ -6,6 +6,9 @@
     {% include "security/admin/compte.nav.html.twig" %}
     <h1> Gestion des équipes </h1>
 
+    <a href="{{ path("ajouterEquipe") }}">Ajouter une équipe</a>
+    <a href="#">Gestion des entrainements</a>
+
     <ul>Equipes garçons :
         {% for equipe in equipes.findAll() %}
             {% if equipe.type == "garçons" %}
@@ -13,8 +16,13 @@
                     <li><a href="{{ path("equipe", {"slug":  equipe.slug , "type": equipe.type }) }}">
                             {{ equipe.name }}</a>
                     </li>
-                    <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug|upper}) }}">Modifier</a></li>
-                    <li><a href="#">Supprimer</a></li>
+                    <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
+                    <button onclick="deleteEquipe({{ equipe.id }})" class="confirmSup">Supprimer</button>
+                    <div class="confirm" id="confirm{{ equipe.id }}">
+                        <p> Voulez-vous vraiment supprimer cette équipe ? </p>
+                        <a class="yesSup" href="{{ path("supprimerEquipe", {"id": equipe.id}) }}"> Oui </a>
+                        <button onclick="cancelEquipe({{ equipe.id }})" class="noSup" >Non</button>
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
@@ -22,8 +30,12 @@
     <ul> Equipes filles :
         {% for equipe in equipes.findAll() %}
             {% if equipe.type == "filles" %}
-                <li><a href="{{ path("equipe", {"slug":  equipe.slug , "type": equipe.type }) }}">
-                        {{ equipe.name }}</a></li>
+                <div class="d-flex">
+                    <li><a href="{{ path("equipe", {"slug":  equipe.slug , "type": equipe.type }) }}">
+                            {{ equipe.name }}</a></li>
+                    <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
+                    <li><a href="{{ path("supprimerEquipe", {"id": equipe.id}) }}">Supprimer</a></li>
+                </div>
             {% endif %}
         {% endfor %}
     </ul>

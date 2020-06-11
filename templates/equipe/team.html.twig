@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1> Equipe {{ equipe.name }} </h1>
+    <h1> Equipe {{ equipe.name | upper }} </h1>
     {% for convocation in convocations %}
         <p> Adresse : {{ convocation.address }}</p>
 
