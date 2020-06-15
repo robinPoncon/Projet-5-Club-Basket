@@ -47,7 +47,7 @@ li
 
 #connexion p
 {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 #connexion a:hover, #name a:hover
@@ -374,9 +374,141 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     margin-left: 14px;
 }
 
-                                /* Gestion Administration */
+                                /* Administration */
+
+                    /* Gestion Equipe */
 
 .confirm
 {
     display: none;
+    position: absolute;
+    z-index: 50;
+    width: 50%;
+    height: 150px;
+    padding-top: 10px;
+    margin-top: -130px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px #074592 solid;
+    border-radius: 10px;
+    background-color: white;
+    color: #074592;
+    pointer-events: auto !important;
+}
+
+.yesSup, .noSup
+{
+    top: 25px;
+    position: relative;
+    margin-right: 50px !important;
+    margin-left: 50px !important;
+}
+
+.blocTeam
+{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 30px !important;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.compteTeam
+{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.compteTeam a, .yesSup, #addTeam a
+{
+    margin-right: 30px;
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    font-weight: normal;
+    font-style: normal;
+}
+
+#addTeam
+{
+    display: flex;
+    margin-bottom: 50px !important;
+    justify-content: center;
+    margin-left: 30px !important;
+}
+
+.nameTeam
+{
+    font-weight: bold !important;
+    background-color: #dd650f !important;
+    border: 1px #dd650f solid !important;
+    color: white !important;
+}
+
+.nameTeam:hover
+{
+    color: #074592 !important;
+}
+
+.compteTeam button, .noSup
+{
+    background-color: #074592;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    margin-top: -9px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.compteTeam a:hover, .compteTeam button:hover, .yesSup:hover, .noSup:hover, #addTeam a:hover
+{
+    background-color: #dd650f;
+    color: white;
+    border: 1px #dd650f solid;
+}
+
+
+
+                                        /* Accueil - Météo */
+
+#icone
+{
+    width: 75px;
+    height: 75px;
+    margin: 10px;
+}
+
+.meteo
+{
+    background-color: #074592;
+    color: white;
+    width: 30%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.meteo h2
+{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#tempMin, #tempMax, #condition
+{
+    color: #ef8108;
+    font-weight: bold;
+}
+
+#day
+{
+    color: white;
+    font-weight: normal;
 }

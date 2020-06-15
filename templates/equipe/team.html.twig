@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1> Equipe {{ equipe.name | upper }} </h1>
-    {% for convocation in convocations %}
+    {% for convocation in equipe.convocations %}
         <p> Adresse : {{ convocation.address }}</p>
 
         <p> Horaire Entrainement : le {{ convocation.day }} à {{ convocation.horaire | date("H:i") }}</p>

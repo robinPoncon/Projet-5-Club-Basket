@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% include "security/admin/compte.nav.html.twig" %}
+    <h1>Ajouter un entraînement</h1>
+    {{ form_start(formConvoc) }}
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formConvoc.equipes) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formConvoc.equipes) }}
+            {{ form_widget(formConvoc.equipes) }}
+        </div>
+    </div>
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formConvoc.day) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formConvoc.day) }}
+            {{ form_widget(formConvoc.day) }}
+        </div>
+    </div>
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formConvoc.horaire) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formConvoc.horaire) }}
+            {{ form_widget(formConvoc.horaire) }}
+        </div>
+    </div>
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formConvoc.address) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formConvoc.address) }}
+            {{ form_widget(formConvoc.address) }}
+        </div>
+    </div>
+    <button class="form-control submit" type="submit">Ajouter</button>
+    {{ form_end(formConvoc) }}
+{% endblock %}

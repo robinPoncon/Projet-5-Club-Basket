@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Entraînements {% endblock %}
+
+{% block body %}
+    {% include "security/admin/compte.nav.html.twig" %}
+
+    <h1> Gestion des entrainements </h1>
+    <a href="{{ path("ajouterEntrainement") }}">Ajouter entraînement</a>
+    <div>
+        <select name="list" id="list-team">
+            <option value="basique">Sélectionner une équipe</option>
+            {% for equipe in equipes.findAll() %}
+                {% if equipe.type == "garçons"  %}
+                    <optgroup label="{{ equipe.type }}">
+                        <option value="{{ equipe.name }}">{{ equipe.name }}</option>
+                    </optgroup>
+                {% elseif equipe.type == "filles" %}
+                    <optgroup label="{{ equipe.type }}">
+                        <option value="{{ equipe.name }}">{{ equipe.name }}</option>
+                    </optgroup>
+                {% endif %}
+            {% endfor %}
+        </select>
+        {% for equipe in equipes.findAll() %}
+            {% for convocation in equipe.convocations %}
+                <p> {{ convocation.day }}</p>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}

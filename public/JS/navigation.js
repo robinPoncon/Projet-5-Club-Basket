@@ -49,45 +49,43 @@
 
 
     $.getJSON("https://www.prevision-meteo.ch/services/json/meximieux", function(data){
-        $(".meteo").append(data.city_info.name);
-    })
-
-    $("#compte1child").mouseenter(function(){
-        $("#compte1").css("background-color", "#dd650f");
-    }).mouseleave(function(){
-        $("#compte1").css("background-color", "#074592");
+        $("#nomVille").append("Météo - " + data.city_info.name);
+        $("#tempMin").append(data.fcst_day_0.tmin + " °C");
+        $("#tempMax").append(data.fcst_day_0.tmax + " °C");
+        let dateGet = data.fcst_day_0.date;
+        let dateFormated = dateGet.replace(".", "/").replace(".", "/");
+        $("#day").append(data.fcst_day_0.day_long + " " + dateFormated + " = ");
+        $("#condition").append(data.fcst_day_0.condition);
+        $("#icone").attr("src", data.fcst_day_0.icon);
     });
 
-    $("#compte2child").mouseenter(function(){
-        $("#compte2").css("background-color", "#dd650f");
-    }).mouseleave(function(){
-        $("#compte2").css("background-color", "#074592");
-    });
+    function compteCssOver(compteEnfant, compteParent)
+    {
+        $(compteEnfant).mouseenter(function(){
+            $(compteParent).css("background-color", "#dd650f");
+        }).mouseleave(function(){
+            $(compteParent).css("background-color", "#074592");
+        });
+    }
 
-    $("#compte3child").mouseenter(function(){
-        $("#compte3").css("background-color", "#dd650f");
-    }).mouseleave(function(){
-        $("#compte3").css("background-color", "#074592");
-    });
+    compteCssOver("#compte1child", "#compte1");
+    compteCssOver("#compte2child", "#compte2");
+    compteCssOver("#compte3child", "#compte3");
+    compteCssOver("#compte4child", "#compte4");
 
-    $("#compte4child").mouseenter(function(){
-        $("#compte4").css("background-color", "#dd650f");
-    }).mouseleave(function(){
-        $("#compte4").css("background-color", "#074592");
-    });
 
     
 
     function deleteEquipe(id)
     {
         $("#confirm" + id).css("display", "inline-block");
-    console.log(id);
+        $(".compteTeam, .typeTeam, #addTeam, #blocEquipe h1").css("opacity", 0.5).css("pointer-events", "none");
     }
 
     function cancelEquipe(id)
     {
-        $("#confirm" + id).css("visibility", "hidden");
-
+        $("#confirm" + id).css("display", "none");
+        $(".compteTeam, .typeTeam, #addTeam, #blocEquipe h1").css("opacity", 1).css("pointer-events", "auto");
     }
 
 

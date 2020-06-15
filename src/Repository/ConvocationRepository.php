@@ -23,18 +23,6 @@ class ConvocationRepository extends ServiceEntityRepository
   * @return Convocation[] Returns an array of Convocation objects
   */
 
-    public function findByEquipesId($equipesId)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.equipes = :equipesId')
-            ->setParameter('equipesId', $equipesId)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
     /*
     public function findOneBySomeField($value): ?Convocation
     {

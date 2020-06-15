@@ -20,12 +20,10 @@ class EquipeController extends AbstractController
      * @param ConvocationRepository $convocationRepository
      * @return Response
      */
-    public function index(Equipe $equipe, ConvocationRepository $convocationRepository)
+    public function index(Equipe $equipe)
     {
-        $convocations = $convocationRepository->findByEquipesId($equipe->getId());
         return $this->render("equipe/team.html.twig", [
             'equipe' => $equipe,
-            "convocations" => $convocations
         ]);
     }
 
