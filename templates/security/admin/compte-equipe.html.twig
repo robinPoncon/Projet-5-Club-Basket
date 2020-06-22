@@ -11,9 +11,9 @@
         <a href="{{ path("entrainement") }}">Gestion des entrainements</a>
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex justify-content-around">
         <ul class="blocTeam">
-            <p class="typeTeam">Equipes garçons : </p>
+            <h2 class="typeTeam">Equipes garçons : </h2>
             {% for equipe in equipes.findAll() %}
                 {% if equipe.type == "garçons" %}
                     <div class="d-flex justify-content-center compteTeam">
@@ -32,7 +32,7 @@
             {% endfor %}
         </ul>
         <ul class="blocTeam">
-            <p class="typeTeam">Equipes filles :</p>
+            <h2 class="typeTeam">Equipes filles :</h2>
             {% for equipe in equipes.findAll() %}
                 {% if equipe.type == "filles" %}
                     <div class="d-flex justify-content-center compteTeam">

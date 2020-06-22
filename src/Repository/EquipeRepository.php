@@ -19,6 +19,15 @@ class EquipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Equipe::class);
     }
 
+    public function findByType($type)
+    {
+        return $this->createQueryBuilder("t")
+           ->andWhere("t.type = :val")
+           ->setParameter("val", $type)
+           ->getQuery()
+           ->getResult();
+    }
+
     // /**
     //  * @return Equipe[] Returns an array of Equipe objects
     //  */

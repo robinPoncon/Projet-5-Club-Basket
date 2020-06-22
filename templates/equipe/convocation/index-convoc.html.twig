@@ -10,25 +10,21 @@
     <div>
         <select name="list" id="list-team">
             <option value="basique">Sélectionner une équipe</option>
-            {% for equipe in equipes.findAll() %}
-                {% if equipe.type == "garçons"  %}
-                    <optgroup label="{{ equipe.type }}">
-                        <option value="{{ equipe.name }}">{{ equipe.name }}</option>
-                    </optgroup>
-                {% elseif equipe.type == "filles" %}
-                    <optgroup label="{{ equipe.type }}">
-                        <option value="{{ equipe.name }}">{{ equipe.name }}</option>
-                    </optgroup>
-                {% endif %}
-            {% endfor %}
+            <optgroup label="Equipes Garçons">
+                {% for equipeB in equipesBoy %}
+                <option value="{{ equipeB.id }}">{{ equipeB.name }}</option>
+                {% endfor %}
+            </optgroup>
+            <optgroup label="Equipes Filles">
+                {% for equipeF in equipesGirl %}
+                <option value="{{ equipeF.id }}">{{ equipeF.name }}</option>
+                {% endfor %}
+            </optgroup>
         </select>
-        {% for equipe in equipes.findAll() %}
-            {% for convocation in equipe.convocations %}
-                <p> {{ convocation.day }}</p>
-            {% endfor %}
-        {% endfor %}
     </div>
 
+    <div id="convocations">
 
+    </div>
 
 {% endblock %}

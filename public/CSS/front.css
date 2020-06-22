@@ -153,8 +153,8 @@ nav a, #nav-team
 {
     left: 65px;
     border-radius: 5px;
-    top: -55px;
-    padding-top: 59px;
+    top: -6px;
+    padding-top: 10px;
     background-color: #074592;
     position: absolute;
     display: none;
@@ -408,8 +408,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 .blocTeam
 {
-    width: 80%;
-    margin: auto;
     text-align: center;
     margin-bottom: 30px !important;
     font-weight: bold;
@@ -472,6 +470,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     background-color: #dd650f;
     color: white;
     border: 1px #dd650f solid;
+}
+
+.typeTeam
+{
+    font-style: normal;
 }
 
 

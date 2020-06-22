@@ -48,7 +48,7 @@
     });
 
 
-    $.getJSON("https://www.prevision-meteo.ch/services/json/meximieux", function(data){
+    /*$.getJSON("https://www.prevision-meteo.ch/services/json/meximieux", function(data){
         $("#nomVille").append("Météo - " + data.city_info.name);
         $("#tempMin").append(data.fcst_day_0.tmin + " °C");
         $("#tempMax").append(data.fcst_day_0.tmax + " °C");
@@ -57,7 +57,42 @@
         $("#day").append(data.fcst_day_0.day_long + " " + dateFormated + " = ");
         $("#condition").append(data.fcst_day_0.condition);
         $("#icone").attr("src", data.fcst_day_0.icon);
+    });*/
+
+    function sendAjaxController(id)
+    {
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8888/Projet-5-Club-Basket/public/admin/equipes/entrainement/data",
+            data: {id: id},
+            success: function(){
+
+            }
+        });
+    }
+
+    $("select").change(function(){
+        let test = $("select :selected").val();
+        sendAjaxController(test);
+        getAjaxController();
+        console.log(test);
     });
+
+    function getAjaxController()
+    {
+        $.getJSON("http://localhost:8888/Projet-5-Club-Basket/public/admin/equipes/entrainement/data",
+            function(data){
+                console.log(data)
+                $("#convocations").append(data.day);
+        });
+    }
+
+
+
+
+
+
+
 
     function compteCssOver(compteEnfant, compteParent)
     {
@@ -79,13 +114,13 @@
     function deleteEquipe(id)
     {
         $("#confirm" + id).css("display", "inline-block");
-        $(".compteTeam, .typeTeam, #addTeam, #blocEquipe h1").css("opacity", 0.5).css("pointer-events", "none");
+        $(".compteTeam, .typeTeam, #addTeam, h1").css("opacity", 0.5).css("pointer-events", "none");
     }
 
     function cancelEquipe(id)
     {
         $("#confirm" + id).css("display", "none");
-        $(".compteTeam, .typeTeam, #addTeam, #blocEquipe h1").css("opacity", 1).css("pointer-events", "auto");
+        $(".compteTeam, .typeTeam, #addTeam, h1").css("opacity", 1).css("pointer-events", "auto");
     }
 
 
