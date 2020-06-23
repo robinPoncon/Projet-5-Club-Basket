@@ -42,10 +42,10 @@ class ConvocationController extends AbstractController
             if($request->isXmlHttpRequest()) {
                 // On récupère l'id de la requête
                 $idEquipe = $request->request->get('id');
-
+                //dump($idEquipe);
                 // On récupère l'équipe correspondant à l'id
                 $convocations = $convocRepo->findIdEquipe($idEquipe);
-
+                //dump($convocations);
                 // On spécifie qu'on utilise un encodeur en json
                 $encoders = [new JsonEncoder()];
 
@@ -62,6 +62,8 @@ class ConvocationController extends AbstractController
                     }
                 ]);
 
+                //dump($jsonContent);
+
                 // On instancie la réponse
                 $response = new Response($jsonContent);
 
@@ -71,7 +73,6 @@ class ConvocationController extends AbstractController
                 dump($response);
                 // On envoie la réponse
                 return $response;
-
             }
             else {
                 return new Response("erreur");

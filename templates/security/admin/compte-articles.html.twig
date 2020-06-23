@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Articles {% endblock %}
+
+{% block body %}
+    {% include "security/admin/compte.nav.html.twig" %}
+
+    <h1> Gestion des articles</h1>
+    <a id="addPost" href="{{ path("ajouterArticle") }}">Ajouter un article +</a>
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column">
+            <h2 class="headPost">Titre de l'article</h2>
+            {% for article in articles %}
+                <a class="postLink" href="{{ path("show-article", {"slug": article.slug}) }}">{{ article.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-column">
+            <h2 class="headPost">Catégorie</h2>
+            {% for article in articles %}
+                <p>{{ article.category.title }}</p>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-column modifPostDiv">
+            {% for article in articles %}
+                <a class="modifPost" href="{{ path("modifierArticle", {"slug": article.slug}) }}"> Modifier </a>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-column supPostDiv">
+            {% for article in articles %}
+                <button onclick="deleteEquipe({{ article.id }})" class="confirmSup">Supprimer</button>
+            {% endfor %}
+        </div>
+    </div>
+    {% for article in articles %}
+        <div class="confirm" id="confirm{{ article.id }}">
+            <p> Voulez-vous vraiment supprimer l'article "{{ article.title }}" ? </p>
+            <a class="yesSup" href="{{ path("supprimerArticle", {"id": article.id}) }}"> Oui </a>
+            <button onclick="cancelEquipe({{ article.id }})" class="noSup" >Non</button>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

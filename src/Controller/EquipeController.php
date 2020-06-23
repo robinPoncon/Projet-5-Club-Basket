@@ -17,7 +17,6 @@ class EquipeController extends AbstractController
     /**
      * @Route("equipe/{type}/{slug}", name="equipe")
      * @param Equipe $equipe
-     * @param ConvocationRepository $convocationRepository
      * @return Response
      */
     public function index(Equipe $equipe)

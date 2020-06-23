@@ -380,6 +380,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 .confirm
 {
+    text-align: center;
     display: none;
     position: absolute;
     z-index: 50;
@@ -475,6 +476,68 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 .typeTeam
 {
     font-style: normal;
+}
+
+
+                    /* Gestion Articles */
+
+.postLink
+{
+    font-weight: bold;
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.headPost
+{
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+#addPost
+{
+    width: 180px;
+    margin: auto;
+    margin-bottom: 50px !important;
+    text-align: center;
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    display: block;
+}
+
+.modifPost
+{
+    text-align: center;
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    margin-bottom: 20px;
+}
+
+.modifPostDiv
+{
+    margin-top: 59px;
+}
+
+.supPostDiv button
+{
+    background-color: #074592;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
 }
 
 

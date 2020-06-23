@@ -8,7 +8,7 @@
     <h1> Gestion des entrainements </h1>
     <a href="{{ path("ajouterEntrainement") }}">Ajouter entraînement</a>
     <div>
-        <select name="list" id="list-team">
+        <select name="list" id="selectTeam">
             <option value="basique">Sélectionner une équipe</option>
             <optgroup label="Equipes Garçons">
                 {% for equipeB in equipesBoy %}
@@ -23,7 +23,8 @@
         </select>
     </div>
 
-    <div id="convocations">
+    <div class="convocations">
+
 
     </div>
 
