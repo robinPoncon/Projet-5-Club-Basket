@@ -53,14 +53,14 @@ class Article
     private $comments;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="article")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
      */
     private $category;
-
+    
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,14 +146,28 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?Category
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategory(): Collection
     {
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function addCategory(Category $category): self
     {
-        $this->category = $category;
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->category->contains($category)) {
+            $this->category->removeElement($category);
+        }
 
         return $this;
     }

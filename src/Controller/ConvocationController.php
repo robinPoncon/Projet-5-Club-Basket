@@ -35,7 +35,7 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainement/data", name="entrainement_equipe")
+     * @Route("admin/equipes/entrainements/data", name="ajax_equipe")
      */
     public function ajaxConvoc(Request $request, ConvocationRepository $convocRepo)
     {
@@ -81,7 +81,7 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainement/ajouter", name="ajouterEntrainement")
+     * @Route("admin/equipes/entrainements/ajouter", name="ajouterEntrainement")
      */
 
     public function addConvocation(Request $request, EntityManagerInterface $manager)
@@ -105,35 +105,37 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainement/{id}", name="modifierEntrainement")
+     * @Route("admin/equipes/entrainements/{id}", name="modifierEntrainement")
      */
     public function edit(Convocation $convocation, Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(ConvocationType::class, $convocation);
-
         $form->handleRequest($request);
+
+        $equipe = $convocation->getEquipes();
 
         if($form->isSubmitted() && $form->isValid())
         {
             $manager->persist($convocation);
             $manager->flush();
 
-            return $this->redirectToRoute("entrainement_equipe");
+            return $this->redirectToRoute("entrainement");
         }
 
         return $this->render("equipe/convocation/edit-convoc.html.twig", [
-            "formConvoc" => $form->createView()
+            "formConvoc" => $form->createView(),
+            "equipe" => $equipe
         ]);
     }
 
     /**
-     * @Route("admin/equipes/entrainement/delete/{id}", name="supprimerEntrainement")
+     * @Route("admin/equipes/entrainements/delete/{id}", name="supprimerEntrainement")
      */
-    public function delete(Convocation $convocation, Request $request, EntityManagerInterface $manager)
+    public function delete(Request $request, EntityManagerInterface $manager, Convocation $convocation)
     {
         $manager->remove($convocation);
         $manager->flush();
 
-        return $this->redirectToRoute("entrainement_equipe");
+        return $this->redirectToRoute("entrainement");
     }
 }

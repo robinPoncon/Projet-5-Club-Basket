@@ -5,10 +5,15 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Constraints\Date;
 
 class ArticleController extends AbstractController
@@ -25,11 +30,13 @@ class ArticleController extends AbstractController
     /**
      * @Route("admin/articles", name="articles")
      */
-    public function showAll(ArticleRepository $articleRepo)
+    public function showAll(ArticleRepository $articleRepo, CategoryRepository $categoryRepo)
     {
+        $categorys = $categoryRepo->findAll();
         $articles = $articleRepo->findAll();
         return $this->render('security/admin/compte-articles.html.twig', [
-            "articles" => $articles
+            "articles" => $articles,
+            "categorys" => $categorys
         ]);
     }
 
@@ -41,6 +48,55 @@ class ArticleController extends AbstractController
         return $this->render("article/show.html.twig", [
             'article' => $article,
         ]);
+    }
+
+    /**
+     * @Route("articles/data", name="ajax_article")
+     */
+    public function ajaxArticle(Request $request, CategoryRepository $categoryRepo)
+    {
+        if($request->isXmlHttpRequest()) {
+            // On récupère l'id de la requête
+            $idCategory = $request->request->get('id');
+
+            $categoryObjet = $categoryRepo->find($idCategory);
+            //dump($categoryObjet);
+
+            // On récupère l'équipe correspondant à l'id
+            $articles = $categoryObjet->getArticles();
+            //dump($articles);
+
+            // On spécifie qu'on utilise un encodeur en json
+            $encoders = [new JsonEncoder()];
+
+            // On instancie le "normaliseur" pour convertir la collection en tableau
+            $normalizers = [new ObjectNormalizer()];
+
+            // On instancie le convertisseur
+            $serializer = new Serializer($normalizers, $encoders);
+
+            // On convertit en json
+            $jsonContent = $serializer->serialize($articles, "json", [
+                "circular_reference_handler" => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+
+            //dump($jsonContent);
+
+            // On instancie la réponse
+            $response = new Response($jsonContent);
+
+            // On ajoute l'entête HTTP
+            $response->headers->set("Content-Type", "application/json");
+
+            dump($response);
+            // On envoie la réponse
+            return $response;
+        }
+        else {
+            return new Response("erreur");
+        }
     }
 
     /**

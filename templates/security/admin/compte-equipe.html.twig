@@ -21,12 +21,12 @@
                                 {{ equipe.name }}</a>
                         </li>
                         <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
-                        <button onclick="deleteEquipe({{ equipe.id }})" class="confirmSup">Supprimer</button>
+                        <button onclick="deleteConfirm({{ equipe.id }})" class="confirmSup">Supprimer</button>
                     </div>
                     <div class="confirm" id="confirm{{ equipe.id }}">
                         <p> Voulez-vous vraiment supprimer l'équipe {{ equipe.name }} ? </p>
                         <a class="yesSup" href="{{ path("supprimerEquipe", {"id": equipe.id}) }}"> Oui </a>
-                        <button onclick="cancelEquipe({{ equipe.id }})" class="noSup" >Non</button>
+                        <button onclick="cancelConfirm({{ equipe.id }})" class="noSup" >Non</button>
                     </div>
                 {% endif %}
             {% endfor %}
@@ -39,12 +39,12 @@
                         <li><a class="nameTeam" href="{{ path("equipe", {"slug":  equipe.slug , "type": equipe.type }) }}">
                                 {{ equipe.name }}</a></li>
                         <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
-                        <button onclick="deleteEquipe({{ equipe.id }})" class="confirmSup">Supprimer</button>
+                        <button onclick="deleteConfirm({{ equipe.id }})" class="confirmSup">Supprimer</button>
                     </div>
                     <div class="confirm" id="confirm{{ equipe.id }}">
                         <p> Voulez-vous vraiment supprimer l'équipe {{ equipe.name }} ? </p>
                         <a class="yesSup" href="{{ path("supprimerEquipe", {"id": equipe.id}) }}"> Oui </a>
-                        <button onclick="cancelEquipe({{ equipe.id }})" class="noSup" >Non</button>
+                        <button onclick="cancelConfirm({{ equipe.id }})" class="noSup" >Non</button>
                     </div>
                 {% endif %}
             {% endfor %}

@@ -2,7 +2,7 @@
 
 {% block body %}
     {% include "security/admin/compte.nav.html.twig" %}
-    <h1>Modifier un entraînement</h1>
+    <h1>Modifier l'entraînement de l'équipe {{ equipe.name }}</h1>
     {{ form_start(formConvoc) }}
     <div class="divForm">
         <div class="errorForm">
@@ -31,6 +31,11 @@
             {{ form_widget(formConvoc.address) }}
         </div>
     </div>
+    <div class="d-none">
+        {{ form_label(formConvoc.equipes) }}
+        {{ form_widget(formConvoc.equipes) }}
+    </div>
     <button class="form-control submit" type="submit">Modifier</button>
     {{ form_end(formConvoc) }}
+
 {% endblock %}

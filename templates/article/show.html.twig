@@ -2,8 +2,12 @@
 
 {% block body %}
 
-<h1>{{ article.title }} - Le {{ article.createdAt | date("d/m/Y") }}</h1>
-<p>Catégorie - {{ article.category.title }}</p>
-<p>{{ article.content }}</p>
+    <h1>{{ article.title }} - Le {{ article.createdAt | date("d/m/Y") }}</h1>
+    <p>Catégorie -
+        {% for categoryTest in article.category %}
+            <span>{{ categoryTest.title }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ article.content }}</p>
 
 {% endblock %}

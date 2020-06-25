@@ -479,6 +479,101 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 }
 
 
+                    /* Gestion Entrainements */
+
+.divInfosEntrainement
+{
+    justify-content: space-around;
+}
+
+.divBoutonsEntrainement
+{
+    justify-content: center;
+}
+
+.convocation
+{
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #074592;
+    color: white;
+    width: 90%;
+    border-radius: 10px;
+    padding: 15px;
+    font-weight: bold;
+}
+
+#h2Convoc
+{
+    font-size: 1.5em;
+    margin-right: 25px;
+}
+
+#selectTeam
+{
+    margin-top: 5px;
+}
+
+.modifConvoc
+{
+    margin-right: 20%;
+    background-color: #dd650f;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.confirmSup
+{
+    background-color: #dd650f;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px #dd650f solid;
+}
+
+.modifConvoc:hover, .confirmSup:hover
+{
+    color: black;
+    border-radius: 10px;
+}
+
+.confirmationSup
+{
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    top: 622px;
+}
+
+#addConvoc
+{
+    width: 250px;
+    margin: auto;
+    margin-bottom: 50px;
+    display: block;
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    text-align: center;
+}
+
+#addConvoc:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.anyConvoc
+{
+    text-align: center;
+    margin-top: 30px;
+}
+
                     /* Gestion Articles */
 
 .postLink

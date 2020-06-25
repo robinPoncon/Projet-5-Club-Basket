@@ -6,6 +6,7 @@ use App\Entity\Convocation;
 use App\Entity\Equipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,8 +28,17 @@ class ConvocationType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add('day', TextType::class, [
+            ->add('day', ChoiceType::class, [
                 "label" => "Jour",
+                "choices" => [
+                    "Lundi" => "Lundi",
+                    "Mardi" => "Mardi",
+                    "Mercredi" => "Mercredi",
+                    "Jeudi" => "Jeudi",
+                    "Vendredi" => "Vendredi",
+                    "Samedi" => "Samedi",
+                    "Dimanche" => "Dimanche"
+                ],
                 "label_attr" => [
                     "class" => "form-control label",
                 ],

@@ -4,28 +4,158 @@
 
 {% block body %}
     {% include "security/admin/compte.nav.html.twig" %}
+    <div id="blocEntrainement">
+        <h1> Gestion des entrainements </h1>
+        <a id="addConvoc" href="{{ path("ajouterEntrainement") }}">Ajouter un entraînement +</a>
+        <div class="d-flex justify-content-center">
+            <h2 id="h2Convoc"> Pour voir les entraînements d'une équipe -> </h2>
+            <div>
+                <select name="listEquipe" id="selectTeam">
+                    <optgroup label="Equipes Garçons">
+                        {% for equipeB in equipesBoy %}
+                            <option value="{{ equipeB.id }}">{{ equipeB.name }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="Equipes Filles">
+                        {% for equipeF in equipesGirl %}
+                            <option value="{{ equipeF.id }}">{{ equipeF.name }}</option>
+                        {% endfor %}
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="convocations">
+        </div>
 
-    <h1> Gestion des entrainements </h1>
-    <a href="{{ path("ajouterEntrainement") }}">Ajouter entraînement</a>
-    <div>
-        <select name="list" id="selectTeam">
-            <option value="basique">Sélectionner une équipe</option>
-            <optgroup label="Equipes Garçons">
-                {% for equipeB in equipesBoy %}
-                <option value="{{ equipeB.id }}">{{ equipeB.name }}</option>
-                {% endfor %}
-            </optgroup>
-            <optgroup label="Equipes Filles">
-                {% for equipeF in equipesGirl %}
-                <option value="{{ equipeF.id }}">{{ equipeF.name }}</option>
-                {% endfor %}
-            </optgroup>
-        </select>
     </div>
+    <div class="confirmationSup"></div>
 
-    <div class="convocations">
-
-
-    </div>
 
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        function sendAjaxController(id) {
+            $.ajax({
+                method: "POST",
+                url: "{{ path("ajax_equipe") }}",
+                data: {id: id},
+                success: function (responses) {
+                    console.log(responses);
+                    if (responses.length === 0)
+                    {
+                        let noConvoc = $("<p>", {
+                            text: "Il n'y a aucun entraînement de programmé pour cette équipe",
+                            class: "anyConvoc"
+                        });
+                        $(".convocations").append(noConvoc);
+                    }
+                    responses.forEach((datas) => {
+
+
+                        //Gestion affichage des convocations
+                        let div = $("<div>", {class: "convocation"});
+
+                        let jour = $("<p>", {
+                            class: "dayConvoc",
+                            text: datas.day
+                        });
+
+                        let timeRecup = datas.horaire.timestamp;
+                        let date = new Date(timeRecup * 1000);
+                        let hours = date.getHours() -1;
+                        let minutes = "0" + date.getMinutes();
+                        let formattedTime = hours + ':' + minutes.substr(-2);
+
+                        let heure = $("<p>", {
+                            class: "horaireConvoc",
+                            text: formattedTime
+                        });
+
+                        let adresse = $("<p>", {
+                            class: "addressConvoc",
+                            text: datas.address
+                        });
+
+                        // Gestion bouton Modifier
+                        let urlModif = "{{ path("modifierEntrainement", {"id": "text"}) }}";
+                        urlModif = urlModif.replace("text", datas.id);
+
+                        let modifierConvoc = $("<a>", {
+                            attr: {"href": urlModif},
+                            class: "modifConvoc",
+                            text: "Modifier"
+                        });
+
+                        // Gestion bouton Suppression
+                        let supprimerConvoc = $("<button>", {
+                            class: "confirmSup",
+                            text: "Supprimer"
+                        });
+                        $(supprimerConvoc).click(function(){
+                            deleteConfirm(datas.id);
+                        });
+
+                        let divSup = $("<div>", {
+                            class: "confirm",
+                            id: "confirm" + datas.id
+                        });
+
+                        let textSup = $("<p>", {
+                            text: "Voulez-vous vraiment supprimer cet entraînement '" + datas.day + " - " +
+                                formattedTime + "' ?"
+                        });
+
+                        let urlSup = "{{ path("supprimerEntrainement", {"id": "text2"}) }}";
+                        urlSup = urlSup.replace("text2", datas.id);
+
+                        let yesSup = $("<a>", {
+                            class: "yesSup",
+                            text: "Oui",
+                            attr: {"href": urlSup}
+                        });
+
+                        let noSup = $("<button>", {
+                            class: "noSup",
+                            text: "Non"
+                        });
+                        $(noSup).click(function(){
+                            cancelConfirm(datas.id);
+                        });
+
+                        $(divSup).append(textSup);
+                        $(divSup).append(yesSup);
+                        $(divSup).append(noSup);
+                        $(".confirmationSup").append(divSup);
+
+                        //Finition affichage avec les blocs de div
+                        let divInfos = $("<div>", {class: "d-flex divInfosEntrainement"});
+                        $(divInfos).append(jour);
+                        $(divInfos).append(heure);
+                        $(divInfos).append(adresse);
+
+                        let divBoutons = $("<div>", {class: "d-flex divBoutonsEntrainement"});
+                        $(divBoutons).append(modifierConvoc);
+                        $(divBoutons).append(supprimerConvoc);
+
+                        $(div).append(divInfos);
+                        $(div).append(divBoutons);
+                        $(".convocations").append(div);
+                    });
+                }
+            });
+        }
+        let test = $("#selectTeam option:selected").val();
+        sendAjaxController(test);
+
+        $("#selectTeam").change(function () {
+            test = $("#selectTeam option:selected").val();
+            //console.log(test);
+            $(".convocations").text("");
+            sendAjaxController(test);
+        });
+
+    </script>
+{% endblock %}
+
+

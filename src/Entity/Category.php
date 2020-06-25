@@ -25,13 +25,13 @@ class Category
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="category", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=Article::class, mappedBy="category")
      */
-    private $article;
+    private $articles;
 
     public function __construct()
     {
-        $this->article = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,16 +54,16 @@ class Category
     /**
      * @return Collection|Article[]
      */
-    public function getArticle(): Collection
+    public function getArticles(): Collection
     {
-        return $this->article;
+        return $this->articles;
     }
 
     public function addArticle(Article $article): self
     {
-        if (!$this->article->contains($article)) {
-            $this->article[] = $article;
-            $article->setCategory($this);
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addCategory($this);
         }
 
         return $this;
@@ -71,12 +71,9 @@ class Category
 
     public function removeArticle(Article $article): self
     {
-        if ($this->article->contains($article)) {
-            $this->article->removeElement($article);
-            // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
-            }
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            $article->removeCategory($this);
         }
 
         return $this;
