@@ -6,6 +6,7 @@
     {% include "security/admin/compte.nav.html.twig" %}
 
     <h1> Gestion des articles</h1>
+
     <a id="addPost" href="{{ path("ajouterArticle") }}">Ajouter un article +</a>
 
     <select name="listCategory" id="selectPost">
@@ -15,41 +16,31 @@
         {% endfor %}
     </select>
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-around blocPost">
         <div class="d-flex flex-column">
             <h2 class="headPost">Titre de l'article</h2>
-            {% for article in articles %}
-                <a class="postLink" href="{{ path("show-article", {"slug": article.slug}) }}">{{ article.title }}</a>
-            {% endfor %}
+            <div class="divTitle">
+
+            </div>
         </div>
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column blocCategoryPost">
             <h2 class="headPost">Catégorie</h2>
-            {% for article in articles %}
-                <div class="d-flex">
-                    {% for categoryPost in article.category %}
-                        <p>{{ categoryPost.title }}</p>
-                    {% endfor %}
+                <div class="d-flex divCategory">
+
                 </div>
-            {% endfor %}
         </div>
         <div class="d-flex flex-column modifPostDiv">
-            {% for article in articles %}
-                <a class="modifPost" href="{{ path("modifierArticle", {"slug": article.slug}) }}"> Modifier </a>
-            {% endfor %}
+
         </div>
         <div class="d-flex flex-column supPostDiv">
-            {% for article in articles %}
-                <button onclick="deleteConfirm({{ article.id }})" class="confirmSup">Supprimer</button>
-            {% endfor %}
+
+        </div>
+        <div class="d-flex flex-column confirmationSupPost">
+
         </div>
     </div>
-    {% for article in articles %}
-        <div class="confirm" id="confirm{{ article.id }}">
-            <p> Voulez-vous vraiment supprimer l'article "{{ article.title }}" ? </p>
-            <a class="yesSup" href="{{ path("supprimerArticle", {"id": article.id}) }}"> Oui </a>
-            <button onclick="cancelConfirm({{ article.id }})" class="noSup" >Non</button>
-        </div>
-    {% endfor %}
+
+
 
 {% endblock %}
 
@@ -61,16 +52,204 @@
                 url: "{{ path("ajax_article") }}",
                 data: {id: id},
                 success: function (responses) {
-                    console.log(responses);
+
+                    responses.forEach((datas) => {
+                        console.log(datas);
+
+                        // Gestion lien article
+                        let urlPost = "{{ path("show-article", {"slug": "text"}) }}";
+                        urlPost = urlPost.replace("text", datas.slug);
+
+                        let lienPost = $("<a>", {
+                            class: "postLink",
+                            attr: {href: urlPost},
+                            text: datas.title
+                        });
+
+                        // Gestion category
+                        let divCate = $("<div>", {class: "d-flex"});
+
+                        $categorys = datas.category;
+                        $categorys.forEach((category) => {
+                            let categoryPost = $("<p>", {
+                                text: category.title
+                            });
+                            $(divCate).append(categoryPost);
+                            $(".divCategory").append(divCate);
+                        });
+
+                        // Gestion bouton modifier
+                        let urlModifPost = "{{ path("modifierArticle", {"slug": "text"}) }}";
+                        urlModifPost = urlModifPost.replace("text", datas.slug);
+
+                        let lienModifier = $("<a>", {
+                            class: "modifPost",
+                            attr: {href: urlModifPost},
+                            text: "Modifier"
+                        });
+
+                        // Gestion bouton supprimer
+
+                        let lienSupprimer = $("<button>", {
+                            class: "confirmSup",
+                            text: "Supprimer"
+                        });
+
+                        let divSup = $("<div>", {
+                            class: "confirm",
+                            id: "confirm" + datas.id
+                        });
+
+                        let textSup = $("<p>", {
+                            text: 'Voulez-vous vraiment supprimer cet article "' + datas.title + '" ?'
+                        });
+
+                        let urlSupPost = "{{ path("supprimerArticle", {"id": "text"}) }}";
+                        urlSupPost = urlSupPost.replace("text", datas.id);
+
+                        let yesSup = $("<a>", {
+                            class: "yesSup",
+                            text: "Oui",
+                            attr: {"href": urlSupPost}
+                        });
+
+                        let noSup = $("<button>", {
+                            class: "noSup",
+                            text: "Non"
+                        });
+
+                        $(noSup).click(function(){
+                            cancelConfirm(datas.id);
+                        });
+
+                        $(divSup).append(textSup);
+                        $(divSup).append(yesSup);
+                        $(divSup).append(noSup);
+
+                        $(".confirmationSupPost").append(divSup);
+
+                        $(lienSupprimer).click(function(){
+                           deleteConfirm(datas.id);
+                        });
+
+                        $(".divTitle").append(lienPost);
+                        $(".modifPostDiv").append(lienModifier);
+                        $(".supPostDiv").append(lienSupprimer);
+
+                    });
                 }
             });
         }
 
-        $("#selectPost").change(function () {
-            let id = $("#selectPost option:selected").val();
-            //console.log(test);
-            //$(".convocations").text("");
+        function allPost()
+        {
+            {% for article in articles %}
+
+                //Gestion lien article
+                var urlPostAll = "{{ path("show-article", {"slug": article.slug}) }}";
+
+                var lienPostAll = $("<a>", {
+                    class: "postLink",
+                    attr: {href: urlPostAll},
+                    text: "{{ article.title }}"
+                });
+
+                // Gestion category
+                var divCato = $("<div>", {class: "d-flex"});
+                {% for categories in article.category %}
+                    var categoryPostAll = $("<p>", {
+                        text: "{{ categories.title }}"
+                    });
+                    $(divCato).append(categoryPostAll);
+                    $(".divCategory").append(divCato);
+                {% endfor %}
+
+                // Gestion bouton modifier
+                var urlModifPostAll = "{{ path("modifierArticle", {"slug": article.slug}) }}";
+
+                var lienModifierAll = $("<a>", {
+                    class: "modifPost",
+                    attr: {href: urlModifPostAll},
+                    text: "Modifier"
+                });
+
+                // Gestion bouton supprimer
+
+                var lienSupprimerAll = $("<button>", {
+                    class: "confirmSup",
+                    text: "Supprimer"
+                });
+
+                var divSup = $("<div>", {
+                    class: "confirm",
+                    id: "confirm" + {{ article.id }}
+                });
+
+                var textSup = $("<p>", {
+                    text: 'Voulez-vous vraiment supprimer cet article "' + "{{ article.title }}" + '" ?'
+                });
+
+                var urlSupPost = "{{ path("supprimerArticle", {"id": article.id}) }}";
+
+                var yesSup = $("<a>", {
+                    class: "yesSup",
+                    text: "Oui",
+                    attr: {"href": urlSupPost}
+                });
+
+                var noSup = $("<button>", {
+                    class: "noSup",
+                    text: "Non"
+                });
+
+                $(noSup).click(function(){
+                    cancelConfirm({{ article.id }});
+                });
+
+                $(divSup).append(textSup);
+                $(divSup).append(yesSup);
+                $(divSup).append(noSup);
+
+                $(".confirmationSupPost").append(divSup);
+
+                $(lienSupprimerAll).click(function(){
+                    deleteConfirm({{ article.id }});
+                });
+
+                $(".divTitle").append(lienPostAll);
+                $(".modifPostDiv").append(lienModifierAll);
+                $(".supPostDiv").append(lienSupprimerAll);
+
+            {% endfor %}
+        }
+
+        let id = $("#selectPost option:selected").val();
+        if (id === "all")
+        {
+            allPost();
+        }
+        else
+        {
             sendAjaxController(id);
+        }
+
+
+
+        $("#selectPost").change(function () {
+            id = $("#selectPost option:selected").val();
+            $(".divTitle").text("");
+            $(".divCategory").text("");
+            $(".modifPostDiv").text("");
+            $(".supPostDiv").text("");
+            if (id === "all")
+            {
+                allPost();
+            }
+            else
+            {
+                sendAjaxController(id);
+            }
+
         });
     </script>
 {% endblock %}

@@ -37,15 +37,19 @@ class ConvocationController extends AbstractController
     /**
      * @Route("admin/equipes/entrainements/data", name="ajax_equipe")
      */
-    public function ajaxConvoc(Request $request, ConvocationRepository $convocRepo)
+    public function ajaxConvoc(Request $request, EquipeRepository $equipeRepo)
     {
             if($request->isXmlHttpRequest()) {
                 // On récupère l'id de la requête
                 $idEquipe = $request->request->get('id');
                 //dump($idEquipe);
+
+                $equipeObject = $equipeRepo->find($idEquipe);
                 // On récupère l'équipe correspondant à l'id
-                $convocations = $convocRepo->findIdEquipe($idEquipe);
+
+                $convocations = $equipeObject->getConvocations();
                 //dump($convocations);
+
                 // On spécifie qu'on utilise un encodeur en json
                 $encoders = [new JsonEncoder()];
 

@@ -19,15 +19,6 @@ class ConvocationRepository extends ServiceEntityRepository
         parent::__construct($registry, Convocation::class);
     }
 
-    public function findIdEquipe($idEquipe)
-    {
-        return $this->createQueryBuilder("i")
-            ->andWhere("i.equipes = :val")
-            ->setParameter("val", $idEquipe)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
  /**
   * @return Convocation[] Returns an array of Convocation objects
   */

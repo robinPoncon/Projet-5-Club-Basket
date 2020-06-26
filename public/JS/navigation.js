@@ -60,12 +60,16 @@ $(".menu-compte a").each(function () {
 
         function deleteConfirm(id) {
             $("#confirm" + id).css("display", "inline-block");
-            $(".compteTeam, .typeTeam, #addTeam, h1, #blocEntrainement").css("opacity", 0.5).css("pointer-events", "none");
+            $(".compteTeam, .typeTeam, #addTeam, h1, #blocEntrainement, #addPost, #selectPost, .blocCategoryPost, " +
+                ".divTitle, .modifPostDiv, .supPostDiv")
+                .css("opacity", 0.5).css("pointer-events", "none");
         }
 
         function cancelConfirm(id) {
             $("#confirm" + id).css("display", "none");
-            $(".compteTeam, .typeTeam, #addTeam, h1, #blocEntrainement").css("opacity", 1).css("pointer-events", "auto");
+            $(".compteTeam, .typeTeam, #addTeam, h1, #blocEntrainement, #addPost, #selectPost, .blocCategoryPost, " +
+                ".divTitle, .modifPostDiv, .supPostDiv")
+                .css("opacity", 1).css("pointer-events", "auto");
         }
 
 

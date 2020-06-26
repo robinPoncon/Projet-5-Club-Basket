@@ -51,7 +51,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("articles/data", name="ajax_article")
+     * @Route("admin/articles/data", name="ajax_article")
      */
     public function ajaxArticle(Request $request, CategoryRepository $categoryRepo)
     {
