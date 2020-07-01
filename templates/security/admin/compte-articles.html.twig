@@ -9,35 +9,52 @@
 
     <a id="addPost" href="{{ path("ajouterArticle") }}">Ajouter un article +</a>
 
-    <select name="listCategory" id="selectPost">
-        <option value="all">Tous les articles</option>
-        {% for category in categorys %}
-            <option value="{{ category.id }}">{{ category.title }}</option>
-        {% endfor %}
-    </select>
-
-    <div class="d-flex justify-content-around blocPost">
-        <div class="d-flex flex-column">
-            <h2 class="headPost">Titre de l'article</h2>
-            <div class="divTitle">
-
-            </div>
+    <div id="trierArticle" class="d-flex justify-content-center">
+        <h2 id="h2Article">Pour trier l'affichage des articles -> </h2>
+        <div>
+            <select name="listCategory" id="selectPost">
+                <option value="all">Tous les articles</option>
+                {% for category in categorys %}
+                    <option value="{{ category.id }}">{{ category.title }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <div class="d-flex flex-column blocCategoryPost">
-            <h2 class="headPost">Catégorie</h2>
+    </div>
+
+    <div id="blocPostAll">
+        {% for article in articles %}
+            <div class="d-flex justify-content-around divPost">
+                <div class="divTitle">
+                    <a class="postLink" href="{{ path("show-article", {"slug": article.slug}) }}">
+                         {{ article.title }}
+                    </a>
+                </div>
                 <div class="d-flex divCategory">
+                    <div class="d-flex">
+                        {% for category in article.category %}
+                            <p>{{ category.title }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="d-flex flex-column modifPostDiv">
+                    <a class="modifPost" href="{{ path("modifierArticle", {"slug": article.slug}) }}">
+                        Modifier
+                    </a>
+                </div>
+                <div class="supPostDiv">
+                    <button onclick='deleteConfirm({{ article.id }}, "Voulez-vous vraiment supprimer cet article",
+                            "{{ article.title }}", "{{ path("supprimerArticle", {"id": "text"}) }}",
+                            "#confirmationSupPost{{ article.id }}")'
+                            class="confirmSup">Supprimer</button>
+                </div>
+                <div class="confirmationSupPost" id="confirmationSupPost{{ article.id }}">
 
                 </div>
-        </div>
-        <div class="d-flex flex-column modifPostDiv">
+            </div>
+        {% endfor %}
+    </div>
 
-        </div>
-        <div class="d-flex flex-column supPostDiv">
-
-        </div>
-        <div class="d-flex flex-column confirmationSupPost">
-
-        </div>
+    <div class="d-flex flex-column blocPost">
     </div>
 
 
@@ -46,207 +63,51 @@
 
 {% block javascripts %}
     <script>
+
+
+
         function sendAjaxController(id) {
             $.ajax({
                 method: "POST",
                 url: "{{ path("ajax_article") }}",
                 data: {id: id},
                 success: function (responses) {
+                    responses.sort(function(a, b){return b-a});
 
                     responses.forEach((datas) => {
-                        console.log(datas);
+                        console.log(datas.id);
 
-                        // Gestion lien article
-                        let urlPost = "{{ path("show-article", {"slug": "text"}) }}";
-                        urlPost = urlPost.replace("text", datas.slug);
-
-                        let lienPost = $("<a>", {
-                            class: "postLink",
-                            attr: {href: urlPost},
-                            text: datas.title
-                        });
-
-                        // Gestion category
-                        let divCate = $("<div>", {class: "d-flex"});
-
-                        $categorys = datas.category;
-                        $categorys.forEach((category) => {
-                            let categoryPost = $("<p>", {
-                                text: category.title
-                            });
-                            $(divCate).append(categoryPost);
-                            $(".divCategory").append(divCate);
-                        });
-
-                        // Gestion bouton modifier
-                        let urlModifPost = "{{ path("modifierArticle", {"slug": "text"}) }}";
-                        urlModifPost = urlModifPost.replace("text", datas.slug);
-
-                        let lienModifier = $("<a>", {
-                            class: "modifPost",
-                            attr: {href: urlModifPost},
-                            text: "Modifier"
-                        });
-
-                        // Gestion bouton supprimer
-
-                        let lienSupprimer = $("<button>", {
-                            class: "confirmSup",
-                            text: "Supprimer"
-                        });
-
-                        let divSup = $("<div>", {
-                            class: "confirm",
-                            id: "confirm" + datas.id
-                        });
-
-                        let textSup = $("<p>", {
-                            text: 'Voulez-vous vraiment supprimer cet article "' + datas.title + '" ?'
-                        });
-
-                        let urlSupPost = "{{ path("supprimerArticle", {"id": "text"}) }}";
-                        urlSupPost = urlSupPost.replace("text", datas.id);
-
-                        let yesSup = $("<a>", {
-                            class: "yesSup",
-                            text: "Oui",
-                            attr: {"href": urlSupPost}
-                        });
-
-                        let noSup = $("<button>", {
-                            class: "noSup",
-                            text: "Non"
-                        });
-
-                        $(noSup).click(function(){
-                            cancelConfirm(datas.id);
-                        });
-
-                        $(divSup).append(textSup);
-                        $(divSup).append(yesSup);
-                        $(divSup).append(noSup);
-
-                        $(".confirmationSupPost").append(divSup);
-
-                        $(lienSupprimer).click(function(){
-                           deleteConfirm(datas.id);
-                        });
-
-                        $(".divTitle").append(lienPost);
-                        $(".modifPostDiv").append(lienModifier);
-                        $(".supPostDiv").append(lienSupprimer);
+                        htmlResponseAjax("{{ path("show-article", {"slug": "text"}) }}",
+                            "{{ path("modifierArticle", {"slug": "text"}) }}",
+                            "{{ path("supprimerArticle", {"id": "text"}) }}",
+                            datas.slug, datas.title, datas.category, datas.id);
 
                     });
                 }
             });
         }
 
-        function allPost()
-        {
-            {% for article in articles %}
-
-                //Gestion lien article
-                var urlPostAll = "{{ path("show-article", {"slug": article.slug}) }}";
-
-                var lienPostAll = $("<a>", {
-                    class: "postLink",
-                    attr: {href: urlPostAll},
-                    text: "{{ article.title }}"
-                });
-
-                // Gestion category
-                var divCato = $("<div>", {class: "d-flex"});
-                {% for categories in article.category %}
-                    var categoryPostAll = $("<p>", {
-                        text: "{{ categories.title }}"
-                    });
-                    $(divCato).append(categoryPostAll);
-                    $(".divCategory").append(divCato);
-                {% endfor %}
-
-                // Gestion bouton modifier
-                var urlModifPostAll = "{{ path("modifierArticle", {"slug": article.slug}) }}";
-
-                var lienModifierAll = $("<a>", {
-                    class: "modifPost",
-                    attr: {href: urlModifPostAll},
-                    text: "Modifier"
-                });
-
-                // Gestion bouton supprimer
-
-                var lienSupprimerAll = $("<button>", {
-                    class: "confirmSup",
-                    text: "Supprimer"
-                });
-
-                var divSup = $("<div>", {
-                    class: "confirm",
-                    id: "confirm" + {{ article.id }}
-                });
-
-                var textSup = $("<p>", {
-                    text: 'Voulez-vous vraiment supprimer cet article "' + "{{ article.title }}" + '" ?'
-                });
-
-                var urlSupPost = "{{ path("supprimerArticle", {"id": article.id}) }}";
-
-                var yesSup = $("<a>", {
-                    class: "yesSup",
-                    text: "Oui",
-                    attr: {"href": urlSupPost}
-                });
-
-                var noSup = $("<button>", {
-                    class: "noSup",
-                    text: "Non"
-                });
-
-                $(noSup).click(function(){
-                    cancelConfirm({{ article.id }});
-                });
-
-                $(divSup).append(textSup);
-                $(divSup).append(yesSup);
-                $(divSup).append(noSup);
-
-                $(".confirmationSupPost").append(divSup);
-
-                $(lienSupprimerAll).click(function(){
-                    deleteConfirm({{ article.id }});
-                });
-
-                $(".divTitle").append(lienPostAll);
-                $(".modifPostDiv").append(lienModifierAll);
-                $(".supPostDiv").append(lienSupprimerAll);
-
-            {% endfor %}
-        }
-
         let id = $("#selectPost option:selected").val();
         if (id === "all")
         {
-            allPost();
+            $("#blocPostAll").css("display", "block");
         }
         else
         {
+            $("#blocPostAll").css("display", "none");
             sendAjaxController(id);
         }
 
-
-
         $("#selectPost").change(function () {
             id = $("#selectPost option:selected").val();
-            $(".divTitle").text("");
-            $(".divCategory").text("");
-            $(".modifPostDiv").text("");
-            $(".supPostDiv").text("");
+            $(".blocPost").text("");
             if (id === "all")
             {
-                allPost();
+                $("#blocPostAll").css("display", "block");
             }
             else
             {
+                $("#blocPostAll").css("display", "none");
                 sendAjaxController(id);
             }
 

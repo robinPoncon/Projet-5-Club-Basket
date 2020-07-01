@@ -54,7 +54,6 @@
 
 
                         //Gestion affichage des convocations
-                        let div = $("<div>", {class: "convocation"});
 
                         let jour = $("<p>", {
                             class: "dayConvoc",
@@ -92,42 +91,15 @@
                             class: "confirmSup",
                             text: "Supprimer"
                         });
+
+                        let confirmSupConvoc = $("<div>", {class: "confirmationSupConvoc"});
+
                         $(supprimerConvoc).click(function(){
-                            deleteConfirm(datas.id);
+                            deleteConfirm(datas.id, "Voulez-vous vraiment supprimer cet entraînement",
+                                datas.day + " - " + formattedTime, "{{ path("supprimerEntrainement", {"id": "text"}) }}",
+                                confirmSupConvoc);
                         });
-
-                        let divSup = $("<div>", {
-                            class: "confirm",
-                            id: "confirm" + datas.id
-                        });
-
-                        let textSup = $("<p>", {
-                            text: 'Voulez-vous vraiment supprimer cet entraînement "' + datas.day + " - " +
-                                formattedTime + '" ?'
-                        });
-
-                        let urlSup = "{{ path("supprimerEntrainement", {"id": "text2"}) }}";
-                        urlSup = urlSup.replace("text2", datas.id);
-
-                        let yesSup = $("<a>", {
-                            class: "yesSup",
-                            text: "Oui",
-                            attr: {"href": urlSup}
-                        });
-
-                        let noSup = $("<button>", {
-                            class: "noSup",
-                            text: "Non"
-                        });
-                        $(noSup).click(function(){
-                            cancelConfirm(datas.id);
-                        });
-
-                        $(divSup).append(textSup);
-                        $(divSup).append(yesSup);
-                        $(divSup).append(noSup);
-                        $(".confirmationSup").append(divSup);
-
+                        
                         //Finition affichage avec les blocs de div
                         let divInfos = $("<div>", {class: "d-flex divInfosEntrainement"});
                         $(divInfos).append(jour);
@@ -138,8 +110,10 @@
                         $(divBoutons).append(modifierConvoc);
                         $(divBoutons).append(supprimerConvoc);
 
+                        let div = $("<div>", {class: "convocation"});
                         $(div).append(divInfos);
                         $(div).append(divBoutons);
+                        $(div).append(confirmSupConvoc);
                         $(".convocations").append(div);
                     });
                 }

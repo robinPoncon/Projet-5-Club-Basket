@@ -381,7 +381,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 .confirm
 {
     text-align: center;
-    display: none;
     position: absolute;
     z-index: 50;
     width: 50%;
@@ -478,6 +477,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     font-style: normal;
 }
 
+.confirmationSupTeam .confirm
+{
+    margin-top: -60px;
+}
+
 
                     /* Gestion Entrainements */
 
@@ -504,13 +508,18 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     font-weight: bold;
 }
 
-#h2Convoc
+.convocation .confirm
+{
+    margin-top: -115px;
+}
+
+#h2Convoc, #h2Article
 {
     font-size: 1.5em;
     margin-right: 25px;
 }
 
-#selectTeam
+#selectTeam, #selectPost
 {
     margin-top: 5px;
 }
@@ -585,7 +594,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     text-align: center;
     border-radius: 5px;
     margin-bottom: 20px;
-    margin-left: 10px;
     padding: 10px;
 }
 
@@ -610,6 +618,12 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     display: block;
 }
 
+#addPost:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
 .modifPost
 {
     text-align: center;
@@ -621,33 +635,12 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     margin-bottom: 20px;
 }
 
-.modifPostDiv
-{
-    margin-top: 59px;
-}
-
 .supPostDiv button
 {
     background-color: #074592;
     color: white;
-    padding: 8px;
     border-radius: 5px;
     border: 1px #074592 solid;
-}
-
-.divTitle, .divCategory
-{
-    display: flex;
-    flex-direction: column;
-}
-
-.supPostDiv
-{
-    margin-top: 59px;
-}
-
-.supPostDiv button
-{
     margin-bottom: 20px;
     padding: 10px;
 }
@@ -679,9 +672,43 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     font-weight: bold;
 }
 
+.confirmationSupPost
+{
+    position: absolute;
+    width: 100%;
+}
+
 .confirmationSupPost .confirm
 {
-    margin-top: -10px;
+    margin-top: -50px;
 }
+
+.confirm p
+{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.divCategory
+{
+    width: 10%;
+}
+
+.divTitle
+{
+    width: 30%;
+}
+
+#blocPostAll
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.blocPost, #blocPostAll
+{
+    margin-top: 50px;
+}
+
 
 
