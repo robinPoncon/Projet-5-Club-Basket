@@ -7,7 +7,7 @@
     <div id="blocEntrainement">
         <h1> Gestion des entrainements </h1>
         <a id="addConvoc" href="{{ path("ajouterEntrainement") }}">Ajouter un entraînement +</a>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center position-relative">
             <h2 id="h2Convoc"> Pour voir les entraînements d'une équipe -> </h2>
             <div>
                 <select name="listEquipe" id="selectTeam">
@@ -99,7 +99,7 @@
                                 datas.day + " - " + formattedTime, "{{ path("supprimerEntrainement", {"id": "text"}) }}",
                                 confirmSupConvoc);
                         });
-                        
+
                         //Finition affichage avec les blocs de div
                         let divInfos = $("<div>", {class: "d-flex divInfosEntrainement"});
                         $(divInfos).append(jour);

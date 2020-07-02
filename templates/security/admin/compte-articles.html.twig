@@ -9,7 +9,7 @@
 
     <a id="addPost" href="{{ path("ajouterArticle") }}">Ajouter un article +</a>
 
-    <div id="trierArticle" class="d-flex justify-content-center">
+    <div id="trierArticle" class="d-flex justify-content-center position-relative">
         <h2 id="h2Article">Pour trier l'affichage des articles -> </h2>
         <div>
             <select name="listCategory" id="selectPost">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="supPostDiv">
                     <button onclick='deleteConfirm({{ article.id }}, "Voulez-vous vraiment supprimer cet article",
-                            "{{ article.title }}", "{{ path("supprimerArticle", {"id": "text"}) }}",
+                            "{{ article.title | replace({'"':'\''}) }}", "{{ path("supprimerArticle", {"id": "text"}) }}",
                             "#confirmationSupPost{{ article.id }}")'
                             class="confirmSup">Supprimer</button>
                 </div>

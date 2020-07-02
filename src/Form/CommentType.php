@@ -2,29 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
-use App\Entity\Category;
+use App\Entity\Comment;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class CommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, [
-                "label" => "Titre",
+            ->add('author', TextType::class, [
+                "label" => "Pseudo",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
                 "attr" => [
-                    "placeholder" => "Titre de l'article",
+                    "placeholder" => "Votre pseudo",
                     "class" => "form-control input"
                 ]
             ])
@@ -32,22 +28,9 @@ class ArticleType extends AbstractType
                 "config" => [
                     "language" => "fr"
                 ],
-                "label" => "Contenu",
+                "label" => "Commentaire",
                 "label_attr" => [
                     "class" => "form-control label contentPost",
-                ]
-            ])
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-                "choice_label" => "title",
-                "multiple" => true,
-                "expanded" => true,
-                "label" => "Choisir une catégorie",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "class" => "form-control input"
                 ]
             ])
         ;
@@ -56,7 +39,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Article::class,
+            'data_class' => Comment::class,
         ]);
     }
 }

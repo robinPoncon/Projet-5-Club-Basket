@@ -2,12 +2,60 @@
 
 {% block body %}
 
-    <h1>{{ article.title }} - Le {{ article.createdAt | date("d/m/Y") }}</h1>
-    <p>Catégorie -
-        {% for categoryTest in article.category %}
-            <span>{{ categoryTest.title }}</span>
-        {% endfor %}
-    </p>
-    <p>{{ article.content }}</p>
+    <div class="post">
+        <h1>{{ article.title }} - Le {{ article.createdAt | date("d/m/Y") }}</h1>
+        <p class="postCategory">Catégorie :
+            {% for categoryTest in article.category %}
+                <span>{{ categoryTest.title }}</span>
+            {% endfor %}
+        </p>
+        <div class="postContent">{{ article.content | raw }}</div>
+    </div>
+
+
+    <div class="d-flex addCommentPost">
+        <h2>Pour ajouter un commentaire -> </h2>
+        <button class="addCommentButton">Cliquer ici</button>
+    </div>
+
+    {{ form_start(formComment) }}
+    <div class="addComment">
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formComment.author) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formComment.author) }}
+                {{ form_widget(formComment.author) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formComment.content) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formComment.content) }}
+                {{ form_widget(formComment.content) }}
+            </div>
+        </div>
+        <button class="form-control submit" type="submit">Ajouter</button>
+    </div>
+
+    {{ form_end(formComment) }}
+
+
+    {% for comment in article.comments %}
+        <div class="showComment">
+            <h3>{{ comment.author }} - {{ comment.createdAt | date("d/m/Y") }}</h3>
+            <div class="commentContent"> {{ comment.content | raw}}</div>
+            <a class="commentEdit" href="{{ path("modifierComment", {"id": comment.id}) }}">Editer</a>
+            <button onclick='deleteConfirm({{ comment.id }}, "Voulez-vous vraiment supprimer ce commentaire",
+                    "{{ comment.author }}", "{{ path("supprimerComment", {"id": "text"}) }}",
+                    "#confirmationSupComment{{ comment.id }}")'
+                    class="confirmSup">Supprimer</button>
+            <div class="confirmationSupCom" id="confirmationSupComment{{ comment.id }}">
+        </div>
+    {% endfor %}
+
 
 {% endblock %}

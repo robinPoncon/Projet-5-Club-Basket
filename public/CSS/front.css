@@ -4,6 +4,11 @@ html, body
     padding: 0;
 }
 
+h2
+{
+    font-size: 1.5em !important;
+}
+
 li
 {
     list-style-type: none;
@@ -209,10 +214,12 @@ nav a:hover, #nav-team:hover, #bloc-team p:hover, #bloc-team a:hover
 
 h1
 {
+    position: relative;
     text-align: center;
     color: black;
-    padding-top: 170px;
-    padding-bottom: 30px;
+    top: 170px;
+    padding-bottom: 200px;
+    z-index: 0;
 }
 
 .menu
@@ -434,6 +441,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 #addTeam
 {
+    position: relative;
     display: flex;
     margin-bottom: 50px !important;
     justify-content: center;
@@ -521,6 +529,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 #selectTeam, #selectPost
 {
+    position: relative;
     margin-top: 5px;
 }
 
@@ -559,6 +568,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 #addConvoc
 {
+    position: relative;
     width: 250px;
     margin: auto;
     margin-bottom: 50px;
@@ -585,6 +595,25 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
                     /* Gestion Articles */
 
+.contentPost
+{
+    width: 25.5% !important;
+}
+
+#cke_article_content
+{
+    margin-bottom: 40px;
+}
+
+#article_category label
+{
+    margin-right: 20px;
+}
+
+#article_category input
+{
+    margin-right: 5px;
+}
 .postLink
 {
     font-weight: bold;
@@ -606,6 +635,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 #addPost
 {
+    position: relative;
     width: 180px;
     margin: auto;
     margin-bottom: 50px !important;
@@ -710,5 +740,102 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     margin-top: 50px;
 }
 
+                                    /* Gestion Article FRONT */
 
+.addComment
+{
+    display: none;
+}
 
+.addComment .submit
+{
+    margin-top: 30px !important;
+}
+
+.post
+{
+    position: relative;
+    border: 5px #074592 solid;
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    top: 150px;
+}
+
+.post h1
+{
+    position: initial;
+    background-color: #074592;
+    color: white;
+    padding: 20px;
+    font-style: italic;
+}
+
+.postCategory
+{
+    background-color: #dd650f;
+    padding: 10px;
+    position: relative;
+    top: -8px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.post .postContent
+{
+    padding: 20px;
+}
+
+.addCommentPost
+{
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.addCommentPost h2
+{
+    margin-right: 20px;
+}
+
+.addCommentButton
+{
+    background-color: #074592;
+    color: white;
+    border: 1px #074592 solid;
+    border-radius: 5px;
+}
+
+.addCommentButton:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.showComment
+{
+    border: 5px #074592 solid;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.showComment h3
+{
+    background-color: #074592;
+    text-align: center;
+    padding: 15px;
+    color: white;
+}
+
+.commentContent
+{
+    padding: 10px;
+}
+
+.divForm
+{
+    position: relative;
+}

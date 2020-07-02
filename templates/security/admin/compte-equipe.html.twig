@@ -23,9 +23,9 @@
                         <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
                         <button onclick='deleteConfirm({{ equipe.id }}, "Voulez-vous vraiment supprimer cette equipe",
                                 "{{ equipe.name }}", "{{ path("supprimerEquipe", {"id": "text"}) }}",
-                                "#confirmationSupPost{{ equipe.id }}")'
+                                "#confirmationSupConvoc{{ equipe.id }}")'
                                 class="confirmSup">Supprimer</button>
-                        <div class="confirmationSupTeam" id="confirmationSupPost{{ equipe.id }}">
+                        <div class="confirmationSupTeam" id="confirmationSupConvoc{{ equipe.id }}">
                         </div>
                     </div>
 
@@ -42,9 +42,9 @@
                         <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
                         <button onclick='deleteConfirm({{ equipe.id }}, "Voulez-vous vraiment supprimer cette equipe",
                                 "{{ equipe.name }}", "{{ path("supprimerEquipe", {"id": "text"}) }}",
-                                "#confirmationSupPost{{ equipe.id }}")'
+                                "#confirmationSupConvoc{{ equipe.id }}")'
                                 class="confirmSup">Supprimer</button>
-                        <div class="confirmationSupTeam" id="confirmationSupPost{{ equipe.id }}">
+                        <div class="confirmationSupTeam" id="confirmationSupConvoc{{ equipe.id }}">
                         </div>
                     </div>
 

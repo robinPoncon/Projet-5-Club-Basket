@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +18,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Constraints\Date;
 
-class ArticleController extends AbstractController
+class BlogController extends AbstractController
 {
     /**
      * @Route("/", name="home")
@@ -43,10 +45,27 @@ class ArticleController extends AbstractController
     /**
      * @Route("article/{slug}", name="show-article")
      */
-    public function showOne(Article $article)
+    public function showOne(Article $article, Request $request, EntityManagerInterface $manager)
     {
+        $commentaire = new Comment();
+
+        $form = $this->createForm(CommentType::class, $commentaire);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $commentaire->setCreatedAt(new \DateTime());
+            $commentaire->setArticle($article);
+            $manager->persist($commentaire);
+            $manager->flush();
+
+            return $this->redirectToRoute("show-article", [
+                "slug" => $article->getSlug()
+            ]);
+        }
         return $this->render("article/show.html.twig", [
             'article' => $article,
+            "formComment" => $form->createView()
         ]);
     }
 
@@ -153,12 +172,49 @@ class ArticleController extends AbstractController
     /**
      * @Route("admin/articles/delete/{id}", name="supprimerArticle")
      */
-    public function deletePost(Article $article, Request $request, EntityManagerInterface $manager)
+    public function deletePost(Article $article, EntityManagerInterface $manager)
     {
         $manager->remove($article);
         $manager->flush();
 
         return $this->redirectToRoute("articles");
+    }
+
+    /**
+     * @Route("articles/commentaires/modifier/{id}", name="modifierComment")
+     */
+    public function editComment(Comment $comment, Request $request, EntityManagerInterface $manager)
+    {
+        $article = $comment->getArticle();
+        dump($article);
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute("show-article", [
+                "slug" => $article->getSlug()
+            ]);
+        }
+
+        return $this->render("article/editComment.html.twig", [
+            "formComment" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("articles/commentaires/supprimer/{id}", name="supprimerComment")
+     */
+    public function deleteComment(Comment $comment, EntityManagerInterface $manager)
+    {
+        $manager->remove($comment);
+        $manager->flush();
+
+        return $this->redirectToRoute("show-article");
     }
 
 }

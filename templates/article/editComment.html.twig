@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <h1>Modifier le commentaire</h1>
+    {{ form_start(formComment) }}
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formComment.author) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formComment.author) }}
+            {{ form_widget(formComment.author) }}
+        </div>
+    </div>
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formComment.content) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formComment.content) }}
+            {{ form_widget(formComment.content) }}
+        </div>
+    </div>
+
+    <button class="form-control submit" type="submit">Modifier</button>
+    {{ form_end(formComment) }}
+{% endblock %}

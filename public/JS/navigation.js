@@ -59,6 +59,22 @@ compteCssOver("#compte4child", "#compte4");
 
 
 
+$(".addCommentButton").click(function(){
+    console.log($(this).val());
+    if($(this).html() === "Cliquer ici")
+    {
+        $(this).text("Annuler");
+    }
+    else
+    {
+        $(this).text("Cliquer ici");
+    }
+
+    $(".addComment").toggle();
+});
+
+
+
 
 
 
@@ -99,7 +115,8 @@ function deleteConfirm(id, text, dataText, routeSup, div) {
     $(div).append(divSup);
 
     $(".typeTeam, #addTeam, h1, h2, .divInfosEntrainement, .divBoutonsEntrainement, #addPost, " +
-        "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv")
+        "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
+        " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup ")
         .css("opacity", 0.5).css("pointer-events", "none");
 }
 
@@ -109,8 +126,6 @@ function cancelConfirm(div) {
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv")
         .css("opacity", 1).css("pointer-events", "auto");
 }
-
-
 
 
 
