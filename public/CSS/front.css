@@ -107,6 +107,7 @@ nav a, #nav-team
     display: none;
     border-radius: 5px;
     margin-right: 13px;
+    padding-bottom: 15px;
 }
 
 #bloc-team p
@@ -127,7 +128,7 @@ nav a, #nav-team
 
 #girlTeam
 {
-    padding-left: 6px;
+    padding-left: 4px;
     position: relative;
     top: -3px;
     z-index: 100;
@@ -139,6 +140,14 @@ nav a, #nav-team
     position: relative;
     padding-bottom: 20px;
     z-index: 100;
+}
+
+#loisirTeam
+{
+    position: relative;
+    z-index: 100;
+    top: 10px;
+    margin-left: -15px;
 }
 
 #listBoy
@@ -244,12 +253,29 @@ nav > ul li:hover #bloc-team
     display: block;
 }
 
-nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
+nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li ul li:hover #listLoisir
 {
     display: block;
 }
 
+#bloc-club
+{
+    position: absolute;
+    width: 140%;
+    text-align: initial;
+    background-color: #074592;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    display: none;
+}
 
+#bloc-club a
+{
+    font-size: 1.3em;
+    margin-top: 20px;
+    display: block;
+    color: white;
+}
 
 
 
@@ -295,6 +321,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 
 .connectField
 {
+    position: relative;
     width: 80%;
     margin: auto;
     display: flex;
@@ -747,7 +774,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     display: none;
 }
 
-.addComment .submit
+.addComment .submit, .blocEditComment .submit
 {
     margin-top: 30px !important;
 }
@@ -818,8 +845,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
     width: 60%;
     margin: auto;
     border-radius: 10px;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .showComment h3
@@ -836,6 +863,114 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl
 }
 
 .divForm
+{
+    position: relative;
+}
+
+.adminComment
+{
+    margin-bottom: 30px;
+}
+
+.commentEdit
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 30px;
+    border: 1px #074592 solid;
+}
+
+.adminComment .confirmSup
+{
+    background-color: #074592 !important;
+    color: white !important;
+    border: 1px #074592 solid;
+}
+
+.commentEdit:hover, .adminComment .confirmSup:hover
+{
+    background-color: #dd650f !important;
+    color: white;
+    border-radius: 5px !important;
+    border: 1px #dd650f solid;
+}
+
+.confirmationSupCom
+{
+    width: 100%;
+    position: absolute;
+}
+
+.confirmationSupCom .confirm
+{
+    margin-top: -102px;
+}
+
+
+
+                                        /* Accueil & Tournois */
+
+.news
+{
+    position: relative;
+}
+
+.news h2
+{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bandeRight
+{
+    text-align: center;
+    position: relative;
+    width: 30%;
+    border: 5px #074592 solid;
+    border-radius: 5px;
+    top: 59px;
+}
+
+.postNews, .postTournois
+{
+    border: 5px #074592 solid;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+.postNews h3, .postTournois h3
+{
+    background-color: #074592;
+    text-align: center;
+    padding: 10px;
+}
+
+.postNews h3 a, .postTournois h3 a
+{
+    color: white;
+}
+
+.postNews h3 a:hover, .postTournois h3 a:hover
+{
+    color: #ef8108;
+}
+
+.postNews div, .postTournois div
+{
+    padding: 20px;
+}
+
+.fas.fa-basketball-ball
+{
+    color: #dd650f;
+    margin-right: 10px;
+}
+
+.postTournois
 {
     position: relative;
 }

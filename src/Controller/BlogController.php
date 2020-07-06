@@ -23,9 +23,41 @@ class BlogController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function home(ArticleRepository $articleRepo)
     {
-        return $this->render("home/home.html.twig", [
+        $articles = $articleRepo->findAll();
+        return $this->render("blog/home.html.twig", [
+            "articles" => $articles
+        ]);
+    }
+
+    /**
+     * @Route("tournois", name="tournois")
+     */
+    public function tournois(ArticleRepository $articleRepo){
+        $articles = $articleRepo->findAll();
+        return $this->render("blog/tournois.html.twig", [
+            "articles" => $articles
+        ]);
+    }
+
+    /**
+     * @Route("club/la-vie-au-club", name="club")
+     */
+    public function club(ArticleRepository $articleRepo){
+        $articles = $articleRepo->findAll();
+        return $this->render("blog/club/vie-club.html.twig", [
+            "articles" => $articles
+        ]);
+    }
+
+    /**
+     * @Route("club/inscription", name="clubInscription")
+     */
+    public function clubInscription(ArticleRepository $articleRepo){
+        $articles = $articleRepo->findAll();
+        return $this->render("blog/club/inscription-club.html.twig", [
+            "articles" => $articles
         ]);
     }
 
@@ -63,7 +95,7 @@ class BlogController extends AbstractController
                 "slug" => $article->getSlug()
             ]);
         }
-        return $this->render("article/show.html.twig", [
+        return $this->render("blog/article/show.html.twig", [
             'article' => $article,
             "formComment" => $form->createView()
         ]);
@@ -140,7 +172,7 @@ class BlogController extends AbstractController
             ]);
         }
 
-        return $this->render("article/add.html.twig", [
+        return $this->render("blog/article/add.html.twig", [
             "formArticle" => $form->createView()
         ]);
     }
@@ -164,7 +196,7 @@ class BlogController extends AbstractController
             ]);
         }
 
-        return $this->render("article/edit.html.twig", [
+        return $this->render("blog/article/edit.html.twig", [
             "formArticle" => $form->createView()
         ]);
     }
@@ -201,7 +233,7 @@ class BlogController extends AbstractController
             ]);
         }
 
-        return $this->render("article/editComment.html.twig", [
+        return $this->render("blog/comment/editComment.html.twig", [
             "formComment" => $form->createView()
         ]);
     }
@@ -211,10 +243,14 @@ class BlogController extends AbstractController
      */
     public function deleteComment(Comment $comment, EntityManagerInterface $manager)
     {
+        $article = $comment->getArticle();
+        dump($article);
         $manager->remove($comment);
         $manager->flush();
 
-        return $this->redirectToRoute("show-article");
+        return $this->redirectToRoute("show-article", [
+            "slug" => $article->getSlug()
+        ]);
     }
 
 }

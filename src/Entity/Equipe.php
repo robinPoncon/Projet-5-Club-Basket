@@ -39,12 +39,6 @@ class Equipe
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     */
-    private $widgetId;
-
-    /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
@@ -54,6 +48,11 @@ class Equipe
      * @ORM\OneToMany(targetEntity=Convocation::class, mappedBy="equipes", orphanRemoval=true)
      */
     private $convocations;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $widgetId;
 
     public function __construct()
     {
@@ -86,18 +85,6 @@ class Equipe
     public function setType(string $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getWidgetId(): ?string
-    {
-        return $this->widgetId;
-    }
-
-    public function setWidgetId(string $widgetId): self
-    {
-        $this->widgetId = $widgetId;
 
         return $this;
     }
@@ -141,6 +128,18 @@ class Equipe
                 $convocation->setEquipes(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWidgetId(): ?string
+    {
+        return $this->widgetId;
+    }
+
+    public function setWidgetId(?string $widgetId): self
+    {
+        $this->widgetId = $widgetId;
 
         return $this;
     }

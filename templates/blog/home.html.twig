@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div id="SuccessContact" class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+	<h1> Bienvenue sur site du club de basket de Meximieux !</h1>
+	<div class="d-flex justify-content-between blocHome">
+		<div class="news">
+			<h2> Actualités </h2>
+			{% for article in articles %}
+				{% for category in article.category %}
+					{% if category.title == "News" %}
+						<div class="postNews">
+							<h3><i class="fas fa-basketball-ball"></i>
+								<a href="{{ path("show-article", {"slug": article.slug}) }}"> {{ article.title }} -
+									{{ article.createdAt | date("d/m/Y") }}</a></h3>
+							<div>
+								{{ article.content | truncate(400, true, "...") | raw}}
+								<a href="{{ path("show-article", {"slug": article.slug}) }}">Lire la suite</a>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</div>
+		<div class="bandeRight">
+			<h3>Inscription saison 2020/2021</h3>
+			<a href="#">Télécharger la fiche d'inscription</a>
+			<h3>Envoyer nous vos photos !</h3>
+			<a href="#">Accéder au formulaire d'envoie de photos</a>
+			<h3>Infos FFBB</h3>
+			<a href="#">Classement des équipes du département</a>
+			<h3>Actualités FFBB</h3>
+
+		</div>
+	</div>
+
+
+
+	</div>
+{% endblock %}

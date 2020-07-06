@@ -7,13 +7,22 @@ $('.menu a, #connexion a').each(function () {
         let cCedille = "%C3%A7";
         let regexBoy = RegExp('gar' + cCedille + "ons");
         let regexGirl = RegExp("filles");
+        let regexLoisir = RegExp("loisir");
 
-        if (regexBoy.test(path)) {
+        if (regexBoy.test(path))
+        {
             $("#nav-team").addClass("active");
             $("#boyTeam").addClass("active");
-        } else if (regexGirl.test(path)) {
+        }
+        else if (regexGirl.test(path))
+        {
             $("#nav-team").addClass("active");
             $("#girlTeam").addClass("active");
+        }
+        else if (regexLoisir.test(path))
+        {
+            $("#nav-team").addClass("active");
+            $("#loisirTeam").addClass("active");
         }
     }
 });
@@ -26,6 +35,7 @@ $(".menu-compte a").each(function () {
         let regExpEquipes = RegExp("equipes");
         if (regExpCompte.test(path)) {
             $("#compte1").addClass("activeCompte");
+            $("#connexion :first-child").addClass("active");
         } else if (regExpUsers.test(path)) {
             $("#compte2").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
@@ -123,7 +133,8 @@ function deleteConfirm(id, text, dataText, routeSup, div) {
 function cancelConfirm(div) {
     $(div).text("");
     $(".typeTeam, #addTeam, h1, h2, .divInfosEntrainement, .divBoutonsEntrainement, #addPost, " +
-        "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv")
+        "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
+        " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup ")
         .css("opacity", 1).css("pointer-events", "auto");
 }
 

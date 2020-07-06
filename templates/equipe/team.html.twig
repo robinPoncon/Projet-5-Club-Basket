@@ -11,8 +11,9 @@
 {% endblock %}
 
 {% block javascripts %}
-
- <iframe id="{{ equipe.widgetId }}" height="500" src="https://scorenco.com/widget/{{ equipe.widgetId }}/"
-            style="display: block; width: 50%; overflow: scroll; margin: auto; border-width: 0;"></iframe>
+    {% if equipe.widgetId != "" %}
+         <iframe id="{{ equipe.widgetId }}" height="500" src="https://scorenco.com/widget/{{ equipe.widgetId }}/"
+                    style="display: block; width: 50%; overflow: scroll; margin: auto; border-width: 0;"></iframe>
+    {% endif %}
 
 {% endblock %}

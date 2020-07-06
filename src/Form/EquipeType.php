@@ -49,8 +49,9 @@ class EquipeType extends AbstractType
                 ],
                 "attr" => [
                     "placeholder" => "Code widget",
-                    "class" => "form-control input"
-                ]
+                    "class" => "form-control input",
+                ],
+                "required" => false
             ])
         ;
     }

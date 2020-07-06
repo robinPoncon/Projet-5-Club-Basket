@@ -17,7 +17,12 @@
         <ul id="navigation-left">
             <li><a href="{{ path("home") }}"> Accueil </a></li>
 
-            <li><a href="#"> LE CLUB </a></li>
+            <li><a href="#"> LE CLUB </a>
+                <ul id="bloc-club">
+                    <li><a href="#">La vie au club</a></li>
+                    <li><a href="#">Infos Inscription</a></li>
+                </ul>
+            </li>
 
             <li><a href="#" id="nav-team"> EQUIPES </a>
                 <ul id="bloc-team">
@@ -41,6 +46,16 @@
                             {% endfor %}
                         </ul>
                     </li>
+                    <li class="d-flex justify-content-between"><a href="#" id="loisirTeam"> Loisir </a>
+                        <ul id="listLoisir">
+                            {% for equipe in equipes.findAll() %}
+                                {% if equipe.type == "loisir" %}
+                                    <li><a href="{{ path("equipe", {"slug": equipe.slug, "type": equipe.type}) }}">
+                                            {{ equipe.name }} </a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -52,7 +67,7 @@
         <ul id="navigation-right">
             <li><a href="#"> PHOTOS </a></li>
 
-            <li><a href="#"> TOURNOIS </a></li>
+            <li><a href="{{ path("tournois") }}"> TOURNOIS </a></li>
 
             <li><a href="{{ path("contact") }}"> CONTACT </a></li>
         </ul>

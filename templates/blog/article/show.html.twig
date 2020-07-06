@@ -48,12 +48,16 @@
         <div class="showComment">
             <h3>{{ comment.author }} - {{ comment.createdAt | date("d/m/Y") }}</h3>
             <div class="commentContent"> {{ comment.content | raw}}</div>
-            <a class="commentEdit" href="{{ path("modifierComment", {"id": comment.id}) }}">Editer</a>
-            <button onclick='deleteConfirm({{ comment.id }}, "Voulez-vous vraiment supprimer ce commentaire",
-                    "{{ comment.author }}", "{{ path("supprimerComment", {"id": "text"}) }}",
-                    "#confirmationSupComment{{ comment.id }}")'
-                    class="confirmSup">Supprimer</button>
-            <div class="confirmationSupCom" id="confirmationSupComment{{ comment.id }}">
+            {% if app.user %}
+                <div class="d-flex justify-content-around adminComment">
+                    <a class="commentEdit" href="{{ path("modifierComment", {"id": comment.id}) }}">Editer</a>
+                    <button onclick='deleteConfirm({{ comment.id }}, "Voulez-vous vraiment supprimer ce commentaire",
+                            "{{ comment.author }}", "{{ path("supprimerComment", {"id": "text"}) }}",
+                            "#confirmationSupComment{{ comment.id }}")'
+                            class="confirmSup">Supprimer</button>
+                    <div class="position-absolute confirmationSupCom" id="confirmationSupComment{{ comment.id }}"></div>
+                </div>
+            {% endif %}
         </div>
     {% endfor %}
 
