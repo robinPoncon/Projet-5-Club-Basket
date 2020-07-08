@@ -2,16 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
+use App\Entity\Inscription;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactType extends AbstractType
+class InscriptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -36,6 +35,16 @@ class ContactType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
+            ->add("age", IntegerType::class, [
+                "label" => "Âge",
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "placeholder" => "Votre âge",
+                    "class" => "form-control input"
+                ]
+            ])
             ->add("email", EmailType::class, [
                 "label" => "Email",
                 "label_attr" => [
@@ -46,25 +55,6 @@ class ContactType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add("objet", ChoiceType::class, [
-                "choices" => $this->getChoices(),
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "class" => "form-control input"
-                ]
-            ])
-            ->add("message", TextareaType::class, [
-                "label" => "Message",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "Votre message",
-                    "class" => "form-control input"
-                ]
-            ])
         ;
     }
 
@@ -72,16 +62,5 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults([
         ]);
-    }
-
-    public function getChoices()
-    {
-        $choices = Contact::OBJET;
-        $output = [];
-        foreach($choices as $k => $v)
-        {
-            $output[$v] = $k;
-        }
-        return $output;
     }
 }

@@ -90,11 +90,6 @@ nav a, #nav-team
     cursor: pointer;
 }
 
-#triangle
-{
-
-}
-
 #bloc-team
 {
     text-align: center;
@@ -148,6 +143,20 @@ nav a, #nav-team
     z-index: 100;
     top: 10px;
     margin-left: -15px;
+}
+
+#listLoisir
+{
+    left: 65px;
+    border-radius: 5px;
+    top: 5px;
+    padding-top: 10px;
+    background-color: #074592;
+    position: absolute;
+    display: none;
+    width: 100%;
+    z-index: 99;
+    padding-bottom: 4px;
 }
 
 #listBoy
@@ -248,7 +257,7 @@ nav ul li
     position: relative;
 }
 
-nav > ul li:hover #bloc-team
+nav > ul li:hover #bloc-team, nav > ul li:hover #bloc-club
 {
     display: block;
 }
@@ -267,6 +276,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border-radius: 5px;
     padding-bottom: 10px;
     display: none;
+    padding-top: 10px;
+    margin-top: -13px;
 }
 
 #bloc-club a
@@ -275,6 +286,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 20px;
     display: block;
     color: white;
+}
+
+#bloc-club a:hover
+{
+    color: #ef8108;
 }
 
 
@@ -307,7 +323,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .submit:hover
 {
-    background-color: #ef8108 !important;
+    background-color: #dd650f !important;
 }
 
 .divForm
@@ -333,12 +349,13 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: #dd650f;
 }
 
-#SuccessContact
+.SuccessContact
 {
     top: 150px;
     position: relative;
     text-align: center;
     margin: auto;
+    width: 90%;
 }
 
                                         /* EQUIPE */
@@ -517,6 +534,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: -60px;
 }
 
+#blocTeam .confirmSup:hover
+{
+    border-radius: 5px;
+}
+
 
                     /* Gestion Entrainements */
 
@@ -579,7 +601,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border: 1px #dd650f solid;
 }
 
-.modifConvoc:hover, .confirmSup:hover
+.modifConvoc:hover, .convocation .confirmSup:hover
 {
     color: black;
     border-radius: 10px;
@@ -973,4 +995,31 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .postTournois
 {
     position: relative;
+}
+
+                                                    /* CLUB */
+
+
+.buttonInscription
+{
+    background-color: #074592;
+    color: white;
+    border: 1px #074592 solid;
+    border-radius: 5px;
+}
+
+.buttonInscription:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.formInscription
+{
+    display: none;
+}
+
+.addInscription h2
+{
+    margin-right: 15px;
 }

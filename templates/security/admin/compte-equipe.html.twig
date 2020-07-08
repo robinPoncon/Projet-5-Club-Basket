@@ -11,7 +11,7 @@
         <a href="{{ path("entrainement") }}">Gestion des entrainements</a>
     </div>
 
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around position-relative">
         <ul class="blocTeam">
             <h2 class="typeTeam">Equipes garçons : </h2>
             {% for equipe in equipes.findAll() %}
@@ -28,7 +28,6 @@
                         <div class="confirmationSupTeam" id="confirmationSupConvoc{{ equipe.id }}">
                         </div>
                     </div>
-
                 {% endif %}
             {% endfor %}
         </ul>
@@ -47,7 +46,24 @@
                         <div class="confirmationSupTeam" id="confirmationSupConvoc{{ equipe.id }}">
                         </div>
                     </div>
-
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul class="blocTeam">
+            <h2 class="typeTeam">Equipes loisir :</h2>
+            {% for equipe in equipes.findAll() %}
+                {% if equipe.type == "loisir" %}
+                    <div class="d-flex justify-content-center compteTeam">
+                        <li><a class="nameTeam" href="{{ path("equipe", {"slug":  equipe.slug , "type": equipe.type }) }}">
+                                {{ equipe.name }}</a></li>
+                        <li><a href="{{ path("modifierEquipe", {"slug": equipe.slug}) }}">Modifier</a></li>
+                        <button onclick='deleteConfirm({{ equipe.id }}, "Voulez-vous vraiment supprimer cette equipe",
+                                "{{ equipe.name }}", "{{ path("supprimerEquipe", {"id": "text"}) }}",
+                                "#confirmationSupConvoc{{ equipe.id }}")'
+                                class="confirmSup">Supprimer</button>
+                        <div class="confirmationSupTeam" id="confirmationSupConvoc{{ equipe.id }}">
+                        </div>
+                    </div>
                 {% endif %}
             {% endfor %}
         </ul>

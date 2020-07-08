@@ -27,9 +27,12 @@ class ConvocationController extends AbstractController
     {
         $equipesBoy = $equipeRepo->findByType("garçons");
         $equipesGirl = $equipeRepo->findByType("filles");
+        $equipesLoisir = $equipeRepo->findByType("loisir");
+
         return $this->render('equipe/convocation/index-convoc.html.twig', [
             "equipesBoy" => $equipesBoy,
-            "equipesGirl" => $equipesGirl
+            "equipesGirl" => $equipesGirl,
+            "equipesLoisir" => $equipesLoisir
         ]);
 
     }
@@ -100,6 +103,7 @@ class ConvocationController extends AbstractController
             $manager->persist($convocation);
             $manager->flush();
 
+            $this->addFlash("success", "L'entraînement a bien été ajouté !");
             return $this->redirectToRoute("entrainement");
         }
 
@@ -123,6 +127,7 @@ class ConvocationController extends AbstractController
             $manager->persist($convocation);
             $manager->flush();
 
+            $this->addFlash("success", "L'entraînement a bien été modifié !");
             return $this->redirectToRoute("entrainement");
         }
 
@@ -140,6 +145,7 @@ class ConvocationController extends AbstractController
         $manager->remove($convocation);
         $manager->flush();
 
+        $this->addFlash("success", "L'entraînement a bien été supprimé !");
         return $this->redirectToRoute("entrainement");
     }
 }

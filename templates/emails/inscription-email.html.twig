@@ -1,0 +1,11 @@
+<h1 style="color: #074592; font-weight: bold">Bonjour Administrateur </h1>
+
+<p>Vous avez été contacté par <span style="color: #074592; font-weight: bold">{{ inscription.surname | upper }} {{ inscription.name | upper}}</span>
+    pour un renouvellement ou une inscription au club </p>
+
+<h2 style="color: #074592; font-weight: bold"> Voici ses informations </h2>
+
+<p style="font-style: italic;">Nom - {{ inscription.surname }}</p>
+<p style="font-style: italic;">Prénom - {{ inscription.name }}</p>
+<p style="font-style: italic;">Âge - {{ inscription.age }}</p>
+<p style="font-style: italic;">Email - {{ inscription.email }}</p>

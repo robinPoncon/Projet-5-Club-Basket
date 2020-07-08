@@ -1,11 +1,15 @@
 {% extends "base.html.twig" %}
 
+{% block title %} Accueil BCM {% endblock %}
+
 {% block body %}
+
 	{% for message in app.flashes('success') %}
-		<div id="SuccessContact" class="alert alert-success">
+		<div class="alert alert-success SuccessContact">
 			{{ message }}
 		</div>
 	{% endfor %}
+
 	<h1> Bienvenue sur site du club de basket de Meximieux !</h1>
 	<div class="d-flex justify-content-between blocHome">
 		<div class="news">

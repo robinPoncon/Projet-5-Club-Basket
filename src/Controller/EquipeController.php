@@ -50,6 +50,7 @@ class EquipeController extends AbstractController
             $manager->persist($equipe);
             $manager->flush();
 
+            $this->addFlash("success", "L'équipe a bien été ajoutée !");
             return $this->redirectToRoute("equipe", [
                 "type" => $equipe->getType(),
                 "slug" => $equipe->getSlug()
@@ -77,6 +78,7 @@ class EquipeController extends AbstractController
             $manager->persist($equipe);
             $manager->flush();
 
+            $this->addFlash("success", "L'équipe a bien été modifiée !");
             return $this->redirectToRoute("equipe", [
                 "type" => $equipe->getType(),
                 "slug" => $equipe->getSlug()
@@ -97,7 +99,8 @@ class EquipeController extends AbstractController
         $manager->remove($equipe);
         $manager->flush();
 
-        return $this->redirectToRoute("equipes");
+        $this->addFlash("success", "L'équipe a bien été supprimée !");
+        return $this->render("security/admin/compte-equipe.html.twig");
     }
 
 }

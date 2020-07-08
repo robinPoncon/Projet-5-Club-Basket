@@ -13,7 +13,7 @@
             {{ form_widget(formEquipe.name) }}
         </div>
     </div>
-    <div class="divForm">
+    <div class="divForm equipeType">
         <div class="errorForm">
             {{ form_errors(formEquipe.type) }}
         </div>
@@ -22,7 +22,7 @@
             {{ form_widget(formEquipe.type) }}
         </div>
     </div>
-    <div class="divForm">
+    <div class="divForm widgetId">
         <div class="errorForm">
             {{ form_errors(formEquipe.widgetId) }}
         </div>
@@ -33,4 +33,32 @@
     </div>
     <button class="form-control submit" type="submit">Ajouter</button>
     {{ form_end(formEquipe) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let value = $(".equipeType option:selected").val();
+        if(value === "loisir")
+        {
+            $(".widgetId").css("display", "none");
+        }
+        else
+        {
+            $(".widgetId").css("display", "block");
+        }
+
+        $(".equipeType").change(function(){
+            value = $(".equipeType option:selected").val();
+            console.log(value);
+            if(value === "loisir")
+            {
+                $(".widgetId").css("display", "none");
+            }
+            else
+            {
+                $(".widgetId").css("display", "block");
+            }
+        });
+    </script>
+
 {% endblock %}

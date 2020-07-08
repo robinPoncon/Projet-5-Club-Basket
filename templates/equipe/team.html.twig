@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success SuccessContact">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h1> Equipe {{ equipe.name | upper }} </h1>
     {% for convocation in equipe.convocations %}
         <p> Adresse : {{ convocation.address }}</p>

@@ -83,6 +83,20 @@ $(".addCommentButton").click(function(){
     $(".addComment").toggle();
 });
 
+$(".buttonInscription").click(function(){
+    console.log($(this).val());
+    if($(this).html() === "Cliquer ici")
+    {
+        $(this).text("Annuler");
+    }
+    else
+    {
+        $(this).text("Cliquer ici");
+    }
+
+    $(".formInscription").toggle();
+});
+
 
 
 

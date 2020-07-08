@@ -1,6 +1,14 @@
 {% extends "base.html.twig" %}
 
+{% block title %} Articles - {{ article.title}} {% endblock %}
+
 {% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success SuccessContact">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     <div class="post">
         <h1>{{ article.title }} - Le {{ article.createdAt | date("d/m/Y") }}</h1>

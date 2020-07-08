@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Entraînements {% endblock %}
+{% block title %} Administration des entraînements {% endblock %}
 
 {% block body %}
     {% include "security/admin/compte.nav.html.twig" %}
+
     <div id="blocEntrainement">
         <h1> Gestion des entrainements </h1>
         <a id="addConvoc" href="{{ path("ajouterEntrainement") }}">Ajouter un entraînement +</a>
@@ -19,6 +20,11 @@
                     <optgroup label="Equipes Filles">
                         {% for equipeF in equipesGirl %}
                             <option value="{{ equipeF.id }}">{{ equipeF.name }}</option>
+                        {% endfor %}
+                    </optgroup>
+                    <optgroup label="Equipes Loisir">
+                        {% for equipeL in equipesLoisir %}
+                            <option value="{{ equipeL.id }}">{{ equipeL.name }}</option>
                         {% endfor %}
                     </optgroup>
                 </select>
@@ -48,6 +54,7 @@
                             text: "Il n'y a aucun entraînement de programmé pour cette équipe",
                             class: "anyConvoc"
                         });
+
                         $(".convocations").append(noConvoc);
                     }
                     responses.forEach((datas) => {

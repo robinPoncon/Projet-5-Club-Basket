@@ -1,7 +1,10 @@
 {% extends "base.html.twig" %}
 
+{% block title %} Ajout d'un nouvel article {% endblock %}
+
 {% block body %}
     {% include "security/admin/compte.nav.html.twig" %}
+
     <h1>Ajouter un article</h1>
     {{ form_start(formArticle) }}
     <div class="divForm">

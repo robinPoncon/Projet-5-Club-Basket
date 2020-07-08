@@ -1,12 +1,12 @@
 <?php
 namespace App\Notification;
 
-use App\Entity\Contact;
+use App\Entity\Inscription;
 use Swift_Mailer;
 use Swift_Message;
 use Twig\Environment;
 
-class ContactNotification
+class InscriptionNotification
 {
     /**
      * @var Swift_Mailer
@@ -24,15 +24,18 @@ class ContactNotification
         $this->renderer = $renderer;
     }
 
-    public function notify(Contact $contact)
+    public function notify(Inscription $inscription)
     {
         $message = (new \Swift_Message("test"))
-            ->setSubject($contact->getObjetType())
+            ->setSubject("Inscription BCM")
             ->setFrom("basket.meximieux.contact@gmail.com")
-            ->setTo("basket.meximieux.contact@gmail.com")
-            ->setReplyTo($contact->getEmail())
-            ->setBody($this->renderer->render("emails/contact-email.html.twig", [
-                "contact" => $contact
+            ->setTo([
+                "basket.meximieux.contact@gmail.com",
+                "poncon.robin@gmail.com" => "Nelly"
+            ])
+            ->setReplyTo($inscription->getEmail())
+            ->setBody($this->renderer->render("emails/inscription-email.html.twig", [
+                "inscription" => $inscription
             ]), "text/html");
 
         $this->mailer->send($message);

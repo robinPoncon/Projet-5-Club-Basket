@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\Inscription;
 use App\Form\ArticleType;
 use App\Form\CommentType;
+use App\Form\InscriptionType;
+use App\Notification\InscriptionNotification;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -54,9 +57,23 @@ class BlogController extends AbstractController
     /**
      * @Route("club/inscription", name="clubInscription")
      */
-    public function clubInscription(ArticleRepository $articleRepo){
+    public function clubInscription(ArticleRepository $articleRepo, Request $request, InscriptionNotification $notification){
+
         $articles = $articleRepo->findAll();
-        return $this->render("blog/club/inscription-club.html.twig", [
+
+        $inscription = new Inscription();
+        $form = $this->createForm(InscriptionType::class, $inscription);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $notification->notify($inscription);
+            $this->addFlash("success", "Merci ! Votre email a bien été envoyé !");
+            return $this->redirectToRoute("home");
+        }
+
+        return $this->render('blog/club/inscription-club.html.twig', [
+            "formInscriptionBCM" => $form->createView(),
             "articles" => $articles
         ]);
     }
@@ -75,7 +92,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("article/{slug}", name="show-article")
+     * @Route("articles/{slug}", name="show-article")
      */
     public function showOne(Article $article, Request $request, EntityManagerInterface $manager)
     {
@@ -91,6 +108,7 @@ class BlogController extends AbstractController
             $manager->persist($commentaire);
             $manager->flush();
 
+            $this->addFlash("success", "Merci ! Votre commentaire a bien été ajouté !");
             return $this->redirectToRoute("show-article", [
                 "slug" => $article->getSlug()
             ]);
@@ -167,6 +185,7 @@ class BlogController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
+            $this->addFlash("success", "L'article a bien été ajouté !");
             return $this->redirectToRoute("show-article", [
                 "slug" => $article->getSlug()
             ]);
@@ -191,6 +210,7 @@ class BlogController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
+            $this->addFlash("success", "L'article a bien été modifié !");
             return $this->redirectToRoute("show-article", [
                 "slug" => $article->getSlug()
             ]);
@@ -209,6 +229,7 @@ class BlogController extends AbstractController
         $manager->remove($article);
         $manager->flush();
 
+        $this->addFlash("success", "L'article a bien été supprimé !");
         return $this->redirectToRoute("articles");
     }
 
@@ -228,6 +249,7 @@ class BlogController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
 
+            $this->addFlash("success", "Le commentaire a bien été modifié !");
             return $this->redirectToRoute("show-article", [
                 "slug" => $article->getSlug()
             ]);
@@ -248,6 +270,7 @@ class BlogController extends AbstractController
         $manager->remove($comment);
         $manager->flush();
 
+        $this->addFlash("success", "Le commentaire a bien été supprimé !");
         return $this->redirectToRoute("show-article", [
             "slug" => $article->getSlug()
         ]);
