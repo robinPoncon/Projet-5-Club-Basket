@@ -545,11 +545,14 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .divInfosEntrainement
 {
     justify-content: space-around;
+    background-color: #074592;
+    padding-top: 10px;
 }
 
 .divBoutonsEntrainement
 {
     justify-content: center;
+    padding: 20px;
 }
 
 .convocation
@@ -557,17 +560,16 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    background-color: #074592;
+    border: 5px #074592 solid;
     color: white;
     width: 90%;
     border-radius: 10px;
-    padding: 15px;
     font-weight: bold;
 }
 
 .convocation .confirm
 {
-    margin-top: -115px;
+    margin-top: -138px;
 }
 
 #h2Convoc, #h2Article
@@ -585,26 +587,28 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .modifConvoc
 {
     margin-right: 20%;
-    background-color: #dd650f;
+    background-color: #074592;
     color: white;
     padding: 5px;
     border-radius: 5px;
     font-weight: normal;
+    border: 1px #074592 solid;
 }
 
 .confirmSup
 {
-    background-color: #dd650f;
+    background-color: #074592;
     color: white;
     padding: 5px;
     border-radius: 5px;
-    border: 1px #dd650f solid;
+    border: 1px #074592 solid;
 }
 
 .modifConvoc:hover, .convocation .confirmSup:hover
 {
-    color: black;
-    border-radius: 10px;
+    background-color: #dd650f;
+    color: white;
+    border: 1px #dd650f solid;
 }
 
 .confirmationSup
@@ -937,6 +941,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .news
 {
     position: relative;
+    width: 80%;
 }
 
 .news h2
@@ -955,8 +960,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     top: 59px;
 }
 
-.postNews, .postTournois
+.postNews, .postTournois, .postClub
 {
+    position: relative;
     border: 5px #074592 solid;
     border-radius: 5px;
     margin: auto;
@@ -964,24 +970,24 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 80%;
 }
 
-.postNews h3, .postTournois h3
+.postNews h3, .postTournois h3, .postClub h3
 {
     background-color: #074592;
     text-align: center;
     padding: 10px;
 }
 
-.postNews h3 a, .postTournois h3 a
+.postNews h3 a, .postTournois h3 a, .postClub h3 a
 {
     color: white;
 }
 
-.postNews h3 a:hover, .postTournois h3 a:hover
+.postNews h3 a:hover, .postTournois h3 a:hover, .postClub h3 a:hover
 {
     color: #ef8108;
 }
 
-.postNews div, .postTournois div
+.postNews div, .postTournois div, .postClub div
 {
     padding: 20px;
 }
@@ -996,6 +1002,72 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     position: relative;
 }
+
+.pagination
+{
+    justify-content: center;
+}
+
+.pagination a:hover
+{
+    color: white;
+}
+
+.current
+{
+    background-color: #dd650f;
+    color: white;
+    width: 50px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.page
+{
+    background-color: #074592;
+    width: 50px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.page a, .next a, .previous a, .last a, .first a
+{
+    display: block;
+    color: white;
+    padding: 10px;
+}
+
+.next, .previous, .last, .first
+{
+    background-color: #074592;
+    width: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.page:hover, .next:hover, .previous:hover, .last:hover, .first:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
+.prioritaire h2
+{
+    text-align: center;
+}
+
+
+
 
                                                     /* CLUB */
 

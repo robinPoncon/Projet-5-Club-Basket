@@ -52,7 +52,7 @@
     {{ form_end(formComment) }}
 
 
-    {% for comment in article.comments %}
+    {% for comment in article.comments | sort((b, a) => a.createdAt <=> b.createdAt) %}
         <div class="showComment">
             <h3>{{ comment.author }} - {{ comment.createdAt | date("d/m/Y") }}</h3>
             <div class="commentContent"> {{ comment.content | raw}}</div>

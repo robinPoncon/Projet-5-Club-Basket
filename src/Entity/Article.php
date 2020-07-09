@@ -56,6 +56,11 @@ class Article
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $prioritaire;
     
     public function __construct()
     {
@@ -168,6 +173,18 @@ class Article
         if ($this->category->contains($category)) {
             $this->category->removeElement($category);
         }
+
+        return $this;
+    }
+
+    public function getPrioritaire(): ?bool
+    {
+        return $this->prioritaire;
+    }
+
+    public function setPrioritaire(?bool $prioritaire): self
+    {
+        $this->prioritaire = $prioritaire;
 
         return $this;
     }

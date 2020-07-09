@@ -7,6 +7,8 @@ use App\Entity\Category;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,11 +44,25 @@ class ArticleType extends AbstractType
                 "choice_label" => "title",
                 "multiple" => true,
                 "expanded" => true,
-                "label" => "Choisir une catégorie",
+                "label" => "Choisir une(des) catégorie(s)",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
                 "attr" => [
+                    "class" => "form-control input"
+                ]
+            ])
+            ->add("prioritaire", ChoiceType::class, [
+                "choices" => [
+                    "Non" => 0,
+                    "Oui" => 1
+                ],
+                "label" => "Article à mettre en avant ?",
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "placeholder" => "Titre de l'article",
                     "class" => "form-control input"
                 ]
             ])

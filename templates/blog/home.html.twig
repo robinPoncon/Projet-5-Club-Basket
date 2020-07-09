@@ -11,6 +11,18 @@
 	{% endfor %}
 
 	<h1> Bienvenue sur site du club de basket de Meximieux !</h1>
+	<div class="position-relative prioritaire">
+		<h2>Actualité importante</h2>
+		<div class="postNews">
+			<h3><i class="fas fa-basketball-ball"></i>
+				<a href="{{ path("show-article", {"slug": articlePrio.slug}) }}"> {{ articlePrio.title }} -
+					{{ articlePrio.createdAt | date("d/m/Y") }}</a></h3>
+			<div>
+				{{ articlePrio.content | truncate(400, true, "...") | raw}}
+				<a href="{{ path("show-article", {"slug": articlePrio.slug}) }}">Lire la suite</a>
+			</div>
+		</div>
+	</div>
 	<div class="d-flex justify-content-between blocHome">
 		<div class="news">
 			<h2> Actualités </h2>
@@ -29,6 +41,7 @@
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
+			{{ knp_pagination_render(articles) }}
 		</div>
 		<div class="bandeRight">
 			<h3>Inscription saison 2020/2021</h3>
@@ -38,8 +51,8 @@
 			<h3>Infos FFBB</h3>
 			<a href="#">Classement des équipes du département</a>
 			<h3>Actualités FFBB</h3>
-
 		</div>
+
 	</div>
 
 

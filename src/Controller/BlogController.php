@@ -11,6 +11,7 @@ use App\Form\InscriptionType;
 use App\Notification\InscriptionNotification;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,17 +21,28 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Validator\Constraints\Date;
+use Knp\Component\Pager\PaginatorInterface;
 
 class BlogController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function home(ArticleRepository $articleRepo)
+    public function home(Request $request, PaginatorInterface $paginator, ArticleRepository $articleRepo)
     {
-        $articles = $articleRepo->findAll();
+        $articlePrio = $articleRepo->findOneBy(["prioritaire" => 1],["createdAt" => "DESC"]);
+        $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy(["prioritaire" => 0],[
+            'createdAt' => 'desc',
+        ]);
+        $articles = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            4 // Nombre de résultats par page
+        );
+        //$articles = $articleRepo->findAll();
         return $this->render("blog/home.html.twig", [
-            "articles" => $articles
+            "articles" => $articles,
+            "articlePrio" => $articlePrio
         ]);
     }
 
@@ -38,7 +50,8 @@ class BlogController extends AbstractController
      * @Route("tournois", name="tournois")
      */
     public function tournois(ArticleRepository $articleRepo){
-        $articles = $articleRepo->findAll();
+
+        $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
         return $this->render("blog/tournois.html.twig", [
             "articles" => $articles
         ]);
@@ -48,9 +61,10 @@ class BlogController extends AbstractController
      * @Route("club/la-vie-au-club", name="club")
      */
     public function club(ArticleRepository $articleRepo){
-        $articles = $articleRepo->findAll();
+
+        $article = $articleRepo->findOneBy([], ["createdAt" => "DESC"]);
         return $this->render("blog/club/vie-club.html.twig", [
-            "articles" => $articles
+            "article" => $article
         ]);
     }
 
@@ -59,7 +73,7 @@ class BlogController extends AbstractController
      */
     public function clubInscription(ArticleRepository $articleRepo, Request $request, InscriptionNotification $notification){
 
-        $articles = $articleRepo->findAll();
+        $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
 
         $inscription = new Inscription();
         $form = $this->createForm(InscriptionType::class, $inscription);
@@ -84,7 +98,7 @@ class BlogController extends AbstractController
     public function showAll(ArticleRepository $articleRepo, CategoryRepository $categoryRepo)
     {
         $categorys = $categoryRepo->findAll();
-        $articles = $articleRepo->findAll();
+        $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
         return $this->render('security/admin/compte-articles.html.twig', [
             "articles" => $articles,
             "categorys" => $categorys
@@ -115,7 +129,7 @@ class BlogController extends AbstractController
         }
         return $this->render("blog/article/show.html.twig", [
             'article' => $article,
-            "formComment" => $form->createView()
+            "formComment" => $form->createView(),
         ]);
     }
 
