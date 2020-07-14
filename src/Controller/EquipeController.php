@@ -27,7 +27,7 @@ class EquipeController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes", name="equipes")
+     * @Route("editor/equipes", name="equipes")
      * @return Response
      */
     public function show()
@@ -36,7 +36,7 @@ class EquipeController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/ajouter", name="ajouterEquipe")
+     * @Route("editor/equipes/ajouter", name="ajouterEquipe")
      */
     public function addTeam(Request $request, EntityManagerInterface $manager)
     {
@@ -65,7 +65,7 @@ class EquipeController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/modifier/{slug}", name="modifierEquipe")
+     * @Route("editor/equipes/modifier/{slug}", name="modifierEquipe")
      */
     public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager)
     {
@@ -92,7 +92,7 @@ class EquipeController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/delete/{id}", name="supprimerEquipe")
+     * @Route("editor/equipes/delete/{id}", name="supprimerEquipe")
      */
     public function delete(Equipe $equipe, Request $request, EntityManagerInterface $manager)
     {

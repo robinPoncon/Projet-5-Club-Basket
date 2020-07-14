@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Roles;
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Repository\RolesRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

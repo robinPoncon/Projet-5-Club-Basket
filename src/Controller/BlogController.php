@@ -93,7 +93,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("admin/articles", name="articles")
+     * @Route("editor/articles", name="articles")
      */
     public function showAll(ArticleRepository $articleRepo, CategoryRepository $categoryRepo)
     {
@@ -134,7 +134,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("admin/articles/data", name="ajax_article")
+     * @Route("editor/articles/data", name="ajax_article")
      */
     public function ajaxArticle(Request $request, CategoryRepository $categoryRepo)
     {
@@ -183,7 +183,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("admin/articles/ajouter", name="ajouterArticle")
+     * @Route("editor/articles/ajouter", name="ajouterArticle")
      */
     public function addPost(Request $request, EntityManagerInterface $manager)
     {
@@ -211,7 +211,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("admin/articles/modifier/{slug}", name="modifierArticle")
+     * @Route("editor/articles/modifier/{slug}", name="modifierArticle")
      */
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager)
     {
@@ -236,7 +236,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("admin/articles/delete/{id}", name="supprimerArticle")
+     * @Route("editor/articles/delete/{id}", name="supprimerArticle")
      */
     public function deletePost(Article $article, EntityManagerInterface $manager)
     {
@@ -248,7 +248,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("articles/commentaires/modifier/{id}", name="modifierComment")
+     * @Route("editor/articles/commentaires/modifier/{id}", name="modifierComment")
      */
     public function editComment(Comment $comment, Request $request, EntityManagerInterface $manager)
     {
@@ -275,7 +275,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("articles/commentaires/supprimer/{id}", name="supprimerComment")
+     * @Route("editor/articles/commentaires/supprimer/{id}", name="supprimerComment")
      */
     public function deleteComment(Comment $comment, EntityManagerInterface $manager)
     {

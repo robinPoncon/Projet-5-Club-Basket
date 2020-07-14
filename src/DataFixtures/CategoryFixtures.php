@@ -9,6 +9,7 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        /*
         $name1 = "News";
         $name2 = "Tournois";
         $name3 = "Club";
@@ -26,6 +27,7 @@ class CategoryFixtures extends Fixture
         $manager->persist($category3);
 
         $manager->flush();
+        */
 
     }
 }

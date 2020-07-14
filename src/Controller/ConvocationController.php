@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Serializer;
 class ConvocationController extends AbstractController
 {
     /**
-     * @Route("admin/equipes/entrainement", name="entrainement")
+     * @Route("editor/equipes/entrainement", name="entrainement")
      */
     public function index(EquipeRepository $equipeRepo)
     {
@@ -38,7 +38,7 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainements/data", name="ajax_equipe")
+     * @Route("editor/equipes/entrainements/data", name="ajax_equipe")
      */
     public function ajaxConvoc(Request $request, EquipeRepository $equipeRepo)
     {
@@ -88,7 +88,7 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainements/ajouter", name="ajouterEntrainement")
+     * @Route("editor/equipes/entrainements/ajouter", name="ajouterEntrainement")
      */
 
     public function addConvocation(Request $request, EntityManagerInterface $manager)
@@ -113,7 +113,7 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainements/{id}", name="modifierEntrainement")
+     * @Route("editor/equipes/entrainements/{id}", name="modifierEntrainement")
      */
     public function edit(Convocation $convocation, Request $request, EntityManagerInterface $manager)
     {
@@ -138,7 +138,7 @@ class ConvocationController extends AbstractController
     }
 
     /**
-     * @Route("admin/equipes/entrainements/delete/{id}", name="supprimerEntrainement")
+     * @Route("editor/equipes/entrainements/delete/{id}", name="supprimerEntrainement")
      */
     public function delete(Request $request, EntityManagerInterface $manager, Convocation $convocation)
     {

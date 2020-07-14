@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Administration des utilisateurs {% endblock %}
+
+{% block body %}
+    {% include "security/admin/compte.nav.html.twig" %}
+
+    <h1>Gestion des utilisateurs</h1>
+
+    <h2>Liste des utilisateurs</h2>
+
+    <div class="position-relative">
+        {% for user in users %}
+            <p>{{ user.username }}</p>
+            {% for role in user.roles %}
+                {% if role == "ROLE_USER" %}
+                    Utilisateur
+                {% elseif role == "ROLE_EDITOR" %}
+                    Editeur
+                {% elseif role == "ROLE_ADMIN" %}
+                    Administrateur
+                {% endif %}
+            {% endfor %}
+            <a href="{{ path("modifierUtilisateur", {"slug": user.slug}) }}">Modifier Rôle</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}
