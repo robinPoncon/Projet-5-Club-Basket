@@ -71,6 +71,11 @@ class User implements UserInterface
      */
     private $slug;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Photo::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->fonctionClub = new ArrayCollection();
@@ -178,5 +183,23 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Photo $photo): self
+    {
+        $this->photo = $photo;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $photo ? null : $this;
+        if ($photo->getUser() !== $newUser) {
+            $photo->setUser($newUser);
+        }
+
+        return $this;
     }
 }

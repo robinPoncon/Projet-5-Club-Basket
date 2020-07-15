@@ -780,6 +780,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .divTitle
 {
     width: 30%;
+    margin-top: 12px;
 }
 
 #blocPostAll
@@ -791,6 +792,31 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .blocPost, #blocPostAll
 {
     margin-top: 50px;
+}
+
+.headArticle
+{
+    margin-top: 30px;
+    font-weight: bold;
+    justify-content: space-around;
+    font-size: 1.3em;
+    margin-bottom: -20px;
+}
+
+.articles
+{
+    position: relative;
+    left: -16px;
+    width: 30%;
+    text-decoration: underline;
+}
+
+.categories
+{
+    position: relative;
+    left: -68px;
+    width: 10%;
+    text-decoration: underline;
 }
 
                                     /* Gestion Article FRONT */
@@ -1097,4 +1123,14 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 }
 
 
-                                                    /* Page Erreur */
+                                                    /* Gestion Utilisateur */
+
+.blocUser
+{
+    position: relative;
+}
+
+td
+{
+    vertical-align: inherit !important;
+}

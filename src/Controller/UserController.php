@@ -47,4 +47,16 @@ class UserController extends AbstractController
             "formUser" => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("admin/utilisateurs/supprimer/{id}", name="supprimerUtilisateur")
+     */
+    public function delete(User $user, Request $request, EntityManagerInterface $manager)
+    {
+        $manager->remove($user);
+        $manager->flush();
+
+        $this->addFlash("success", "L'utilisateur a bien été supprimé !");
+        return $this->render("security/admin/compte-users.html.twig");
+    }
 }
