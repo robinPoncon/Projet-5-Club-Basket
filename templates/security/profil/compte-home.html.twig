@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Administration du compte {% endblock %}
+
+{% block body %}
+
+    {% include "security/compte.nav.html.twig" %}
+    <h1> Gestion Compte </h1>
+
+    <img src="{{ asset(vich_uploader_asset(photo, "imageFile")) }}" alt="photo de profil utilisateur">
+
+    <div class="profil position-relative">
+
+        <h2> Profil {{ user.username }}</h2>
+
+        {% if user.nom %}
+            <p> NOM : <span>{{ user.nom | capitalize }}</span></p>
+        {% else %}
+            <p> NOM : <span>Non renseignée</span></p>
+        {% endif %}
+
+        {% if user.prenom %}
+            <p> PRÉNOM : <span>{{ user.prenom | capitalize }}</span></p>
+        {% else %}
+            <p> PRÉNOM : <span>Non renseignée</span></p>
+        {% endif %}
+
+        <p> EMAIL : <span>{{ user.email }}</span></p>
+
+        {% if user.telephone %}
+            <p> TÉLÉPHONE : <span>{{ user.telephone }}</span></p>
+        {% else %}
+            <p> TÉLÉPHONE : <span>Non renseignée</span></p>
+        {% endif %}
+
+        {% for fonction in user.fonctionClub %}
+            <p>FONCTION DANS LE CLUB : <span>{{ fonction.name }}</span></p>
+        {% else %}
+            <p> FONCTION DANS LE CLUB : <span>Non renseignée</span></p>
+        {% endfor %}
+
+        <a href="{{ path("modifierInfosProfil", {"slug": user.slug}) }}">Modifier les infos du profil</a>
+
+        <a href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">Modifier photo de profil</a>
+
+
+    </div>
+{% endblock %}

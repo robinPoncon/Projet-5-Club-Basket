@@ -3,8 +3,9 @@ vich_uploader:
 
     mappings:
         user_image:
-            uri_prefix: /pictures/users
-            upload_destination: '%kernel.project_dir%/public/pictures/users'
+            uri_prefix: pictures/users-profil
+            upload_destination: '%kernel.project_dir%/public/pictures/users-profil'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
 
     #mappings:
     #    products:

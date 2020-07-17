@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modification infos utilisateur {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
+    <h1>Modifier les informations personnelles de l'utilisateur </h1>
+    {{ form_start(formInfoUser) }}
+    <div class="position-relative">
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formInfoUser.email) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formInfoUser.email) }}
+                {{ form_widget(formInfoUser.email) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formInfoUser.username) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formInfoUser.username) }}
+                {{ form_widget(formInfoUser.username) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formInfoUser.telephone) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formInfoUser.telephone) }}
+                {{ form_widget(formInfoUser.telephone) }}
+            </div>
+        </div>
+        <button class="form-control submit" type="submit">Modifier</button>
+    </div>
+    {{ form_end(formInfoUser) }}
+{% endblock %}

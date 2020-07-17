@@ -3,18 +3,19 @@
 namespace App\Form;
 
 use App\Entity\FonctionClub;
+use App\Entity\Photo;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegistrationType extends AbstractType
+class UserInfosFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -37,7 +38,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre nom",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
             ->add('prenom', TextType::class, [
                 "label" => "Prénom",
@@ -47,7 +49,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre prénom",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
             ->add('email', EmailType::class, [
                 "label" => "Email",
@@ -67,27 +70,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "06-35-76-54-53",
                     "class" => "form-control input"
-                ]
-            ])
-            ->add('password', PasswordType::class, [
-                "label" => "Mot de passe",
-                "label_attr" => [
-                    "class" => "form-control label",
                 ],
-                "attr" => [
-                    "placeholder" => "Votre mot de passe",
-                    "class" => "form-control input"
-                ]
-            ])
-            ->add("confirm_password", PasswordType::class, [
-                "label" => "Confirmation mot de passe",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "Confirmer votre mot de passe",
-                    "class" => "form-control input"
-                ]
+                "required" => false
             ])
             ->add('fonctionClub', EntityType::class, [
                 "class" => FonctionClub::class,
@@ -100,7 +84,8 @@ class RegistrationType extends AbstractType
                 ],
                 "attr" => [
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
         ;
     }

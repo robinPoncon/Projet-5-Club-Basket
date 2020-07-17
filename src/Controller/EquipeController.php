@@ -32,7 +32,7 @@ class EquipeController extends AbstractController
      */
     public function show()
     {
-        return $this->render("security/admin/compte-equipe.html.twig");
+        return $this->render("security/editor/compte-equipe.html.twig");
     }
 
     /**
@@ -100,7 +100,7 @@ class EquipeController extends AbstractController
         $manager->flush();
 
         $this->addFlash("success", "L'équipe a bien été supprimée !");
-        return $this->render("security/admin/compte-equipe.html.twig");
+        return $this->render("security/editor/compte-equipe.html.twig");
     }
 
 }

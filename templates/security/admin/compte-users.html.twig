@@ -3,7 +3,7 @@
 {% block title %} Administration des utilisateurs {% endblock %}
 
 {% block body %}
-    {% include "security/admin/compte.nav.html.twig" %}
+    {% include "security/compte.nav.html.twig" %}
 
     <h1>Gestion des utilisateurs</h1>
 
@@ -37,7 +37,8 @@
                 </td>
                 <td>Membre du bureau</td>
                 <td colspan="2">
-                    <a href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier</a><br>
+                    <a href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
+                    <a href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>
                     <a href="{{ path("supprimerUtilisateur", {"id": user.id}) }}">Supprimer</a>
                 </td>
             </tr>

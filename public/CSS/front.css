@@ -14,6 +14,22 @@ li
     list-style-type: none;
 }
 
+.obligatoire
+{
+    color: #dd650f;
+    position: relative;
+    top: 10px;
+    left: -10px;
+}
+
+.obligatoireHead
+{
+    color: #dd650f;
+    position: relative;
+    top: 4px;
+    left: 6px;
+}
+
 #name
 {
     text-align: center;
@@ -368,6 +384,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 
                                         /* Compte */
+                /* Menu Navigation */
 
 .menu-compte
 {
@@ -425,7 +442,36 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-left: 14px;
 }
 
+
+
                                 /* Administration */
+
+                    /* Gestion Profil */
+
+.profil p
+{
+    font-weight: bold;
+    color: #074592;
+}
+
+.profil span
+{
+    color: #dd650f;
+    font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     /* Gestion Equipe */
 
@@ -646,7 +692,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 30px;
 }
 
-                    /* Gestion Articles */
+                                                /* Gestion Articles */
 
 .contentPost
 {
@@ -658,15 +704,16 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-bottom: 40px;
 }
 
-#article_category label
+#article_category label, #registration_fonctionClub label
 {
     margin-right: 20px;
 }
 
-#article_category input
+#article_category input, #registration_fonctionClub input
 {
     margin-right: 5px;
 }
+
 .postLink
 {
     font-weight: bold;

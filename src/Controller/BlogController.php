@@ -99,7 +99,7 @@ class BlogController extends AbstractController
     {
         $categorys = $categoryRepo->findAll();
         $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
-        return $this->render('security/admin/compte-articles.html.twig', [
+        return $this->render('security/editor/compte-articles.html.twig', [
             "articles" => $articles,
             "categorys" => $categorys
         ]);

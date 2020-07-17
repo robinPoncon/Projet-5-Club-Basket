@@ -76,6 +76,26 @@ class User implements UserInterface
      */
     private $photo;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *      pattern="/([0-9]{2}-){4}[0-9]{2}/",
+     *      match=true,
+     *      message="Votre numéro de téléphone doit être de type '06-45-00-98-54'"
+     * )
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
     public function __construct()
     {
         $this->fonctionClub = new ArrayCollection();
@@ -199,6 +219,42 @@ class User implements UserInterface
         if ($photo->getUser() !== $newUser) {
             $photo->setUser($newUser);
         }
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }

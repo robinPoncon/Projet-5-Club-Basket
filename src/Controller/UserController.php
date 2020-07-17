@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserInfosFormType;
 use App\Form\UserRoleType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,10 +44,37 @@ class UserController extends AbstractController
             ]);
         }
 
-        return $this->render("security/admin/edit-user.html.twig", [
+        return $this->render("security/admin/editRoles-user.html.twig", [
             "formUser" => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("admin/utilisateurs/modifier/infos/{slug}", name="modifierInfosUtilisateur")
+     */
+    public function modifInfosUser(User $user, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(UserInfosFormType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash("success", "L'utilisateur a bien été modifié !");
+            return $this->redirectToRoute("users", [
+
+            ]);
+        }
+
+        return $this->render("security/admin/editInfos-user.html.twig", [
+            "formInfoUser" => $form->createView()
+        ]);
+    }
+
+
 
     /**
      * @Route("admin/utilisateurs/supprimer/{id}", name="supprimerUtilisateur")

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -36,6 +37,11 @@ class Photo
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,7 +52,7 @@ class Photo
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage( ?string $image): self
     {
         $this->image = $image;
 
@@ -68,6 +74,10 @@ class Photo
     public function setImageFile(?File $imageFile): Photo
     {
         $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile)
+        {
+            $this->updatedAt = new \DateTime("now");
+        }
         return $this;
     }
 
@@ -79,6 +89,18 @@ class Photo
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
