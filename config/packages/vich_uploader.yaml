@@ -6,6 +6,14 @@ vich_uploader:
             uri_prefix: pictures/users-profil
             upload_destination: '%kernel.project_dir%/public/pictures/users-profil'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
+        team_image:
+            uri_prefix: pictures/team_image
+            upload_destination: '%kernel.project_dir%/public/pictures/team_image'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+        article_image:
+            uri_prefix: pictures/article-image
+            upload_destination: '%kernel.project_dir%/public/pictures/article-image'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
 
     #mappings:
     #    products:

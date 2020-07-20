@@ -12,7 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass=PhotoRepository::class)
  * @Vich\Uploadable()
  */
-class Photo
+class Photo implements \Serializable
 {
     /**
      * @ORM\Id()
@@ -33,14 +33,14 @@ class Photo
     private $image;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="photo", cascade={"persist", "remove"})
-     */
-    private $user;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="photo")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -76,20 +76,8 @@ class Photo
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile)
         {
-            $this->updatedAt = new \DateTime("now");
+            $this->updatedAt = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         }
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
         return $this;
     }
 
@@ -101,6 +89,40 @@ class Photo
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->image,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->image,
+            ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

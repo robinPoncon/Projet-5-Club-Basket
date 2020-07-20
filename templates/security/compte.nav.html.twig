@@ -3,18 +3,24 @@
 {% block body %}
 
     <div class="d-flex menu-compte">
-        <div id="compte1">
-            <li><a id="compte1child" href="{{ path("homeCompte") }}">Gestion Compte</a></li>
-        </div>
-       <div id="compte2">
-           <li><a id="compte2child" href="{{ path("users") }}">Gestion Utilisateurs</a></li>
-       </div>
-       <div id="compte3">
-           <li><a id="compte3child" href="{{ path("articles") }}">Gestion Articles</a></li>
-       </div>
-       <div id="compte4">
-           <li><a id="compte4child" href="{{ path("equipes") }}">Gestion Equipes</a></li>
-       </div>
+        {% if is_granted('ROLE_USER') %}
+            <div id="compte1">
+                <li><a id="compte1child" href="{{ path("homeCompte") }}">Gestion Compte</a></li>
+            </div>
+            {% if is_granted("ROLE_EDITOR") %}
+                <div id="compte2">
+                    <li><a id="compte2child" href="{{ path("articles") }}">Gestion Articles</a></li>
+                </div>
+                <div id="compte3">
+                    <li><a id="compte3child" href="{{ path("equipes") }}">Gestion Equipes</a></li>
+                </div>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <div id="compte4">
+                        <li><a id="compte4child" href="{{ path("users") }}">Gestion Utilisateurs</a></li>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
 
     </div>
 

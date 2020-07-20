@@ -7,42 +7,70 @@
     {% include "security/compte.nav.html.twig" %}
     <h1> Gestion Compte </h1>
 
-    <img src="{{ asset(vich_uploader_asset(photo, "imageFile")) }}" alt="photo de profil utilisateur">
+    <div class="d-flex justify-content-around blocProfil">
 
-    <div class="profil position-relative">
-
-        <h2> Profil {{ user.username }}</h2>
-
-        {% if user.nom %}
-            <p> NOM : <span>{{ user.nom | capitalize }}</span></p>
+        {% if photo.image is defined and photo.image is not null %}
+        <div class="profilPicture">
+            <a href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">
+                <img src="{{ asset(vich_uploader_asset(photo, "imageFile")) }}" alt="photo de profil utilisateur"
+                title="Cliquer pour modifier !">
+            </a>
+            <p class="text-center"> Photo de profil </p>
+        </div>
         {% else %}
-            <p> NOM : <span>Non renseignée</span></p>
+        <div class="profilPicture">
+            <a href="{{ path("ajouterPhotoProfil", {"slug": user.slug}) }}">
+                <i class="fas fa-portrait" title="Cliquer pour ajouter !"></i>
+            </a>
+            <p class="text-center noPictureProfil">Photo de profil</p>
+        </div>
         {% endif %}
 
-        {% if user.prenom %}
-            <p> PRÉNOM : <span>{{ user.prenom | capitalize }}</span></p>
-        {% else %}
-            <p> PRÉNOM : <span>Non renseignée</span></p>
-        {% endif %}
+        <div class="profil">
 
-        <p> EMAIL : <span>{{ user.email }}</span></p>
+            <h2> Profil {{ user.username }}</h2>
 
-        {% if user.telephone %}
-            <p> TÉLÉPHONE : <span>{{ user.telephone }}</span></p>
-        {% else %}
-            <p> TÉLÉPHONE : <span>Non renseignée</span></p>
-        {% endif %}
+            {% if user.nom %}
+                <p> NOM : <span>{{ user.nom | capitalize }}</span></p>
+            {% else %}
+                <p> NOM : <span>Non renseignée</span></p>
+            {% endif %}
 
-        {% for fonction in user.fonctionClub %}
-            <p>FONCTION DANS LE CLUB : <span>{{ fonction.name }}</span></p>
-        {% else %}
-            <p> FONCTION DANS LE CLUB : <span>Non renseignée</span></p>
-        {% endfor %}
+            {% if user.prenom %}
+                <p> PRÉNOM : <span>{{ user.prenom | capitalize }}</span></p>
+            {% else %}
+                <p> PRÉNOM : <span>Non renseignée</span></p>
+            {% endif %}
 
-        <a href="{{ path("modifierInfosProfil", {"slug": user.slug}) }}">Modifier les infos du profil</a>
+            <p> EMAIL : <span>{{ user.email }}</span></p>
 
-        <a href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">Modifier photo de profil</a>
+            {% if user.telephone %}
+                <p> TÉLÉPHONE : <span>{{ user.telephone }}</span></p>
+            {% else %}
+                <p> TÉLÉPHONE : <span>Non renseignée</span></p>
+            {% endif %}
 
+            {% for fonction in user.fonctionClub %}
+                <p>FONCTION DANS LE CLUB : <span>{{ fonction.name }}</span></p>
+            {% else %}
+                <p> FONCTION DANS LE CLUB : <span>Non renseignée</span></p>
+            {% endfor %}
 
+        </div>
+        <div class="d-flex flex-column actionProfil">
+            <a class="modifInfosProfil" href="{{ path("modifierInfosProfil", {"slug": user.slug}) }}">
+                Modifier les infos du profil</a>
+            {% if photo.image is defined and photo.image is not null %}
+                <a class="modifPhotoProfil" href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">
+                    Modifier la photo de profil</a>
+                <button onclick='deleteConfirm({{ photo.id }}, "Voulez-vous vraiment supprimer cette photo",
+                        "{{ photo.image }}", "{{ path("supprimerPhotoProfil", {"id": "text"}) }}",
+                        "#confirmationSupPhoto{{ photo.id }}")'
+                        class="confirmSup">Supprimer</button>
+                <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ photo.id }}"></div>
+            {% else %}
+                <a href="{{ path("ajouterPhotoProfil", {"slug": user.slug}) }}">Ajouter une photo de profil</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

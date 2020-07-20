@@ -72,11 +72,6 @@ class User implements UserInterface
     private $slug;
 
     /**
-     * @ORM\OneToOne(targetEntity=Photo::class, mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $photo;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Regex(
      *      pattern="/([0-9]{2}-){4}[0-9]{2}/",
@@ -95,6 +90,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prenom;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Photo::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $photo;
 
     public function __construct()
     {
@@ -205,24 +205,6 @@ class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?Photo $photo): self
-    {
-        $this->photo = $photo;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newUser = null === $photo ? null : $this;
-        if ($photo->getUser() !== $newUser) {
-            $photo->setUser($newUser);
-        }
-
-        return $this;
-    }
-
     public function getTelephone(): ?string
     {
         return $this->telephone;
@@ -255,6 +237,24 @@ class User implements UserInterface
     public function setPrenom(?string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Photo $photo): self
+    {
+        $this->photo = $photo;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = null === $photo ? null : $this;
+        if ($photo->getUser() !== $newUser) {
+            $photo->setUser($newUser);
+        }
 
         return $this;
     }

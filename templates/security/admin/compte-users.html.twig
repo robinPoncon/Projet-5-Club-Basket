@@ -35,7 +35,11 @@
                         {% endif %}
                     {% endfor %}
                 </td>
-                <td>Membre du bureau</td>
+                {% for fonction in user.fonctionClub %}
+                    <td>{{ fonction.name }}</td>
+                {% else %}
+                    <td>Non renseignée</td>
+                {% endfor %}
                 <td colspan="2">
                     <a href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
                     <a href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>

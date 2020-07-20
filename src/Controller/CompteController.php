@@ -15,13 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CompteController extends AbstractController
 {
     /**
-     * @Route("profil/home", name="homeCompte")
+     * @Route("profil", name="homeCompte")
      */
     public function espacePerso(PhotoRepository $photoRepo)
     {
         $user = $this->getUser();
         $photo = $photoRepo->findOneBy(["user" => $user]);
-        dump($photo);
         return $this->render('security/profil/compte-home.html.twig', [
             "user" => $user,
             "photo" => $photo
@@ -29,7 +28,7 @@ class CompteController extends AbstractController
     }
 
     /**
-     * @Route("profil/home/modifier/infos/{slug}", name="modifierInfosProfil")
+     * @Route("profil/modifier/infos/{slug}", name="modifierInfosProfil")
      */
     public function modifierInfosProfil(User $user, Request $request, EntityManagerInterface $manager)
     {
@@ -54,11 +53,40 @@ class CompteController extends AbstractController
     }
 
     /**
-     * @Route("profil/home/modifier/photo/{slug}", name="modifierPhotoProfil")
+     * @Route("profil/ajouter/photo/{slug}", name="ajouterPhotoProfil")
+     */
+    public function ajouterPhotoProfil(User $user, Request $request, EntityManagerInterface $manager)
+    {
+        $newPhotoProfil = new Photo();
+
+        $form = $this->createForm(PhotoUserType::class, $newPhotoProfil);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            dump($newPhotoProfil);
+            $newPhotoProfil->setUser($user);
+            $manager->persist($newPhotoProfil);
+            $manager->flush();
+
+            $this->addFlash("success", "Votre photo de profil a bien été ajoutée !");
+            return $this->redirectToRoute("homeCompte", [
+
+            ]);
+        }
+
+        return $this->render("security/profil/editPhoto-user.html.twig", [
+            "formPhotoUser" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("profil/modifier/photo/{slug}", name="modifierPhotoProfil")
      */
     public function modifierPhotoProfil(User $user, Request $request, EntityManagerInterface $manager)
     {
-        $photoProfil = new Photo();
+        $photoProfil = $user->getPhoto();
 
         $form = $this->createForm(PhotoUserType::class, $photoProfil);
 
@@ -66,7 +94,7 @@ class CompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $photoProfil->setUser($user);
+            dump($photoProfil);
             $manager->persist($photoProfil);
             $manager->flush();
 
@@ -79,5 +107,17 @@ class CompteController extends AbstractController
         return $this->render("security/profil/editPhoto-user.html.twig", [
             "formPhotoUser" => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("profil/supprimer/photo/{id}", name="supprimerPhotoProfil")
+     */
+    public function deletePhotoProfil(Photo $photo, EntityManagerInterface $manager)
+    {
+        $manager->remove($photo);
+        $manager->flush();
+
+        $this->addFlash("success", "Votre photo de profil a bien été supprimée !");
+        return $this->redirectToRoute("homeCompte");
     }
 }

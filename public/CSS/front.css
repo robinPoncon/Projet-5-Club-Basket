@@ -416,9 +416,14 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border-right: 5px white solid;
 }
 
+#compte1
+{
+    border-left: 5px white solid;
+}
+
 #compte4
 {
-    border-right: 0;
+    border-right: 5px white solid;
 }
 
 .testdiv
@@ -448,6 +453,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
                     /* Gestion Profil */
 
+.blocProfil
+{
+    position: relative;
+}
+
 .profil p
 {
     font-weight: bold;
@@ -460,6 +470,66 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     font-style: italic;
 }
 
+.profilPicture
+{
+    position: relative;
+    top: 82px;
+}
+
+.profilPicture i
+{
+    position: relative;
+    top: -75px;
+    color: #074592;
+    font-size: 180px;
+    height: auto;
+    padding-bottom: 5px;
+}
+
+.profilPicture i:hover
+{
+    color: #dd650f;
+}
+
+.profilPicture img
+{
+    width: 200px;
+    height: auto;
+    border: 5px #074592 double;
+    border-radius: 10px;
+}
+
+.profilPicture img:hover
+{
+    opacity: 0.7;
+}
+
+.noPictureProfil
+{
+    margin-top: -66px;
+}
+
+.blocProfil .confirm
+{
+    margin-top: -225px;
+}
+
+.actionProfil a, .actionProfil .confirmSup
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    margin-bottom: 40px;
+}
+
+.actionProfil a:hover, .actionProfil .confirmSup:hover
+{
+    background-color: #dd650f;
+    color: white;
+    border: 1px #dd650f solid;
+}
 
 
 

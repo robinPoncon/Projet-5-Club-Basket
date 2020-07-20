@@ -36,13 +36,13 @@ $(".menu-compte a").each(function () {
         if (regExpCompte.test(path)) {
             $("#compte1").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
-        } else if (regExpUsers.test(path)) {
+        } else if (regExpArticles.test(path)) {
             $("#compte2").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
-        } else if (regExpArticles.test(path)) {
+        } else if (regExpEquipes.test(path)) {
             $("#compte3").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
-        } else if (regExpEquipes.test(path)) {
+        } else if (regExpUsers.test(path)) {
             $("#compte4").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
         }
@@ -140,7 +140,8 @@ function deleteConfirm(id, text, dataText, routeSup, div) {
 
     $(".typeTeam, #addTeam, h1, h2, .divInfosEntrainement, .divBoutonsEntrainement, #addPost, " +
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
-        " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup ")
+        " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
+        ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil ")
         .css("opacity", 0.5).css("pointer-events", "none");
 }
 
@@ -148,7 +149,8 @@ function cancelConfirm(div) {
     $(div).text("");
     $(".typeTeam, #addTeam, h1, h2, .divInfosEntrainement, .divBoutonsEntrainement, #addPost, " +
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
-        " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup ")
+        " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
+        ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil ")
         .css("opacity", 1).css("pointer-events", "auto");
 }
 
