@@ -46,7 +46,6 @@ $(".menu-compte a").each(function () {
             $("#compte4").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
         }
-
     }
 
 });

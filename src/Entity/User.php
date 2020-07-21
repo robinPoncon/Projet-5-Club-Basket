@@ -96,6 +96,11 @@ class User implements UserInterface
      */
     private $photo;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reset_token;
+
     public function __construct()
     {
         $this->fonctionClub = new ArrayCollection();
@@ -255,6 +260,18 @@ class User implements UserInterface
         if ($photo->getUser() !== $newUser) {
             $photo->setUser($newUser);
         }
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->reset_token;
+    }
+
+    public function setResetToken(?string $reset_token): self
+    {
+        $this->reset_token = $reset_token;
 
         return $this;
     }

@@ -37,7 +37,9 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre nom",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
+
             ])
             ->add('prenom', TextType::class, [
                 "label" => "Prénom",
@@ -47,7 +49,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre prénom",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
             ->add('email', EmailType::class, [
                 "label" => "Email",
@@ -67,7 +70,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "06-35-76-54-53",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
             ->add('password', PasswordType::class, [
                 "label" => "Mot de passe",
@@ -100,7 +104,8 @@ class RegistrationType extends AbstractType
                 ],
                 "attr" => [
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
         ;
     }

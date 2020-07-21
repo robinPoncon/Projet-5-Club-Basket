@@ -349,6 +349,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     display: flex;
     flex-direction: column;
     margin-top: 20px !important;
+    position: relative;
 }
 
 .connectField
@@ -464,6 +465,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: #074592;
 }
 
+.profil h2
+{
+    margin-bottom: 30px;
+}
+
 .profil span
 {
     color: #dd650f;
@@ -474,6 +480,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     position: relative;
     top: 82px;
+}
+
+.profilPicture p
+{
+    margin-top: 20px;
 }
 
 .profilPicture i
@@ -521,7 +532,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     padding: 10px;
     border-radius: 5px;
     border: 1px #074592 solid;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .actionProfil a:hover, .actionProfil .confirmSup:hover
@@ -1245,6 +1257,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .blocUser
 {
     position: relative;
+    text-align: center;
 }
 
 td

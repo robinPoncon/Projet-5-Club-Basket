@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modification du mot de passe {% endblock %}
+
+{% block body %}
+    <h1> Modifier votre mot de passe </h1>
+
+    {{ form_start(formMDPUser) }}
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formMDPUser.oldPassword) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formMDPUser.oldPassword) }}
+            {{ form_widget(formMDPUser.oldPassword) }}
+        </div>
+    </div>
+
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formMDPUser.newPassword) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formMDPUser.newPassword) }}
+            {{ form_widget(formMDPUser.newPassword) }}
+        </div>
+    </div>
+
+    <div class="divForm">
+        <div class="errorForm">
+            {{ form_errors(formMDPUser.confirm_newPassword) }}
+        </div>
+        <div class="d-flex">
+            {{ form_label(formMDPUser.confirm_newPassword) }}
+            {{ form_widget(formMDPUser.confirm_newPassword) }}
+        </div>
+    </div>
+
+    <button class="form-control submit" type="submit">Modifier</button>
+
+    {{ form_end(formMDPUser) }}
+
+{% endblock %}

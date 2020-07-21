@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\ChangePassword;
 use App\Entity\Photo;
 use App\Entity\User;
 use App\Form\PhotoUserType;
+use App\Form\ResetPasswordType;
 use App\Form\UserInfosFormType;
 use App\Repository\PhotoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CompteController extends AbstractController
 {
@@ -119,5 +122,37 @@ class CompteController extends AbstractController
 
         $this->addFlash("success", "Votre photo de profil a bien été supprimée !");
         return $this->redirectToRoute("homeCompte");
+    }
+
+    /**
+     * @Route("profil/modifier/mot-de-passe/{slug}", name="modifMotDePasse")
+     */
+    public function modifMotDePasse(User $user, Request $request, EntityManagerInterface $manager,
+                                    UserPasswordEncoderInterface $encoder)
+    {
+        $changePassword = new ChangePassword();
+
+        $form = $this->createForm(ResetPasswordType::class, $changePassword);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $newPassword = $changePassword->getNewPassword();
+            $newEncodedPassword = $encoder->encodePassword($user, $newPassword);
+
+            $user->setPassword($newEncodedPassword);
+
+            $manager->flush();
+
+            $this->addFlash("success", "Votre mot de passe a bien été modifié !");
+            return $this->redirectToRoute("homeCompte");
+        }
+
+        return $this->render("security/profil/editMDP-user.html.twig", [
+            "formMDPUser" => $form->createView()
+        ]);
+
+
     }
 }

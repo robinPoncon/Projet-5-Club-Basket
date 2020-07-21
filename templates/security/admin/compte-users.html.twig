@@ -14,7 +14,7 @@
         <th scope="col">Nom</th>
         <th scope="col">Email</th>
         <th scope="col">Rôles</th>
-        <th scope="col">Fonction club</th>
+        <th scope="col">Fonction dans le club</th>
         <th colspan="2">Actions</th>
         </thead>
         <tbody>
@@ -35,11 +35,15 @@
                         {% endif %}
                     {% endfor %}
                 </td>
-                {% for fonction in user.fonctionClub %}
-                    <td>{{ fonction.name }}</td>
-                {% else %}
-                    <td>Non renseignée</td>
-                {% endfor %}
+
+                <td>
+                    {% for fonction in user.fonctionClub %}
+                        {{ fonction.name }} <br>
+                    {% else %}
+                        Non renseignée
+                    {% endfor %}
+                </td>
+
                 <td colspan="2">
                     <a href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
                     <a href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>
