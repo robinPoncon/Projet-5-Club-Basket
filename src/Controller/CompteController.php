@@ -9,6 +9,7 @@ use App\Form\PhotoUserType;
 use App\Form\ResetPasswordType;
 use App\Form\UserInfosFormType;
 use App\Repository\PhotoRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +21,11 @@ class CompteController extends AbstractController
     /**
      * @Route("profil", name="homeCompte")
      */
-    public function espacePerso(PhotoRepository $photoRepo)
+    public function espacePerso()
     {
         $user = $this->getUser();
-        $photo = $photoRepo->findOneBy(["user" => $user]);
+        $photo = $user->getPhoto();
+        dump($photo);
         return $this->render('security/profil/compte-home.html.twig', [
             "user" => $user,
             "photo" => $photo
@@ -69,7 +71,7 @@ class CompteController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             dump($newPhotoProfil);
-            $newPhotoProfil->setUser($user);
+            $user->setPhoto($newPhotoProfil);
             $manager->persist($newPhotoProfil);
             $manager->flush();
 

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PhotoRepository::class)
@@ -22,6 +23,11 @@ class Photo implements \Serializable
     private $id;
 
     /**
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
+     *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
+     * )
      * @Vich\UploadableField(mapping="user_image", fileNameProperty="image")
      * @var File|null
      */
@@ -38,7 +44,7 @@ class Photo implements \Serializable
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="photo")
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="photo")
      */
     private $user;
 
@@ -124,8 +130,12 @@ class Photo implements \Serializable
     {
         $this->user = $user;
 
+        // set (or unset) the owning side of the relation if necessary
+        $newPhoto = null === $user ? null : $this;
+        if ($user->getPhoto() !== $newPhoto) {
+            $user->setPhoto($newPhoto);
+        }
+
         return $this;
     }
-
-
 }

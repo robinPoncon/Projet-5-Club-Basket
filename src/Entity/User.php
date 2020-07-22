@@ -92,14 +92,15 @@ class User implements UserInterface
     private $prenom;
 
     /**
-     * @ORM\OneToOne(targetEntity=Photo::class, mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $photo;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reset_token;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $photo;
 
     public function __construct()
     {
@@ -246,24 +247,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoto(): ?Photo
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?Photo $photo): self
-    {
-        $this->photo = $photo;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newUser = null === $photo ? null : $this;
-        if ($photo->getUser() !== $newUser) {
-            $photo->setUser($newUser);
-        }
-
-        return $this;
-    }
-
     public function getResetToken(): ?string
     {
         return $this->reset_token;
@@ -272,6 +255,18 @@ class User implements UserInterface
     public function setResetToken(?string $reset_token): self
     {
         $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Photo $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }

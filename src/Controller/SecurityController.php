@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ForgotPasswordType;
+use App\Form\GetEmailForgotPasswordType;
 use App\Form\RegistrationType;
-use App\Form\ResetForgotPasswordType;
 use App\Form\UserInfosFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -76,7 +77,7 @@ class SecurityController extends AbstractController
                                TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $manager)
     {
         // On initialise le formulaire
-        $form = $this->createForm(ResetForgotPasswordType::class);
+        $form = $this->createForm(GetEmailForgotPasswordType::class);
 
         // On traite le formulaire
         $form->handleRequest($request);
@@ -109,12 +110,13 @@ class SecurityController extends AbstractController
                 $manager->persist($user);
                 $manager->flush();
             } catch (\Exception $e) {
-                $this->addFlash('warning', $e->getMessage());
+                $this->addFlash('danger', $e->getMessage());
                 return $this->redirectToRoute('security_login');
             }
 
             // On génère l'URL de réinitialisation de mot de passe
-            $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
+            $url = $this->generateUrl('app_reset_password', array('token' => $token),
+                UrlGeneratorInterface::ABSOLUTE_URL);
 
             // On génère l'e-mail
             $message = (new \Swift_Message('Mot de passe oublié'))
@@ -131,7 +133,7 @@ class SecurityController extends AbstractController
             $mailer->send($message);
 
             // On crée le message flash de confirmation
-            $this->addFlash('message', 'E-mail de réinitialisation du mot de passe envoyé !');
+            $this->addFlash('success', 'Email de réinitialisation du mot de passe envoyé !');
 
             // On redirige vers la page de login
             return $this->redirectToRoute('security_login');
@@ -146,7 +148,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/reinitialisation_mot-de-passe/{token}", name="app_reset_password")
      */
-    public function resetPassword(Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder,
+    public function resetPassword(Request $request, string $token, UserPasswordEncoderInterface $encoder,
                                     EntityManagerInterface $manager)
     {
         // On cherche un utilisateur avec le token donné
@@ -155,33 +157,39 @@ class SecurityController extends AbstractController
         // Si l'utilisateur n'existe pas
         if ($user === null) {
             // On affiche une erreur
-            $this->addFlash('danger', 'Utilisateur inconnu !');
+            $this->addFlash('danger', 'Temps écoulée, veuillez réeffectuer votre demande !');
             return $this->redirectToRoute('security_login');
         }
 
-        // Si le formulaire est envoyé en méthode post
-        if ($request->isMethod('POST')) {
-            // On supprime le token
+        $form = $this->createForm(ForgotPasswordType::class, $user);
+
+        // On traite le formulaire
+        $form->handleRequest($request);
+
+        // Si le formulaire est valide
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            //On supprime le token
             $user->setResetToken(null);
 
-            // On chiffre le mot de passe
-            $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
+            // On chiffre
+            $encodePassword = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encodePassword);
 
             // On stocke
             $manager->persist($user);
             $manager->flush();
 
             // On crée le message flash
-            $this->addFlash('message', 'Votre mot de passe a bien été mis à jour !');
+            $this->addFlash('success', 'Votre mot de passe a bien été mis à jour !');
 
             // On redirige vers la page de connexion
             return $this->redirectToRoute('security_login');
         }
-        else
-            {
-            // Si on n'a pas reçu les données, on affiche le formulaire
-            return $this->render('security/reset_password.html.twig', ['token' => $token]);
-        }
+
+        return $this->render('security/reset_password.html.twig', [
+            "formResetPassword" => $form->createView()
+        ]);
 
     }
 }
