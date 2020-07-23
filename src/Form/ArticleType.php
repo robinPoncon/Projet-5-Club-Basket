@@ -62,7 +62,6 @@ class ArticleType extends AbstractType
                     "class" => "form-control label",
                 ],
                 "attr" => [
-                    "placeholder" => "Titre de l'article",
                     "class" => "form-control input"
                 ]
             ])

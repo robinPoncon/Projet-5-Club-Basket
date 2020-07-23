@@ -253,7 +253,7 @@ class BlogController extends AbstractController
     public function editComment(Comment $comment, Request $request, EntityManagerInterface $manager)
     {
         $article = $comment->getArticle();
-        dump($article);
+        //dump($article);
         $form = $this->createForm(CommentType::class, $comment);
 
         $form->handleRequest($request);
@@ -280,7 +280,7 @@ class BlogController extends AbstractController
     public function deleteComment(Comment $comment, EntityManagerInterface $manager)
     {
         $article = $comment->getArticle();
-        dump($article);
+        //dump($article);
         $manager->remove($comment);
         $manager->flush();
 

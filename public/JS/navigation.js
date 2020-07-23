@@ -103,7 +103,7 @@ $(".buttonInscription").click(function(){
 
 
 function deleteConfirm(id, text, dataText, routeSup, div) {
-    console.log(id, text, dataText, routeSup, div);
+    //console.log(id, text, dataText, routeSup, div);
     let divSup = $("<div>", {
         class: "confirm",
         id: "confirm" + id
@@ -140,7 +140,8 @@ function deleteConfirm(id, text, dataText, routeSup, div) {
     $(".typeTeam, #addTeam, h1, h2, .divInfosEntrainement, .divBoutonsEntrainement, #addPost, " +
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
         " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
-        ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil ")
+        ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil, .modifMDP, thead, .userName," +
+        ".userEmail, .userRole, .userFonction, .modifRole ")
         .css("opacity", 0.5).css("pointer-events", "none");
 }
 
@@ -149,7 +150,8 @@ function cancelConfirm(div) {
     $(".typeTeam, #addTeam, h1, h2, .divInfosEntrainement, .divBoutonsEntrainement, #addPost, " +
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
         " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
-        ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil ")
+        ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil, .modifMDP, thead, .userName," +
+        ".userEmail, .userRole, .userFonction, .modifRole ")
         .css("opacity", 1).css("pointer-events", "auto");
 }
 
@@ -229,6 +231,75 @@ function htmlResponseAjax(routeShow, routeModif, routeSup, slugData, titleData, 
     $(".blocPost").append(divPost);
 }
 
+
+
+
+
+function htmlResponseAjaxConvoc(routeModif, routeSup, dayData, horaireData, addressData, idData)
+{
+    //Gestion affichage des convocations
+
+    let jour = $("<p>", {
+        class: "dayConvoc",
+        text: dayData
+    });
+
+    //console.log(horaireData);
+    let date = new Date(horaireData * 1000);
+    let hours = date.getHours() - 1;
+    let minutes = "0" + date.getMinutes();
+    let formattedTime = hours + ':' + minutes.substr(-2);
+
+    let heure = $("<p>", {
+        class: "horaireConvoc",
+        text: formattedTime
+    });
+
+    let adresse = $("<p>", {
+        class: "addressConvoc",
+        text: addressData
+    });
+
+    // Gestion bouton Modifier
+    let urlModif = routeModif;
+    urlModif = urlModif.replace("text", idData);
+
+    let modifierConvoc = $("<a>", {
+        attr: {"href": urlModif},
+        class: "modifConvoc",
+        text: "Modifier"
+    });
+
+    // Gestion bouton Suppression
+    let supprimerConvoc = $("<button>", {
+        class: "confirmSup",
+        text: "Supprimer"
+    });
+
+    let confirmSupConvoc = $("<div>", {class: "confirmationSupConvoc"});
+
+    $(supprimerConvoc).click(function () {
+        deleteConfirm(idData, "Voulez-vous vraiment supprimer cet entraînement",
+            dayData + " - " + formattedTime, routeSup,
+            confirmSupConvoc);
+    });
+
+    //Finition affichage avec les blocs de div
+    let divInfos = $("<div>", {class: "d-flex divInfosEntrainement"});
+    $(divInfos).append(jour);
+    $(divInfos).append(heure);
+    $(divInfos).append(adresse);
+
+    let divBoutons = $("<div>", {class: "d-flex divBoutonsEntrainement"});
+    $(divBoutons).append(modifierConvoc);
+    $(divBoutons).append(supprimerConvoc);
+
+    let div = $("<div>", {class: "convocation"});
+    $(div).append(divInfos);
+    $(div).append(divBoutons);
+    $(div).append(confirmSupConvoc);
+    $(".convocations").append(div);
+}
 
 
 

@@ -39,8 +39,10 @@
             <input class="form-control input" type="checkbox" id="remember_me" name="_remember_me" checked/>
         </div>
 
-        <button type="submit" class="form-control submit"> Connexion </button>
-
-        <a href="{{ path("forgot_pass") }}">Mot de passe oublié ?</a>
+        <div class="d-flex">
+            <button type="submit" class="form-control submit"> Connexion </button>
+            <a class="forgotPassword" href="{{ path("forgot_pass") }}">Mot de passe oublié ?</a>
+        </div>
     </form>
+
 {% endblock %}

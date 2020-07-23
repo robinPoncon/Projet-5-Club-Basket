@@ -70,14 +70,13 @@
 {% block javascripts %}
     <script>
 
-
-
         function sendAjaxController(id) {
             $.ajax({
                 method: "POST",
                 url: "{{ path("ajax_article") }}",
                 data: {id: id},
                 success: function (responses) {
+                    console.log(responses);
                     responses.sort(function(a, b){return b-a});
 
                     responses.forEach((datas) => {

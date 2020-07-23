@@ -25,7 +25,8 @@ class CompteController extends AbstractController
     {
         $user = $this->getUser();
         $photo = $user->getPhoto();
-        dump($photo);
+        //dump(Photo::TYPE_MAPPING["user"]);
+        //dump($photo);
         return $this->render('security/profil/compte-home.html.twig', [
             "user" => $user,
             "photo" => $photo
@@ -63,6 +64,8 @@ class CompteController extends AbstractController
     public function ajouterPhotoProfil(User $user, Request $request, EntityManagerInterface $manager)
     {
         $newPhotoProfil = new Photo();
+        $newPhotoProfil->setType(Photo::TYPE_MAPPING[1]);
+        //dump($newPhotoProfil->getType());
 
         $form = $this->createForm(PhotoUserType::class, $newPhotoProfil);
 
@@ -70,7 +73,6 @@ class CompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            dump($newPhotoProfil);
             $user->setPhoto($newPhotoProfil);
             $manager->persist($newPhotoProfil);
             $manager->flush();

@@ -57,83 +57,26 @@
 
                         $(".convocations").append(noConvoc);
                     }
-                    responses.forEach((datas) => {
-
-
-                        //Gestion affichage des convocations
-
-                        let jour = $("<p>", {
-                            class: "dayConvoc",
-                            text: datas.day
+                    else
+                    {
+                        responses.forEach((datas) => {
+                            console.log(datas.horaire.timestamp);
+                            htmlResponseAjaxConvoc("{{ path("modifierEntrainement", {"id": "text"}) }}",
+                                "{{ path("supprimerEntrainement", {"id": "text"}) }}",
+                                datas.day, datas.horaire.timestamp, datas.address, datas.id);
                         });
-
-                        let timeRecup = datas.horaire.timestamp;
-                        let date = new Date(timeRecup * 1000);
-                        let hours = date.getHours() -1;
-                        let minutes = "0" + date.getMinutes();
-                        let formattedTime = hours + ':' + minutes.substr(-2);
-
-                        let heure = $("<p>", {
-                            class: "horaireConvoc",
-                            text: formattedTime
-                        });
-
-                        let adresse = $("<p>", {
-                            class: "addressConvoc",
-                            text: datas.address
-                        });
-
-                        // Gestion bouton Modifier
-                        let urlModif = "{{ path("modifierEntrainement", {"id": "text"}) }}";
-                        urlModif = urlModif.replace("text", datas.id);
-
-                        let modifierConvoc = $("<a>", {
-                            attr: {"href": urlModif},
-                            class: "modifConvoc",
-                            text: "Modifier"
-                        });
-
-                        // Gestion bouton Suppression
-                        let supprimerConvoc = $("<button>", {
-                            class: "confirmSup",
-                            text: "Supprimer"
-                        });
-
-                        let confirmSupConvoc = $("<div>", {class: "confirmationSupConvoc"});
-
-                        $(supprimerConvoc).click(function(){
-                            deleteConfirm(datas.id, "Voulez-vous vraiment supprimer cet entraînement",
-                                datas.day + " - " + formattedTime, "{{ path("supprimerEntrainement", {"id": "text"}) }}",
-                                confirmSupConvoc);
-                        });
-
-                        //Finition affichage avec les blocs de div
-                        let divInfos = $("<div>", {class: "d-flex divInfosEntrainement"});
-                        $(divInfos).append(jour);
-                        $(divInfos).append(heure);
-                        $(divInfos).append(adresse);
-
-                        let divBoutons = $("<div>", {class: "d-flex divBoutonsEntrainement"});
-                        $(divBoutons).append(modifierConvoc);
-                        $(divBoutons).append(supprimerConvoc);
-
-                        let div = $("<div>", {class: "convocation"});
-                        $(div).append(divInfos);
-                        $(div).append(divBoutons);
-                        $(div).append(confirmSupConvoc);
-                        $(".convocations").append(div);
-                    });
+                    }
                 }
             });
         }
-        let test = $("#selectTeam option:selected").val();
-        sendAjaxController(test);
+        let valTeam = $("#selectTeam option:selected").val();
+        sendAjaxController(valTeam);
 
         $("#selectTeam").change(function () {
-            test = $("#selectTeam option:selected").val();
-            //console.log(test);
+            valTeam = $("#selectTeam option:selected").val();
+            //console.log(valTeam);
             $(".convocations").text("");
-            sendAjaxController(test);
+            sendAjaxController(valTeam);
         });
 
     </script>

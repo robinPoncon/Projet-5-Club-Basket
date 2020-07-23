@@ -21,9 +21,9 @@
         {# On boucle sur les utilisateurs #}
         {% for user in users %}
             <tr>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>
+                <td class="userName">{{ user.username }}</td>
+                <td class="userEmail">{{ user.email }}</td>
+                <td class="userRole">
                     {# On boucle sur les rôles #}
                     {% for role in user.roles %}
                         {% if role == "ROLE_EDITOR" %}
@@ -36,7 +36,7 @@
                     {% endfor %}
                 </td>
 
-                <td>
+                <td class="userFonction">
                     {% for fonction in user.fonctionClub %}
                         {{ fonction.name }} <br>
                     {% else %}
@@ -44,10 +44,14 @@
                     {% endfor %}
                 </td>
 
-                <td colspan="2">
-                    <a href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
-                    <a href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>
-                    <a href="{{ path("supprimerUtilisateur", {"id": user.id}) }}">Supprimer</a>
+                <td class="actionLien" colspan="2">
+                    <a class="modifRole" href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
+                    <a class="modifInfosProfil" href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>
+                    <button onclick='deleteConfirm({{ user.id }}, "Voulez-vous vraiment supprimer cet utilisateur",
+                            "{{ user.username }}", "{{ path("supprimerPhotoProfil", {"id": "text"}) }}",
+                            "#confirmationSupPhoto{{ user.id }}")'
+                            class="confirmSup">Supprimer</button>
+                    <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ user.id }}"></div>
                 </td>
             </tr>
         {% else %}

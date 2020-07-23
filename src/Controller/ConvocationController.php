@@ -77,7 +77,7 @@ class ConvocationController extends AbstractController
                 // On ajoute l'entête HTTP
                 $response->headers->set("Content-Type", "application/json");
 
-                dump($response);
+                //dump($response);
                 // On envoie la réponse
                 return $response;
             }

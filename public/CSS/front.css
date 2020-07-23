@@ -1,3 +1,5 @@
+
+                                        /* Navigation Menu */
 html, body
 {
     margin: 0;
@@ -309,6 +311,25 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: #ef8108;
 }
 
+.forgotPassword
+{
+    background-color: #074592;
+    color: white;
+    padding: 5px;
+    border: 1px #074592 solid;
+    border-radius: 3px;
+    text-align: center;
+    width: 200px;
+    margin: auto;
+    margin-top: 1px;
+}
+
+.forgotPassword:hover
+{
+    border: 1px #dd650f solid;
+    background-color: #dd650f;
+    color: white;
+}
 
 
 
@@ -319,7 +340,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: white !important;
     background-color: #074592 !important;
     margin-right: 20px;
-    width: 30% !important;
+    width: 50% !important;
     text-align: center;
 }
 
@@ -401,6 +422,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: white;
     padding: 12.5px;
     display: block;
+    margin-top: 10px;
+    margin-bottom: -4px;
 }
 
 .menu-compte a:hover
@@ -412,7 +435,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     background-color: #074592;
     width: 100%;
-    padding: 10px;
     text-align: center;
     border-right: 5px white solid;
 }
@@ -482,22 +504,27 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     top: 82px;
 }
 
-.profilPicture p
+.profilPictureVide
+{
+    position: relative;
+    top: 11px;
+}
+
+.profilPicture p, .profilPictureVide p
 {
     margin-top: 20px;
 }
 
-.profilPicture i
+.profilPictureVide i
 {
     position: relative;
-    top: -75px;
     color: #074592;
     font-size: 180px;
     height: auto;
     padding-bottom: 5px;
 }
 
-.profilPicture i:hover
+.profilPictureVide i:hover
 {
     color: #dd650f;
 }
@@ -505,7 +532,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .profilPicture img
 {
     width: 200px;
-    height: auto;
+    height: 200px;
     border: 5px #074592 double;
     border-radius: 10px;
 }
@@ -776,22 +803,21 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
                                                 /* Gestion Articles */
 
-.contentPost
-{
-    width: 25.5% !important;
-}
 
-#cke_article_content
+#cke_article_content, #cke_comment_content
 {
     margin-bottom: 40px;
+    width: 101% !important;
 }
 
-#article_category label, #registration_fonctionClub label
+#article_category label, #registration_fonctionClub label, #user_infos_form_fonctionClub label,
+#user_role_roles label
 {
     margin-right: 20px;
 }
 
-#article_category input, #registration_fonctionClub input
+#article_category input, #registration_fonctionClub input, #user_infos_form_fonctionClub input,
+#user_role_roles input
 {
     margin-right: 5px;
 }
@@ -1113,6 +1139,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border: 5px #074592 solid;
     border-radius: 5px;
     top: 59px;
+    right: 30px;
 }
 
 .postNews, .postTournois, .postClub
@@ -1263,4 +1290,37 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 td
 {
     vertical-align: inherit !important;
+}
+
+.actionLien .confirmSup
+{
+    background-color: rgba(0, 0, 0, 0);
+    color: #dd650f;
+    border: 1px rgba(0, 0, 0, 0) solid;
+    padding: 0;
+}
+
+.actionLien .confirm
+{
+    margin-top: -113px;
+}
+
+.actionLien .yesSup
+{
+    color: white;
+}
+
+.actionLien .yesSup:hover
+{
+    color: white;
+}
+
+.actionLien a
+{
+    color: #dd650f;
+}
+
+.actionLien .confirmSup:hover, .actionLien a:hover
+{
+    color: #074592;
 }

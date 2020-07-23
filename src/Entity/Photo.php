@@ -15,6 +15,37 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Photo implements \Serializable
 {
+    const TEST_MAPPING = "user_image";
+
+    const TYPE_MAPPING = [
+        1 => "user_image",
+        2 => "equipe_image",
+        3 => "article_image"
+    ];
+
+    /**
+     * @var string|null
+     */
+    public $type;
+
+    /**
+     * @return string|null
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string|null $type
+     * @return Photo
+     */
+    public function setType(?string $type): Photo
+    {
+        $this->type = $type;
+        return $this;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -28,7 +59,7 @@ class Photo implements \Serializable
      *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
      *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
      * )
-     * @Vich\UploadableField(mapping="user_image", fileNameProperty="image")
+     * @Vich\UploadableField(mapping=Photo::TEST_MAPPING, fileNameProperty="imageName")
      * @var File|null
      */
     private $imageFile;
@@ -36,7 +67,7 @@ class Photo implements \Serializable
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private $imageName;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,14 +84,14 @@ class Photo implements \Serializable
         return $this->id;
     }
 
-    public function getImage(): ?string
+    public function getImageName(): ?string
     {
-        return $this->image;
+        return $this->imageName;
     }
 
-    public function setImage( ?string $image): self
+    public function setImageName( ?string $imageName): self
     {
-        $this->image = $image;
+        $this->imageName = $imageName;
 
         return $this;
     }
@@ -106,7 +137,7 @@ class Photo implements \Serializable
     {
         return serialize(array(
             $this->id,
-            $this->image,
+            $this->imageName,
         ));
     }
 
@@ -117,7 +148,7 @@ class Photo implements \Serializable
     {
         list (
             $this->id,
-            $this->image,
+            $this->imageName,
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
 
