@@ -26,37 +26,45 @@
         <button class="addCommentButton">Cliquer ici</button>
     </div>
 
-    {{ form_start(formComment) }}
-    <div class="addComment">
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formComment.author) }}
+    {% if app.user %}
+        {{ form_start(formComment) }}
+        <div class="addComment">
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formComment.author) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formComment.author) }}
+                    {{ form_widget(formComment.author) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formComment.author) }}
-                {{ form_widget(formComment.author) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formComment.content) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formComment.content) }}
+                    {{ form_widget(formComment.content) }}
+                </div>
             </div>
+            <button class="form-control submit" type="submit">Ajouter</button>
         </div>
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formComment.content) }}
-            </div>
-            <div class="d-flex">
-                {{ form_label(formComment.content) }}
-                {{ form_widget(formComment.content) }}
-            </div>
-        </div>
-        <button class="form-control submit" type="submit">Ajouter</button>
-    </div>
 
-    {{ form_end(formComment) }}
+        {{ form_end(formComment) }}
+    {% else %}
+        <div class="addComment">
+            <p>Veuillez vous connecter pour ajouter un commentaire</p>
+            <a href="{{ path("security_login") }}">Connexion</a>
+        </div>
+
+    {% endif %}
 
 
     {% for comment in article.comments | sort((b, a) => a.createdAt <=> b.createdAt) %}
         <div class="showComment">
             <h3>{{ comment.author }} - {{ comment.createdAt | date("d/m/Y") }}</h3>
             <div class="commentContent"> {{ comment.content | raw}}</div>
-            {% if app.user %}
+            {% if is_granted("ROLE_EDITOR") %}
                 <div class="d-flex justify-content-around adminComment">
                     <a class="commentEdit" href="{{ path("modifierComment", {"id": comment.id}) }}">Editer</a>
                     <button onclick='deleteConfirm({{ comment.id }}, "Voulez-vous vraiment supprimer ce commentaire",

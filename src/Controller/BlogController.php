@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -246,6 +247,8 @@ class BlogController extends AbstractController
         $this->addFlash("success", "L'article a bien été supprimé !");
         return $this->redirectToRoute("articles");
     }
+
+
 
     /**
      * @Route("editor/articles/commentaires/modifier/{id}", name="modifierComment")

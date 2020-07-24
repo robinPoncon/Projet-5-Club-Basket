@@ -33,6 +33,7 @@ class Article
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ce champs ne peut pas être vide !")
      */
     private $content;
 

@@ -11,11 +11,13 @@
 
     <table class="table table-hover blocUser">
         <thead>
-        <th scope="col">Nom</th>
-        <th scope="col">Email</th>
-        <th scope="col">Rôles</th>
-        <th scope="col">Fonction dans le club</th>
-        <th colspan="2">Actions</th>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                <th>Fonction dans le club</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
         {# On boucle sur les utilisateurs #}
@@ -44,7 +46,7 @@
                     {% endfor %}
                 </td>
 
-                <td class="actionLien" colspan="2">
+                <td class="actionLien">
                     <a class="modifRole" href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
                     <a class="modifInfosProfil" href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>
                     <button onclick='deleteConfirm({{ user.id }}, "Voulez-vous vraiment supprimer cet utilisateur",

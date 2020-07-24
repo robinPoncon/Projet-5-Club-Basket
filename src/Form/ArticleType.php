@@ -37,7 +37,8 @@ class ArticleType extends AbstractType
                 "label" => "Contenu",
                 "label_attr" => [
                     "class" => "form-control label contentPost",
-                ]
+                ],
+                "required" => true
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

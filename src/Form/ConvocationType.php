@@ -43,7 +43,6 @@ class ConvocationType extends AbstractType
                     "class" => "form-control label",
                 ],
                 "attr" => [
-                    "placeholder" => "Jour d'entraînement",
                     "class" => "form-control input"
                 ]
             ])

@@ -29,7 +29,7 @@ $('.menu a, #connexion a').each(function () {
 
 $(".menu-compte a").each(function () {
     if (this.href === path) {
-        let regExpCompte = RegExp("home");
+        let regExpCompte = RegExp("profil");
         let regExpUsers = RegExp("utilisateurs");
         let regExpArticles = RegExp("articles");
         let regExpEquipes = RegExp("equipes");

@@ -31,7 +31,8 @@ class CommentType extends AbstractType
                 "label" => "Commentaire",
                 "label_attr" => [
                     "class" => "form-control label contentPost",
-                ]
+                ],
+                "required" => true
             ])
         ;
     }

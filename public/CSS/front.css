@@ -1,10 +1,9 @@
-
-                                        /* Navigation Menu */
 html, body
 {
     margin: 0;
     padding: 0;
 }
+                                            /* Navigation Menu */
 
 h2
 {
@@ -335,6 +334,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
                                                         /* CONTACT */
 
+                
 .label
 {
     color: white !important;
@@ -800,14 +800,17 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     text-align: center;
     margin-top: 30px;
 }
-
-                                                /* Gestion Articles */
-
-
+                                        /* Gestion Articles */
+                      
 #cke_article_content, #cke_comment_content
 {
     margin-bottom: 40px;
     width: 101% !important;
+}
+
+#article_category, #registration_fonctionClub, #user_infos_form_fonctionClub, #user_role_roles
+{
+    height: 70px;
 }
 
 #article_category label, #registration_fonctionClub label, #user_infos_form_fonctionClub label,
@@ -840,6 +843,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-bottom: 30px;
     font-size: 1.5em;
 }
+
 
 #addPost
 {
@@ -1115,6 +1119,30 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: -102px;
 }
 
+.addComment p
+{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.addComment a
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.addComment a:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
 
 
                                         /* Accueil & Tournois */
@@ -1324,3 +1352,75 @@ td
 {
     color: #074592;
 }
+
+                                                /* Page Erreur */
+
+.fas.fa-running
+{
+    font-size: 200px;
+    color: #074592;
+    margin-top: 30px;
+}
+
+.icone-club
+{
+    width: 100px;
+    height: 100px;
+    margin-top: 143px;
+    margin-left: -28px;
+}
+
+.erreur h1
+{
+    top: 30px;
+    padding-bottom: 50px;
+}
+
+
+                                                /* RESPONSIVE !!! */
+
+                        /* Responsive Tablette */
+
+@media all and (max-width: 992px)
+{
+    nav a, #nav-team
+    {
+        font-size: 1.7em;
+    }
+    
+    img
+    {
+        width: 110px;
+        margin-top: -47px;
+    }
+    
+    #bloc-team
+    {
+        left: 6px;
+        margin-left: 1px;
+    }
+    
+    #bloc-club
+    {
+        margin-top: -11px;
+    }
+    
+    #name
+    {
+        margin-top: 12px;
+        margin-left: 15px;
+    }
+    
+    #name a
+    {
+        font-size: 0.8em;
+    }
+}
+
+                        /* Responsive Mobile */
+
+@media all and (max-width: 768px)
+{
+
+}
+
