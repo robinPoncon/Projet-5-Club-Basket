@@ -22,6 +22,7 @@ final class Version20200608092318 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('ALTER TABLE equipe ADD slug VARCHAR(255) NOT NULL');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_2449BA15989D9B62 ON equipe (slug)');
     }
 
@@ -31,5 +32,6 @@ final class Version20200608092318 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP INDEX UNIQ_2449BA15989D9B62 ON equipe');
+        $this->addSql('ALTER TABLE equipe DROP slug');
     }
 }
