@@ -3,6 +3,8 @@
 {% block title %} Modification du mot de passe {% endblock %}
 
 {% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
     <h1> Modifier votre mot de passe </h1>
 
     {{ form_start(formMDPUser) }}

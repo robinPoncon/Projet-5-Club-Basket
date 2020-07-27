@@ -47,7 +47,7 @@
                 url: "{{ path("ajax_equipe") }}",
                 data: {id: id},
                 success: function (responses) {
-                    console.log(responses);
+                    //console.log(responses);
                     if (responses.length === 0)
                     {
                         let noConvoc = $("<p>", {
@@ -60,7 +60,7 @@
                     else
                     {
                         responses.forEach((datas) => {
-                            console.log(datas.horaire.timestamp);
+                            //console.log(datas.horaire.timestamp);
                             htmlResponseAjaxConvoc("{{ path("modifierEntrainement", {"id": "text"}) }}",
                                 "{{ path("supprimerEntrainement", {"id": "text"}) }}",
                                 datas.day, datas.horaire.timestamp, datas.address, datas.id);

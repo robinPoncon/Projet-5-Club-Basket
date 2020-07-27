@@ -76,11 +76,11 @@
                 url: "{{ path("ajax_article") }}",
                 data: {id: id},
                 success: function (responses) {
-                    console.log(responses);
+                    //console.log(responses);
                     responses.sort(function(a, b){return b-a});
 
                     responses.forEach((datas) => {
-                        console.log(datas.id);
+                        //console.log(datas.id);
 
                         htmlResponseAjax("{{ path("show-article", {"slug": "text"}) }}",
                             "{{ path("modifierArticle", {"slug": "text"}) }}",

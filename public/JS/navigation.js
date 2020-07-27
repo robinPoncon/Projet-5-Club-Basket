@@ -69,7 +69,7 @@ compteCssOver("#compte4child", "#compte4");
 
 
 $(".addCommentButton").click(function(){
-    console.log($(this).val());
+    //console.log($(this).val());
     if($(this).html() === "Cliquer ici")
     {
         $(this).text("Annuler");
@@ -83,7 +83,7 @@ $(".addCommentButton").click(function(){
 });
 
 $(".buttonInscription").click(function(){
-    console.log($(this).val());
+    //console.log($(this).val());
     if($(this).html() === "Cliquer ici")
     {
         $(this).text("Annuler");
@@ -300,6 +300,39 @@ function htmlResponseAjaxConvoc(routeModif, routeSup, dayData, horaireData, addr
     $(div).append(confirmSupConvoc);
     $(".convocations").append(div);
 }
+
+// CSS MENU HAMBURGER
+
+$(window).resize();
+
+$(".hamburger").click(function(){
+    $(this).css("display", "none");
+    $(".close-hamburger").css("display", "block");
+
+    if ($(window).width() >= 768)
+    {
+        $(".menu").css("display", "flex")
+    }
+
+    else
+    {
+        $(".menu").css("display", "block")
+    }
+});
+
+$(".close-hamburger").click(function(){
+    $(this).css("display", "none");
+    $(".hamburger").css("display", "block");
+    if ($(window).width() >= 768)
+    {
+        $(".menu").css("display", "flex")
+    }
+
+    else
+    {
+        $(".menu").css("display", "none")
+    }
+});
 
 
 

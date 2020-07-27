@@ -1,6 +1,10 @@
 
     <div id="nomClub">
         <h2 id="name"><a href="{{ path("home") }}">BASKET CLUB MEXIMIEUX</a></h2>
+        <h2 class="nameMobile">
+            <img src="{{ asset("pictures/logo-meximieux.png") }}" alt="logo du club">
+            <a href="{{ path("home") }}">BCM</a>
+        </h2>
         <div id="connexion">
             {% if not app.user %}
                 <a href="{{ path("security_login") }}"> Connexion </a>
@@ -13,18 +17,30 @@
             {% endif %}
         </div>
     </div>
+    <div class="menu-hamburger">
+        <p> MENU </p>
+        <div class="hamburger">
+            <p class="trait-1"></p>
+            <p class="trait-2"></p>
+            <p class="trait-3"></p>
+        </div>
+        <div class="close-hamburger">
+            <p class="trait-4"></p>
+            <p class="trait-5"></p>
+        </div>
+    </div>
     <nav class="menu">
         <ul id="navigation-left">
-            <li><a href="{{ path("home") }}"> Accueil </a></li>
+            <li class="menu-titre"><a href="{{ path("home") }}"> Accueil </a></li>
 
-            <li><a href="#"> LE CLUB </a>
+            <li class="menu-titre"><a href="#"> LE CLUB </a>
                 <ul id="bloc-club">
                     <li><a href="{{ path("club") }}">La vie au club</a></li>
                     <li><a href="{{ path("clubInscription") }}">Infos Inscription</a></li>
                 </ul>
             </li>
 
-            <li><a href="#" id="nav-team"> EQUIPES </a>
+            <li class="menu-titre"><a href="#" id="nav-team"> EQUIPES </a>
                 <ul id="bloc-team">
                     <li class="d-flex justify-content-between"><a href="#" id="boyTeam"> Garçons </a>
                         <ul id="listBoy">
@@ -65,10 +81,10 @@
         </div>
 
         <ul id="navigation-right">
-            <li><a href="#"> PHOTOS </a></li>
+            <li class="menu-titre"><a href="#"> PHOTOS </a></li>
 
-            <li><a href="{{ path("tournois") }}"> TOURNOIS </a></li>
+            <li class="menu-titre"><a href="{{ path("tournois") }}"> TOURNOIS </a></li>
 
-            <li><a href="{{ path("contact") }}"> CONTACT </a></li>
+            <li class="menu-titre"><a href="{{ path("contact") }}"> CONTACT </a></li>
         </ul>
     </nav>

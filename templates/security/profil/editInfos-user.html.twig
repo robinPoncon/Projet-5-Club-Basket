@@ -3,6 +3,8 @@
 {% block title %} Modification du profil {% endblock %}
 
 {% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
     <h1> Modifier les informations du profil </h1>
 
     {{ form_start(formInfosUser) }}

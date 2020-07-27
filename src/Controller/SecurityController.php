@@ -87,10 +87,12 @@ class SecurityController extends AbstractController
             // On récupère les données
             $donnees = $form->getData();
 
-            dump($donnees);
+            //dump($donnees);
 
             // On cherche un utilisateur ayant cet e-mail
             $user = $userRepo->findOneBy(["email" => $donnees]);
+
+            //dump($user);
 
             // Si l'utilisateur n'existe pas
             if ($user === null) {

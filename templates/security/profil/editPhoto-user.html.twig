@@ -3,6 +3,8 @@
 {% block title %} Modification photo profil {% endblock %}
 
 {% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
     <h1> Modifier votre photo de profil </h1>
 
     {{ form_start(formPhotoUser) }}

@@ -5,6 +5,11 @@ html, body
 }
                                             /* Navigation Menu */
 
+.nameMobile, .menu-hamburger
+{
+    display: none;
+}
+
 h2
 {
     font-size: 1.5em !important;
@@ -387,7 +392,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: #dd650f;
 }
 
-.SuccessContact
+.SuccessContact, .EchecContact
 {
     top: 150px;
     position: relative;
@@ -681,7 +686,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .typeTeam
 {
-    font-style: normal;
+    font-style: italic;
+    font-size: 1.2em;
 }
 
 .confirmationSupTeam .confirm
@@ -1415,12 +1421,173 @@ td
     {
         font-size: 0.8em;
     }
+    
+    .confirm
+    {
+        width: 90%;
+    }
+    
+    .divTitle, .articles
+    {
+        width: 35%;
+    }
 }
 
                         /* Responsive Mobile */
 
 @media all and (max-width: 768px)
 {
-
+    .menu-hamburger
+    {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .menu-hamburger p
+    {
+        color: white;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+    
+    .hamburger, .close-hamburger
+    {
+        width: 40px;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .close-hamburger
+    {
+        display: none;
+    }
+    
+    .nameMobile
+    {
+        display: block;
+    }
+    
+    .menu, #name
+    {
+        display: none;
+    }
+    
+    .nameMobile a:hover
+    {
+        color: #ef8108;
+    }
+    
+    .nameMobile img
+    {
+        width: 70px;
+        margin-top: 0px;
+    }
+    
+    #connexion
+    {
+        flex-direction: column;
+        padding-right: 4%;
+    }
+    
+    #connexion a
+    {
+        font-size: 0.8em;
+    }
+    
+    #connexion p
+    {
+        display: none;
+    }
+    
+    .trait-1, .trait-2, .trait-3, .trait-4, .trait-5
+    {
+        width: 30px;
+        background-color: #ef8108;
+        height: 4px;
+        position: absolute;
+        z-index: 101;
+        border-radius: 5px;
+    }
+    
+    .trait-2
+    {
+        top: 10px;
+    }
+    
+    .trait-3
+    {
+        top: 20px;
+    }
+    
+    .trait-4
+    {
+        top: 9px;
+        transform: rotate(45deg);
+    }
+    
+    .trait-5
+    {
+        top: 9px;
+        transform: rotate(-45deg);
+    }
+    
+    .menu
+    {
+        padding-bottom: 300px;
+        text-align: left;
+        padding-left: 20px;
+    }
+    
+    nav li
+    {
+        margin-top: 4px;
+    }
+    
+    #logo
+    {
+        display: none;
+    }
+    
+    #navigation-left, #navigation-right
+    {
+        display: block;
+    }
+    
+    #bloc-club
+    {
+        left: 84px;
+        margin-top: -66px;
+        width: 145%;
+    }
+    
+    #bloc-club li:nth-child(2)
+    {
+        margin-top: -15px;
+    }
+    
+    #navigation-left li:nth-child(3)
+    {
+        height: 30px;
+    }
+    
+    
+    .menu-titre
+    {
+        width: 35%;
+    }
+    
+    #bloc-club li
+    {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    #bloc-team
+    {
+        left: 84px;
+        margin-top: -30px;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 }
 
