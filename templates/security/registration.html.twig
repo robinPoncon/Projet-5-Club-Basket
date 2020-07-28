@@ -9,93 +9,105 @@
         <p>Champs obligatoires</p>
         <p class="obligatoireHead">*</p>
     </div>
-    {{ form_start(formRegistration) }}
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.username) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.username) }}
-            <p class="obligatoire">*</p>
-            {{ form_widget(formRegistration.username) }}
-        </div>
+
+    <div class="bloc-inscription">
+        {{ form_start(formRegistration) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.username) }}
+                </div>
+                <div class="d-flex">
+                    <div class="d-flex divObligatoire">
+                        {{ form_label(formRegistration.username) }}
+                        <p class="obligatoire">*</p>
+                    </div>
+                    {{ form_widget(formRegistration.username) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.email) }}
+                </div>
+                <div class="d-flex">
+                    <div class="d-flex divObligatoire">
+                        {{ form_label(formRegistration.email) }}
+                        <p class="obligatoire">*</p>
+                    </div>
+                    {{ form_widget(formRegistration.email) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.password) }}
+                </div>
+                <div class="d-flex">
+                    <div class="d-flex divObligatoire">
+                        {{ form_label(formRegistration.password) }}
+                        <p class="obligatoire">*</p>
+                    </div>
+                    {{ form_widget(formRegistration.password) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.confirm_password) }}
+                </div>
+                <div class="d-flex">
+                    <div class="d-flex divObligatoire">
+                        {{ form_label(formRegistration.confirm_password) }}
+                        <p class="obligatoire">*</p>
+                    </div>
+                    {{ form_widget(formRegistration.confirm_password) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.nom) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formRegistration.nom) }}
+                    {{ form_widget(formRegistration.nom) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.prenom) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formRegistration.prenom) }}
+                    {{ form_widget(formRegistration.prenom) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.telephone) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formRegistration.telephone) }}
+                    {{ form_widget(formRegistration.telephone) }}
+                </div>
+            </div>
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formRegistration.fonctionClub) }}
+                </div>
+                <div class="d-flex divFonctionClub">
+                    {{ form_label(formRegistration.fonctionClub) }}
+                    {{ form_widget(formRegistration.fonctionClub) }}
+                </div>
+            </div>
+
+            <button class="form-control submit" type="submit">Inscription</button>
+
+        {{ form_end(formRegistration) }}
     </div>
 
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.email) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.email) }}
-            <p class="obligatoire">*</p>
-            {{ form_widget(formRegistration.email) }}
-        </div>
-    </div>
-
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.password) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.password) }}
-            <p class="obligatoire">*</p>
-            {{ form_widget(formRegistration.password) }}
-        </div>
-    </div>
-
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.confirm_password) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.confirm_password) }}
-            <p class="obligatoire">*</p>
-            {{ form_widget(formRegistration.confirm_password) }}
-        </div>
-    </div>
-
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.nom) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.nom) }}
-            {{ form_widget(formRegistration.nom) }}
-        </div>
-    </div>
-
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.prenom) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.prenom) }}
-            {{ form_widget(formRegistration.prenom) }}
-        </div>
-    </div>
-
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.telephone) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.telephone) }}
-            {{ form_widget(formRegistration.telephone) }}
-        </div>
-    </div>
-
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formRegistration.fonctionClub) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formRegistration.fonctionClub) }}
-            {{ form_widget(formRegistration.fonctionClub) }}
-        </div>
-    </div>
-
-    <button class="form-control submit" type="submit">Inscription</button>
-
-    {{ form_end(formRegistration) }}
 
 {% endblock %}

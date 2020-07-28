@@ -11,23 +11,21 @@
 
         {% if photo.imageName is defined and photo.imageName is not null %}
         <div class="profilPicture">
+            <h2> Profil {{ user.username }}</h2>
             <a href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">
                 <img src="{{ asset(vich_uploader_asset(photo, "imageFile")) }}" alt="photo de profil utilisateur"
                 title="Cliquer pour modifier !"></a>
-            <p class="text-center"> Photo de profil </p>
         </div>
         {% else %}
         <div class="profilPictureVide">
+            <h2> Profil {{ user.username }}</h2>
             <a href="{{ path("ajouterPhotoProfil", {"slug": user.slug}) }}">
                 <i class="fas fa-portrait" title="Cliquer pour ajouter !"></i>
             </a>
-            <p class="text-center noPictureProfil">Photo de profil</p>
         </div>
         {% endif %}
 
         <div class="profil">
-
-            <h2> Profil {{ user.username }}</h2>
 
             {% if user.nom %}
                 <p> NOM : <span>{{ user.nom | capitalize }}</span></p>

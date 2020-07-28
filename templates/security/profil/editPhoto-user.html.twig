@@ -7,7 +7,8 @@
 
     <h1> Modifier votre photo de profil </h1>
 
-    {{ form_start(formPhotoUser) }}
+    <div class="editPhoto">
+        {{ form_start(formPhotoUser) }}
         <div class="divForm">
             <div class="errorForm">
                 {{ form_errors(formPhotoUser.imageFile) }}
@@ -18,6 +19,8 @@
             </div>
         </div>
         <button class="form-control submit position-relative" type="submit">Modifier</button>
-    {{ form_end(formPhotoUser) }}
+        {{ form_end(formPhotoUser) }}
+    </div>
+
 
 {% endblock %}

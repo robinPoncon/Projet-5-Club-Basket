@@ -401,11 +401,32 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 90%;
 }
 
+.divObligatoire
+{
+    width: 72%;
+}
+
+.divObligatoire label
+{
+    width: 100% !important;
+}
+
                                         /* EQUIPE */
 
-.score
+.bloc-score
 {
-    height: 500px !important;
+    display: block;
+    width: 50%;
+    overflow: scroll;
+    margin: auto;
+    border-width: 0;
+}
+
+.bloc-training
+{
+    text-align: center;
+    width: 90%;
+    margin: auto;
 }
 
 
@@ -416,7 +437,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .menu-compte
 {
     display: flex;
-    justify-content: space-between;
     list-style-type: none;
     position: relative;
     top: 134px;
@@ -506,7 +526,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .profilPicture
 {
     position: relative;
-    top: 82px;
+}
+
+.profilPicture h2, .profilPictureVide h2
+{
+    text-align: center;
 }
 
 .profilPictureVide
@@ -515,13 +539,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     top: 11px;
 }
 
-.profilPicture p, .profilPictureVide p
-{
-    margin-top: 20px;
-}
-
 .profilPictureVide i
 {
+    margin-top: 5px;
     position: relative;
     color: #074592;
     font-size: 180px;
@@ -536,6 +556,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .profilPicture img
 {
+    margin-top: 10px;
     width: 200px;
     height: 200px;
     border: 5px #074592 double;
@@ -984,6 +1005,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     text-decoration: underline;
 }
 
+.modifPost
+{
+    margin-right: 20px;
+}
+
                                     /* Gestion Article FRONT */
 
 .addComment
@@ -1222,6 +1248,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .pagination
 {
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .pagination a:hover
@@ -1557,7 +1584,7 @@ td
     {
         left: 84px;
         margin-top: -66px;
-        width: 145%;
+        width: 170%;
     }
     
     #bloc-club li:nth-child(2)
@@ -1570,10 +1597,14 @@ td
         height: 30px;
     }
     
+    #nav-club
+    {
+        padding-right: 0;
+    }
     
     .menu-titre
     {
-        width: 35%;
+        width: 30%;
     }
     
     #bloc-club li
@@ -1588,6 +1619,342 @@ td
         margin-top: -30px;
         padding-bottom: 0;
         padding-top: 0;
+        padding-left: 20px;
     }
+    
+    #bloc-team li:nth-child(2)
+    {
+        top: -15px;
+    }
+    
+    #bloc-team li:nth-child(3)
+    {
+        top: -25px;
+    }
+    
+    #listBoy
+    {
+        top: -17px;
+    }
+    
+    #listGirl
+    {
+        top: 8px;
+    }
+    
+    #listLoisir
+    {
+        top: 20px;
+    }
+    
+    #boyTeam
+    {
+        padding-bottom: 0;
+    }
+    
+    #girlTeam
+    {
+        top: 20px;
+        padding-right: 40px;
+    }
+    
+    #loisirTeam
+    {
+        top: 35px;
+        padding-right: 40px;
+    }
+    
+    #navigation-right li:nth-child(2)
+    {
+        left: -1px;
+    }
+    
+    h1
+    {
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    h2
+    {
+        text-align: center;
+    }
+    
+    h3
+    {
+        font-size: 1.5em !important;
+    }
+    
+    .bandeRight
+    {
+        display: none;
+    }
+    
+    .news
+    {
+        margin: auto;
+        width: 100%;
+    }
+    
+    .bloc-score
+    {
+        width: 90% !important;
+    }
+    
+    .addInscription
+    {
+        flex-direction: column;
+    }
+    
+    .addInscription button
+    {
+        width: 50%;
+        margin: auto;
+    }
+    
+    .input
+    {
+        margin-bottom: 20px !important;
+        width: 50% !important;
+    }
+    
+    .submit
+    {
+        margin-top: 20px !important;
+        width: 50% !important;
+    }
+    
+    .formInscription
+    {
+        margin-top: 50px;
+    }
+    
+    .bloc-inscription div
+    {
+        flex-direction: column;
+    }
+    
+    .divObligatoire
+    {
+        flex-direction: row !important;
+        width: 100%;
+    }
+    
+    .bloc-inscription input, .bloc-inscription label
+    {
+        width: 100% !important;
+    }
+    
+    #registration_fonctionClub
+    {
+        width: 100% !important;
+        flex-direction: row !important;
+        height: 322px;
+    }
+    
+    #registration_fonctionClub label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #registration_fonctionClub input
+    {
+        margin-left: 40px;
+    }
+    
+    .connectField
+    {
+        flex-direction: column;
+    }
+    
+    .connectField .label, .connectField .input
+    {
+        width: 100% !important;
+    }
+    
+    .connect
+    {
+        flex-direction: column;
+    }
+    
+    .connect a
+    {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+    
+    .post h1
+    {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 1.5em;
+    }
+    
+    .addCommentPost
+    {
+        flex-direction: column;
+    }
+    
+    .addCommentButton
+    {
+        width: 50%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    
+    .showComment
+    {
+        width: 80%;
+    }
+    
+    .yesSup, .noSup
+    {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+    
+    .confirm
+    {
+        height: 200px;
+    }
+    
+    .confirm p
+    {
+        padding: 5px;
+    }
+    
+    .confirmationSupCom .confirm
+    {
+        margin-top: -125px;
+    }
+    
+    .addComment div, .blocEditComment div
+    {
+        flex-direction: column;
+    }
+    
+    .addComment label, .addComment input, .blocEditComment label, .blocEditComment input
+    {
+        width: 100% !important;
+    }
+    
+    .blocProfil
+    {
+        flex-direction: column;
+    }
+    
+    .menu-compte
+    {
+        top: 130px;
+        flex-direction: column;
+    }
+    
+    .menu-compte div
+    {
+        width: 90% !important;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    
+    #compte1
+    {
+        border-left: 0;
+    }
+    
+    .profilPicture, .profilPictureVide
+    {
+        margin: auto;
+    }
+    
+    .profil
+    {
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    
+    .actionProfil
+    {
+        width: 75%;
+        margin: auto;
+    }
+    
+    .confirmationSupPhoto .yesSup, .confirmationSupPhoto .noSup
+    {
+        top: 0;
+    }
+    
+    .editInfosUser div
+    {
+        flex-direction: column;
+    }
+    
+    .editInfosUser label, .editInfosUser input, #user_infos_form_fonctionClub
+    {
+        width: 100% !important;
+    }
+    
+    #user_infos_form_fonctionClub
+    {
+        height: 322px;
+    }
+    
+    #user_infos_form_fonctionClub label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #user_infos_form_fonctionClub input
+    {
+        margin-left: 40px;
+    }
+    
+    .editMDP div, .editPhoto div
+    {
+        flex-direction: column;
+    }
+    
+    .editMDP label, .editMDP input, .editPhoto label, .editPhoto input
+    {
+        width: 100% !important;
+    }
+    
+    .divPost, #trierArticle
+    {
+        flex-direction: column;
+    }
+    
+    .headArticle p
+    {
+        display: none !important;
+    }
+    
+    #trierArticle div
+    {
+        margin: auto;
+    }
+    
+    #h2Article
+    {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .divTitle, .divCategory
+    {
+        margin: auto;
+        width: 100%;
+    }
+    
+    .divCategory
+    {
+        margin-top: 20px;
+        width: 50%;
+    }
+    
+    
+    
 }
 

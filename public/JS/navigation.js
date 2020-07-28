@@ -8,6 +8,7 @@ $('.menu a, #connexion a').each(function () {
         let regexBoy = RegExp('gar' + cCedille + "ons");
         let regexGirl = RegExp("filles");
         let regexLoisir = RegExp("loisir");
+        let regexClub = RegExp("club");
 
         if (regexBoy.test(path))
         {
@@ -23,6 +24,10 @@ $('.menu a, #connexion a').each(function () {
         {
             $("#nav-team").addClass("active");
             $("#loisirTeam").addClass("active");
+        }
+        else if (regexClub.test(path))
+        {
+            $("#nav-club").addClass("active");
         }
     }
 });
@@ -309,7 +314,7 @@ $(".hamburger").click(function(){
     $(this).css("display", "none");
     $(".close-hamburger").css("display", "block");
 
-    if ($(window).width() >= 768)
+    if ($(window).width() >= 769)
     {
         $(".menu").css("display", "flex")
     }
@@ -323,7 +328,7 @@ $(".hamburger").click(function(){
 $(".close-hamburger").click(function(){
     $(this).css("display", "none");
     $(".hamburger").css("display", "block");
-    if ($(window).width() >= 768)
+    if ($(window).width() >= 769)
     {
         $(".menu").css("display", "flex")
     }
