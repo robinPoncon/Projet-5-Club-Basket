@@ -49,7 +49,7 @@ class ConvocationType extends AbstractType
             ->add('horaire', TimeType::class, [
                 "label" => "Horaire",
                 "label_attr" => [
-                    "class" => "form-control label",
+                    "class" => "form-control label horaireForm",
                 ],
                 "attr" => [
                     "class" => "form-control input"

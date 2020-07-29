@@ -6,68 +6,72 @@
     {% include "security/compte.nav.html.twig" %}
 
     <h1>Modifier les informations personnelles de l'utilisateur </h1>
-    {{ form_start(formInfoUser) }}
-    <div class="position-relative">
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formInfoUser.username) }}
-            </div>
-            <div class="d-flex">
-                {{ form_label(formInfoUser.username) }}
-                {{ form_widget(formInfoUser.username) }}
-            </div>
-        </div>
 
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formInfoUser.email) }}
+    <div class="editInfosUser">
+        {{ form_start(formInfoUser) }}
+        <div class="position-relative">
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formInfoUser.username) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formInfoUser.username) }}
+                    {{ form_widget(formInfoUser.username) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formInfoUser.email) }}
-                {{ form_widget(formInfoUser.email) }}
-            </div>
-        </div>
 
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formInfoUser.nom) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formInfoUser.email) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formInfoUser.email) }}
+                    {{ form_widget(formInfoUser.email) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formInfoUser.nom) }}
-                {{ form_widget(formInfoUser.nom) }}
-            </div>
-        </div>
 
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formInfoUser.prenom) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formInfoUser.nom) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formInfoUser.nom) }}
+                    {{ form_widget(formInfoUser.nom) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formInfoUser.prenom) }}
-                {{ form_widget(formInfoUser.prenom) }}
-            </div>
-        </div>
 
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formInfoUser.telephone) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formInfoUser.prenom) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formInfoUser.prenom) }}
+                    {{ form_widget(formInfoUser.prenom) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formInfoUser.telephone) }}
-                {{ form_widget(formInfoUser.telephone) }}
-            </div>
-        </div>
 
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formInfoUser.fonctionClub) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formInfoUser.telephone) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formInfoUser.telephone) }}
+                    {{ form_widget(formInfoUser.telephone) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formInfoUser.fonctionClub) }}
-                {{ form_widget(formInfoUser.fonctionClub) }}
+
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formInfoUser.fonctionClub) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formInfoUser.fonctionClub) }}
+                    {{ form_widget(formInfoUser.fonctionClub) }}
+                </div>
             </div>
+            <button class="form-control submit" type="submit">Modifier</button>
         </div>
-        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formInfoUser) }}
     </div>
-    {{ form_end(formInfoUser) }}
+
 {% endblock %}

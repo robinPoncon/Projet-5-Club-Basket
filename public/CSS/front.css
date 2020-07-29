@@ -13,6 +13,7 @@ html, body
 h2
 {
     font-size: 1.5em !important;
+    text-align: center;
 }
 
 li
@@ -827,6 +828,35 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     text-align: center;
     margin-top: 30px;
 }
+
+.horaireForm
+{
+    width: 33% !important;
+}
+
+.hourMinuteForm
+{
+    margin: auto;
+}
+
+.hourMinuteForm div
+{
+    display: flex;
+}
+
+.hourMinuteForm label
+{
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.hourMinuteForm select
+{
+    margin-right: 50px;
+}
+
+
+
                                         /* Gestion Articles */
                       
 #cke_article_content, #cke_comment_content
@@ -1604,7 +1634,7 @@ td
     
     .menu-titre
     {
-        width: 30%;
+        width: 100px;
     }
     
     #bloc-club li
@@ -1763,12 +1793,12 @@ td
         margin-left: 40px;
     }
     
-    .connectField
+    .connectField, .forgottenMDP div
     {
         flex-direction: column;
     }
     
-    .connectField .label, .connectField .input
+    .connectField .label, .connectField .input, .forgottenMDP label, .forgottenMDP input
     {
         width: 100% !important;
     }
@@ -1921,6 +1951,13 @@ td
         width: 100% !important;
     }
     
+                                            /* Gestion ARTICLES */
+    
+    .divPost
+    {
+        margin-bottom: 100px;
+    }
+    
     .divPost, #trierArticle
     {
         flex-direction: column;
@@ -1945,14 +1982,148 @@ td
     .divTitle, .divCategory
     {
         margin: auto;
-        width: 100%;
+        width: inherit;
     }
     
     .divCategory
     {
         margin-top: 20px;
-        width: 50%;
     }
+    
+    .actionPost
+    {
+        justify-content: center;
+    }
+    
+    .actionPost .confirm
+    {
+        margin-top: -130px;
+    }
+    
+    .addArticleForm div, .editArticleForm div
+    {
+        flex-direction: column;
+    }
+    
+    .addArticleForm label, .addArticleForm input, #article_prioritaire, .editArticleForm label,
+    .editArticleForm input
+    {
+        width: 100% !important;
+    }
+    
+    #article_category
+    {
+        height: 150px;
+        width: 100% !important;
+    }
+    
+    #article_category label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #article_category input
+    {
+        margin-left: 40px;
+    }
+    
+                                            /* Gestion EQUIPES */
+    
+    #addTeam, .bigBlocTeam, .addTeamForm div, .editTeamForm div
+    {
+        flex-direction: column;
+    }
+    
+    #addTeam a
+    {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .addTeamForm label, .addTeamForm input, #equipe_type, .editTeamForm label, .editTeamForm input
+    {
+        width: 100% !important;
+    }
+    
+                                            /* Gestion USERS */
+    
+    .userEmail, .userFonction
+    {
+        display: none;
+    }
+    
+    .actionLien .confirm
+    {
+        margin-top: -160px;
+    }
+    
+    .actionLien .yesSup, .actionLien .noSup
+    {
+        top: 25px;
+    }
+    
+    .editRolesForm div, .editInfosUser
+    {
+        flex-direction: column;
+    }
+    
+    .editRolesForm label, .editRolesForm input, #user_role_roles
+    {
+        width: 100% !important;
+    }
+    
+    #user_role_roles
+    {
+        height: 150px;
+    }
+    
+    #user_role_roles label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #user_role_roles input
+    {
+        margin-left: 40px;
+    }
+    
+                                            /* Gestion TRAININGS */
+    
+    .listEquipe
+    {
+        flex-direction: column;
+    }
+    
+    #h2Convoc
+    {
+        margin-right: 0;
+        padding-bottom: 20px;
+    }
+    
+    .listEquipe div
+    {
+        margin: auto;
+    }
+    
+    .addConvocForm div, .editConvocForm div
+    {
+        flex-direction: column;
+    }
+    
+    .addConvocForm label, .addConvocForm input, .editConvocForm label, .editConvocForm input, #convocation_equipes,
+    #convocation_day, #convocation_horaire
+    {
+        width: 100% !important;
+        text-align: center;
+    }
+    
+    .hourMinuteForm div
+    {
+        flex-direction: row;
+    }
+    
     
     
     

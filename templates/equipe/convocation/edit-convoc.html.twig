@@ -5,39 +5,46 @@
 {% block body %}
     {% include "security/compte.nav.html.twig" %}
     <h1>Modifier l'entraînement de l'équipe {{ equipe.name }}</h1>
-    {{ form_start(formConvoc) }}
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formConvoc.day) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formConvoc.day) }}
-            {{ form_widget(formConvoc.day) }}
-        </div>
+
+    <div class="editConvocForm">
+        {{ form_start(formConvoc) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formConvoc.day) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formConvoc.day) }}
+                    {{ form_widget(formConvoc.day) }}
+                </div>
+            </div>
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formConvoc.horaire) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formConvoc.horaire) }}
+                    <div class="d-flex hourMinuteForm">
+                        {{ form_row(formConvoc.horaire.hour, {'label': 'Heure', 'attr': {'class': 'form-control input'}}) }}
+                        {{ form_row(formConvoc.horaire.minute, {'label': 'Minute', 'attr': {'class': 'form-control input'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formConvoc.address) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formConvoc.address) }}
+                    {{ form_widget(formConvoc.address) }}
+                </div>
+            </div>
+            <div class="d-none">
+                {{ form_label(formConvoc.equipes) }}
+                {{ form_widget(formConvoc.equipes) }}
+            </div>
+            <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formConvoc) }}
     </div>
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formConvoc.horaire) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formConvoc.horaire) }}
-            {{ form_widget(formConvoc.horaire) }}
-        </div>
-    </div>
-    <div class="divForm">
-        <div class="errorForm">
-            {{ form_errors(formConvoc.address) }}
-        </div>
-        <div class="d-flex">
-            {{ form_label(formConvoc.address) }}
-            {{ form_widget(formConvoc.address) }}
-        </div>
-    </div>
-    <div class="d-none">
-        {{ form_label(formConvoc.equipes) }}
-        {{ form_widget(formConvoc.equipes) }}
-    </div>
-    <button class="form-control submit" type="submit">Modifier</button>
-    {{ form_end(formConvoc) }}
+
 
 {% endblock %}

@@ -59,7 +59,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("club/la-vie-au-club", name="club")
+     * @Route("club-BCM/la-vie-au-club", name="club")
      */
     public function club(ArticleRepository $articleRepo){
 
@@ -70,7 +70,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("club/inscription", name="clubInscription")
+     * @Route("club-BCM/inscription", name="clubInscription")
      */
     public function clubInscription(ArticleRepository $articleRepo, Request $request, InscriptionNotification $notification){
 

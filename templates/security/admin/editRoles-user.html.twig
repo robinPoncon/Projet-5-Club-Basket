@@ -6,7 +6,8 @@
     {% include "security/compte.nav.html.twig" %}
 
     <h1>Modifier le rôle de l'utilisateur </h1>
-    {{ form_start(formUser) }}
+    <div class="editRolesForm">
+        {{ form_start(formUser) }}
         <div class="position-relative">
             <div class="divForm">
                 <div class="errorForm">
@@ -19,5 +20,7 @@
             </div>
             <button class="form-control submit" type="submit">Modifier</button>
         </div>
-    {{ form_end(formUser) }}
+        {{ form_end(formUser) }}
+    </div>
+
 {% endblock %}

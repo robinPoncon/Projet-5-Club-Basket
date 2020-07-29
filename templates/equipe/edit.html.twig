@@ -5,36 +5,40 @@
 {% block body %}
     {% include "security/compte.nav.html.twig" %}
     <h1>Modifier l'équipe</h1>
-    {{ form_start(formEquipe) }}
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formEquipe.name) }}
+
+    <div class="editTeamForm">
+        {{ form_start(formEquipe) }}
+            <div class="divForm">
+                <div class="errorForm">
+                    {{ form_errors(formEquipe.name) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formEquipe.name) }}
+                    {{ form_widget(formEquipe.name) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formEquipe.name) }}
-                {{ form_widget(formEquipe.name) }}
+            <div class="divForm equipeType">
+                <div class="errorForm">
+                    {{ form_errors(formEquipe.type) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formEquipe.type) }}
+                    {{ form_widget(formEquipe.type) }}
+                </div>
             </div>
-        </div>
-        <div class="divForm equipeType">
-            <div class="errorForm">
-                {{ form_errors(formEquipe.type) }}
+            <div class="divForm widgetId">
+                <div class="errorForm">
+                    {{ form_errors(formEquipe.widgetId) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formEquipe.widgetId) }}
+                    {{ form_widget(formEquipe.widgetId) }}
+                </div>
             </div>
-            <div class="d-flex">
-                {{ form_label(formEquipe.type) }}
-                {{ form_widget(formEquipe.type) }}
-            </div>
-        </div>
-        <div class="divForm widgetId">
-            <div class="errorForm">
-                {{ form_errors(formEquipe.widgetId) }}
-            </div>
-            <div class="d-flex">
-                {{ form_label(formEquipe.widgetId) }}
-                {{ form_widget(formEquipe.widgetId) }}
-            </div>
-        </div>
-        <button class="form-control submit" type="submit">Modifier</button>
-    {{ form_end(formEquipe) }}
+            <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formEquipe) }}
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}

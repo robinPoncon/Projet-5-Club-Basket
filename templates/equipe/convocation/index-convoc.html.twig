@@ -8,9 +8,10 @@
     <div id="blocEntrainement">
         <h1> Gestion des entrainements </h1>
         <a id="addConvoc" href="{{ path("ajouterEntrainement") }}">Ajouter un entraînement +</a>
-        <div class="d-flex justify-content-center position-relative">
-            <h2 id="h2Convoc"> Pour voir les entraînements d'une équipe -> </h2>
+        <div class="d-flex justify-content-center position-relative listEquipe">
+            <h2 id="h2Convoc"> Pour voir les entraînements d'une équipe </h2>
             <div>
+                <label for="selectTeam"> -> </label>
                 <select name="listEquipe" id="selectTeam">
                     <optgroup label="Equipes Garçons">
                         {% for equipeB in equipesBoy %}

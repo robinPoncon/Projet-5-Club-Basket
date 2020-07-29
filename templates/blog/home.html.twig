@@ -14,7 +14,7 @@
 	<div class="position-relative prioritaire">
 		<h2>Actualité importante</h2>
 		<div class="postNews">
-			<h3><i class="fas fa-basketball-ball"></i>
+			<h3><em class="fas fa-basketball-ball"></em>
 				<a href="{{ path("show-article", {"slug": articlePrio.slug}) }}"> {{ articlePrio.title }} -
 					{{ articlePrio.createdAt | date("d/m/Y") }}</a></h3>
 			<div>
@@ -30,7 +30,7 @@
 				{% for category in article.category %}
 					{% if category.title == "News" %}
 						<div class="postNews">
-							<h3><i class="fas fa-basketball-ball"></i>
+							<h3><em class="fas fa-basketball-ball"></em>
 								<a href="{{ path("show-article", {"slug": article.slug}) }}"> {{ article.title }} -
 									{{ article.createdAt | date("d/m/Y") }}</a></h3>
 							<div>

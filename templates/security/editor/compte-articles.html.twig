@@ -10,8 +10,9 @@
     <a id="addPost" href="{{ path("ajouterArticle") }}">Ajouter un article +</a>
 
     <div id="trierArticle" class="d-flex justify-content-center position-relative">
-        <h2 id="h2Article">Pour trier l'affichage des articles : </h2>
+        <h2 id="h2Article">Pour trier l'affichage des articles </h2>
         <div>
+            <label for="selectPost"> -></label>
             <select name="listCategory" id="selectPost">
                 <option value="all">Tous les articles</option>
                 {% for category in categorys %}

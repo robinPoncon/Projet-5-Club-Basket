@@ -8,7 +8,7 @@ $('.menu a, #connexion a').each(function () {
         let regexBoy = RegExp('gar' + cCedille + "ons");
         let regexGirl = RegExp("filles");
         let regexLoisir = RegExp("loisir");
-        let regexClub = RegExp("club");
+        let regexClub = RegExp("club-BCM");
 
         if (regexBoy.test(path))
         {
@@ -226,12 +226,16 @@ function htmlResponseAjax(routeShow, routeModif, routeSup, slugData, titleData, 
     });
 
     // Gestion ajout des div
+    let divAction = $("<div>", {class: "d-flex actionPost"});
+    $(divAction).append(modifPostDiv);
+    $(divAction).append(supPostDiv);
+    $(divAction).append(confirmSupPost);
+
     let divPost = $("<div>", {class: "d-flex justify-content-around divPost"});
+
     $(divPost).append(divTitle);
     $(divPost).append(divCategory);
-    $(divPost).append(modifPostDiv);
-    $(divPost).append(supPostDiv);
-    $(divPost).append(confirmSupPost);
+    $(divPost).append(divAction);
 
     $(".blocPost").append(divPost);
 }

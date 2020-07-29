@@ -4,11 +4,13 @@
 
 {% block body %}
         <h1> Liste des Tournois </h1>
+
+        <h2> Tournois récents</h2>
         {% for article in articles %}
             {% for category in article.category %}
                 {% if category.title == "Tournois" %}
                     <div class="postTournois">
-                        <h3><i class="fas fa-basketball-ball"></i>
+                        <h3><em class="fas fa-basketball-ball"></em>
                             <a href="{{ path("show-article", {"slug": article.slug}) }}"> {{ article.title }} -
                                 {{ article.createdAt | date("d/m/Y") }}</a></h3>
                         <div>
