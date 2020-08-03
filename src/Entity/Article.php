@@ -55,6 +55,7 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
+     * @Assert\NotBlank(message="Ce champs ne peut pas être vide !")
      */
     private $category;
 

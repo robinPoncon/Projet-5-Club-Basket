@@ -28,10 +28,10 @@ class InscriptionNotification
     {
         $message = (new \Swift_Message("test"))
             ->setSubject("Inscription BCM")
-            ->setFrom("basket.meximieux.contact@gmail.com")
+            ->setFrom("basket@test-club.robin-poncon.com")
             ->setTo([
-                "basket.meximieux.contact@gmail.com",
-                "poncon.robin@gmail.com" => "Nelly"
+                "basket@test-club.robin-poncon.com",
+                "poncon.robin@gmail.com" => "Nelly",
             ])
             ->setReplyTo($inscription->getEmail())
             ->setBody($this->renderer->render("emails/inscription-email.html.twig", [

@@ -59,7 +59,7 @@ class Photo implements \Serializable
      *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
      *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
      * )
-     * @Vich\UploadableField(mapping=Photo::TEST_MAPPING, fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="imageName")
      * @var File|null
      */
     private $imageFile;

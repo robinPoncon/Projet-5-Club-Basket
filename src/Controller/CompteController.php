@@ -64,7 +64,7 @@ class CompteController extends AbstractController
     public function ajouterPhotoProfil(User $user, Request $request, EntityManagerInterface $manager)
     {
         $newPhotoProfil = new Photo();
-        $newPhotoProfil->setType(Photo::TYPE_MAPPING[1]);
+        //$newPhotoProfil->setType(Photo::TYPE_MAPPING[1]);
         //dump($newPhotoProfil->getType());
 
         $form = $this->createForm(PhotoUserType::class, $newPhotoProfil);
@@ -101,7 +101,7 @@ class CompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            dump($photoProfil);
+            //dump($photoProfil);
             $manager->persist($photoProfil);
             $manager->flush();
 

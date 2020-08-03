@@ -971,12 +971,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     font-weight: bold;
 }
 
-.confirmationSupPost
-{
-    position: absolute;
-    width: 100%;
-}
-
 .confirmationSupPost .confirm
 {
     margin-top: -50px;

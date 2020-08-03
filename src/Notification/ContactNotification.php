@@ -28,8 +28,11 @@ class ContactNotification
     {
         $message = (new \Swift_Message("test"))
             ->setSubject($contact->getObjetType())
-            ->setFrom("basket.meximieux.contact@gmail.com")
-            ->setTo("basket.meximieux.contact@gmail.com")
+            ->setFrom("basket@test-club.robin-poncon.com")
+            ->setTo([
+                "basket@test-club.robin-poncon.com",
+                "basket.meximieux.contact@gmail.com"
+            ])
             ->setReplyTo($contact->getEmail())
             ->setBody($this->renderer->render("emails/contact-email.html.twig", [
                 "contact" => $contact

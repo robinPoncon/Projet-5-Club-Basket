@@ -25,13 +25,15 @@
 
         <div class="connectField">
             <label for="userNameLogin" class="form-control label"> Nom d'utilisateur </label>
-            <input id="userNameLogin" class="form-control input" placeholder="Nom d'utilisateur" required type="text" name="_username"
+            <input id="userNameLogin" class="form-control input" placeholder="Nom d'utilisateur"
+                   required type="text" name="_username"
                    value="{{ last_username }}">
         </div>
 
         <div class="connectField">
             <label for="userPassLogin" class="form-control label"> Mot de passe </label>
-            <input id="userPassLogin" class="form-control input" placeholder="Mot de passe" required type="password" name="_password">
+            <input id="userPassLogin" class="form-control input" placeholder="Mot de passe"
+                   required type="password" name="_password">
         </div>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

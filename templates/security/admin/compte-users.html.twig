@@ -50,7 +50,7 @@
                     <a class="modifRole" href="{{ path("modifierUtilisateur", {'slug': user.slug}) }}">Modifier Roles</a><br>
                     <a class="modifInfosProfil" href="{{ path("modifierInfosUtilisateur", {'slug': user.slug}) }}">Modifier Infos</a><br>
                     <button onclick='deleteConfirm({{ user.id }}, "Voulez-vous vraiment supprimer cet utilisateur",
-                            "{{ user.username }}", "{{ path("supprimerPhotoProfil", {"id": "text"}) }}",
+                            "{{ user.username }}", "{{ path("supprimerUtilisateur", {"id": "text"}) }}",
                             "#confirmationSupPhoto{{ user.id }}")'
                             class="confirmSup">Supprimer</button>
                     <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ user.id }}"></div>

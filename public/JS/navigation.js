@@ -255,7 +255,7 @@ function htmlResponseAjaxConvoc(routeModif, routeSup, dayData, horaireData, addr
 
     //console.log(horaireData);
     let date = new Date(horaireData * 1000);
-    let hours = date.getHours() - 1;
+    let hours = date.getHours();
     let minutes = "0" + date.getMinutes();
     let formattedTime = hours + ':' + minutes.substr(-2);
 

@@ -51,7 +51,8 @@ class ArticleType extends AbstractType
                 ],
                 "attr" => [
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => true
             ])
             ->add("prioritaire", ChoiceType::class, [
                 "choices" => [
