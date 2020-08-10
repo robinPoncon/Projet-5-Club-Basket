@@ -97,10 +97,10 @@ class User implements UserInterface
     private $reset_token;
 
     /**
-     * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=PhotoUser::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $photo;
+    private $photoUser;
 
     public function __construct()
     {
@@ -259,14 +259,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoto(): ?Photo
+    public function getPhotoUser(): ?PhotoUser
     {
-        return $this->photo;
+        return $this->photoUser;
     }
 
-    public function setPhoto(?Photo $photo): self
+    public function setPhotoUser(?PhotoUser $photoUser): self
     {
-        $this->photo = $photo;
+        $this->photoUser = $photoUser;
 
         return $this;
     }

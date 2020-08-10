@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\ChangePassword;
-use App\Entity\Photo;
+use App\Entity\PhotoUser;
 use App\Entity\User;
 use App\Form\PhotoUserType;
 use App\Form\ResetPasswordType;
 use App\Form\UserInfosFormType;
-use App\Repository\PhotoRepository;
+use App\Repository\PhotoUserRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,12 +24,12 @@ class CompteController extends AbstractController
     public function espacePerso()
     {
         $user = $this->getUser();
-        $photo = $user->getPhoto();
-        //dump(Photo::TYPE_MAPPING["user"]);
+        $photo = $user->getPhotoUser();
+        dump($photo);
         //dump($photo);
         return $this->render('security/profil/compte-home.html.twig', [
             "user" => $user,
-            "photo" => $photo
+            "photoUser" => $photo
         ]);
     }
 
@@ -63,9 +63,7 @@ class CompteController extends AbstractController
      */
     public function ajouterPhotoProfil(User $user, Request $request, EntityManagerInterface $manager)
     {
-        $newPhotoProfil = new Photo();
-        //$newPhotoProfil->setType(Photo::TYPE_MAPPING[1]);
-        //dump($newPhotoProfil->getType());
+        $newPhotoProfil = new PhotoUser();
 
         $form = $this->createForm(PhotoUserType::class, $newPhotoProfil);
 
@@ -73,7 +71,7 @@ class CompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $user->setPhoto($newPhotoProfil);
+            $user->setPhotoUser($newPhotoProfil);
             $manager->persist($newPhotoProfil);
             $manager->flush();
 
@@ -93,7 +91,7 @@ class CompteController extends AbstractController
      */
     public function modifierPhotoProfil(User $user, Request $request, EntityManagerInterface $manager)
     {
-        $photoProfil = $user->getPhoto();
+        $photoProfil = $user->getPhotoUser();
 
         $form = $this->createForm(PhotoUserType::class, $photoProfil);
 
@@ -119,9 +117,9 @@ class CompteController extends AbstractController
     /**
      * @Route("profil/supprimer/photo/{id}", name="supprimerPhotoProfil")
      */
-    public function deletePhotoProfil(Photo $photo, EntityManagerInterface $manager)
+    public function deletePhotoProfil(PhotoUser $photoUser, EntityManagerInterface $manager)
     {
-        $manager->remove($photo);
+        $manager->remove($photoUser);
         $manager->flush();
 
         $this->addFlash("success", "Votre photo de profil a bien été supprimée !");

@@ -35,6 +35,19 @@
                     {{ form_widget(formEquipe.widgetId) }}
                 </div>
             </div>
+
+
+        <ul id="photo-fields-list" class="photoDiv"
+            data-prototype="{{ form_widget(formEquipe.photoEquipes.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ formEquipe.photoEquipes|length }}">
+
+        </ul>
+
+        <button type="button"
+                class="add-another-collection-widget"
+                data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+
         <button class="form-control submit" type="submit">Ajouter</button>
         {{ form_end(formEquipe) }}
     </div>

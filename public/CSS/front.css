@@ -373,8 +373,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     width: 80%;
     margin: auto;
-    display: flex;
-    flex-direction: column;
     margin-top: 20px !important;
     position: relative;
 }
@@ -720,6 +718,14 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 #blocTeam .confirmSup:hover
 {
     border-radius: 5px;
+}
+
+.divFormPhoto
+{
+    flex-direction: row;
+    display: flex;
+    width: 80%;
+    margin: auto;
 }
 
 

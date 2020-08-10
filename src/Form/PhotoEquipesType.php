@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Form;
 
-use App\Entity\PhotoUser;
+use App\Entity\PhotoEquipe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -11,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PhotoUserType extends AbstractType
+class PhotoEquipesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -23,6 +22,9 @@ class PhotoUserType extends AbstractType
                 ],
                 "attr" => [
                     "class" => "form-control input"
+                ],
+                'row_attr' => [
+                    'class' => 'divFormPhoto',
                 ]
             ])
         ;
@@ -31,7 +33,7 @@ class PhotoUserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => PhotoUser::class,
+            'data_class' => PhotoEquipe::class,
         ]);
     }
 }

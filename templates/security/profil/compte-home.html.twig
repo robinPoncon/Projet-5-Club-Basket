@@ -9,11 +9,11 @@
 
     <div class="d-flex justify-content-around blocProfil">
 
-        {% if photo.imageName is defined and photo.imageName is not null %}
+        {% if photoUser.imageName is defined and photoUser.imageName is not null %}
         <div class="profilPicture">
             <h2> Profil {{ user.username }}</h2>
             <a href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">
-                <img src="{{ asset(vich_uploader_asset(photo, "imageFile")) }}" alt="photo de profil utilisateur"
+                <img src="{{ asset(vich_uploader_asset(photoUser, "imageFile")) }}" alt="photo de profil utilisateur"
                 title="Cliquer pour modifier !"></a>
         </div>
         {% else %}
@@ -60,14 +60,14 @@
             <a class="modifInfosProfil" href="{{ path("modifierInfosProfil", {"slug": user.slug}) }}">
                 Modifier les infos du profil</a>
             <a class="modifMDP" href="{{ path("modifMotDePasse", {"slug": user.slug}) }}">Modifier le mot de passe</a>
-            {% if photo.imageName is defined and photo.imageName is not null %}
+            {% if photoUser.imageName is defined and photoUser.imageName is not null %}
                 <a class="modifPhotoProfil" href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">
                     Modifier la photo de profil</a>
-                <button onclick='deleteConfirm({{ photo.id }}, "Voulez-vous vraiment supprimer cette photo",
-                        "{{ photo.imageName }}", "{{ path("supprimerPhotoProfil", {"id": "text"}) }}",
-                        "#confirmationSupPhoto{{ photo.id }}")'
+                <button onclick='deleteConfirm({{ photoUser.id }}, "Voulez-vous vraiment supprimer cette photo",
+                        "{{ photoUser.imageName }}", "{{ path("supprimerPhotoProfil", {"id": "text"}) }}",
+                        "#confirmationSupPhoto{{ photoUser.id }}")'
                         class="confirmSup">Supprimer la photo de profil</button>
-                <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ photo.id }}"></div>
+                <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ photoUser.id }}"></div>
             {% else %}
                 <a href="{{ path("ajouterPhotoProfil", {"slug": user.slug}) }}">Ajouter une photo de profil</a>
             {% endif %}

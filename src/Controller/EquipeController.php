@@ -47,6 +47,12 @@ class EquipeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $photoEquipes = $equipe->getPhotoEquipes();
+            foreach($photoEquipes as $key => $photoEquipe){
+                $photoEquipe->setEquipe($equipe);
+                $photoEquipes->set($key,$photoEquipe);
+                $manager->persist($photoEquipe);
+            }
             $manager->persist($equipe);
             $manager->flush();
 

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\PhotoRepository;
+use App\Repository\PhotoUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -10,19 +10,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=PhotoRepository::class)
+ * @ORM\Entity(repositoryClass=PhotoUserRepository::class)
  * @Vich\Uploadable()
  */
-class Photo implements \Serializable
+class PhotoUser implements \Serializable
 {
-    const TEST_MAPPING = "user_image";
-
-    const TYPE_MAPPING = [
-        1 => "user_image",
-        2 => "equipe_image",
-        3 => "article_image"
-    ];
-
     /**
      * @var string|null
      */
@@ -38,9 +30,9 @@ class Photo implements \Serializable
 
     /**
      * @param string|null $type
-     * @return Photo
+     * @return PhotoUser
      */
-    public function setType(?string $type): Photo
+    public function setType(?string $type): PhotoUser
     {
         $this->type = $type;
         return $this;
@@ -59,7 +51,7 @@ class Photo implements \Serializable
      *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
      *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
      * )
-     * @Vich\UploadableField(mapping="user_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="user_upload", fileNameProperty="imageName")
      * @var File|null
      */
     private $imageFile;
@@ -75,7 +67,7 @@ class Photo implements \Serializable
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="photo")
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="photoUser")
      */
     private $user;
 
@@ -106,9 +98,9 @@ class Photo implements \Serializable
 
     /**
      * @param File|null $imageFile
-     * @return Photo
+     * @return PhotoUser
      */
-    public function setImageFile(?File $imageFile): Photo
+    public function setImageFile(?File $imageFile): PhotoUser
     {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile)
@@ -163,8 +155,8 @@ class Photo implements \Serializable
 
         // set (or unset) the owning side of the relation if necessary
         $newPhoto = null === $user ? null : $this;
-        if ($user->getPhoto() !== $newPhoto) {
-            $user->setPhoto($newPhoto);
+        if ($user->getPhotoUser() !== $newPhoto) {
+            $user->setPhotoUser($newPhoto);
         }
 
         return $this;

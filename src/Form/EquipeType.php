@@ -3,11 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Equipe;
-use App\Entity\Training;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -52,6 +53,13 @@ class EquipeType extends AbstractType
                     "class" => "form-control input",
                 ],
                 "required" => false
+            ])
+            ->add('photoEquipes', CollectionType::class, [
+                'entry_type' => PhotoEquipesType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                "label" => " "
             ])
         ;
     }

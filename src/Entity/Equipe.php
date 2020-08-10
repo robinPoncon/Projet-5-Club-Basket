@@ -54,11 +54,16 @@ class Equipe
      */
     private $widgetId;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PhotoEquipe::class, mappedBy="equipe", cascade={"persist", "remove"})
+     */
+    private $photoEquipes;
+
     public function __construct()
     {
         $this->convocations = new ArrayCollection();
+        $this->photoEquipes = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
@@ -140,6 +145,37 @@ class Equipe
     public function setWidgetId(?string $widgetId): self
     {
         $this->widgetId = $widgetId;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PhotoEquipe[]
+     */
+    public function getPhotoEquipes(): Collection
+    {
+        return $this->photoEquipes;
+    }
+
+    public function addPhotoEquipe(PhotoEquipe $photoEquipe): self
+    {
+        if (!$this->photoEquipes->contains($photoEquipe)) {
+            $this->photoEquipes[] = $photoEquipe;
+            $photoEquipe->setEquipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoEquipe(PhotoEquipe $photoEquipe): self
+    {
+        if ($this->photoEquipes->contains($photoEquipe)) {
+            $this->photoEquipes->removeElement($photoEquipe);
+            // set the owning side to null (unless already changed)
+            if ($photoEquipe->getEquipe() === $this) {
+                $photoEquipe->setEquipe(null);
+            }
+        }
 
         return $this;
     }
