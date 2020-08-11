@@ -728,6 +728,98 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin: auto;
 }
 
+.add-another-collection-widget
+{
+    background-color: #074592;
+    border: 1px #074592 solid;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    display: block;
+    width: 200px;
+    margin: auto;
+    margin-top: -20px;
+    margin-bottom: 50px;
+}
+
+.add-another-collection-widget:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.divFormPhoto input
+{
+    cursor: pointer;
+}
+
+.editTeamForm .submit + div
+{
+    display: none;
+}
+
+.blocPhoto
+{
+    margin-top: 20px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.blocPhoto a
+{
+    background-color: #074592;
+    border: 1px #074592 solid;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.blocPhoto a:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+    color: white;
+}
+
+.blocPhoto img
+{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin-top: 0px;
+}
+
+.blocPhoto p
+{
+    background-color: #dd650f;
+    color: white;
+    border: 1px #dd650f solid;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.divPhoto
+{
+    margin-bottom: 50px;
+    width: 25%;
+}
+
+
+
+
+
+
+
+
+
+
+
 
                     /* Gestion Entrainements */
 
@@ -1022,7 +1114,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .articles
 {
     position: relative;
-    left: -16px;
+    left: -27px;
     width: 30%;
     text-decoration: underline;
 }
@@ -1030,7 +1122,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .categories
 {
     position: relative;
-    left: -68px;
+    left: -105px;
     width: 10%;
     text-decoration: underline;
 }
@@ -1487,6 +1579,12 @@ td
     .divTitle, .articles
     {
         width: 35%;
+    }
+    
+    .divPhoto
+    {
+        margin-bottom: 50px;
+        width: 33%;
     }
 }
 
@@ -2045,6 +2143,24 @@ td
     {
         width: 100% !important;
     }
+    
+    .divPhoto
+    {
+        margin-bottom: 50px;
+        width: 50%;
+    }
+    
+    .blocPhoto
+    {
+        flex-direction: row !important;
+    }
+    
+    .blocPhoto img
+    {
+        width: 125px;
+        height: 125px;
+    }
+        
     
                                             /* Gestion USERS */
     

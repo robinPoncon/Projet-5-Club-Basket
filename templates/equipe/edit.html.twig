@@ -35,6 +35,32 @@
                     {{ form_widget(formEquipe.widgetId) }}
                 </div>
             </div>
+            <div class="d-flex justify-content-center blocPhoto">
+                {% for photoEquipe in photoEquipes %}
+                    <div class="d-flex flex-column divPhoto">
+                        <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}" alt="photo de l'équipe de basket">
+                        {% if photoEquipe.getImportant == 0 %}
+                            <a href="{{ path("mettreEnAvantPhotoEquipe", {"id": photoEquipe.id}) }}">Mettre en avant</a>
+                        {% else %}
+                            <p>Image mise en avant</p>
+                        {% endif %}
+                        <a href="{{ path("supprimerPhotoEquipe", {"id": photoEquipe.id}) }}">Supprimer</a>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+            <ul id="photo-fields-list" class="photoDiv"
+                data-prototype="{{ form_widget(formEquipe.photoEquipes.vars.prototype)|e }}"
+                data-widget-tags="{{ '<li></li>'|e }}"
+                data-widget-counter="{{ formEquipe.photoEquipes|length }}">
+
+            </ul>
+
+            <button type="button"
+                    class="add-another-collection-widget"
+                    data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+
             <button class="form-control submit" type="submit">Modifier</button>
         {{ form_end(formEquipe) }}
     </div>

@@ -28,7 +28,7 @@ class PhotoEquipe
      *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
      *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
      * )
-     * @Vich\UploadableField(mapping="user_upload", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="equipe_upload", fileNameProperty="imageName")
      * @var File|null
      */
     private $imageFile;
@@ -47,6 +47,11 @@ class PhotoEquipe
      * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="photoEquipes")
      */
     private $equipe;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $important;
 
     public function getId(): ?int
     {
@@ -107,6 +112,18 @@ class PhotoEquipe
     public function setEquipe(?Equipe $equipe): self
     {
         $this->equipe = $equipe;
+
+        return $this;
+    }
+
+    public function getImportant(): ?bool
+    {
+        return $this->important;
+    }
+
+    public function setImportant(?bool $important): self
+    {
+        $this->important = $important;
 
         return $this;
     }

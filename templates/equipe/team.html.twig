@@ -11,6 +11,15 @@
     {% endfor %}
 
     <h1> Equipe {{ equipe.name | upper }} </h1>
+    <div class="d-flex justify-content-center blocPhoto">
+        {% for photoEquipe in photoEquipes %}
+            <div class="d-flex flex-column">
+                <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}" alt="photo de l'équipe de basket">
+                <a href="{{ path("supprimerPhotoEquipe", {"id": photoEquipe.id}) }}">Supprimer</a>
+                <a href="{{ path("mettreEnAvantPhotoEquipe", {"id": photoEquipe.id}) }}">Mettre en avant</a>
+            </div>
+        {% endfor %}
+    </div>
     <div class="bloc-training">
         {% for convocation in equipe.convocations %}
             <p> Adresse : {{ convocation.address }}</p>

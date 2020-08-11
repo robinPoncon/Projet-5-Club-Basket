@@ -25,7 +25,8 @@ class PhotoEquipesType extends AbstractType
                 ],
                 'row_attr' => [
                     'class' => 'divFormPhoto',
-                ]
+                ],
+                "required" => false
             ])
         ;
     }

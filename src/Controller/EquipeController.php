@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Equipe;
+use App\Entity\PhotoEquipe;
 use App\Form\EquipeType;
 use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
@@ -21,8 +22,10 @@ class EquipeController extends AbstractController
      */
     public function index(Equipe $equipe)
     {
+        $photoEquipes = $equipe->getPhotoEquipes();
         return $this->render("equipe/team.html.twig", [
             'equipe' => $equipe,
+            "photoEquipes" => $photoEquipes
         ]);
     }
 
@@ -50,6 +53,7 @@ class EquipeController extends AbstractController
             $photoEquipes = $equipe->getPhotoEquipes();
             foreach($photoEquipes as $key => $photoEquipe){
                 $photoEquipe->setEquipe($equipe);
+                $photoEquipe->setImportant(0);
                 $photoEquipes->set($key,$photoEquipe);
                 $manager->persist($photoEquipe);
             }
@@ -75,12 +79,21 @@ class EquipeController extends AbstractController
      */
     public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager)
     {
+        $photoEquipe = $equipe->getPhotoEquipes();
+
         $form = $this->createForm(EquipeType::class, $equipe);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $photoEquipes = $equipe->getPhotoEquipes();
+            foreach($photoEquipes as $key => $photoEquipe){
+                $photoEquipe->setEquipe($equipe);
+                $photoEquipe->setImportant(0);
+                $photoEquipes->set($key,$photoEquipe);
+                $manager->persist($photoEquipe);
+            }
             $manager->persist($equipe);
             $manager->flush();
 
@@ -93,14 +106,52 @@ class EquipeController extends AbstractController
 
         return $this->render("equipe/edit.html.twig", [
             "equipe" => $equipe,
+            "photoEquipes" => $photoEquipe,
             "formEquipe" => $form->createView()
         ]);
     }
 
     /**
-     * @Route("editor/equipes/delete/{id}", name="supprimerEquipe")
+     * @Route("editor/equipes/mettreEnAvant/photo/{id}", name="mettreEnAvantPhotoEquipe")
      */
-    public function delete(Equipe $equipe, Request $request, EntityManagerInterface $manager)
+    public function mettreEnAvantPhotoEquipe(PhotoEquipe $photoEquipe, Request $request, EntityManagerInterface $manager)
+    {
+        $equipe = $photoEquipe->getEquipe();
+        $photoEquipes = $equipe->getPhotoEquipes();
+        foreach($photoEquipes as $photoPasImportante)
+        {
+            $photoPasImportante->setImportant(0);
+            $manager->persist($photoPasImportante);
+        }
+        $photoEquipe->setImportant(1);
+        $manager->persist($photoEquipe);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été mise en avant !");
+        return $this->redirectToRoute("modifierEquipe", [
+            "slug" => $equipe->getSlug()
+        ]);
+    }
+
+    /**
+     * @Route("editor/equipes/supprimer/photo/{id}", name="supprimerPhotoEquipe")
+     */
+    public function deletePhoto(PhotoEquipe $photoEquipe, Request $request, EntityManagerInterface $manager)
+    {
+        $equipe = $photoEquipe->getEquipe();
+        $manager->remove($photoEquipe);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été supprimée !");
+        return $this->redirectToRoute("modifierEquipe", [
+            "slug" => $equipe->getSlug()
+        ]);
+    }
+
+    /**
+     * @Route("editor/equipes/supprimer/{id}", name="supprimerEquipe")
+     */
+    public function deleteEquipe(Equipe $equipe, Request $request, EntityManagerInterface $manager)
     {
         $manager->remove($equipe);
         $manager->flush();
