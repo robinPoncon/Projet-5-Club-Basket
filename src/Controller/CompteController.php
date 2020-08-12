@@ -25,7 +25,6 @@ class CompteController extends AbstractController
     {
         $user = $this->getUser();
         $photo = $user->getPhotoUser();
-        dump($photo);
         //dump($photo);
         return $this->render('security/profil/compte-home.html.twig', [
             "user" => $user,
@@ -71,9 +70,24 @@ class CompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            dump($newPhotoProfil);
             $user->setPhotoUser($newPhotoProfil);
             $manager->persist($newPhotoProfil);
             $manager->flush();
+
+            $img_nom = $newPhotoProfil->getImageName();
+            $extension = strrchr($img_nom, '.');
+            if($extension == '.jpeg' || $extension == '.jpg')
+            {
+                $img = imagecreatefromjpeg('pictures/avatar/' . $img_nom);
+                imagejpeg($img, 'pictures/avatar/' . $img_nom, 50);
+            }
+            else
+            {
+                $img = imagecreatefrompng('pictures/avatar/' . $img_nom);
+                imagepng($img, 'pictures/avatar/' . $img_nom, 5);
+            }
+
 
             $this->addFlash("success", "Votre photo de profil a bien été ajoutée !");
             return $this->redirectToRoute("homeCompte", [
@@ -102,6 +116,19 @@ class CompteController extends AbstractController
             //dump($photoProfil);
             $manager->persist($photoProfil);
             $manager->flush();
+
+            $img_nom = $photoProfil->getImageName();
+            $extension = strrchr($img_nom, '.');
+            if($extension == ".jpeg" || $extension == ".jpg")
+            {
+                $img = imagecreatefromjpeg("pictures/avatar/" . $img_nom);
+                imagejpeg($img, "pictures/avatar/" . $img_nom, 50);
+            }
+            else
+            {
+                $img = imagecreatefrompng("pictures/avatar/" . $img_nom);
+                imagepng($img, "pictures/avatar/" . $img_nom, 5);
+            }
 
             $this->addFlash("success", "Votre photo de profil a bien été mise à jour !");
             return $this->redirectToRoute("homeCompte", [

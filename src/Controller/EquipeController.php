@@ -56,9 +56,23 @@ class EquipeController extends AbstractController
                 $photoEquipe->setImportant(0);
                 $photoEquipes->set($key,$photoEquipe);
                 $manager->persist($photoEquipe);
+
+                $img_nom = $photoEquipe->getImageName();
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/equipe/" . $img_nom);
+                    imagejpeg($img, "pictures/equipe/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/equipe/" . $img_nom);
+                    imagepng($img, "pictures/equipe/" . $img_nom, 5);
+                }
             }
             $manager->persist($equipe);
             $manager->flush();
+
 
             $this->addFlash("success", "L'équipe a bien été ajoutée !");
             return $this->redirectToRoute("equipe", [
@@ -93,6 +107,19 @@ class EquipeController extends AbstractController
                 $photoEquipe->setImportant(0);
                 $photoEquipes->set($key,$photoEquipe);
                 $manager->persist($photoEquipe);
+
+                $img_nom = $photoEquipe->getImageName();
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/equipe/" . $img_nom);
+                    imagejpeg($img, "pictures/equipe/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/equipe/" . $img_nom);
+                    imagepng($img, "pictures/equipe/" . $img_nom, 5);
+                }
             }
             $manager->persist($equipe);
             $manager->flush();

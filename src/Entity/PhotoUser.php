@@ -47,9 +47,10 @@ class PhotoUser implements \Serializable
 
     /**
      * @Assert\File(
-     *     maxSize = "2048k",
-     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
-     *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
+     *     maxSize = "16384k",
+     *     maxSizeMessage = "Fichier trop lourd, veuillez réduire son poids avec un convertisseur par exemple.",
+     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg"},
+     *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG ou JPEG."
      * )
      * @Vich\UploadableField(mapping="user_upload", fileNameProperty="imageName")
      * @var File|null
@@ -105,7 +106,7 @@ class PhotoUser implements \Serializable
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile)
         {
-            $this->updatedAt = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+            $this->updatedAt = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
         }
         return $this;
     }

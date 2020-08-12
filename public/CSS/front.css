@@ -790,6 +790,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     height: 150px;
     margin: auto;
     margin-top: 0px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #074592;
 }
 
 .blocPhoto p

@@ -25,8 +25,8 @@ class PhotoEquipe
     /**
      * @Assert\File(
      *     maxSize = "2048k",
-     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg", "image/svg"},
-     *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG, JPEG ou SVG."
+     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg"},
+     *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG ou JPEG."
      * )
      * @Vich\UploadableField(mapping="equipe_upload", fileNameProperty="imageName")
      * @var File|null
