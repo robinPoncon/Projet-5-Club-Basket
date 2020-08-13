@@ -3,9 +3,16 @@ liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
     filter_sets:
+        cache: ~
         thumb:
             quality: 100
             filters:
                 thumbnail:
                     size: [200, 200]
+                    mode: outbound
+        equipeModif:
+            quality: 100
+            filters:
+                thumbnail:
+                    size: [150, 150]
                     mode: outbound

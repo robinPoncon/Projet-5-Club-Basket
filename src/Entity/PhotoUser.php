@@ -47,7 +47,7 @@ class PhotoUser implements \Serializable
 
     /**
      * @Assert\File(
-     *     maxSize = "16384k",
+     *     maxSize = "16M",
      *     maxSizeMessage = "Fichier trop lourd, veuillez réduire son poids avec un convertisseur par exemple.",
      *     mimeTypes = {"image/jpg", "image/png", "image/jpeg"},
      *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG ou JPEG."

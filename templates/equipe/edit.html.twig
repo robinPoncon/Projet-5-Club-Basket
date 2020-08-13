@@ -38,7 +38,8 @@
             <div class="d-flex justify-content-center blocPhoto">
                 {% for photoEquipe in photoEquipes %}
                     <div class="d-flex flex-column divPhoto">
-                        <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}" alt="photo de l'équipe de basket">
+                        <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeModif")) }}"
+                             alt="photo de l'équipe de basket">
                         {% if photoEquipe.getImportant == 0 %}
                             <a href="{{ path("mettreEnAvantPhotoEquipe", {"id": photoEquipe.id}) }}">Mettre en avant</a>
                         {% else %}

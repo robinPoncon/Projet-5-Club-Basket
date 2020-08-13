@@ -13,7 +13,8 @@
         <div class="profilPicture">
             <h2> Profil {{ user.username }}</h2>
             <a href="{{ path("modifierPhotoProfil", {"slug": user.slug}) }}">
-                <img src="{{ asset(vich_uploader_asset(photoUser, "imageFile") | imagine_filter("thumb")) }}" alt="photo de profil utilisateur"
+                <img src="{{ vich_uploader_asset(photoUser, "imageFile") | imagine_filter("thumb") }}"
+                     alt="photo de profil utilisateur"
                 title="Cliquer pour modifier !"></a>
         </div>
         {% else %}
