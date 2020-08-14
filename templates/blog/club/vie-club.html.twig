@@ -8,12 +8,9 @@
     {% for category in article.category %}
         {% if category.title == "Club" %}
         <div class="postClub">
-            <h3><em class="fas fa-basketball-ball"></em>
-                <a href="{{ path("show-article", {"slug": article.slug}) }}"> {{ article.title }} -
-                    {{ article.createdAt | date("d/m/Y") }}</a></h3>
+            <h3><em class="fas fa-basketball-ball"></em>{{ article.title }}</h3>
             <div>
-                {{ article.content | truncate(400, true, "...") | raw}}
-                <a href="{{ path("show-article", {"slug": article.slug}) }}">Lire la suite</a>
+                {{ article.content | raw}}
             </div>
         </div>
         {% endif %}

@@ -11,13 +11,22 @@
     {% endfor %}
 
     <h1> Equipe {{ equipe.name | upper }} </h1>
-    <div class="d-flex justify-content-center blocPhoto">
+    <div class="d-flex flex-column justify-content-center blocPhoto">
         {% for photoEquipe in photoEquipes %}
-            <div class="d-flex flex-column">
-                <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}" alt="photo de l'équipe de basket">
-                <a href="{{ path("supprimerPhotoEquipe", {"id": photoEquipe.id}) }}">Supprimer</a>
-                <a href="{{ path("mettreEnAvantPhotoEquipe", {"id": photoEquipe.id}) }}">Mettre en avant</a>
-            </div>
+            {% if photoEquipe.important == 1 %}
+                <div class="aggrandirImage">
+                    <img class="imageImportant" src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeAffichage")) }}"
+                         alt="photo principale de l'équipe de basket" title="Cliquer pour aggrandir !">
+                    <img class="imageAggrandit" src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}"
+                         alt="photo principale de l'équipe de basket aggrandit" title="Cliquer pour réduire !">
+                </div>
+
+            {% else %}
+                <div class="d-flex flex-column">
+                    <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}"
+                         alt="autre photo de l'équipe de basket">
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
     <div class="bloc-training">

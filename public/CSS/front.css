@@ -821,7 +821,33 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 25%;
 }
 
+.imageImportant
+{
+    width: 600px !important;
+    height: 450px !important;
+    border: 5px #074592 solid;
+    box-shadow: 0 0 10px black !important;
+    cursor: pointer;
+}
 
+.aggrandirImage
+{
+    position: relative;
+}
+
+.imageAggrandit
+{
+    width: 1000px !important;
+    height: 600px !important;
+    display: none;
+    margin: auto;
+    margin-top: -460px !important;
+    border: 5px #074592 solid;
+    box-shadow: 0 0 10px black !important;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
 
 
 
@@ -1472,6 +1498,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-right: 15px;
 }
 
+.postClub h3
+{
+    color: white;
+}
+
 
                                                     /* Gestion Utilisateur */
 
@@ -1518,6 +1549,44 @@ td
 {
     color: #074592;
 }
+
+.userName a
+{
+    color: #dd650f;
+}
+
+.userName a:hover
+{
+    color: #074592;
+}
+
+.blocEditUser .profilPicture, .blocEditUser .profilPictureVide
+{
+    margin: auto;
+}
+
+.blocEditUser .profilPictureVide i
+{
+    margin-top: -15px;
+}
+
+.blocEditUser .profil
+{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.blocEditUser .actionProfil
+{
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+
+
+
+
 
                                                 /* Page Erreur */
 
@@ -2214,6 +2283,11 @@ td
     #user_role_roles input
     {
         margin-left: 40px;
+    }
+    
+    .blocEditUser .actionProfil
+    {
+        width: 80%;
     }
     
                                             /* Gestion TRAININGS */

@@ -372,5 +372,13 @@ if ($(window).width() <= 768)
         newElem.appendTo(list);
     });
 
+// Aggrandir image
 
+    $(".imageImportant").click(function(){
+        $(".imageAggrandit").fadeIn();
+    });
+
+    $(".imageAggrandit").click(function(){
+        $(this).fadeOut();
+    });
 

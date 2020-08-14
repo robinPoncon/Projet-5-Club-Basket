@@ -23,7 +23,7 @@
         {# On boucle sur les utilisateurs #}
         {% for user in users %}
             <tr>
-                <td class="userName">{{ user.username }}</td>
+                <td class="userName"><a href="{{ path("pageUtilisateur", {"slug": user.slug}) }}">{{ user.username }}</a></td>
                 <td class="userEmail">{{ user.email }}</td>
                 <td class="userRole">
                     {# On boucle sur les rôles #}
