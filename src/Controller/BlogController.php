@@ -31,7 +31,7 @@ class BlogController extends AbstractController
      */
     public function home(Request $request, PaginatorInterface $paginator, ArticleRepository $articleRepo)
     {
-        $articlePrio = $articleRepo->findOneBy(["prioritaire" => 1],["createdAt" => "DESC"]);
+        $articlePrio = $articleRepo->findOneBy(["prioritaire" => 1], ["createdAt" => "DESC"]);
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy(["prioritaire" => 0],[
             'createdAt' => 'desc',
         ]);

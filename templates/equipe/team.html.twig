@@ -12,22 +12,21 @@
 
     <h1> Equipe {{ equipe.name | upper }} </h1>
     <div class="d-flex flex-column justify-content-center blocPhoto">
-        {% for photoEquipe in photoEquipes %}
-            {% if photoEquipe.important == 1 %}
                 <div class="aggrandirImage">
-                    <img class="imageImportant" src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeAffichage")) }}"
+                    <img class="imageImportant" src="{{ asset(vich_uploader_asset(photoImportante, "imageFile") |
+                        imagine_filter("equipeAffichage")) }}"
                          alt="photo principale de l'équipe de basket" title="Cliquer pour aggrandir !">
-                    <img class="imageAggrandit" src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}"
+                    <img class="imageAggrandit" src="{{ asset(vich_uploader_asset(photoImportante, "imageFile")) }}"
                          alt="photo principale de l'équipe de basket aggrandit" title="Cliquer pour réduire !">
                 </div>
-
-            {% else %}
-                <div class="d-flex flex-column">
-                    <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile")) }}"
-                         alt="autre photo de l'équipe de basket">
-                </div>
-            {% endif %}
-        {% endfor %}
+        <button class="afficherPhotoEquipe"> Afficher les autres photos de l'équipe</button>
+        <div class="d-flex justify-content-between blocAutrePhoto">
+            <div class="previous"></div>
+            <div class="actuel"></div>
+            <div class="next"></div>
+            <div class="chevron-droit"></div>
+            <div class="chevron-gauche"></div>
+        </div>
     </div>
     <div class="bloc-training">
         {% for convocation in equipe.convocations %}
@@ -37,12 +36,30 @@
         {% endfor %}
     </div>
 
+    {% if equipe.widgetId != "" %}
+        <iframe class="bloc-score" id="{{ equipe.widgetId }}" height="500"
+                src="https://scorenco.com/widget/{{ equipe.widgetId }}/"></iframe>
+    {% endif %}
+
 {% endblock %}
 
 {% block javascripts %}
-    {% if equipe.widgetId != "" %}
-         <iframe class="bloc-score" id="{{ equipe.widgetId }}" height="500"
-                 src="https://scorenco.com/widget/{{ equipe.widgetId }}/"></iframe>
-    {% endif %}
+    <script>
+        console.log({{ photoEquipes|length }});
+        let diaporama = new Diaporama(0, "#diapo-", {{ photoEquipes|length }}, 1,
+            ".play", ".pause", false, ".chevron-gauche", ".chevron-droit");
+        diaporama.ajouterDiaporama();
+        let i = 0;
+        {% for photoEquipe in photoEquipes %}
+                i++;
+                let slide{{ photoEquipe.id }} = new Slide($("<img>"), ".blocAutrePhoto", "diapo-" + i, "diapos",
+                    "{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("thumb")) }}",
+                    "autre photo equipe de basket", 200, 200);
+                slide{{ photoEquipe.id }}.ajouterSlide();
+        {% endfor %}
+        diaporama.affichageHoraire();
+        diaporama.playInterval(diaporama.affichageHoraire, 5000);
+    </script>
+
 
 {% endblock %}

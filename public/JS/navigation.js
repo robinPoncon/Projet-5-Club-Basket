@@ -372,7 +372,19 @@ if ($(window).width() <= 768)
         newElem.appendTo(list);
     });
 
-// Aggrandir image
+                // Aggrandir image
+
+function aggrandirImage(id)
+{
+    $("#imageAggrandit" + id).fadeIn();
+    $(".imageReduitEquipe").fadeOut();
+}
+
+function reduireImage(id)
+{
+    $("#imageAggrandit" + id).fadeOut();
+    $(".imageReduitEquipe").fadeIn();
+}
 
     $(".imageImportant").click(function(){
         $(".imageAggrandit").fadeIn();
@@ -382,3 +394,18 @@ if ($(window).width() <= 768)
         $(this).fadeOut();
     });
 
+// Afficher les images
+
+    $(".afficherPhotoEquipe").click(function(){
+        //console.log($(this).val());
+        if($(this).html() === "Afficher les autres photos")
+        {
+            $(this).text("Cacher les autres photos");
+        }
+        else
+        {
+            $(this).text("Afficher les autres photos");
+        }
+
+        $(".blocAutrePhoto").toggle();
+    });

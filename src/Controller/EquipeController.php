@@ -7,6 +7,7 @@ use App\Entity\PhotoEquipe;
 use App\Form\EquipeType;
 use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
+use App\Repository\PhotoEquipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +21,14 @@ class EquipeController extends AbstractController
      * @param Equipe $equipe
      * @return Response
      */
-    public function index(Equipe $equipe)
+    public function index(Equipe $equipe, PhotoEquipeRepository $photoEquipeRepo)
     {
-        $photoEquipes = $equipe->getPhotoEquipes();
+        $photoEquipes = $photoEquipeRepo->findBy(["important" => 0, "equipe" => $equipe->getId()]);
+        $photoImportante = $photoEquipeRepo->findOneBy(["important" => 1, "equipe" => $equipe->getId()]);
         return $this->render("equipe/team.html.twig", [
             'equipe' => $equipe,
-            "photoEquipes" => $photoEquipes
+            "photoEquipes" => $photoEquipes,
+            "photoImportante" => $photoImportante
         ]);
     }
 
@@ -104,7 +107,10 @@ class EquipeController extends AbstractController
             $photoEquipes = $equipe->getPhotoEquipes();
             foreach($photoEquipes as $key => $photoEquipe){
                 $photoEquipe->setEquipe($equipe);
-                $photoEquipe->setImportant(0);
+                if($photoEquipe->getImportant() == NULL)
+                {
+                    $photoEquipe->setImportant(0);
+                }
                 $photoEquipes->set($key,$photoEquipe);
                 $manager->persist($photoEquipe);
 

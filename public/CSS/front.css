@@ -821,6 +821,15 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 25%;
 }
 
+.imageReduitEquipe
+{
+    width: 200px;
+    height: 200px;
+    border: 5px #074592 solid;
+    box-shadow: 0 0 10px black !important;
+    cursor: pointer;
+}
+
 .imageImportant
 {
     width: 600px !important;
@@ -833,6 +842,18 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .aggrandirImage
 {
     position: relative;
+}
+
+.imageAggranditEquipe
+{
+    width: 1000px !important;
+    height: 600px !important;
+    display: none;
+    margin: auto;
+    box-shadow: 0 0 10px black !important;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
 }
 
 .imageAggrandit
@@ -849,6 +870,32 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     cursor: pointer;
 }
 
+#diaporama
+{
+    position: relative;
+    margin-top: 30px;
+}
+
+.diapos
+{
+    position: absolute;
+    display: none;
+}
+
+.previous
+{
+    transform: perspective(600px) rotateY(-60deg);
+}
+
+.next
+{
+    transform: perspective(600px) rotateY(60deg);
+}
+
+.blocAutrePhoto
+{
+
+}
 
 
 
