@@ -35,7 +35,7 @@
                     {{ form_widget(formEquipe.widgetId) }}
                 </div>
             </div>
-            <div class="d-flex justify-content-center blocPhoto">
+            <div class="d-flex justify-content-center blocPhotoEdit">
                 {% for photoEquipe in photoEquipes %}
                     <div class="d-flex flex-column divPhoto">
                         <img src="{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeModif")) }}"

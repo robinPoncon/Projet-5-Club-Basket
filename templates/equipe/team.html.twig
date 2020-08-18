@@ -19,21 +19,40 @@
                     <img class="imageAggrandit" src="{{ asset(vich_uploader_asset(photoImportante, "imageFile")) }}"
                          alt="photo principale de l'équipe de basket aggrandit" title="Cliquer pour réduire !">
                 </div>
-        <button class="afficherPhotoEquipe"> Afficher les autres photos de l'équipe</button>
-        <div class="d-flex justify-content-between blocAutrePhoto">
-            <div class="previous"></div>
-            <div class="actuel"></div>
-            <div class="next"></div>
-            <div class="chevron-droit"></div>
-            <div class="chevron-gauche"></div>
+        <button class="afficherPhotoEquipe">Afficher les autres photos de l'équipe</button>
+        <div class="blocAutrePhoto">
+            <div class="chevron-gauche">
+                <p class="cercle"></p>
+                <p class="chevronG-part1"></p>
+                <p class="chevronG-part2"></p>
+            </div>
+            <div class="chevron-droit">
+                <p class="cercle"></p>
+                <p class="chevronD-part1"></p>
+                <p class="chevronD-part2"></p>
+            </div>
+            <div class="diaporama"></div>
+            <div class="play">
+                <p class="cercle"></p>
+                <p class="chevronPlay-part1"></p>
+                <p class="chevronPlay-part2"></p>
+                <p class="chevronPlay-part3"></p>
+            </div>
+            <div class="pause">
+                <p class="cercle"></p>
+                <p class="chevronPause-part1"></p>
+                <p class="chevronPause-part2"></p>
+            </div>
         </div>
     </div>
     <div class="bloc-training">
+        <h2> ENTRAÎNEMENTS </h2>
         {% for convocation in equipe.convocations %}
-            <p> Adresse : {{ convocation.address }}</p>
+            <p> Adresse : <span>{{ convocation.address }}</span></p>
 
-            <p> Horaire Entrainement : le {{ convocation.day }} à {{ convocation.horaire | date("H:i") }}</p>
+            <p> Jour et horaire : <span> le {{ convocation.day }} à {{ convocation.horaire | date("H:i") }}</span></p>
         {% endfor %}
+        <div></div>
     </div>
 
     {% if equipe.widgetId != "" %}
@@ -52,13 +71,14 @@
         let i = 0;
         {% for photoEquipe in photoEquipes %}
                 i++;
-                let slide{{ photoEquipe.id }} = new Slide($("<img>"), ".blocAutrePhoto", "diapo-" + i, "diapos",
-                    "{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("thumb")) }}",
-                    "autre photo equipe de basket", 200, 200);
+                let slide{{ photoEquipe.id }} = new Slide($("<img>"), ".diaporama", "diapo-" + i, "diapos",
+                    "{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeAffichage")) }}",
+                    "autre photo equipe de basket", 600, 450);
                 slide{{ photoEquipe.id }}.ajouterSlide();
         {% endfor %}
         diaporama.affichageHoraire();
         diaporama.playInterval(diaporama.affichageHoraire, 5000);
+
     </script>
 
 

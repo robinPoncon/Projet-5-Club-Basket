@@ -93,7 +93,7 @@ class Diaporama {
 	     
 		let precedent;
 		let actuel;
-		let suivant;
+
 
 		this.i++; // On incrémente i à chaque appel de la fonction
 
@@ -102,30 +102,20 @@ class Diaporama {
 			this.i = 1;
 		}// On réinitialise le i à 1 quand il atteint 9
 
-		if (this.i === this.imax)
-		{
-			suivant = this.modele + 1;
-		}
-		else
-		{
-			suivant = this.modele + (this.i + 1);
-		}
-
 		if (this.i === 1) {
 		    precedent = this.modele + this.imax; // Gestion de l'exception pour boucler le diaporama à l'infini
+
 		}
 		else {
 		    precedent = this.modele + (this.i - 1); // On utilise la valeur de i - 1 pour déterminer la diapo précédente
-		}
 
+		}
 
 		actuel = this.modele + this.i; // On utilise donc la valeur de i pour déterminer la diapo actuel qui s'affiche
 
-		console.log(suivant);
+		$(precedent).fadeOut(1500);
+		$(actuel).fadeIn(1500);
 
-		$(precedent).html("").appendTo($(".previous")).css("display", "inline");
-		$(actuel).html("").appendTo($(".actuel")).css("display", "inline");
-		$(suivant).html("").appendTo($(".next")).css("display", "inline");
     }
 
     affichageContreHoraire() {
