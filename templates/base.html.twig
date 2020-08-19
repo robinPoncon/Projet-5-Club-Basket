@@ -14,6 +14,21 @@
     <body>
         <div id="nav">{% include "front/nav-front.html.twig" %}</div>
         {% block body %}{% endblock %}
+        <footer>
+            <div class="d-flex justify-content-around footer">
+                <div class="footerMention">
+                    <p>© Robin Ponçon | 2020 </p>
+                    <a href="{{ path("mentions-legales") }}">Mentions Légales</a>
+                </div>
+                <div class="footerContact">
+                    <p>Pour toutes questions, vous pouvez nous contacter à <strong>basket.meximieux.contact@gmail.com</strong>
+                        ou bien via notre <a href="{{ path("contact") }}">Formulaire</a>.
+                    </p>
+                </div>
+                <p class="footerFacebook">Suivez-nous sur <a href="https://www.facebook.com/BC-Meximieux-500893880260652/">
+                         <em class="fab fa-facebook"></em></a></p>
+            </div>
+        </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/40e1f9d6e8.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
@@ -21,6 +36,14 @@
                 crossorigin="anonymous"></script>
         <script src="{{ asset('JS/navigation.js') }}"></script>
         <script src="{{ asset('JS/diaporama.js') }}"></script>
+        <script src="{{ asset('cookiechoices.js') }}"></script>
+        <!--<script>
+            document.addEventListener('DOMContentLoaded', function(event) {
+                cookieChoices.showCookieConsentBar("Ce site utilise des cookies pour vous offrir le meilleur service." +
+                    "En poursuivant votre navigation, vous acceptez l’utilisation des cookies.",
+                    "J’accepte", "En savoir plus", "{{ path("mentions-legales") }}");
+            });
+        </script> -->
         {% block javascripts %}{% endblock %}
     </body>
 </html>

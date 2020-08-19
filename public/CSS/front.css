@@ -1824,6 +1824,114 @@ td
 }
 
 
+
+
+                                        /* FOOTER ET MENTIONS LEGALES */
+
+.footer
+{
+    width: 100%;
+    background-color: #074592;
+    height: 200px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer a
+{
+    color: white;
+    font-weight: bold;
+}
+
+.footer a:hover
+{
+    color: #ef8108;
+}
+
+.footerMention, .footerContact, .footerFacebook
+{
+    margin: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.footerMention, .footerFacebook
+{
+    width: 30%;
+}
+
+.footerFacebook a em
+{
+    font-size: 2em;
+    display: block;
+    margin-top: 10px;
+}
+
+.footerMention
+{
+    width: 40%;
+}
+
+
+.mentionsBloc div
+{
+    width: 80%;
+    margin: auto;
+    text-align: justify;
+}
+
+.mentionsBloc h3
+{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.blocDev
+{
+    width: 250px !important;
+    margin: auto;
+}
+
+.mentionTitle
+{
+    margin-bottom: 20px !important;
+    margin-top: 100px!important;
+}
+
+.mentionTitle h2
+{
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.decoMention
+{
+    background-color: #074592;
+    width: 100% !important;
+    border-radius: 10px;
+    height: 20px;
+}
+
+.decoG
+{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.decoD
+{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+
+
+
                                                 /* RESPONSIVE !!! */
 
                         /* Responsive Tablette */

@@ -31,4 +31,12 @@ class ContactController extends AbstractController
             "formContact" => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/mentions-legales", name="mentions-legales")
+     */
+    public function mentionsLegalesCookies()
+    {
+        return $this->render("mentions-legales.html.twig");
+    }
 }
