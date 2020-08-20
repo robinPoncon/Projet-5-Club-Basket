@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modification de l'équipe {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
+    <h1> Modifier la photo de mise en avant de l'équipe {{ equipe.slug }}</h1>
+
+    <div class="editPhoto">
+        {{ form_start(formPhotoEquipe) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formPhotoEquipe.imageFile) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formPhotoEquipe.imageFile) }}
+                {{ form_widget(formPhotoEquipe.imageFile) }}
+            </div>
+        </div>
+        <button class="form-control submit position-relative" type="submit">Mettre en avant</button>
+        {{ form_end(formPhotoEquipe) }}
+    </div>
+
+{% endblock %}

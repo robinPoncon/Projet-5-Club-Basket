@@ -56,11 +56,6 @@ class User implements UserInterface
     public $confirm_password;
 
     /**
-     * @ORM\ManyToMany(targetEntity=FonctionClub::class, inversedBy="fonctionClub")
-     */
-    private $fonctionClub;
-
-    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -102,8 +97,19 @@ class User implements UserInterface
      */
     private $photoUser;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Equipe::class, mappedBy="users")
+     */
+    private $equipes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=FonctionClub::class, inversedBy="users")
+     */
+    private $fonctionClub;
+
     public function __construct()
     {
+        $this->equipes = new ArrayCollection();
         $this->fonctionClub = new ArrayCollection();
     }
 
@@ -144,32 +150,6 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|fonctionClub[]
-     */
-    public function getFonctionClub(): Collection
-    {
-        return $this->fonctionClub;
-    }
-
-    public function addFonctionClub(fonctionClub $fonctionClub): self
-    {
-        if (!$this->fonctionClub->contains($fonctionClub)) {
-            $this->fonctionClub[] = $fonctionClub;
-        }
-
-        return $this;
-    }
-
-    public function removeFonctionClub(fonctionClub $fonctionClub): self
-    {
-        if ($this->fonctionClub->contains($fonctionClub)) {
-            $this->fonctionClub->removeElement($fonctionClub);
-        }
 
         return $this;
     }
@@ -267,6 +247,58 @@ class User implements UserInterface
     public function setPhotoUser(?PhotoUser $photoUser): self
     {
         $this->photoUser = $photoUser;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Equipe[]
+     */
+    public function getEquipes(): Collection
+    {
+        return $this->equipes;
+    }
+
+    public function addEquipe(Equipe $equipe): self
+    {
+        if (!$this->equipes->contains($equipe)) {
+            $this->equipes[] = $equipe;
+        }
+
+        return $this;
+    }
+
+    public function removeEquipe(Equipe $equipe): self
+    {
+        if ($this->equipes->contains($equipe)) {
+            $this->equipes->removeElement($equipe);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FonctionClub[]
+     */
+    public function getFonctionClub(): Collection
+    {
+        return $this->fonctionClub;
+    }
+
+    public function addFonctionClub(FonctionClub $fonctionClub): self
+    {
+        if (!$this->fonctionClub->contains($fonctionClub)) {
+            $this->fonctionClub[] = $fonctionClub;
+        }
+
+        return $this;
+    }
+
+    public function removeFonctionClub(FonctionClub $fonctionClub): self
+    {
+        if ($this->fonctionClub->contains($fonctionClub)) {
+            $this->fonctionClub->removeElement($fonctionClub);
+        }
 
         return $this;
     }

@@ -35,7 +35,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/mentions-legales", name="mentions-legales")
      */
-    public function mentionsLegalesCookies()
+    public function mentionsLegales()
     {
         return $this->render("mentions-legales.html.twig");
     }

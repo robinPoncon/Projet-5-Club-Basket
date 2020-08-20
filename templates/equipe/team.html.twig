@@ -11,7 +11,9 @@
     {% endfor %}
 
     <h1> Equipe {{ equipe.name | upper }} </h1>
+
     <div class="d-flex flex-column justify-content-center blocPhoto">
+        {% if photoImportante.imageName is defined and photoImportante.imageName is not null %}
                 <div class="aggrandirImage">
                     <img class="imageImportant" src="{{ asset(vich_uploader_asset(photoImportante, "imageFile") |
                         imagine_filter("equipeAffichage")) }}"
@@ -19,6 +21,13 @@
                     <img class="imageAggrandit" src="{{ asset(vich_uploader_asset(photoImportante, "imageFile")) }}"
                          alt="photo principale de l'équipe de basket aggrandit" title="Cliquer pour réduire !">
                 </div>
+        {% else %}
+            <p><em class="fas fa-users"></em></p>
+            {% if app.user %}
+                <a class="position-relative" href="{{ path("modifierPhotoEquipe", {"slug": equipe.slug}) }}">
+                    Mettre une photo en avant </a>
+            {% endif %}
+        {% endif %}
         <button class="afficherPhotoEquipe">Afficher les autres photos de l'équipe</button>
         <div class="blocAutrePhoto">
             <div class="chevron-gauche">
@@ -47,11 +56,15 @@
     </div>
     <div class="bloc-training">
         <h2> ENTRAÎNEMENTS </h2>
+        {% if equipe.convocations|length != 0 %}
         {% for convocation in equipe.convocations %}
             <p> Adresse : <span>{{ convocation.address }}</span></p>
 
             <p> Jour et horaire : <span> le {{ convocation.day }} à {{ convocation.horaire | date("H:i") }}</span></p>
         {% endfor %}
+        {% else %}
+            <p> Il n'y a pas encore d'entraînements de programmé pour cette équipe.</p>
+        {% endif %}
         <div></div>
     </div>
 

@@ -35,6 +35,15 @@
                     {{ form_widget(formEquipe.widgetId) }}
                 </div>
             </div>
+            <div class="divForm widgetId">
+                <div class="errorForm">
+                    {{ form_errors(formEquipe.users) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formEquipe.users) }}
+                    {{ form_widget(formEquipe.users) }}
+                </div>
+            </div>
             <div class="d-flex justify-content-center blocPhotoEdit">
                 {% for photoEquipe in photoEquipes %}
                     <div class="d-flex flex-column divPhoto">

@@ -59,10 +59,16 @@ class Equipe
      */
     private $photoEquipes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="equipes")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->convocations = new ArrayCollection();
         $this->photoEquipes = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +181,34 @@ class Equipe
             if ($photoEquipe->getEquipe() === $this) {
                 $photoEquipe->setEquipe(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addEquipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeEquipe($this);
         }
 
         return $this;

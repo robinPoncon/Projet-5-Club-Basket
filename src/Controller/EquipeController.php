@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Equipe;
 use App\Entity\PhotoEquipe;
 use App\Form\EquipeType;
+use App\Form\PhotoEquipesType;
 use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
 use App\Repository\PhotoEquipeRepository;
@@ -142,6 +143,58 @@ class EquipeController extends AbstractController
             "photoEquipes" => $photoEquipe,
             "formEquipe" => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("editor/equipes/modifierPhotoEquipe/{slug}", name="modifierPhotoEquipe")
+     */
+    public function modifierPhotoEquipe(Equipe $equipe, Request $request, EntityManagerInterface $manager)
+    {
+        $photoEquipe = new PhotoEquipe();
+
+        $form = $this->createForm(PhotoEquipesType::class, $photoEquipe);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $photoEquipes = $equipe->getPhotoEquipes();
+            foreach($photoEquipes as $photoPasImportante)
+            {
+                $photoPasImportante->setImportant(0);
+                $manager->persist($photoPasImportante);
+            }
+
+            $photoEquipe->setImportant(1);
+            $photoEquipe->setEquipe($equipe);
+
+            $manager->persist($photoEquipe);
+            $manager->flush();
+
+            $img_nom = $photoEquipe->getImageName();
+            $extension = strrchr($img_nom, '.');
+            if($extension == ".jpeg" || $extension == ".jpg")
+            {
+                $img = imagecreatefromjpeg("pictures/equipe/" . $img_nom);
+                imagejpeg($img, "pictures/equipe/" . $img_nom, 50);
+            }
+            else
+            {
+                $img = imagecreatefrompng("pictures/equipe/" . $img_nom);
+                imagepng($img, "pictures/equipe/" . $img_nom, 5);
+            }
+
+            $this->addFlash("success", "La photo a bien été mise en avant !");
+            return $this->redirectToRoute("equipe", [
+                "slug" => $equipe->getSlug(),
+                "type" => $equipe->getType()
+            ]);
+        }
+
+        return $this->render("equipe/photoEquipe.html.twig", [
+            "equipe" => $equipe,
+            "formPhotoEquipe" => $form->createView()
+        ]);
+
     }
 
     /**

@@ -25,13 +25,13 @@ class FonctionClub
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="fonctionClub")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="fonctionsClub")
      */
-    private $fonctionClub;
+    private $users;
 
     public function __construct()
     {
-        $this->fonctionClub = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,26 +54,26 @@ class FonctionClub
     /**
      * @return Collection|User[]
      */
-    public function getFonctionClub(): Collection
+    public function getUsers(): Collection
     {
-        return $this->fonctionClub;
+        return $this->users;
     }
 
-    public function addFonctionClub(User $fonctionClub): self
+    public function addUser(User $user): self
     {
-        if (!$this->fonctionClub->contains($fonctionClub)) {
-            $this->fonctionClub[] = $fonctionClub;
-            $fonctionClub->addFonctionClub($this);
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFonctionsClub($this);
         }
 
         return $this;
     }
 
-    public function removeFonctionClub(User $fonctionClub): self
+    public function removeUser(User $user): self
     {
-        if ($this->fonctionClub->contains($fonctionClub)) {
-            $this->fonctionClub->removeElement($fonctionClub);
-            $fonctionClub->removeFonctionClub($this);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeFonctionsClub($this);
         }
 
         return $this;

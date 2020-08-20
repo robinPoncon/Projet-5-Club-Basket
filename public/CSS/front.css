@@ -262,6 +262,8 @@ h1
     padding-bottom: 200px;
     z-index: 0;
     font-weight: bold !important;
+    width: 90%;
+    margin: auto;
 }
 
 .menu
@@ -808,6 +810,30 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     margin-top: 100px;
     text-align: center;
+}
+
+.blocPhoto a
+{
+    background-color: #074592;
+    color: white;
+    padding: 5px;
+    width: 30%;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.blocPhoto a:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
+.fas.fa-users
+{
+    font-size: 6em;
+    margin-top: -70px;
+    color: #dd650f;
+    margin-bottom: 40px;
 }
 
 .imageImportant
@@ -1426,6 +1452,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .post .postContent
 {
     padding: 20px;
+    overflow: auto;
 }
 
 .addCommentPost
@@ -1581,6 +1608,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin: auto;
     margin-bottom: 30px;
     width: 80%;
+    overflow: auto;
 }
 
 .postNews h3, .postTournois h3, .postClub h3
@@ -1826,7 +1854,7 @@ td
 
 
 
-                                        /* FOOTER ET MENTIONS LEGALES */
+                                        /* FOOTER, COOKIES ET MENTIONS LEGALES */
 
 .footer
 {
@@ -1836,6 +1864,8 @@ td
     color: white;
     text-align: center;
     margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .footer a
@@ -1861,10 +1891,21 @@ td
     width: 30%;
 }
 
+.footerFacebook
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.footerFacebook a
+{
+    width: 50px;
+    margin: auto;
+}
+
 .footerFacebook a em
 {
     font-size: 2em;
-    display: block;
     margin-top: 10px;
 }
 
@@ -1873,12 +1914,35 @@ td
     width: 40%;
 }
 
+#cookieChoiceInfo
+{
+    background-color: #dd650f !important;
+    color: white;
+    padding: 10px !important;
+}
+
+#cookieChoiceInfo a
+{
+    color: #074592 !important;
+    font-weight: bold;
+}
+
+#cookieChoiceInfo a:hover
+{
+    color: white !important;
+}
+
 
 .mentionsBloc div
 {
     width: 80%;
     margin: auto;
     text-align: justify;
+}
+
+.mentionsBloc h1
+{
+    margin-bottom: -50px;
 }
 
 .mentionsBloc h3
@@ -1985,6 +2049,45 @@ td
     {
         margin-bottom: 50px;
         width: 33%;
+    }
+    
+                                            /* Page équipe */
+    
+    .diapos
+    {
+        width: 300px !important;
+        height: 200px !important;
+    }
+    
+    .diaporama
+    {
+        margin-left: -300px;
+        margin-top: 50px;
+    }
+    
+    .blocAutrePhoto
+    {
+        margin-bottom: 300px;
+    }
+    
+    .play, .pause, .chevron-gauche, .chevron-droit
+    {
+        top: 125px;
+    }
+    
+    .chevron-gauche
+    {
+        margin-left: -250px;
+    }
+    
+    .chevron-droit
+    {
+        margin-left: 190px;
+    }
+    
+    .imageAggrandit
+    {
+        width: 750px !important;
     }
 }
 
@@ -2645,7 +2748,182 @@ td
         flex-direction: row;
     }
     
+                                                    /* Page Equipe */
     
+    .imageImportant
+    {
+        width: 280px !important;
+        height: 200px !important;
+    }
+    
+    .imageAggrandit
+    {
+        width: 300px !important;
+        height: 250px !important;
+        margin-top: -234px !important;
+    }
+    
+    .afficherPhotoEquipe
+    {
+        width: 80%;
+    }
+    
+    .diaporama
+    {
+        margin-left: -200px !important;
+    }
+    
+    .diapos
+    {
+        width: 200px !important;
+        height: 150px !important;
+    }
+    
+    .cercle
+    {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+    
+    .chevronPlay-part1
+    {
+        top: 18px;
+        left: 5px;
+        width: 22px;
+        height: 4px;
+    }
+    
+    .chevronPlay-part2
+    {
+        top: 14px;
+        left: 13px;
+        width: 19px;
+        height: 4px;
+    }
+    
+    .chevronPlay-part3
+    {
+        top: 23px;
+        left: 14px;
+        width: 18px;
+        height: 4px;
+    }
+    
+    .chevronPause-part1
+    {
+        top: 18px;
+        height: 5px;
+        width: 25px;
+        left: 2px;
+    }
+    
+    .chevronPause-part2
+    {
+        top: 18px;
+        height: 5px;
+        width: 25px;
+        left: 13px;
+    }
+    
+    .play, .pause
+    {
+        margin-left: -24px;
+        top: 105px;
+    }
+    
+    .chevron-gauche
+    {
+        top: 105px;
+        margin-left: -150px;
+    }
+    
+    .chevron-droit
+    {
+        margin-left: 110px;
+        top: 105px;
+    }
+    
+    .chevronG-part1, .chevronG-part2, .chevronD-part1, .chevronD-part2
+    {
+        width: 17px;
+        height: 5px;
+    }
+    
+    .chevronG-part1
+    {
+        top: 22px;
+        left: 10px;
+    }
+    
+    .chevronG-part2
+    {
+        top: 13px;
+        left: 10px;
+    }
+    
+    .chevronD-part1
+    {
+        top: 13px;
+        left: 14px;
+    }
+    
+    .chevronD-part2
+    {
+        top: 22px;
+        left: 14px;
+    }
+    
+    .bloc-training
+    {
+        width: 90%;
+    }
+    
+    
+                                            /* Footer, cookies & Mentions légales */
+    
+    .footer
+    {
+        flex-direction: column;
+        height: 250px;
+        font-size: 0.9em;
+    }
+    
+    .footerMention
+    {
+        display: flex;
+        justify-content: space-around;
+        width: 90%;
+        margin-top: 20px;
+    }
+    
+    .footerMention p
+    {
+        margin-right: 10px;
+    }
+    
+    .footerContact
+    {
+        width: 90%;
+    }
+    
+    .footerFacebook
+    {
+        flex-direction: row;
+        width: 90%;
+        justify-content: space-around;
+        margin-left: 8px;
+    }
+    
+    .footerFacebook a
+    {
+        margin: 0;
+    }
+    
+    .footerFacebook a em
+    {
+        margin-top: -4px;
+    }
     
     
 }

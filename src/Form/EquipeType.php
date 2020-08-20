@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Equipe;
+use App\Entity\User;
+use App\Repository\FonctionClubRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -54,6 +56,20 @@ class EquipeType extends AbstractType
                 ],
                 "required" => false
             ])
+            ->add("users", EntityType::class, [
+                "class" => User::class,
+                'choice_label' => "username",
+                "multiple" => true,
+                "label" => "Entraîneur",
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "placeholder" => "Code widget",
+                    "class" => "form-control input",
+                ],
+                "required" => false
+            ])
             ->add('photoEquipes', CollectionType::class, [
                 'entry_type' => PhotoEquipesType::class,
                 'allow_add' => true,
@@ -70,5 +86,12 @@ class EquipeType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Equipe::class,
         ]);
+    }
+
+    public function entraineur(FonctionClubRepository $fonctionClubRepo)
+    {
+        $users = $fonctionClubRepo->findBy(["name" => "Entraîneur"]);
+        dump($users);
+        return "username";
     }
 }
