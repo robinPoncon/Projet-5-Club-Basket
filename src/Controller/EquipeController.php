@@ -9,6 +9,7 @@ use App\Form\PhotoEquipesType;
 use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
 use App\Repository\PhotoEquipeRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,7 +96,7 @@ class EquipeController extends AbstractController
     /**
      * @Route("editor/equipes/modifier/{slug}", name="modifierEquipe")
      */
-    public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager)
+    public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager, UserRepository $userRepo)
     {
         $photoEquipe = $equipe->getPhotoEquipes();
 

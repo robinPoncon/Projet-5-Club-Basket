@@ -227,6 +227,11 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getPrenomNom()
+    {
+        return $this->prenom . " " . strtoupper($this->nom);
+    }
+
     public function getResetToken(): ?string
     {
         return $this->reset_token;

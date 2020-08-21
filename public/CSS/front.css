@@ -523,7 +523,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     top: 11px;
 }
 
-.profilPictureVide i
+.profilPictureVide .fas.fa-portrait
 {
     margin-top: 5px;
     position: relative;
@@ -533,7 +533,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     padding-bottom: 5px;
 }
 
-.profilPictureVide i:hover
+.profilPictureVide .fas.fa-portrait:hover
 {
     color: #dd650f;
 }
@@ -806,6 +806,15 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 25%;
 }
 
+
+
+
+
+
+
+
+                                            /* Page Equipe */
+
 .blocPhoto
 {
     margin-top: 100px;
@@ -1043,7 +1052,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .bloc-training
 {
     text-align: center;
-    width: 50%;
+    width: 70%;
     margin: auto;
     color: black;
     border-radius: 10px;
@@ -1056,6 +1065,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     background-color: #074592;
     color: white;
     padding: 5px;
+    width: 100% !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
 }
 
 .bloc-training div
@@ -1067,6 +1079,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .bloc-training p
 {
     font-weight: bold;
+    margin-top: 5px;
 }
 
 .bloc-training span
@@ -1078,11 +1091,74 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .bloc-score
 {
     display: block;
-    width: 50%;
+    width: 70%;
     overflow: scroll;
     margin: auto;
     border: 5px #074592 solid;
     border-radius: 10px;
+}
+
+.bloc-coach
+{
+    border: 5px #074592 solid;
+    padding: 5px;
+    border-radius: 10px;
+    width: 70%;
+    margin: auto;
+    margin-top: -8px;
+    margin-bottom: 50px;
+}
+
+.bloc-coach div
+{
+    margin-top: 10px;
+}
+
+.bloc-coach .profilPicture p, .bloc-coach .profilPictureVide p
+{
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+    background-color: #074592;
+}
+
+.bloc-coach .profilPictureVide p
+{
+    margin-top: -10px;
+    margin-bottom: 26px;
+}
+
+.bloc-coach .profilPicture img, .bloc-coach .profilPictureVide em
+{
+    width: 150px;
+    height: 150px;
+    clip-path: circle(75px at center);
+}
+
+.bloc-coach .profilPicture img:hover
+{
+    opacity: 1;
+}
+
+.bloc-coach .profilPictureVide em
+{
+    color: #074592 !important;
+    background-color: #dd650f !important;
+    margin-top: -22px !important;
+    margin-left: 5px;
+    font-size: 200px !important;
+    border: 1px #074592 solid;
+}
+
+.blocInfosEquipes h2
+{
+    padding: 5px;
+    background-color: #074592;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    width: 70%;
+    margin: auto;
 }
 
 
@@ -1238,19 +1314,17 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 101% !important;
 }
 
-#article_category, #registration_fonctionClub, #user_infos_form_fonctionClub, #user_role_roles
+#article_category, #user_role_roles, #equipe_users, #user_infos_modif_fonctionClub
 {
-    height: 70px;
+    height: auto;
 }
 
-#article_category label, #registration_fonctionClub label, #user_infos_form_fonctionClub label,
-#user_role_roles label
+#article_category label, #user_role_roles label, #equipe_users label, #user_infos_modif_fonctionClub label
 {
     margin-right: 20px;
 }
 
-#article_category input, #registration_fonctionClub input, #user_infos_form_fonctionClub input,
-#user_role_roles input
+#article_category input, #user_role_roles input, #equipe_users input, #user_infos_modif_fonctionClub input
 {
     margin-right: 5px;
 }
@@ -1744,7 +1818,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 }
 
 
-                                                    /* Gestion Utilisateur */
+                                                    /* Gestion Users */
 
 .blocUser
 {
@@ -1805,7 +1879,7 @@ td
     margin: auto;
 }
 
-.blocEditUser .profilPictureVide i
+.blocEditUser .profilPictureVide .fas.fa-portrait
 {
     margin-top: -15px;
 }
@@ -1821,6 +1895,11 @@ td
     width: 50%;
     margin: auto;
     margin-top: 50px;
+}
+
+.editRolesForm
+{
+    margin-bottom: 100px !important;
 }
 
 
@@ -2376,24 +2455,6 @@ td
         width: 100% !important;
     }
     
-    #registration_fonctionClub
-    {
-        width: 100% !important;
-        flex-direction: row !important;
-        height: 322px;
-    }
-    
-    #registration_fonctionClub label
-    {
-        position: relative;
-        top: -25px;
-    }
-    
-    #registration_fonctionClub input
-    {
-        margin-left: 40px;
-    }
-    
     .connectField, .forgottenMDP div
     {
         flex-direction: column;
@@ -2521,25 +2582,9 @@ td
         flex-direction: column;
     }
     
-    .editInfosUser label, .editInfosUser input, #user_infos_form_fonctionClub
+    .editInfosUser label, .editInfosUser input
     {
         width: 100% !important;
-    }
-    
-    #user_infos_form_fonctionClub
-    {
-        height: 322px;
-    }
-    
-    #user_infos_form_fonctionClub label
-    {
-        position: relative;
-        top: -25px;
-    }
-    
-    #user_infos_form_fonctionClub input
-    {
-        margin-left: 40px;
     }
     
     .editMDP div, .editPhoto div
@@ -2614,7 +2659,6 @@ td
     
     #article_category
     {
-        height: 150px;
         width: 100% !important;
     }
     
@@ -2692,11 +2736,6 @@ td
         width: 100% !important;
     }
     
-    #user_role_roles
-    {
-        height: 150px;
-    }
-    
     #user_role_roles label
     {
         position: relative;
@@ -2711,6 +2750,22 @@ td
     .blocEditUser .actionProfil
     {
         width: 80%;
+    }
+    
+    #user_infos_modif_fonctionClub
+    {
+        width: 100% !important;
+    }
+    
+    #user_infos_modif_fonctionClub label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #user_infos_modif_fonctionClub input
+    {
+        margin-left: 40px;
     }
     
                                             /* Gestion TRAININGS */
@@ -2878,6 +2933,45 @@ td
     {
         width: 90%;
     }
+    
+    #equipe_users
+    {
+        width: 100% !important;
+    }
+    
+    #equipe_users label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #equipe_users input
+    {
+        margin-left: 40px;
+    }
+    
+    .bloc-coach
+    {
+        flex-direction: column;
+        text-align: center;
+        width: 90%;
+    }
+    
+    .bloc-coach .profilPictureVide
+    {
+        margin-top: -20px;
+    }
+    
+    .bloc-coach .profilPictureVide em, .bloc-coach .profilPicture img
+    {
+        margin-left: 0;
+    }
+    
+    .blocInfosEquipes h2
+    {
+        width: 90%;
+    }
+    
     
     
                                             /* Footer, cookies & Mentions légales */

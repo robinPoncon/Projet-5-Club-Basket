@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\FonctionClub;
-use App\Entity\Photo;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -39,7 +38,7 @@ class UserInfosFormType extends AbstractType
                     "placeholder" => "Votre nom",
                     "class" => "form-control input"
                 ],
-                "required" => false
+                "required" => true
             ])
             ->add('prenom', TextType::class, [
                 "label" => "Prénom",
@@ -50,7 +49,7 @@ class UserInfosFormType extends AbstractType
                     "placeholder" => "Votre prénom",
                     "class" => "form-control input"
                 ],
-                "required" => false
+                "required" => true
             ])
             ->add('email', EmailType::class, [
                 "label" => "Email",
@@ -69,20 +68,6 @@ class UserInfosFormType extends AbstractType
                 ],
                 "attr" => [
                     "placeholder" => "06-35-76-54-53",
-                    "class" => "form-control input"
-                ],
-                "required" => false
-            ])
-            ->add('fonctionClub', EntityType::class, [
-                "class" => FonctionClub::class,
-                "choice_label" => "name",
-                "expanded" => true,
-                "multiple" => true,
-                "label" => "Fonction dans le club",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
                     "class" => "form-control input"
                 ],
                 "required" => false

@@ -57,7 +57,7 @@
         <div class="d-flex flex-column actionProfil">
             <a class="modifInfosProfil" href="{{ path("modifierInfosUtilisateur", {"slug": user.slug}) }}">
                 Modifier les infos de l'utilisateur</a>
-            <a href="{{ path("modifierUtilisateur", {"slug": user.slug}) }}">Modifier le rôle de l'utilisateur</a>
+            <a href="{{ path("modifierRoleUtilisateur", {"slug": user.slug}) }}">Modifier le rôle de l'utilisateur</a>
             {% if photoUser.imageName is defined and photoUser.imageName is not null %}
                 <a class="modifPhotoProfil" href="{{ path("modifierPhotoProfilUser", {"slug": user.slug}) }}">
                     Modifier la photo de l'utilisateur</a>

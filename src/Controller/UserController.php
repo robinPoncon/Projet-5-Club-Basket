@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\PhotoUser;
 use App\Entity\User;
 use App\Form\PhotoUserType;
-use App\Form\UserInfosFormType;
+use App\Form\UserInfosModifType;
 use App\Form\UserRoleType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -138,7 +138,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("admin/utilisateurs/modifier/{slug}", name="modifierUtilisateur")
+     * @Route("admin/utilisateurs/modifier/{slug}", name="modifierRoleUtilisateur")
      */
     public function modifRoleUser(User $user, Request $request, EntityManagerInterface $manager)
     {
@@ -167,7 +167,7 @@ class UserController extends AbstractController
      */
     public function modifInfosUser(User $user, Request $request, EntityManagerInterface $manager)
     {
-        $form = $this->createForm(UserInfosFormType::class, $user);
+        $form = $this->createForm(UserInfosModifType::class, $user);
 
         $form->handleRequest($request);
 

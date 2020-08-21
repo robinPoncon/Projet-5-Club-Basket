@@ -54,19 +54,55 @@
             </div>
         </div>
     </div>
-    <div class="bloc-training">
-        <h2> ENTRAÎNEMENTS </h2>
-        {% if equipe.convocations|length != 0 %}
-        {% for convocation in equipe.convocations %}
-            <p> Adresse : <span>{{ convocation.address }}</span></p>
-
-            <p> Jour et horaire : <span> le {{ convocation.day }} à {{ convocation.horaire | date("H:i") }}</span></p>
-        {% endfor %}
-        {% else %}
-            <p> Il n'y a pas encore d'entraînements de programmé pour cette équipe.</p>
+    <div class="blocInfosEquipes">
+        {% if equipe.users|length != 0 %}
+            <h2> ENTRAÎNEUR(S) </h2>
+            <div class="d-flex justify-content-around bloc-coach">
+                {% for user in equipe.users %}
+                    <div class="d-flex flex-column bloc-equipe">
+                        {% if user.photoUser.imageName is defined and user.photoUser.imageName is not null %}
+                            <div class="profilPicture">
+                                <p>
+                                    <img src="{{ vich_uploader_asset(user.photoUser, "imageFile") |
+                                    imagine_filter("equipeModif") }}" alt="photo de profil utilisateur">
+                                </p>
+                            </div>
+                        {% else %}
+                            <div class="profilPictureVide">
+                                <p>
+                                    <em class="fas fa-portrait"></em>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <div class="profil">
+                            <p> NOM : <span>{{ user.nom | capitalize }}</span></p>
+                            <p> PRÉNOM : <span>{{ user.prenom | capitalize }}</span></p>
+                            {% if user.telephone %}
+                                <p> TÉLÉPHONE : <span>{{ user.telephone }}</span></p>
+                            {% else %}
+                                <p> TÉLÉPHONE : <span>Non renseigné</span></p>
+                            {% endif %}
+                            <p> EMAIL : <span>{{ user.email }}</span></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
-        <div></div>
+        <div class="bloc-training">
+            <h2> ENTRAÎNEMENTS </h2>
+            {% if equipe.convocations|length != 0 %}
+                {% for convocation in equipe.convocations %}
+                    <p> Adresse : <span>{{ convocation.address }}</span></p>
+
+                    <p> Jour et horaire : <span> le {{ convocation.day }} à {{ convocation.horaire | date("H:i") }}</span></p>
+                {% endfor %}
+            {% else %}
+                <p> Il n'y a pas encore d'entraînements de programmé pour cette équipe.</p>
+            {% endif %}
+            <div></div>
+        </div>
     </div>
+
 
     {% if equipe.widgetId != "" %}
         <iframe class="bloc-score" id="{{ equipe.widgetId }}" height="500"

@@ -19,6 +19,15 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findByFonctionClub($fonctionClub)
+    {
+        return $this->createQueryBuilder("e")
+            ->where(':fonctionClub MEMBER OF e.fonctionClub')
+            ->setParameters(array('fonctionClub' => $fonctionClub))
+        ;
+
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
