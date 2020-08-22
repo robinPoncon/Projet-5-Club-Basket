@@ -16,7 +16,9 @@
             <select name="listCategory" id="selectPost">
                 <option value="all">Tous les articles</option>
                 {% for category in categorys %}
+                    {% if category.title != "Club" %}
                     <option value="{{ category.id }}">{{ category.title }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
         </div>
@@ -29,6 +31,7 @@
     </div>
     <div id="blocPostAll">
         {% for article in articles %}
+
             <div class="d-flex justify-content-around divPost">
                 <div class="divTitle">
                     <a class="postLink" href="{{ path("show-article", {"slug": article.slug}) }}">
@@ -58,6 +61,7 @@
                     </div>
                 </div>
             </div>
+
         {% endfor %}
     </div>
 

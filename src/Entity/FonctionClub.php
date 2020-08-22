@@ -25,7 +25,7 @@ class FonctionClub
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="fonctionsClub")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="fonctionClub")
      */
     private $users;
 

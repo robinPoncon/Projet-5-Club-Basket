@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Inscription;
+use App\Form\ArticleClubType;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Form\InscriptionType;
@@ -63,9 +64,9 @@ class BlogController extends AbstractController
      */
     public function club(ArticleRepository $articleRepo){
 
-        $article = $articleRepo->findOneBy([], ["createdAt" => "DESC"]);
+        $articles = $articleRepo->findByCategory(3);
         return $this->render("blog/club/vie-club.html.twig", [
-            "article" => $article
+            "articles" => $articles
         ]);
     }
 
@@ -74,7 +75,7 @@ class BlogController extends AbstractController
      */
     public function clubInscription(ArticleRepository $articleRepo, Request $request, InscriptionNotification $notification){
 
-        $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
+        $articles = $articleRepo->findByCategory(4);
 
         $inscription = new Inscription();
         $form = $this->createForm(InscriptionType::class, $inscription);
@@ -99,7 +100,8 @@ class BlogController extends AbstractController
     public function showAll(ArticleRepository $articleRepo, CategoryRepository $categoryRepo)
     {
         $categorys = $categoryRepo->findAll();
-        $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
+        $articles = $articleRepo->findByCategory(1, 2);
+        dump($articles);
         return $this->render('security/editor/compte-articles.html.twig', [
             "articles" => $articles,
             "categorys" => $categorys
@@ -233,6 +235,42 @@ class BlogController extends AbstractController
 
         return $this->render("blog/article/edit.html.twig", [
             "formArticle" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("editor/articles/club/modifier/{slug}", name="modifierArticleClub")
+     */
+    public function editPostClub(Article $article, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(ArticleClubType::class, $article);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($article);
+            $manager->flush();
+
+            $this->addFlash("success", "L'article a bien été modifié !");
+
+            dump($article->getCategory());
+            $categorys = $article->getCategory();
+            foreach($categorys as $key => $category) {
+                if($category->getTitle() === "Club")
+                {
+                    return $this->redirectToRoute("club");
+                }
+                else if($category->getTitle() === "Inscription")
+                {
+                    return $this->redirectToRoute("clubInscription");
+                }
+            }
+        }
+
+        return $this->render("blog/club/editClub.html.twig", [
+            "formArticle" => $form->createView(),
+            "article" => $article
         ]);
     }
 

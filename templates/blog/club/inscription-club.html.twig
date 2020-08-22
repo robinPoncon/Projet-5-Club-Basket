@@ -5,6 +5,15 @@
 {% block body %}
     <h1> Inscription au club ou renouvellement d'une licence </h1>
     <h2> Explication inscription</h2>
+    {% for article in articles %}
+        <div class="postClub">
+            <h3><em class="fas fa-basketball-ball"></em>{{ article.title }}</h3>
+            <div>
+                {{ article.content | raw}}
+            </div>
+            <a href="{{ path("modifierArticleClub", {"slug": article.slug}) }}">Modifier</a>
+        </div>
+    {% endfor %}
     <div class="d-flex justify-content-center position-relative addInscription">
         <h2>Pour s'inscrire ou renouveller sa licence : </h2>
         <button class="buttonInscription">Cliquer ici</button>

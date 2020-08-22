@@ -25,7 +25,6 @@ class UserRepository extends ServiceEntityRepository
             ->where(':fonctionClub MEMBER OF e.fonctionClub')
             ->setParameters(array('fonctionClub' => $fonctionClub))
         ;
-
     }
 
     // /**
