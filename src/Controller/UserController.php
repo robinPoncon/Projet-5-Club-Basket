@@ -188,7 +188,6 @@ class UserController extends AbstractController
     }
 
 
-
     /**
      * @Route("admin/utilisateurs/supprimer/{id}", name="supprimerUtilisateur")
      */

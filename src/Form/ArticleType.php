@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -45,6 +46,10 @@ class ArticleType extends AbstractType
                 "choice_label" => "title",
                 "multiple" => true,
                 "expanded" => true,
+                'query_builder' => function(CategoryRepository $categoryRepo)
+                {
+                    return $categoryRepo->findByTitle("News","Tournois");
+                },
                 "label" => "Choisir une(des) catégorie(s)",
                 "label_attr" => [
                     "class" => "form-control label",

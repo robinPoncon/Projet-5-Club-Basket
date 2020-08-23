@@ -63,11 +63,17 @@ class Article
      * @ORM\Column(type="boolean")
      */
     private $prioritaire;
+
+    /**
+     * @ORM\OneToMany(targetEntity=PhotoArticle::class, mappedBy="article")
+     */
+    private $photoArticles;
     
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->category = new ArrayCollection();
+        $this->photoArticles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +193,37 @@ class Article
     public function setPrioritaire(?bool $prioritaire): self
     {
         $this->prioritaire = $prioritaire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PhotoArticle[]
+     */
+    public function getPhotoArticles(): Collection
+    {
+        return $this->photoArticles;
+    }
+
+    public function addPhotoArticle(PhotoArticle $photoArticle): self
+    {
+        if (!$this->photoArticles->contains($photoArticle)) {
+            $this->photoArticles[] = $photoArticle;
+            $photoArticle->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhotoArticle(PhotoArticle $photoArticle): self
+    {
+        if ($this->photoArticles->contains($photoArticle)) {
+            $this->photoArticles->removeElement($photoArticle);
+            // set the owning side to null (unless already changed)
+            if ($photoArticle->getArticle() === $this) {
+                $photoArticle->setArticle(null);
+            }
+        }
 
         return $this;
     }

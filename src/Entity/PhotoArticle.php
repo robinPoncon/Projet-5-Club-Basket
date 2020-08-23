@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\PhotoEquipeRepository;
+use App\Repository\PhotoArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -10,10 +10,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=PhotoEquipeRepository::class)
+ * @ORM\Entity(repositoryClass=PhotoArticlePhpRepository::class)
  * @Vich\Uploadable()
  */
-class PhotoEquipe
+class PhotoArticle
 {
     /**
      * @ORM\Id()
@@ -29,7 +29,7 @@ class PhotoEquipe
      *     mimeTypes = {"image/jpg", "image/png", "image/jpeg"},
      *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG ou JPEG."
      * )
-     * @Vich\UploadableField(mapping="equipe_upload", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="article_upload", fileNameProperty="imageName")
      * @var File|null
      */
     private $imageFile;
@@ -45,14 +45,14 @@ class PhotoEquipe
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Equipe::class, inversedBy="photoEquipes")
-     */
-    private $equipe;
-
-    /**
      * @ORM\Column(type="boolean", options={"default":false})
      */
     private $important;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="photoArticles")
+     */
+    private $article;
 
     public function getId(): ?int
     {
@@ -81,9 +81,9 @@ class PhotoEquipe
 
     /**
      * @param File|null $imageFile
-     * @return PhotoEquipe
+     * @return PhotoArticle
      */
-    public function setImageFile(?File $imageFile): PhotoEquipe
+    public function setImageFile(?File $imageFile): PhotoArticle
     {
         $this->imageFile = $imageFile;
         if ($this->imageFile instanceof UploadedFile)
@@ -105,18 +105,6 @@ class PhotoEquipe
         return $this;
     }
 
-    public function getEquipe(): ?Equipe
-    {
-        return $this->equipe;
-    }
-
-    public function setEquipe(?Equipe $equipe): self
-    {
-        $this->equipe = $equipe;
-
-        return $this;
-    }
-
     public function getImportant(): ?bool
     {
         return $this->important;
@@ -125,6 +113,18 @@ class PhotoEquipe
     public function setImportant(?bool $important): self
     {
         $this->important = $important;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
 
         return $this;
     }

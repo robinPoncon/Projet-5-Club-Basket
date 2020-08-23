@@ -11,7 +11,9 @@
             <div>
                 {{ article.content | raw}}
             </div>
-            <a href="{{ path("modifierArticleClub", {"slug": article.slug}) }}">Modifier</a>
+            {% if is_granted("ROLE_EDITOR") %}
+                <a href="{{ path("modifierArticleClub", {"slug": article.slug}) }}">Modifier</a>
+            {% endif %}
         </div>
     {% endfor %}
     <h2> Trombinoscope - Membres du bureau </h2>

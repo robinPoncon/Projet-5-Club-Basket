@@ -1161,6 +1161,10 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin: auto;
 }
 
+.editPhoto
+{
+    margin-bottom: 150px;
+}
 
 
 
@@ -1308,7 +1312,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
                                         /* Gestion Articles */
                       
-#cke_article_content, #cke_comment_content
+#cke_article_content, #cke_comment_content, #cke_article_club_content
 {
     margin-bottom: 40px;
     width: 101% !important;
@@ -1510,6 +1514,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: white;
     padding: 20px;
     font-style: italic;
+    width: 100%;
 }
 
 .postCategory
@@ -1817,6 +1822,25 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: white;
 }
 
+.postClub a
+{
+    background-color: #074592;
+    color: white;
+    width: 30%;
+    display: block;
+    padding: 5px;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.postClub a:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
 
                                                     /* Gestion Users */
 
@@ -2103,6 +2127,11 @@ td
         margin-top: -11px;
     }
     
+    .postClub a
+    {
+        width: 50%;
+    }
+    
     #name
     {
         margin-top: 12px;
@@ -2321,6 +2350,11 @@ td
     {
         padding-left: 0;
         padding-right: 0;
+    }
+    
+    .postClub a
+    {
+        width: 80%;
     }
     
     #bloc-team

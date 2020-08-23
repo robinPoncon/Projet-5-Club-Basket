@@ -216,7 +216,8 @@ class BlogController extends AbstractController
     /**
      * @Route("editor/articles/modifier/{slug}", name="modifierArticle")
      */
-    public function editPost(Article $article, Request $request, EntityManagerInterface $manager)
+    public function editPost(Article $article, Request $request, EntityManagerInterface $manager,
+                             ArticleRepository $articleRepo)
     {
         $form = $this->createForm(ArticleType::class, $article);
 
@@ -224,6 +225,16 @@ class BlogController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            if($article->getPrioritaire())
+            {
+                $articles = $articleRepo->findAll();
+                foreach($articles as $autreArticle)
+                {
+                    $autreArticle->setPrioritaire(0);
+                    $article->setPrioritaire(1);
+                    $manager->persist($autreArticle);
+                }
+            }
             $manager->persist($article);
             $manager->flush();
 

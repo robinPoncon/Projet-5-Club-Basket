@@ -181,7 +181,18 @@ class CompteController extends AbstractController
         return $this->render("security/profil/editMDP-user.html.twig", [
             "formMDPUser" => $form->createView()
         ]);
+    }
 
+    /**
+     * @Route("profil/supprimer/{id}", name="supprimerCompte")
+     */
+    public function deleteUser(User $user, Request $request, EntityManagerInterface $manager)
+    {
+        $manager->remove($user);
+        $manager->flush();
 
+        $this->container->get('security.token_storage')->setToken(null);
+        $this->addFlash("success", "L'utilisateur a bien été supprimé !");
+        return $this->redirectToRoute("home");
     }
 }
