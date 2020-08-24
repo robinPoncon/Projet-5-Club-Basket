@@ -28,6 +28,7 @@
                     Mettre une photo en avant </a>
             {% endif %}
         {% endif %}
+
         <button class="afficherPhotoEquipe">Afficher les autres photos de l'équipe</button>
         <div class="blocAutrePhoto">
             <div class="chevron-gauche">
@@ -54,6 +55,7 @@
             </div>
         </div>
     </div>
+
     <div class="blocInfosEquipes">
         {% if equipe.users|length != 0 %}
             <h2> ENTRAÎNEUR(S) </h2>
@@ -88,6 +90,7 @@
                 {% endfor %}
             </div>
         {% endif %}
+
         <div class="bloc-training">
             <h2> ENTRAÎNEMENTS </h2>
             {% if equipe.convocations|length != 0 %}
@@ -113,7 +116,6 @@
 
 {% block javascripts %}
     <script>
-        console.log({{ photoEquipes|length }});
         let diaporama = new Diaporama(0, "#diapo-", {{ photoEquipes|length }}, 1,
             ".play", ".pause", false, ".chevron-gauche", ".chevron-droit");
         diaporama.ajouterDiaporama();

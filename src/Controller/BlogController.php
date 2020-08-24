@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Inscription;
+use App\Entity\PhotoArticle;
 use App\Form\ArticleClubType;
 use App\Form\ArticleType;
 use App\Form\CommentType;
@@ -13,6 +14,7 @@ use App\Notification\InscriptionNotification;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
+use App\Repository\PhotoArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,6 +35,7 @@ class BlogController extends AbstractController
     public function home(Request $request, PaginatorInterface $paginator, ArticleRepository $articleRepo)
     {
         $articlePrio = $articleRepo->findOneBy(["prioritaire" => 1], ["createdAt" => "DESC"]);
+        $photoImportantePrios = $articlePrio->getPhotoArticles();
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy(["prioritaire" => 0],[
             'createdAt' => 'desc',
         ]);
@@ -44,7 +47,8 @@ class BlogController extends AbstractController
         //$articles = $articleRepo->findAll();
         return $this->render("blog/home.html.twig", [
             "articles" => $articles,
-            "articlePrio" => $articlePrio
+            "articlePrio" => $articlePrio,
+            "photoImportantePrios" => $photoImportantePrios
         ]);
     }
 
@@ -111,9 +115,12 @@ class BlogController extends AbstractController
     /**
      * @Route("articles/{slug}", name="show-article")
      */
-    public function showOne(Article $article, Request $request, EntityManagerInterface $manager)
+    public function showOne(Article $article, Request $request, EntityManagerInterface $manager,
+                            PhotoArticleRepository $photoArticleRepo)
     {
         $commentaire = new Comment();
+        $photoArticles = $photoArticleRepo->findBy(["important" => 0, "article" => $article->getId()]);
+        $photoImportante = $photoArticleRepo->findOneBy(["important" => 1, "article" => $article->getId()]);
 
         $form = $this->createForm(CommentType::class, $commentaire);
         $form->handleRequest($request);
@@ -133,6 +140,8 @@ class BlogController extends AbstractController
         return $this->render("blog/article/show.html.twig", [
             'article' => $article,
             "formComment" => $form->createView(),
+            "photoImportante" => $photoImportante,
+            "photoArticles" => $photoArticles
         ]);
     }
 
@@ -199,6 +208,31 @@ class BlogController extends AbstractController
         {
             $article->setCreatedAt(new \DateTime());
 
+            $photoArticles = $article->getPhotoArticles();
+            foreach($photoArticles as $key => $photoArticle)
+            {
+                $photoArticle->setArticle($article);
+                if($photoArticle->getImportant() == NULL)
+                {
+                    $photoArticle->setImportant(0);
+                }
+                $photoArticles->set($key,$photoArticle);
+                $manager->persist($photoArticle);
+
+                $img_nom = $photoArticle->getImageName();
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/article/" . $img_nom);
+                    imagejpeg($img, "pictures/article/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/article/" . $img_nom);
+                    imagepng($img, "pictures/article/" . $img_nom, 5);
+                }
+            }
+
             $manager->persist($article);
             $manager->flush();
 
@@ -219,6 +253,8 @@ class BlogController extends AbstractController
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager,
                              ArticleRepository $articleRepo)
     {
+        $allPhotoArticles = $article->getPhotoArticles();
+
         $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request);
@@ -235,6 +271,32 @@ class BlogController extends AbstractController
                     $manager->persist($autreArticle);
                 }
             }
+
+            $photoArticles = $article->getPhotoArticles();
+            foreach($photoArticles as $key => $photoArticle)
+            {
+                $photoArticle->setArticle($article);
+                if($photoArticle->getImportant() == NULL)
+                {
+                    $photoArticle->setImportant(0);
+                }
+                $photoArticles->set($key,$photoArticle);
+                $manager->persist($photoArticle);
+
+                $img_nom = $photoArticle->getImageName();
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/article/" . $img_nom);
+                    imagejpeg($img, "pictures/article/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/article/" . $img_nom);
+                    imagepng($img, "pictures/article/" . $img_nom, 5);
+                }
+            }
+
             $manager->persist($article);
             $manager->flush();
 
@@ -245,7 +307,45 @@ class BlogController extends AbstractController
         }
 
         return $this->render("blog/article/edit.html.twig", [
-            "formArticle" => $form->createView()
+            "formArticle" => $form->createView(),
+            "photoArticles" => $allPhotoArticles
+        ]);
+    }
+
+    /**
+     * @Route("editor/articles/mettreEnAvant/photo/{id}", name="mettreEnAvantPhotoArticle")
+     */
+    public function mettreEnAvantPhotoArticle(PhotoArticle $photoArticle, Request $request, EntityManagerInterface $manager)
+    {
+        $article = $photoArticle->getArticle();
+        $photoArticles = $article->getPhotoArticles();
+        foreach($photoArticles as $photoPasImportante)
+        {
+            $photoPasImportante->setImportant(0);
+            $manager->persist($photoPasImportante);
+        }
+        $photoArticle->setImportant(1);
+        $manager->persist($photoArticle);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été mise en avant !");
+        return $this->redirectToRoute("modifierArticle", [
+            "slug" => $article->getSlug()
+        ]);
+    }
+
+    /**
+     * @Route("editor/articles/supprimer/photo/{id}", name="supprimerPhotoArticle")
+     */
+    public function deletePhotoArticle(PhotoArticle $photoArticle, Request $request, EntityManagerInterface $manager)
+    {
+        $article = $photoArticle->getArticle();
+        $manager->remove($photoArticle);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été supprimée !");
+        return $this->redirectToRoute("modifierArticle", [
+            "slug" => $article->getSlug()
         ]);
     }
 

@@ -72,6 +72,14 @@ class ArticleType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
+            ->add('photoArticles', CollectionType::class, [
+                'entry_type' => PhotoArticleType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                "label" => " ",
+                "required" => false
+            ])
         ;
     }
 

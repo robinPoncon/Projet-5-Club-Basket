@@ -17,8 +17,58 @@
                 <span>{{ categoryTest.title }}</span>
             {% endfor %}
         </p>
-        <div class="postContent">{{ article.content | raw }}</div>
+        <div class="d-flex flex-column justify-content-center postContent">
+            {% if photoImportante.imageName is defined and photoImportante.imageName is not null %}
+                <div class="aggrandirImage">
+                    <img class="imageImportant" src="{{ asset(vich_uploader_asset(photoImportante, "imageFile") |
+                        imagine_filter("equipeAffichage")) }}" alt="photo principale de l'article">
+                </div>
+            {% else %}
+                {% if is_granted("ROLE_EDITOR") %}
+                    <a class="photoEnAvant" href="{{ path("modifierArticle", {"slug": article.slug}) }}">
+                        Mettre une photo en avant</a>
+                {% endif %}
+            {% endif %}
+            {{ article.content | raw }}
+        </div>
     </div>
+
+    <button class="afficherPhotoArticle">Afficher les autres photos de l'article</button>
+    <div class="blocAutrePhotoArticle">
+        {% if photoArticles|length > 0 %}
+            <div class="chevron-gauche">
+                <p class="cercle"></p>
+                <p class="chevronG-part1"></p>
+                <p class="chevronG-part2"></p>
+            </div>
+            <div class="chevron-droit">
+                <p class="cercle"></p>
+                <p class="chevronD-part1"></p>
+                <p class="chevronD-part2"></p>
+            </div>
+            <div class="diaporama"></div>
+            <div class="play">
+                <p class="cercle"></p>
+                <p class="chevronPlay-part1"></p>
+                <p class="chevronPlay-part2"></p>
+                <p class="chevronPlay-part3"></p>
+            </div>
+            <div class="pause">
+                <p class="cercle"></p>
+                <p class="chevronPause-part1"></p>
+                <p class="chevronPause-part2"></p>
+            </div>
+
+        {% else %}
+            <div class="addPhotoArticle">
+                <p>Il n'y a pas d'autres photos pour cet article</p>
+                {% if is_granted("ROLE_EDITOR") %}
+                    <a href="{{ path("modifierArticle", {"slug": article.slug}) }}">Ajouter des photos</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
 
 
     <div class="d-flex addCommentPost">
@@ -76,4 +126,24 @@
             {% endif %}
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let diaporama = new Diaporama(0, "#diapo-", {{ photoArticles|length }}, 1,
+            ".play", ".pause", false, ".chevron-gauche", ".chevron-droit");
+        diaporama.ajouterDiaporama();
+        let i = 0;
+        {% for photoArticle in photoArticles %}
+        i++;
+        let slide{{ photoArticle.id }} = new Slide($("<img>"), ".diaporama", "diapo-" + i, "diapos",
+            "{{ asset(vich_uploader_asset(photoArticle, "imageFile") | imagine_filter("equipeAffichage")) }}",
+            "autre photo de l'article", 600, 450);
+        slide{{ photoArticle.id }}.ajouterSlide();
+        {% endfor %}
+        diaporama.affichageHoraire();
+        diaporama.playInterval(diaporama.affichageHoraire, 5000);
+
+    </script>
+
 {% endblock %}

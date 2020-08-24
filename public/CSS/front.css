@@ -908,7 +908,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border-radius: 5px;
 }
 
-.blocAutrePhoto
+.blocAutrePhoto, .blocAutrePhotoArticle
 {
     position: relative;
     display: none;
@@ -1485,6 +1485,12 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-right: 20px;
 }
 
+
+
+
+
+
+
                                     /* Gestion Article FRONT */
 
 .addComment
@@ -1537,7 +1543,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .addCommentPost
 {
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .addCommentPost h2
@@ -1652,6 +1658,88 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: white;
 }
 
+#article_photoArticles
+{
+    display: none;
+}
+
+.postContent .imageImportant
+{
+    cursor: auto;
+    width: 800px !important;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.postContent .aggrandirImage
+{
+    text-align: center;
+}
+
+.postContent .photoEnAvant
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.postContent .photoEnAvant:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
+.afficherPhotoArticle
+{
+    background-color: #074592;
+    color: white;
+    width: 40%;
+    border: 1px #074592 solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 200px;
+    display: block;
+}
+
+.afficherPhotoArticle:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.blocAutrePhotoArticle .diaporama
+{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.addPhotoArticle
+{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: -400px;
+}
+
+.addPhotoArticle a
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.addPhotoArticle a:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
 
 
                                         /* Accueil & Tournois */
@@ -1690,6 +1778,22 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     overflow: auto;
 }
 
+.postNews .imageImportant
+{
+    width: 200px !important;
+    height: 200px !important;
+    margin-top: -9px;
+    border-right: 5px #074592 solid !important;
+    border: 0;
+    box-shadow: 0 0 0 !important;
+    border-radius: 0;
+}
+
+.postNews .blocContentPrio
+{
+    margin: auto;
+}
+
 .postNews h3, .postTournois h3, .postClub h3
 {
     background-color: #074592;
@@ -1705,11 +1809,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .postNews h3 a:hover, .postTournois h3 a:hover, .postClub h3 a:hover
 {
     color: #ef8108;
-}
-
-.postNews div, .postTournois div, .postClub div
-{
-    padding: 20px;
 }
 
 .fas.fa-basketball-ball
@@ -1966,7 +2065,7 @@ td
     height: 150px;
     color: white;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 150px;
     display: flex;
     justify-content: space-around;
 }
@@ -2159,7 +2258,7 @@ td
         width: 33%;
     }
     
-                                            /* Page équipe */
+                                            /* Page équipe et article */
     
     .diapos
     {
@@ -2196,6 +2295,27 @@ td
     .imageAggrandit
     {
         width: 750px !important;
+    }
+    
+    .postContent .imageImportant
+    {
+        width: 600px !important;
+    }
+    
+    .blocAutrePhotoArticle
+    {
+        margin-bottom: 330px;
+    }
+    
+    .blocAutrePhotoArticle .play, .blocAutrePhotoArticle .pause, .blocAutrePhotoArticle .chevron-gauche,
+    .blocAutrePhotoArticle .chevron-droit
+    {
+        top: 70px;
+    }
+    
+    .addPhotoArticle
+    {
+        margin-bottom: -250px;
     }
 }
 
@@ -2707,6 +2827,11 @@ td
         margin-left: 40px;
     }
     
+    .afficherPhotoArticle
+    {
+        width: 80%;
+    }
+    
                                             /* Gestion EQUIPES */
     
     #addTeam, .bigBlocTeam, .addTeamForm div, .editTeamForm div
@@ -3005,6 +3130,38 @@ td
     {
         width: 90%;
     }
+    
+                                            /* PAGE ARTICLE */
+    
+    .postContent .imageImportant
+    {
+        width: 240px !important;
+        height: 170px !important;
+    }
+    
+    .blocAutrePhotoArticle
+    {
+        margin-bottom: 250px;
+    }
+    
+    .blocAutrePhotoArticle .play, .blocAutrePhotoArticle .pause, .blocAutrePhotoArticle .chevron-gauche,
+    .blocAutrePhotoArticle .chevron-droit
+    {
+        top: 60px;
+    }
+    
+    .addPhotoArticle
+    {
+        margin-bottom: -200px;
+    }
+    
+    .addPhotoArticle p
+    {
+        padding: 5px;
+    }
+    
+    
+    
     
     
     

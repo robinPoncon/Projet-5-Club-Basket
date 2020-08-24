@@ -396,8 +396,8 @@ function reduireImage(id)
 
 // Afficher les images
 
-    $(".afficherPhotoEquipe").click(function(){
-        //console.log($(this).val());
+    $(".afficherPhotoEquipe").click(function()
+    {
         if($(this).html() === "Afficher les autres photos de l'équipe")
         {
             $(this).text("Cacher les autres photos");
@@ -408,6 +408,20 @@ function reduireImage(id)
         }
 
         $(".blocAutrePhoto").toggle();
+    });
+
+    $(".afficherPhotoArticle").click(function()
+    {
+        if($(this).html() === "Afficher les autres photos de l'article")
+        {
+            $(this).text("Cacher les autres photos");
+        }
+        else
+        {
+            $(this).text("Afficher les autres photos de l'article");
+        }
+
+        $(".blocAutrePhotoArticle").toggle();
     });
 
     // Reduction opacité image avec bouton play et pause

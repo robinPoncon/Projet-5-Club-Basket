@@ -65,7 +65,7 @@ class Article
     private $prioritaire;
 
     /**
-     * @ORM\OneToMany(targetEntity=PhotoArticle::class, mappedBy="article")
+     * @ORM\OneToMany(targetEntity=PhotoArticle::class, mappedBy="article", cascade={"persist", "remove"})
      */
     private $photoArticles;
     

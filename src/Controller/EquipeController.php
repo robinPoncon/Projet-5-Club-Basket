@@ -98,7 +98,7 @@ class EquipeController extends AbstractController
      */
     public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager, UserRepository $userRepo)
     {
-        $photoEquipe = $equipe->getPhotoEquipes();
+        $allPhotoEquipes = $equipe->getPhotoEquipes();
 
         $form = $this->createForm(EquipeType::class, $equipe);
 
@@ -141,7 +141,7 @@ class EquipeController extends AbstractController
 
         return $this->render("equipe/edit.html.twig", [
             "equipe" => $equipe,
-            "photoEquipes" => $photoEquipe,
+            "photoEquipes" => $allPhotoEquipes,
             "formEquipe" => $form->createView()
         ]);
     }

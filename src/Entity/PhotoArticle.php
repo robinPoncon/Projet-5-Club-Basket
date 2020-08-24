@@ -10,7 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=PhotoArticlePhpRepository::class)
+ * @ORM\Entity(repositoryClass=PhotoArticleRepository::class)
  * @Vich\Uploadable()
  */
 class PhotoArticle
