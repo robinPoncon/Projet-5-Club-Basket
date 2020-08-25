@@ -1778,7 +1778,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     overflow: auto;
 }
 
-.postNews .imageImportant
+.postNews .imageImportant, .news .imageImportant, .postTournois .imageImportant
 {
     width: 200px !important;
     height: 200px !important;
@@ -1787,11 +1787,13 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border: 0;
     box-shadow: 0 0 0 !important;
     border-radius: 0;
+    cursor: auto;
 }
 
-.postNews .blocContentPrio
+.postNews .blocContentPrio, .postTournois .blocContentPrio
 {
     margin: auto;
+    padding: 10px;
 }
 
 .postNews h3, .postTournois h3, .postClub h3
@@ -1885,6 +1887,123 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     text-align: center;
 }
+
+                                    /* Diaporama Home */
+
+
+.blocDiapo {
+    margin: 0 auto;
+    width: 250px !important;
+    height: 200px;
+    position: relative;
+    perspective: 1000px;
+    margin-top: 50px;
+    margin-bottom: 120px;
+    left: 15px;
+}
+
+.blocDiapo .chevron-gauche, .blocDiapo .chevron-droit
+{
+    top: 74px;
+}
+
+.blocDiapo .chevron-gauche
+{
+    margin-left: -430px;
+}
+
+.carousel {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    left: -18px;
+    top: 100px;
+}
+
+.item {
+    display: block;
+    position: absolute;
+    width: 250px;
+    height: 200px;
+    text-align: center;
+    opacity: 0.95;
+    border-radius: 10px;
+}
+
+.item img
+{
+    width: 250px;
+    height: 150px;
+}
+
+.carousel .item:nth-child(1)
+{
+    transform: rotateY(0deg) translateZ(250px);
+}
+
+.carousel .item:nth-child(2)
+{
+    transform: rotateY(60deg) translateZ(250px);
+}
+
+.carousel .item:nth-child(3)
+{
+    transform: rotateY(120deg) translateZ(250px);
+}
+
+.carousel .item:nth-child(4)
+{
+    transform: rotateY(180deg) translateZ(250px);
+}
+
+.carousel .item:nth-child(5)
+{
+    transform: rotateY(240deg) translateZ(250px);
+}
+
+.carousel .item:nth-child(6)
+{
+    transform: rotateY(300deg) translateZ(250px);
+}
+
+.addDiapoForm
+{
+    position: relative;
+}
+
+.blocDiapo a, .modifierDiapo
+{
+    margin-top: 60px;
+    background-color: #074592;
+    color: white;
+    display: block;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    left: -22px;
+}
+
+.modifierDiapo
+{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.blocDiapo a:hover, .modifierDiapo:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
+#diaporama_photoDiapos
+{
+    display: none;
+}
+
 
 
 
@@ -2316,6 +2435,22 @@ td
     .addPhotoArticle
     {
         margin-bottom: -250px;
+    }
+    
+    .postNews .aggrandirImage
+    {
+        margin: auto;
+    }
+    
+    .blocNews
+    {
+        flex-direction: column;
+    }
+    
+    .postNews .imageImportant
+    {
+        border: 5px #074592 solid;
+        margin-top: -12px;
     }
 }
 

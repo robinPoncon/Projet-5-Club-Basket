@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Gestion photos diaporama {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+    <h1>Gestion des photos du diaporama de l'accueil </h1>
+
+    <div class="addDiapoForm">
+        {{ form_start(formDiapo) }}
+
+        <div class="d-flex justify-content-center blocPhotoEdit">
+            {% for photoDiapo in photoDiapos %}
+                <div class="d-flex flex-column divPhoto">
+                    <img src="{{ asset(vich_uploader_asset(photoDiapo, "imageFile") | imagine_filter("equipeModif")) }}"
+                         alt="photo de l'équipe de basket">
+                    <a href="{{ path("supprimerPhotoDiapo", {"id": photoDiapo.id}) }}">Supprimer</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <ul id="photo-fields-list" class="photoDiv"
+            data-prototype="{{ form_widget(formDiapo.photoDiapos.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ formDiapo.photoDiapos|length }}">
+
+        </ul>
+
+        {% if photoDiapos|length < 6 %}
+            <button type="button"
+                    class="add-another-collection-widget"
+                    data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+        {% endif %}
+        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formDiapo) }}
+    </div>
+
+{% endblock %}

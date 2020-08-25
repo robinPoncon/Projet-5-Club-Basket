@@ -4,16 +4,20 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\Diaporama;
 use App\Entity\Inscription;
 use App\Entity\PhotoArticle;
+use App\Entity\PhotoDiaporama;
 use App\Form\ArticleClubType;
 use App\Form\ArticleType;
 use App\Form\CommentType;
+use App\Form\DiaporamaType;
 use App\Form\InscriptionType;
 use App\Notification\InscriptionNotification;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
+use App\Repository\DiaporamaRepository;
 use App\Repository\PhotoArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,8 +36,10 @@ class BlogController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request, PaginatorInterface $paginator, ArticleRepository $articleRepo)
+    public function home(Request $request, PaginatorInterface $paginator, ArticleRepository $articleRepo,
+                         DiaporamaRepository $diaporamaRepo)
     {
+        $diaporama = $diaporamaRepo->find(2);
         $articlePrio = $articleRepo->findOneBy(["prioritaire" => 1], ["createdAt" => "DESC"]);
         $photoImportantePrios = $articlePrio->getPhotoArticles();
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy(["prioritaire" => 0],[
@@ -48,7 +54,69 @@ class BlogController extends AbstractController
         return $this->render("blog/home.html.twig", [
             "articles" => $articles,
             "articlePrio" => $articlePrio,
-            "photoImportantePrios" => $photoImportantePrios
+            "photoImportantePrios" => $photoImportantePrios,
+            "diaporama" => $diaporama
+        ]);
+    }
+
+    /**
+     * @Route("editor/diaporama/modifier/{id}", name="modifierDiaporama")
+     */
+
+    public function modifierDiaporama(Diaporama $diaporama,Request $request, EntityManagerInterface $manager)
+    {
+        $photoDiapos = $diaporama->getPhotoDiapos();
+
+        $form = $this->createForm(DiaporamaType::class, $diaporama);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            foreach($photoDiapos as $key => $photoDiapo)
+            {
+                $photoDiapo->setDiaporama($diaporama);
+                $manager->persist($photoDiapo);
+
+                $img_nom = $photoDiapo->getImageName();
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/diaporama/" . $img_nom);
+                    imagejpeg($img, "pictures/diaporama/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/diaporama/" . $img_nom);
+                    imagepng($img, "pictures/diaporama/" . $img_nom, 5);
+                }
+            }
+
+            $manager->persist($diaporama);
+            $manager->flush();
+
+            $this->addFlash("success", "Le diaporama a bien été modifié !");
+            return $this->redirectToRoute("home");
+        }
+
+        return $this->render("blog/diaporama.html.twig", [
+            "formDiapo" => $form->createView(),
+            "photoDiapos" => $photoDiapos
+        ]);
+    }
+
+    /**
+     * @Route("editor/diaporama/supprimer/{id}", name="supprimerPhotoDiapo")
+     */
+    public function deletePhotoDiapo(PhotoDiaporama $photoDiapo, Request $request, EntityManagerInterface $manager)
+    {
+        $diaporama = $photoDiapo->getDiaporama();
+        $manager->remove($photoDiapo);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été supprimée !");
+        return $this->redirectToRoute("modifierDiaporama", [
+            "id" => $diaporama->getId()
         ]);
     }
 

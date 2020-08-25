@@ -14,7 +14,10 @@ vich_uploader:
             uri_prefix: pictures/article
             upload_destination: '%kernel.project_dir%/public/pictures/article'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
-
+        diaporama_upload:
+            uri_prefix: pictures/diaporama
+            upload_destination: '%kernel.project_dir%/public/pictures/diaporama'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
     #mappings:
     #    products:
     #        uri_prefix: /images/products

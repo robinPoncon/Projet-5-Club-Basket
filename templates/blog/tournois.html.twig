@@ -13,10 +13,23 @@
                         <h3><em class="fas fa-basketball-ball"></em>
                             <a href="{{ path("show-article", {"slug": article.slug}) }}"> {{ article.title }} -
                                 {{ article.createdAt | date("d/m/Y") }}</a></h3>
-                        <div>
-                            {{ article.content | truncate(400, true, "...") | raw}}
-                            <a href="{{ path("show-article", {"slug": article.slug}) }}">Lire la suite</a>
+                        <div class="d-flex">
+                            {% for photoImportantePrio in article.photoArticles %}
+                                {% if photoImportantePrio.imageName is defined and photoImportantePrio.imageName is not null %}
+                                    {% if photoImportantePrio.important == 1 %}
+                                        <div class="aggrandirImage">
+                                            <img class="imageImportant" src="{{ asset(vich_uploader_asset(photoImportantePrio, "imageFile") |
+                                                imagine_filter("thumb")) }}" alt="photo principale de l'article">
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="blocContentPrio">
+                                {{ article.content | truncate(400, true, "...") | raw}}
+                                <a href="{{ path("show-article", {"slug": article.slug}) }}">Lire la suite</a>
+                            </div>
                         </div>
+
                     </div>
                 {% endif %}
             {% endfor %}

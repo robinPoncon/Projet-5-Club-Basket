@@ -11,13 +11,45 @@
 	{% endfor %}
 
 	<h1> Bienvenue sur le site du club de basket de Meximieux !</h1>
+
+	{% if diaporama.photoDiapos|length == 6 %}
+		<div class="blocDiapo">
+			<div class="carousel">
+				{% for photoDiapo in diaporama.photoDiapos %}
+				<div class="item">
+					<img src="{{ asset(vich_uploader_asset(photoDiapo, "imageFile") | imagine_filter("equipeAffichage")) }}"
+							alt="photo du club de basket">
+				</div>
+				{% endfor %}
+			</div>
+			<div class="chevron-gauche">
+				<p class="cercle"></p>
+				<p class="chevronG-part1"></p>
+				<p class="chevronG-part2"></p>
+			</div>
+			<div class="chevron-droit">
+				<p class="cercle"></p>
+				<p class="chevronD-part1"></p>
+				<p class="chevronD-part2"></p>
+			</div>
+			{% if is_granted("ROLE_EDITOR") %}
+				<a href="{{ path("modifierDiaporama", {"id": diaporama.id}) }}">Modifier le diaporama</a>
+			{% endif %}
+		</div>
+	{% else %}
+		{% if is_granted("ROLE_EDITOR") %}
+			<a class="modifierDiapo" href="{{ path("modifierDiaporama", {"id": diaporama.id}) }}">Modifier le diaporama</a>
+		{% endif %}
+	{% endif %}
+
+
 	<div class="position-relative prioritaire">
 		<h2>Actualité importante</h2>
 		<div class="postNews">
 			<h3><em class="fas fa-basketball-ball"></em>
 				<a href="{{ path("show-article", {"slug": articlePrio.slug}) }}"> {{ articlePrio.title }} -
 					{{ articlePrio.createdAt | date("d/m/Y") }}</a></h3>
-			<div class="d-flex">
+			<div class="d-flex blocNews">
 				{% for photoImportantePrio in photoImportantePrios %}
 					{% if photoImportantePrio.imageName is defined and photoImportantePrio.imageName is not null %}
 						{% if photoImportantePrio.important == 1 %}
@@ -36,6 +68,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="d-flex blocHome">
 		<div class="news">
 			<h2> Actualités </h2>
@@ -46,9 +79,21 @@
 							<h3><em class="fas fa-basketball-ball"></em>
 								<a href="{{ path("show-article", {"slug": article.slug}) }}"> {{ article.title }} -
 									{{ article.createdAt | date("d/m/Y") }}</a></h3>
-							<div>
-								{{ article.content | truncate(400, true, "...") | raw}}
-								<a href="{{ path("show-article", {"slug": article.slug}) }}">Lire la suite</a>
+							<div class="d-flex blocNews">
+								{% for photoImportantePrio in article.photoArticles %}
+									{% if photoImportantePrio.imageName is defined and photoImportantePrio.imageName is not null %}
+										{% if photoImportantePrio.important == 1 %}
+											<div class="aggrandirImage">
+												<img class="imageImportant" src="{{ asset(vich_uploader_asset(photoImportantePrio, "imageFile") |
+													imagine_filter("thumb")) }}" alt="photo principale de l'article">
+											</div>
+										{% endif %}
+									{% endif %}
+								{% endfor %}
+								<div class="blocContentPrio">
+									{{ article.content | truncate(400, true, "...") | raw}}
+									<a href="{{ path("show-article", {"slug": article.slug}) }}">Lire la suite</a>
+								</div>
 							</div>
 						</div>
 					{% endif %}
