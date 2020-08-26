@@ -103,12 +103,19 @@
 		</div>
 		<div class="bandeRight">
 			<h3>Inscription saison 2020/2021</h3>
-			<a href="#">Télécharger la fiche d'inscription</a>
-			<h3>Envoyer nous vos photos !</h3>
-			<a href="#">Accéder au formulaire d'envoie de photos</a>
+			<a href="{{ path("clubInscription") }}">En savoir plus</a>
+			<h3>Vous avez des photos ?</h3>
+			<a href="{{ path("envoiePhoto") }}">Envoyez les nous !</a>
 			<h3>Infos FFBB</h3>
 			<a href="#">Classement des équipes du département</a>
 			<h3>Actualités FFBB</h3>
+			{% for item in rssItems|slice(0, 3) %}
+				<div class="blocNewsFFBB">
+					<h4>{{ item.title }} - {{ item.pubDate }}</h4>
+					<a href="{{ item.link }}">Lien de l'article</a>
+					<p>{{ item.description|preg_match('src\s*=\s*"(.+?)"', item.description) }}</p>
+				</div>
+			{% endfor %}
 		</div>
 
 	</div>

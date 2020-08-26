@@ -45,17 +45,21 @@ class BlogController extends AbstractController
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy(["prioritaire" => 0],[
             'createdAt' => 'desc',
         ]);
+
         $articles = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
             $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            4 // Nombre de résultats par page
+            10 // Nombre de résultats par page
         );
-        //$articles = $articleRepo->findAll();
+
+        $rss = simplexml_load_file('http://www.ffbb.com/rss2.xml');
+
         return $this->render("blog/home.html.twig", [
             "articles" => $articles,
             "articlePrio" => $articlePrio,
             "photoImportantePrios" => $photoImportantePrios,
-            "diaporama" => $diaporama
+            "diaporama" => $diaporama,
+            'rssItems' => $rss->channel->item
         ]);
     }
 
@@ -127,6 +131,17 @@ class BlogController extends AbstractController
 
         $articles = $articleRepo->findBy([], ["createdAt" => "DESC"]);
         return $this->render("blog/tournois.html.twig", [
+            "articles" => $articles
+        ]);
+    }
+
+    /**
+     * @Route("envoiePhoto", name="envoiePhoto")
+     */
+    public function envoiePhoto(ArticleRepository $articleRepo){
+
+        $articles = $articleRepo->findByCategory(5);
+        return $this->render("blog/envoie-photo.html.twig", [
             "articles" => $articles
         ]);
     }
@@ -443,6 +458,10 @@ class BlogController extends AbstractController
                 else if($category->getTitle() === "Inscription")
                 {
                     return $this->redirectToRoute("clubInscription");
+                }
+                else if($category->getTitle() === "EnvoiePhoto")
+                {
+                    return $this->redirectToRoute("envoiePhoto");
                 }
             }
         }

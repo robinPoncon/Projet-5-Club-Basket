@@ -3,6 +3,13 @@
 {% block title %} Renouvellement ou inscription au club {% endblock %}
 
 {% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success SuccessContact">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h1> Inscription au club ou renouvellement d'une licence </h1>
     <h2> Explication inscription</h2>
     {% for article in articles %}

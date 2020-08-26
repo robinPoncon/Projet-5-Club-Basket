@@ -1767,6 +1767,27 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     right: 30px;
 }
 
+.bandeRight h3
+{
+    color: white;
+    background-color: #074592;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.bandeRight a
+{
+    color: #dd650f;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.bandeRight a:hover
+{
+    color: #ef8108;
+}
+
 .postNews, .postTournois, .postClub
 {
     position: relative;
@@ -1893,13 +1914,13 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .blocDiapo {
     margin: 0 auto;
-    width: 250px !important;
-    height: 200px;
+    width: 300px !important;
+    height: 250px;
     position: relative;
     perspective: 1000px;
-    margin-top: 50px;
-    margin-bottom: 120px;
-    left: 15px;
+    margin-top: 70px;
+    margin-bottom: 150px;
+    left: 20px;
 }
 
 .blocDiapo .chevron-gauche, .blocDiapo .chevron-droit
@@ -1909,7 +1930,12 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .blocDiapo .chevron-gauche
 {
-    margin-left: -430px;
+    margin-left: -500px;
+}
+
+.blocDiapo .chevron-droit
+{
+    margin-left: 400px;
 }
 
 .carousel {
@@ -1919,53 +1945,54 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     transform-style: preserve-3d;
     transition: transform 1s;
     left: -18px;
-    top: 100px;
+    top: 64px;
+    border: 1px #dd650f ;
 }
 
 .item {
     display: block;
     position: absolute;
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 250px;
     text-align: center;
-    opacity: 0.95;
-    border-radius: 10px;
 }
 
 .item img
 {
-    width: 250px;
-    height: 150px;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    border: 5px #074592 solid;
 }
 
 .carousel .item:nth-child(1)
 {
-    transform: rotateY(0deg) translateZ(250px);
+    transform: rotateY(0deg) translateZ(300px);
 }
 
 .carousel .item:nth-child(2)
 {
-    transform: rotateY(60deg) translateZ(250px);
+    transform: rotateY(60deg) translateZ(300px);
 }
 
 .carousel .item:nth-child(3)
 {
-    transform: rotateY(120deg) translateZ(250px);
+    transform: rotateY(120deg) translateZ(300px);
 }
 
 .carousel .item:nth-child(4)
 {
-    transform: rotateY(180deg) translateZ(250px);
+    transform: rotateY(180deg) translateZ(300px);
 }
 
 .carousel .item:nth-child(5)
 {
-    transform: rotateY(240deg) translateZ(250px);
+    transform: rotateY(240deg) translateZ(300px);
 }
 
 .carousel .item:nth-child(6)
 {
-    transform: rotateY(300deg) translateZ(250px);
+    transform: rotateY(300deg) translateZ(300px);
 }
 
 .addDiapoForm
@@ -1975,7 +2002,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .blocDiapo a, .modifierDiapo
 {
-    margin-top: 60px;
+    margin-top: 75px;
     background-color: #074592;
     color: white;
     display: block;
@@ -2437,6 +2464,11 @@ td
         margin-bottom: -250px;
     }
     
+    
+    
+    
+                                                        /* Accueil */
+    
     .postNews .aggrandirImage
     {
         margin: auto;
@@ -2451,6 +2483,73 @@ td
     {
         border: 5px #074592 solid;
         margin-top: -12px;
+    }
+    
+    .blocDiapo
+    {
+        width: 250px !important;
+        height: 200px;
+        margin-top: 25px;
+        margin-bottom: 165px;
+    }
+    
+    .blocDiapo a .modifierDiapo
+    {
+        margin-top: 90px;
+    }
+    
+    .item
+    {
+        width: 250px;
+        height: 200px;
+    }
+    
+    .carousel img
+    {
+        width: 250px;
+        height: 200px;
+    }
+    
+    .carousel .item:nth-child(1)
+    {
+        transform: rotateY(0deg) translateZ(250px);
+    }
+    
+    .carousel .item:nth-child(2)
+    {
+        transform: rotateY(60deg) translateZ(250px);
+    }
+    
+    .carousel .item:nth-child(3)
+    {
+        transform: rotateY(120deg) translateZ(250px);
+    }
+    
+    .carousel .item:nth-child(4)
+    {
+        transform: rotateY(180deg) translateZ(250px);
+    }
+    
+    .carousel .item:nth-child(5)
+    {
+        transform: rotateY(240deg) translateZ(250px);
+    }
+    
+    .carousel .item:nth-child(6)
+    {
+        transform: rotateY(300deg) translateZ(250px);
+    }
+    
+    .blocDiapo .chevron-gauche
+    {
+        top: 85px;
+        margin-left: -380px;
+    }
+    
+    .blocDiapo .chevron-droit
+    {
+        top: 85px;
+        margin-left: 285px;
     }
 }
 
@@ -3295,8 +3394,12 @@ td
         padding: 5px;
     }
     
+                                            /* Page Home */
     
-    
+    .blocDiapo
+    {
+        display: none;
+    }
     
     
     

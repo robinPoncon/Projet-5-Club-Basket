@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Présentation du club {% endblock %}
+{% block title %} Envoie de photo {% endblock %}
 
 {% block body %}
 
@@ -10,8 +10,8 @@
         </div>
     {% endfor %}
 
-    <h1> La vie au club </h1>
-    <h2> Présentation </h2>
+    <h1> Comment nous envoyer vos photos ? </h1>
+    <h2> Utilisation de wetransfert </h2>
     {% for article in articles %}
         <div class="postClub">
             <h3><em class="fas fa-basketball-ball"></em>{{ article.title }}</h3>
@@ -23,5 +23,4 @@
             {% endif %}
         </div>
     {% endfor %}
-    <h2> Trombinoscope - Membres du bureau </h2>
 {% endblock %}
