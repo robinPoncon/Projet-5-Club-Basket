@@ -2,14 +2,14 @@
 namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class Preg_match extends AbstractExtension
 {
 
-    public function getFilters()
+    public function getFunctions()
     {
-        return [new TwigFilter('preg_match', [$this, 'pregMatch']),];
+        return [new TwigFunction('preg_match', [$this, 'pregMatch']),];
     }
 
     public function pregMatch($pattern, $subject)

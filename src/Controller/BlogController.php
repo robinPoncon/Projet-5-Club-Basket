@@ -48,8 +48,8 @@ class BlogController extends AbstractController
 
         $articles = $paginator->paginate(
             $donnees, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            10 // Nombre de résultats par page
+            $request->query->get('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            6 // Nombre de résultats par page
         );
 
         $rss = simplexml_load_file('http://www.ffbb.com/rss2.xml');

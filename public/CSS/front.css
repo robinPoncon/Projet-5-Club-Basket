@@ -271,6 +271,7 @@ h1
     justify-content: center;
     display: flex;
     margin-bottom: 10px;
+    margin-left: 15px;
 }
 
 ul
@@ -493,7 +494,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .profil p
 {
     font-weight: bold;
-    color: #074592;
+    color: black;
 }
 
 .profil h2
@@ -851,7 +852,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     height: 450px !important;
     border: 5px #074592 solid;
     box-shadow: 0 0 10px black !important;
-    cursor: pointer;
+    cursor: zoom-in;
     border-radius: 10px;
 }
 
@@ -871,7 +872,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     box-shadow: 0 0 10px black !important;
     position: relative;
     z-index: 2;
-    cursor: pointer;
+    cursor: zoom-out;
     border-radius: 10px;
 }
 
@@ -1765,6 +1766,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     border-radius: 5px;
     top: 59px;
     right: 30px;
+    height: max-content;
 }
 
 .bandeRight h3
@@ -1785,7 +1787,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 .bandeRight a:hover
 {
-    color: #ef8108;
+    color: #074592;
 }
 
 .postNews, .postTournois, .postClub
@@ -1908,6 +1910,25 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     text-align: center;
 }
+
+.bandeRight h4
+{
+    font-weight: bold;
+}
+
+.bandeRight h4 span
+{
+    font-style: italic;
+    font-weight: normal;
+}
+
+.blocNewsFFBB
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}
+
 
                                     /* Diaporama Home */
 
