@@ -3,14 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Equipe;
-use App\Entity\User;
+use App\Entity\MemberClub;
 use App\Repository\FonctionClubRepository;
-use App\Repository\UserRepository;
+use App\Repository\MemberClubRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
@@ -57,13 +56,13 @@ class EquipeType extends AbstractType
                 ],
                 "required" => false
             ])
-            ->add("users", EntityType::class, [
-                "class" => User::class,
+            ->add("memberClubs", EntityType::class, [
+                "class" => MemberClub::class,
                 'choice_label' => "PrenomNom",
                 "required" => false,
-                'query_builder' => function(UserRepository $userRepo)
+                'query_builder' => function(MemberClubRepository $memberClubRepo)
                 {
-                    return $userRepo->findByFonctionClub(6);
+                    return $memberClubRepo->findByFonctionClub(6);
                 },
                 "multiple" => true,
                 "expanded" => true,

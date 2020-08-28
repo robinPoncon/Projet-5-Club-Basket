@@ -491,6 +491,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     position: relative;
 }
 
+.profil
+{
+    margin-top: 75px;
+}
+
 .profil p
 {
     font-weight: bold;
@@ -1319,17 +1324,17 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 101% !important;
 }
 
-#article_category, #user_role_roles, #equipe_users, #user_infos_modif_fonctionClub
+#article_category, #user_role_roles, #equipe_memberClubs
 {
     height: auto;
 }
 
-#article_category label, #user_role_roles label, #equipe_users label, #user_infos_modif_fonctionClub label
+#article_category label, #user_role_roles label, #equipe_memberClubs label
 {
     margin-right: 20px;
 }
 
-#article_category input, #user_role_roles input, #equipe_users input, #user_infos_modif_fonctionClub input
+#article_category input, #user_role_roles input, #equipe_memberClubs input
 {
     margin-right: 5px;
 }
@@ -3166,22 +3171,6 @@ td
         width: 80%;
     }
     
-    #user_infos_modif_fonctionClub
-    {
-        width: 100% !important;
-    }
-    
-    #user_infos_modif_fonctionClub label
-    {
-        position: relative;
-        top: -25px;
-    }
-    
-    #user_infos_modif_fonctionClub input
-    {
-        margin-left: 40px;
-    }
-    
                                             /* Gestion TRAININGS */
     
     .listEquipe
@@ -3348,22 +3337,6 @@ td
         width: 90%;
     }
     
-    #equipe_users
-    {
-        width: 100% !important;
-    }
-    
-    #equipe_users label
-    {
-        position: relative;
-        top: -25px;
-    }
-    
-    #equipe_users input
-    {
-        margin-left: 40px;
-    }
-    
     .bloc-coach
     {
         flex-direction: column;
@@ -3385,6 +3358,23 @@ td
     {
         width: 90%;
     }
+    
+    #equipe_memberClubs
+    {
+        width: 100% !important;
+    }
+    
+    #equipe_memberClubs label
+    {
+        position: relative;
+        top: -25px;
+    }
+    
+    #equipe_memberClubs input
+    {
+        margin-left: 40px;
+    }
+    
     
                                             /* PAGE ARTICLE */
     

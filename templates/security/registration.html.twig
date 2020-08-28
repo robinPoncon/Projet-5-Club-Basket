@@ -69,10 +69,7 @@
                     {{ form_errors(formRegistration.nom) }}
                 </div>
                 <div class="d-flex">
-                    <div class="d-flex divObligatoire">
-                        {{ form_label(formRegistration.nom) }}
-                        <p class="obligatoire">*</p>
-                    </div>
+                    {{ form_label(formRegistration.nom) }}
                     {{ form_widget(formRegistration.nom) }}
                 </div>
             </div>
@@ -81,22 +78,8 @@
                 <div class="errorForm">
                     {{ form_errors(formRegistration.prenom) }}
                 </div>
-                <div class="d-flex">
-                    <div class="d-flex divObligatoire">
-                        {{ form_label(formRegistration.prenom) }}
-                        <p class="obligatoire">*</p>
-                    </div>
+                    {{ form_label(formRegistration.prenom) }}
                     {{ form_widget(formRegistration.prenom) }}
-                </div>
-            </div>
-
-            <div class="divForm">
-                <div class="errorForm">
-                    {{ form_errors(formRegistration.telephone) }}
-                </div>
-                <div class="d-flex">
-                    {{ form_label(formRegistration.telephone) }}
-                    {{ form_widget(formRegistration.telephone) }}
                 </div>
             </div>
 

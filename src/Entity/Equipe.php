@@ -60,15 +60,15 @@ class Equipe
     private $photoEquipes;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="equipes")
+     * @ORM\ManyToMany(targetEntity=MemberClub::class, inversedBy="equipes")
      */
-    private $users;
+    private $memberClubs;
 
     public function __construct()
     {
         $this->convocations = new ArrayCollection();
         $this->photoEquipes = new ArrayCollection();
-        $this->users = new ArrayCollection();
+        $this->memberClubs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,28 +187,28 @@ class Equipe
     }
 
     /**
-     * @return Collection|User[]
+     * @return Collection|MemberClub[]
      */
-    public function getUsers(): Collection
+    public function getMemberClubs(): Collection
     {
-        return $this->users;
+        return $this->memberClubs;
     }
 
-    public function addUser(User $user): self
+    public function addMemberClub(MemberClub $memberClub): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addEquipe($this);
+        if (!$this->memberClubs->contains($memberClub)) {
+            $this->memberClubs[] = $memberClub;
+            $memberClub->addEquipe($this);
         }
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function removeMemberClub(MemberClub $memberClub): self
     {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            $user->removeEquipe($this);
+        if ($this->memberClubs->contains($memberClub)) {
+            $this->memberClubs->removeElement($memberClub);
+            $memberClub->removeEquipe($this);
         }
 
         return $this;

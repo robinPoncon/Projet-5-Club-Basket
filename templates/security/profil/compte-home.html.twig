@@ -42,20 +42,6 @@
 
             <p> EMAIL : <span>{{ user.email }}</span></p>
 
-            {% if user.telephone %}
-                <p> TÉLÉPHONE : <span>{{ user.telephone }}</span></p>
-            {% else %}
-                <p> TÉLÉPHONE : <span>Non renseignée</span></p>
-            {% endif %}
-
-            <p>FONCTION DANS LE CLUB :
-                {% for fonction in user.fonctionClub %}
-                    <br><span> - {{ fonction.name }}</span>
-                {% else %}
-                    <span>Non renseignée</span>
-                {% endfor %}
-            </p>
-
         </div>
         <div class="d-flex flex-column actionProfil">
             <a class="modifInfosProfil" href="{{ path("modifierInfosProfil", {"slug": user.slug}) }}">

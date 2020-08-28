@@ -68,16 +68,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Regex(
-     *      pattern="/([0-9]{2}-){4}[0-9]{2}/",
-     *      match=true,
-     *      message="Votre numéro de téléphone doit être de type '06-45-00-98-54'"
-     * )
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
@@ -96,22 +86,6 @@ class User implements UserInterface
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $photoUser;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Equipe::class, mappedBy="users")
-     */
-    private $equipes;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=FonctionClub::class, inversedBy="users")
-     */
-    private $fonctionClub;
-
-    public function __construct()
-    {
-        $this->equipes = new ArrayCollection();
-        $this->fonctionClub = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -191,18 +165,6 @@ class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -227,11 +189,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPrenomNom()
-    {
-        return $this->prenom . " " . strtoupper($this->nom);
-    }
-
     public function getResetToken(): ?string
     {
         return $this->reset_token;
@@ -252,58 +209,6 @@ class User implements UserInterface
     public function setPhotoUser(?PhotoUser $photoUser): self
     {
         $this->photoUser = $photoUser;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Equipe[]
-     */
-    public function getEquipes(): Collection
-    {
-        return $this->equipes;
-    }
-
-    public function addEquipe(Equipe $equipe): self
-    {
-        if (!$this->equipes->contains($equipe)) {
-            $this->equipes[] = $equipe;
-        }
-
-        return $this;
-    }
-
-    public function removeEquipe(Equipe $equipe): self
-    {
-        if ($this->equipes->contains($equipe)) {
-            $this->equipes->removeElement($equipe);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|FonctionClub[]
-     */
-    public function getFonctionClub(): Collection
-    {
-        return $this->fonctionClub;
-    }
-
-    public function addFonctionClub(FonctionClub $fonctionClub): self
-    {
-        if (!$this->fonctionClub->contains($fonctionClub)) {
-            $this->fonctionClub[] = $fonctionClub;
-        }
-
-        return $this;
-    }
-
-    public function removeFonctionClub(FonctionClub $fonctionClub): self
-    {
-        if ($this->fonctionClub->contains($fonctionClub)) {
-            $this->fonctionClub->removeElement($fonctionClub);
-        }
 
         return $this;
     }

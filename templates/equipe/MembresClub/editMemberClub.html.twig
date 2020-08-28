@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modification du membre {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
+    <h1>Modifier le membre du club</h1>
+
+    <div class="editArticleForm">
+        {{ form_start(formEditMemberClub) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditMemberClub.surname) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditMemberClub.surname) }}
+                {{ form_widget(formEditMemberClub.surname) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditMemberClub.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditMemberClub.name) }}
+                {{ form_widget(formEditMemberClub.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditMemberClub.email) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditMemberClub.email) }}
+                {{ form_widget(formEditMemberClub.email) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditMemberClub.telephone) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditMemberClub.telephone) }}
+                {{ form_widget(formEditMemberClub.telephone) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditMemberClub.fonctionClub) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditMemberClub.fonctionClub) }}
+                {{ form_widget(formEditMemberClub.fonctionClub) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditMemberClub.imageFile) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditMemberClub.imageFile) }}
+                {{ form_widget(formEditMemberClub.imageFile) }}
+            </div>
+        </div>
+
+        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formEditMemberClub) }}
+    </div>
+
+{% endblock %}

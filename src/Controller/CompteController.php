@@ -70,7 +70,6 @@ class CompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            dump($newPhotoProfil);
             $user->setPhotoUser($newPhotoProfil);
             $manager->persist($newPhotoProfil);
             $manager->flush();

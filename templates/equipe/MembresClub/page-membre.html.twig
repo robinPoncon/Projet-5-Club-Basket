@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Page membre {{ member.name }} {% endblock %}
+
+{% block body %}
+
+    {% include "security/compte.nav.html.twig" %}
+
+    <h1> Page du membre "{{ member.name }} - {{ member.surname | capitalize }}" du club</h1>
+    <div class="d-flex flex-column blocEditUser">
+        {% if member.imageName is defined and member.imageName is not null %}
+            <div class="profilPicture">
+                <a href="{{ path("modifierMembreClub", {"id": member.id}) }}">
+                    <img src="{{ vich_uploader_asset(photoUser, "imageFile") | imagine_filter("thumb") }}"
+                         alt="photo du membre"
+                         title="Cliquer pour modifier !">
+                </a>
+            </div>
+        {% else %}
+            <div class="profilPictureVide">
+                <a href="{{ path("modifierMembreClub", {"id": member.id}) }}">
+                    <i class="fas fa-portrait" title="Cliquer pour ajouter !"></i>
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="profil">
+            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
+            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
+            <p> EMAIL : <span>{{ member.email }}</span></p>
+            {% if member.telephone %}
+                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
+            {% else %}
+                <p> TÉLÉPHONE : <span>Non renseigné</span></p>
+            {% endif %}
+        </div>
+
+        <div class="d-flex flex-column actionProfil">
+            <a class="modifInfosProfil" href="{{ path("modifierMembreClub", {"id": member.id}) }}">
+                Modifier les infos du membre
+            </a>
+            <button onclick='deleteConfirm({{ member.id }}, "Voulez-vous vraiment supprimer ce membre",
+                    "{{ member.name }} {{ member.surname }}", "{{ path("supprimerMembreClub", {"id": "text"}) }}",
+                    "#confirmationSupPhoto{{ member.id }}")'
+                    class="confirmSup">Supprimer le membre</button>
+            <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ member.id }}"></div>
+        </div>
+    </div>
+
+
+{% endblock %}

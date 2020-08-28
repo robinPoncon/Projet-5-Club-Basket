@@ -57,16 +57,16 @@
     </div>
 
     <div class="blocInfosEquipes">
-        {% if equipe.users|length != 0 %}
+        {% if equipe.memberClubs|length != 0 %}
             <h2> ENTRAÎNEUR(S) </h2>
             <div class="d-flex justify-content-around bloc-coach">
-                {% for user in equipe.users %}
+                {% for member in equipe.memberClubs %}
                     <div class="d-flex flex-column bloc-equipe">
-                        {% if user.photoUser.imageName is defined and user.photoUser.imageName is not null %}
+                        {% if member.imageName is defined and member.imageName is not null %}
                             <div class="profilPicture">
                                 <p>
-                                    <img src="{{ vich_uploader_asset(user.photoUser, "imageFile") |
-                                    imagine_filter("equipeModif") }}" alt="photo de profil utilisateur">
+                                    <img src="{{ vich_uploader_asset(member, "imageFile") |
+                                    imagine_filter("equipeModif") }}" alt="photo du membre du club">
                                 </p>
                             </div>
                         {% else %}
@@ -77,14 +77,14 @@
                             </div>
                         {% endif %}
                         <div class="profil">
-                            <p> NOM : <span>{{ user.nom | capitalize }}</span></p>
-                            <p> PRÉNOM : <span>{{ user.prenom | capitalize }}</span></p>
-                            {% if user.telephone %}
-                                <p> TÉLÉPHONE : <span>{{ user.telephone }}</span></p>
+                            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
+                            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
+                            <p> EMAIL : <span>{{ member.email }}</span></p>
+                            {% if member.telephone %}
+                                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
                             {% else %}
                                 <p> TÉLÉPHONE : <span>Non renseigné</span></p>
                             {% endif %}
-                            <p> EMAIL : <span>{{ user.email }}</span></p>
                         </div>
                     </div>
                 {% endfor %}

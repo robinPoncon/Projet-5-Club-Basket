@@ -8,6 +8,7 @@ use App\Form\EquipeType;
 use App\Form\PhotoEquipesType;
 use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
+use App\Repository\MemberClubRepository;
 use App\Repository\PhotoEquipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,9 +39,12 @@ class EquipeController extends AbstractController
      * @Route("editor/equipes", name="equipes")
      * @return Response
      */
-    public function show()
+    public function show(MemberClubRepository $memberClubRepository)
     {
-        return $this->render("security/editor/compte-equipe.html.twig");
+        $memberClubs = $memberClubRepository->findAll();
+        return $this->render("security/editor/compte-equipe.html.twig", [
+            "memberClubs" => $memberClubs
+        ]);
     }
 
     /**
@@ -96,7 +100,7 @@ class EquipeController extends AbstractController
     /**
      * @Route("editor/equipes/modifier/{slug}", name="modifierEquipe")
      */
-    public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager, UserRepository $userRepo)
+    public function edit(Equipe $equipe, Request $request, EntityManagerInterface $manager)
     {
         $allPhotoEquipes = $equipe->getPhotoEquipes();
 
@@ -118,6 +122,7 @@ class EquipeController extends AbstractController
 
                 $img_nom = $photoEquipe->getImageName();
                 $extension = strrchr($img_nom, '.');
+
                 if($extension == ".jpeg" || $extension == ".jpg")
                 {
                     $img = imagecreatefromjpeg("pictures/equipe/" . $img_nom);

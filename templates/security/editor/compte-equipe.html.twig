@@ -69,6 +69,28 @@
             {% endfor %}
         </ul>
 
+    <h2> Gestion des membres du club </h2>
+    <div id="addTeam">
+        <a href="{{ path("ajouterMembreClub") }}">Ajouter un membre + </a>
+    </div>
 
+    <ul class="blocTeam">
+        <li class="typeTeam">Membres du bureau :</li>
+        {% for member in memberClubs %}
+            {% if member.fonctionClub is empty %}
+                <li><ul class="d-flex justify-content-center compteTeam">
+                        <li><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
+                                {{ member.name }} - {{ member.surname }}</a></li>
+                        <li><a href="{{ path("modifierMembreClub", {"id": member.id}) }}">Modifier</a></li>
+                        <li><button onclick='deleteConfirm({{ member.id }}, "Voulez-vous vraiment supprimer ce membre",
+                                    "{{ member.name }} - {{ member.surname }}", "{{ path("supprimerMembreClub", {"id": "text"}) }}",
+                                    "#confirmationSupConvoc{{ member.id }}")'
+                                    class="confirmSup">Supprimer</button></li>
+                        <li class="confirmationSupTeam" id="confirmationSupConvoc{{ member.id }}">
+                        </li>
+                    </ul></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 
 {% endblock %}
