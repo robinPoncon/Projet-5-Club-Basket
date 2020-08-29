@@ -607,7 +607,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 
 
 
-                    /* Gestion Equipe */
+                    /* Gestion Equipe et Membre */
 
 .confirm
 {
@@ -651,7 +651,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 30px;
 }
 
-.compteTeam a, .yesSup, #addTeam a
+.compteTeam a, .yesSup, #addTeam a, #addMembre a
 {
     margin-right: 30px;
     background-color: #074592;
@@ -663,13 +663,23 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     font-style: normal;
 }
 
-#addTeam
+#addTeam, #addMembre
 {
     position: relative;
     display: flex;
     margin-bottom: 50px !important;
     justify-content: center;
     margin-left: 30px !important;
+}
+
+.titreMembre
+{
+    margin-top: 100px;
+    font-size: 2.5em !important;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .nameTeam
@@ -697,7 +707,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     font-style: normal;
 }
 
-.compteTeam a:hover, .compteTeam button:hover, .yesSup:hover, .noSup:hover, #addTeam a:hover
+.compteTeam a:hover, .compteTeam button:hover, .yesSup:hover, .noSup:hover, #addTeam a:hover, #addMembre a:hover
 {
     background-color: #dd650f;
     color: white;
@@ -707,7 +717,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 .typeTeam
 {
     font-style: italic;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .confirmationSupTeam .confirm
@@ -1324,17 +1334,17 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 101% !important;
 }
 
-#article_category, #user_role_roles, #equipe_memberClubs
+#article_category, #user_role_roles, #equipe_memberClubs, #member_club_fonctionClub
 {
     height: auto;
 }
 
-#article_category label, #user_role_roles label, #equipe_memberClubs label
+#article_category label, #user_role_roles label, #equipe_memberClubs label, #member_club_fonctionClub label
 {
     margin-right: 20px;
 }
 
-#article_category input, #user_role_roles input, #equipe_memberClubs input
+#article_category input, #user_role_roles input, #equipe_memberClubs input, #member_club_fonctionClub input
 {
     margin-right: 5px;
 }
@@ -2430,6 +2440,11 @@ td
         width: 33%;
     }
     
+    .bigBlocMember
+    {
+        flex-direction: column;
+    }
+    
                                             /* Page équipe et article */
     
     .diapos
@@ -3092,18 +3107,8 @@ td
         width: 80%;
     }
     
-                                            /* Gestion EQUIPES */
+                                            /* Gestion CLUB - EQUIPES */
     
-    #addTeam, .bigBlocTeam, .addTeamForm div, .editTeamForm div
-    {
-        flex-direction: column;
-    }
-    
-    #addTeam a
-    {
-        text-align: center;
-        margin-bottom: 30px;
-    }
     
     .addTeamForm label, .addTeamForm input, #equipe_type, .editTeamForm label, .editTeamForm input
     {
@@ -3126,7 +3131,37 @@ td
         width: 125px;
         height: 125px;
     }
+    
+    
+                                        /* Gestion CLUB - MEMBRES */
         
+    .bigBlocMember .compteTeam
+    {
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
+    
+    .bigBlocMember .nameTeam
+    {
+        margin-right: 0;
+    }
+    
+    .blocActionMember
+    {
+        margin-top: 40px;
+    }
+    
+    #addTeam, .bigBlocTeam, .addTeamForm div, .editTeamForm div, #addMembre
+    {
+        flex-direction: column;
+    }
+    
+    #addTeam a, #addMembre a
+    {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
     
                                             /* Gestion USERS */
     
@@ -3359,18 +3394,18 @@ td
         width: 90%;
     }
     
-    #equipe_memberClubs
+    #equipe_memberClubs, #member_club_fonctionClub
     {
         width: 100% !important;
     }
     
-    #equipe_memberClubs label
+    #equipe_memberClubs label, #member_club_fonctionClub label
     {
         position: relative;
         top: -25px;
     }
     
-    #equipe_memberClubs input
+    #equipe_memberClubs input, #member_club_fonctionClub input
     {
         margin-left: 40px;
     }

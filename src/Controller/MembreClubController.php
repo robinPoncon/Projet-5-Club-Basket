@@ -76,16 +76,19 @@ class MembreClubController extends AbstractController
             $manager->flush();
 
             $img_nom = $memberClub->getImageName();
-            $extension = strrchr($img_nom, '.');
-            if($extension == ".jpeg" || $extension == ".jpg")
+            if ($memberClub->getImageName() !== NULL)
             {
-                $img = imagecreatefromjpeg("pictures/memberClub/" . $img_nom);
-                imagejpeg($img, "pictures/memberClub/" . $img_nom, 50);
-            }
-            else
-            {
-                $img = imagecreatefrompng("pictures/memberClub/" . $img_nom);
-                imagepng($img, "pictures/memberClub/" . $img_nom, 5);
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/memberClub/" . $img_nom);
+                    imagejpeg($img, "pictures/memberClub/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/memberClub/" . $img_nom);
+                    imagepng($img, "pictures/memberClub/" . $img_nom, 5);
+                }
             }
 
             $this->addFlash("success", "Le membre a bien été modifié !");
@@ -107,6 +110,6 @@ class MembreClubController extends AbstractController
         $manager->flush();
 
         $this->addFlash("success", "Le membre a bien été supprimé !");
-        return $this->render("security/editor/compte-equipe.html.twig");
+        return $this->redirectToRoute("equipes");
     }
 }
