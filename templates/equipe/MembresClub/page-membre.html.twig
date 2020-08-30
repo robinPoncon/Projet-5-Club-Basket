@@ -1,49 +1,49 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Page membre {{ member.name }} {% endblock %}
+{% block title %} Page membre {{ membreClub.name }} {% endblock %}
 
 {% block body %}
 
     {% include "security/compte.nav.html.twig" %}
 
-    <h1> Page du membre "{{ member.name }} - {{ member.surname | capitalize }}" du club</h1>
+    <h1> Page du membre "{{ membreClub.name }} {{ membreClub.surname | capitalize }}"</h1>
     <div class="d-flex flex-column blocEditUser">
-        {% if member.imageName is defined and member.imageName is not null %}
+        {% if membreClub.imageName is defined and membreClub.imageName is not null %}
             <div class="profilPicture">
-                <a href="{{ path("modifierMembreClub", {"id": member.id}) }}">
-                    <img src="{{ vich_uploader_asset(photoUser, "imageFile") | imagine_filter("thumb") }}"
+                <a href="{{ path("modifierMembreClub", {"id": membreClub.id}) }}">
+                    <img src="{{ vich_uploader_asset(membreClub, "imageFile") | imagine_filter("thumb") }}"
                          alt="photo du membre"
                          title="Cliquer pour modifier !">
                 </a>
             </div>
         {% else %}
             <div class="profilPictureVide">
-                <a href="{{ path("modifierMembreClub", {"id": member.id}) }}">
+                <a href="{{ path("modifierMembreClub", {"id": membreClub.id}) }}">
                     <i class="fas fa-portrait" title="Cliquer pour ajouter !"></i>
                 </a>
             </div>
         {% endif %}
 
         <div class="profil">
-            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
-            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
-            <p> EMAIL : <span>{{ member.email }}</span></p>
-            {% if member.telephone %}
-                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
+            <p> NOM : <span>{{ membreClub.surname | capitalize }}</span></p>
+            <p> PRÉNOM : <span>{{ membreClub.name | capitalize }}</span></p>
+            <p> EMAIL : <span>{{ membreClub.email }}</span></p>
+            {% if membreClub.telephone %}
+                <p> TÉLÉPHONE : <span>{{ membreClub.telephone }}</span></p>
             {% else %}
                 <p> TÉLÉPHONE : <span>Non renseigné</span></p>
             {% endif %}
         </div>
 
         <div class="d-flex flex-column actionProfil">
-            <a class="modifInfosProfil" href="{{ path("modifierMembreClub", {"id": member.id}) }}">
+            <a class="modifInfosProfil" href="{{ path("modifierMembreClub", {"id": membreClub.id}) }}">
                 Modifier les infos du membre
             </a>
-            <button onclick='deleteConfirm({{ member.id }}, "Voulez-vous vraiment supprimer ce membre",
-                    "{{ member.name }} {{ member.surname }}", "{{ path("supprimerMembreClub", {"id": "text"}) }}",
-                    "#confirmationSupPhoto{{ member.id }}")'
+            <button onclick='deleteConfirm({{ membreClub.id }}, "Voulez-vous vraiment supprimer ce membre",
+                    "{{ membreClub.name }} {{ membreClub.surname }}", "{{ path("supprimerMembreClub", {"id": "text"}) }}",
+                    "#confirmationSupPhoto{{ membreClub.id }}")'
                     class="confirmSup">Supprimer le membre</button>
-            <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ member.id }}"></div>
+            <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ membreClub.id }}"></div>
         </div>
     </div>
 

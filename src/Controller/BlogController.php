@@ -18,6 +18,7 @@ use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CommentRepository;
 use App\Repository\DiaporamaRepository;
+use App\Repository\MemberClubRepository;
 use App\Repository\PhotoArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -149,11 +150,12 @@ class BlogController extends AbstractController
     /**
      * @Route("club-BCM/la-vie-au-club", name="club")
      */
-    public function club(ArticleRepository $articleRepo){
-
+    public function club(ArticleRepository $articleRepo, MemberClubRepository $memberClubRepo){
+        $memberClubs = $memberClubRepo->findAll();
         $articles = $articleRepo->findByCategory(3);
         return $this->render("blog/club/vie-club.html.twig", [
-            "articles" => $articles
+            "articles" => $articles,
+            "memberClubs" => $memberClubs
         ]);
     }
 

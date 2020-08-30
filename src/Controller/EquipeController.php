@@ -10,6 +10,7 @@ use App\Repository\ConvocationRepository;
 use App\Repository\EquipeRepository;
 use App\Repository\MemberClubRepository;
 use App\Repository\PhotoEquipeRepository;
+use App\Repository\SponsorRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,11 +40,13 @@ class EquipeController extends AbstractController
      * @Route("editor/equipes", name="equipes")
      * @return Response
      */
-    public function show(MemberClubRepository $memberClubRepository)
+    public function show(MemberClubRepository $memberClubRepository, SponsorRepository $sponsorRepo)
     {
         $memberClubs = $memberClubRepository->findAll();
+        $sponsors = $sponsorRepo->findAll();
         return $this->render("security/editor/compte-equipe.html.twig", [
-            "memberClubs" => $memberClubs
+            "memberClubs" => $memberClubs,
+            "sponsors" => $sponsors
         ]);
     }
 

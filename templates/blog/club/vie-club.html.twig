@@ -10,8 +10,8 @@
         </div>
     {% endfor %}
 
-    <h1> La vie au club </h1>
-    <h2> Présentation </h2>
+    <h1> Basket Club de Meximieux </h1>
+    <h2 class="h2Club"> La vie du club </h2>
     {% for article in articles %}
         <div class="postClub">
             <h3><em class="fas fa-basketball-ball"></em>{{ article.title }}</h3>
@@ -23,9 +23,206 @@
             {% endif %}
         </div>
     {% endfor %}
-    <h2> Trombinoscope du club </h2>
+    <h2 class="h2Club"> Trombinoscope du club </h2>
 
-    <h3> Membres du bureau</h3>
-    <h3> Arbitres Officiels</h3>
-    <h3> Officiel de table de marque (OTM)</h3>
+    <h3 class="h3Club"> Membres du bureau</h3>
+
+    <div class="d-flex justify-content-around blocTrombi">
+        {% for member in memberClubs %}
+            {% for fonction in member.fonctionClub %}
+                {% if fonction.name == "Membre du bureau" %}
+                    <div class="d-flex flex-column trombiBureau">
+                        {% if member.title is not empty %}
+                            <h4> {{ member.title }}</h4>
+                        {% else %}
+                            <h4>Non renseigné</h4>
+                        {% endif %}
+                        {% if member.imageName is defined and member.imageName is not null %}
+                            <div class="profilPicture">
+                                <p>
+                                    <img src="{{ vich_uploader_asset(member, "imageFile") |
+                                    imagine_filter("equipeModif") }}" alt="photo du membre du club">
+                                </p>
+                            </div>
+                        {% else %}
+                            <div class="profilPictureVide">
+                                <p>
+                                    <em class="fas fa-portrait"></em>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <div class="profil">
+                            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
+                            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
+                            <p> EMAIL : <span>{{ member.email }}</span></p>
+                            {% if member.telephone %}
+                                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
+                            {% else %}
+                                <p> TÉLÉPHONE : <span>Non renseigné</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h3 class="h3Club"> Arbitres Officiels</h3>
+
+    <div class="d-flex justify-content-around blocTrombi">
+        {% for member in memberClubs %}
+            {% for fonction in member.fonctionClub %}
+                {% if fonction.name == "Arbitre" %}
+                    <div class="d-flex flex-column trombiBureau">
+                        {% if member.imageName is defined and member.imageName is not null %}
+                            <div class="profilPicture">
+                                <p>
+                                    <img src="{{ vich_uploader_asset(member, "imageFile") |
+                                    imagine_filter("equipeModif") }}" alt="photo du membre du club">
+                                </p>
+                            </div>
+                        {% else %}
+                            <div class="profilPictureVide">
+                                <p>
+                                    <em class="fas fa-portrait"></em>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <div class="profil">
+                            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
+                            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
+                            <p> EMAIL : <span>{{ member.email }}</span></p>
+                            {% if member.telephone %}
+                                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
+                            {% else %}
+                                <p> TÉLÉPHONE : <span>Non renseigné</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h3 class="h3Club"> Officiel de table de marque (OTM)</h3>
+
+    <div class="d-flex justify-content-around blocTrombi">
+        {% for member in memberClubs %}
+            {% for fonction in member.fonctionClub %}
+                {% if fonction.name == "OTM" %}
+                    <div class="d-flex flex-column trombiBureau">
+                        {% if member.imageName is defined and member.imageName is not null %}
+                            <div class="profilPicture">
+                                <p>
+                                    <img src="{{ vich_uploader_asset(member, "imageFile") |
+                                    imagine_filter("equipeModif") }}" alt="photo du membre du club">
+                                </p>
+                            </div>
+                        {% else %}
+                            <div class="profilPictureVide">
+                                <p>
+                                    <em class="fas fa-portrait"></em>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <div class="profil">
+                            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
+                            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
+                            <p> EMAIL : <span>{{ member.email }}</span></p>
+                            {% if member.telephone %}
+                                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
+                            {% else %}
+                                <p> TÉLÉPHONE : <span>Non renseigné</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h3 class="h3Club"> Entraineurs & coachs</h3>
+
+    <div class="d-flex justify-content-around blocTrombi">
+        {% for member in memberClubs %}
+            {% for fonction in member.fonctionClub %}
+                {% if fonction.name == "Entraineur" %}
+                    <div class="d-flex flex-column trombiBureau">
+                        {% if member.imageName is defined and member.imageName is not null %}
+                            <div class="profilPicture">
+                                <p>
+                                    <img src="{{ vich_uploader_asset(member, "imageFile") |
+                                    imagine_filter("equipeModif") }}" alt="photo du membre du club">
+                                </p>
+                            </div>
+                        {% else %}
+                            <div class="profilPictureVide">
+                                <p>
+                                    <em class="fas fa-portrait"></em>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <div class="profil">
+                            <p> PRÉNOM : <span>{{ member.name | capitalize }}</span></p>
+                            <p> NOM : <span>{{ member.surname | capitalize }}</span></p>
+                            <p> EMAIL : <span>{{ member.email }}</span></p>
+                            {% if member.telephone %}
+                                <p> TÉLÉPHONE : <span>{{ member.telephone }}</span></p>
+                            {% else %}
+                                <p> TÉLÉPHONE : <span>Non renseigné</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <h3 class="h3Club"> Nos Sponsors</h3>
+    <a href="{{ path("addSponsor") }}">Ajouter un sponsor</a>
+    <div class="sponsors">
+        <div class="blocAutrePhoto">
+            <div class="chevron-gauche">
+                <p class="cercle"></p>
+                <p class="chevronG-part1"></p>
+                <p class="chevronG-part2"></p>
+            </div>
+            <div class="chevron-droit">
+                <p class="cercle"></p>
+                <p class="chevronD-part1"></p>
+                <p class="chevronD-part2"></p>
+            </div>
+            <div class="diaporama"></div>
+            <div class="play">
+                <p class="cercle"></p>
+                <p class="chevronPlay-part1"></p>
+                <p class="chevronPlay-part2"></p>
+                <p class="chevronPlay-part3"></p>
+            </div>
+            <div class="pause">
+                <p class="cercle"></p>
+                <p class="chevronPause-part1"></p>
+                <p class="chevronPause-part2"></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let diaporama = new Diaporama(0, "#diapo-", {{ photoEquipes|length }}, 1,
+            ".play", ".pause", false, ".chevron-gauche", ".chevron-droit");
+        diaporama.ajouterDiaporama();
+        let i = 0;
+        {% for photoEquipe in photoEquipes %}
+        i++;
+        let slide{{ photoEquipe.id }} = new Slide($("<img>"), ".diaporama", "diapo-" + i, "diapos",
+            "{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeAffichage")) }}",
+            "autre photo equipe de basket", 600, 450);
+        slide{{ photoEquipe.id }}.ajouterSlide();
+        {% endfor %}
+        diaporama.affichageHoraire();
+        diaporama.playInterval(diaporama.affichageHoraire, 5000);
+
+    </script>
 {% endblock %}

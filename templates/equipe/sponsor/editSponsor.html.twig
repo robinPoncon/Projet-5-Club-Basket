@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modification d'un sponsor {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+    <h1>Modifier le sponsor</h1>
+
+    <div class="addTeamForm">
+        {{ form_start(formSponsor) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formSponsor.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formSponsor.name) }}
+                {{ form_widget(formSponsor.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formSponsor.imageFile) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formSponsor.imageFile) }}
+                {{ form_widget(formSponsor.imageFile) }}
+            </div>
+        </div>
+        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formSponsor) }}
+    </div>
+{% endblock %}

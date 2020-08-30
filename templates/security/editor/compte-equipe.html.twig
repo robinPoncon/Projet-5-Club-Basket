@@ -80,7 +80,7 @@
                 {% for fonction in member.fonctionClub %}
                     {% if fonction.name == "Membre du bureau" %}
                         <li><ul class="d-flex justify-content-center compteTeam">
-                            <li><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
+                            <li class="miseEnPage"><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
                                     {{ member.name }} {{ member.surname }}</a></li>
                             <li><ul class="d-flex justify-content-center blocActionMember">
                                 <li><a href="{{ path("modifierMembreClub", {"id": member.id}) }}">Modifier</a></li>
@@ -102,7 +102,7 @@
                 {% for fonction in member.fonctionClub %}
                     {% if fonction.name == "Arbitre" %}
                         <li><ul class="d-flex justify-content-center compteTeam">
-                                <li><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
+                                <li class="miseEnPage"><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
                                         {{ member.name }} {{ member.surname }}</a></li>
                                 <li><ul class="d-flex justify-content-center blocActionMember">
                                     <li><a href="{{ path("modifierMembreClub", {"id": member.id}) }}">Modifier</a></li>
@@ -126,7 +126,7 @@
                 {% for fonction in member.fonctionClub %}
                     {% if fonction.name == "OTM" %}
                         <li><ul class="d-flex justify-content-center compteTeam">
-                                <li><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
+                                <li class="miseEnPage"><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
                                         {{ member.name }} {{ member.surname }}</a></li>
                                 <li><ul class="d-flex justify-content-center blocActionMember">
                                     <li><a href="{{ path("modifierMembreClub", {"id": member.id}) }}">Modifier</a></li>
@@ -148,7 +148,7 @@
                 {% for fonction in member.fonctionClub %}
                     {% if fonction.name == "Entraineur" %}
                         <li><ul class="d-flex justify-content-center compteTeam">
-                                <li><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
+                                <li class="miseEnPage"><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
                                         {{ member.name }} {{ member.surname }}</a></li>
                                 <li><ul class="d-flex justify-content-center blocActionMember">
                                     <li><a href="{{ path("modifierMembreClub", {"id": member.id}) }}">Modifier</a></li>
@@ -165,13 +165,13 @@
         </ul>
     </div>
 
-    <div class="bigBlocMember">
+    <div class="bigBlocOther">
         <ul class="blocTeam">
             <li class="typeTeam">Autres membres :</li>
             {% for member in memberClubs %}
                 {% if member.fonctionClub is empty %}
-                    <li><ul class="d-flex justify-content-center compteTeam">
-                            <li><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
+                    <li><ul class="d-flex compteTeam">
+                            <li class="miseEnPageOther"><a class="nameTeam" href="{{ path("pageMembre", {"id": member.id }) }}">
                                     {{ member.name }} {{ member.surname }}</a></li>
                             <li><ul class="d-flex justify-content-center blocActionMember">
                                 <li><a href="{{ path("modifierMembreClub", {"id": member.id}) }}">Modifier</a></li>
@@ -186,5 +186,29 @@
             {% endfor %}
         </ul>
     </div>
+
+    <h2 class="titreMembre"> Gestion des sponsors </h2>
+
+    <div id="addMembre">
+        <a href="{{ path("ajouterSponsor") }}">Ajouter un sponsor + </a>
+    </div>
+
+    <ul class="blocTeam">
+        {% for sponsor in sponsors %}
+                <li><ul class="d-flex justify-content-center compteTeam">
+                        <li class="nameSponsor">{{ sponsor.name }}</li>
+                        <li><ul class="d-flex justify-content-center blocActionMember">
+                            <li><a href="{{ path("modifierSponsor", {"id": sponsor.id}) }}">Modifier</a></li>
+                            <li><button onclick='deleteConfirm({{ sponsor.id }}, "Voulez-vous vraiment supprimer ce membre",
+                                        "{{ sponsor.name }}", "{{ path("supprimerSponsor", {"id": "text"}) }}",
+                                        "#confirmationSupSponsor{{ sponsor.id }}")'
+                                        class="confirmSup">Supprimer</button></li>
+                            <li class="confirmationSupTeam" id="confirmationSupSponsor{{ sponsor.id }}"></li>
+                        </ul></li>
+                    </ul></li>
+        {% endfor %}
+    </ul>
+
+
 
 {% endblock %}

@@ -20,6 +20,16 @@ class MemberClubType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('title', TextType::class, [
+                "label" => "Titre au sein du club",
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "placeholder" => "Président, secrétariat, etc",
+                    "class" => "form-control input"
+                ]
+            ])
             ->add('surname', TextType::class, [
                 "label" => "Nom",
                 "label_attr" => [

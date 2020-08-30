@@ -11,6 +11,15 @@
         {{ form_start(formMemberClub) }}
         <div class="divForm">
             <div class="errorForm">
+                {{ form_errors(formMemberClub.title) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formMemberClub.title) }}
+                {{ form_widget(formMemberClub.title) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
                 {{ form_errors(formMemberClub.surname) }}
             </div>
             <div class="d-flex">
