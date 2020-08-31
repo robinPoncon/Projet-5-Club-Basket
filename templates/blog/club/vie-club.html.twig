@@ -179,9 +179,8 @@
     </div>
 
     <h3 class="h3Club"> Nos Sponsors</h3>
-    <a href="{{ path("addSponsor") }}">Ajouter un sponsor</a>
     <div class="sponsors">
-        <div class="blocAutrePhoto">
+        <div class="blocSponsor">
             <div class="chevron-gauche">
                 <p class="cercle"></p>
                 <p class="chevronG-part1"></p>
@@ -210,16 +209,16 @@
 
 {% block javascripts %}
     <script>
-        let diaporama = new Diaporama(0, "#diapo-", {{ photoEquipes|length }}, 1,
+        let diaporama = new Diaporama(0, "#diapo-", {{ sponsors|length }}, 1,
             ".play", ".pause", false, ".chevron-gauche", ".chevron-droit");
         diaporama.ajouterDiaporama();
         let i = 0;
-        {% for photoEquipe in photoEquipes %}
+        {% for photo in sponsors %}
         i++;
-        let slide{{ photoEquipe.id }} = new Slide($("<img>"), ".diaporama", "diapo-" + i, "diapos",
-            "{{ asset(vich_uploader_asset(photoEquipe, "imageFile") | imagine_filter("equipeAffichage")) }}",
+        let slide{{ photo.id }} = new Slide($("<img>"), ".diaporama", "diapo-" + i, "diapos",
+            "{{ asset(vich_uploader_asset(photo, "imageFile") | imagine_filter("equipeAffichage")) }}",
             "autre photo equipe de basket", 600, 450);
-        slide{{ photoEquipe.id }}.ajouterSlide();
+        slide{{ photo.id }}.ajouterSlide();
         {% endfor %}
         diaporama.affichageHoraire();
         diaporama.playInterval(diaporama.affichageHoraire, 5000);

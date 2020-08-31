@@ -20,6 +20,7 @@ use App\Repository\CommentRepository;
 use App\Repository\DiaporamaRepository;
 use App\Repository\MemberClubRepository;
 use App\Repository\PhotoArticleRepository;
+use App\Repository\SponsorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -150,12 +151,15 @@ class BlogController extends AbstractController
     /**
      * @Route("club-BCM/la-vie-au-club", name="club")
      */
-    public function club(ArticleRepository $articleRepo, MemberClubRepository $memberClubRepo){
+    public function club(ArticleRepository $articleRepo, MemberClubRepository $memberClubRepo, SponsorRepository $sponsorRepo)
+    {
+        $sponsors = $sponsorRepo->findAll();
         $memberClubs = $memberClubRepo->findAll();
         $articles = $articleRepo->findByCategory(3);
         return $this->render("blog/club/vie-club.html.twig", [
             "articles" => $articles,
-            "memberClubs" => $memberClubs
+            "memberClubs" => $memberClubs,
+            "sponsors" => $sponsors
         ]);
     }
 
@@ -203,6 +207,7 @@ class BlogController extends AbstractController
     public function showOne(Article $article, Request $request, EntityManagerInterface $manager,
                             PhotoArticleRepository $photoArticleRepo)
     {
+        $user = $this->getUser();
         $commentaire = new Comment();
         $photoArticles = $photoArticleRepo->findBy(["important" => 0, "article" => $article->getId()]);
         $photoImportante = $photoArticleRepo->findOneBy(["important" => 1, "article" => $article->getId()]);
@@ -214,6 +219,8 @@ class BlogController extends AbstractController
         {
             $commentaire->setCreatedAt(new \DateTime());
             $commentaire->setArticle($article);
+            $commentaire->setUser($user);
+            $commentaire->setAuthor($user->getUsername());
             $manager->persist($commentaire);
             $manager->flush();
 

@@ -139,7 +139,7 @@ nav a, #nav-team
 #bloc-team a
 {
     color: white;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-family: "Alegre Sans", serif;
     cursor: pointer;
 }
@@ -651,7 +651,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 30px;
 }
 
-.compteTeam a, .yesSup, #addTeam a, #addMembre a
+.compteTeam a, .yesSup, #addTeam a, #addMembre a, #addSponsor a
 {
     margin-right: 30px;
     background-color: #074592;
@@ -663,7 +663,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     font-style: normal;
 }
 
-#addTeam, #addMembre
+#addTeam, #addMembre, #addSponsor
 {
     position: relative;
     display: flex;
@@ -707,7 +707,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     font-style: normal;
 }
 
-.compteTeam a:hover, .compteTeam button:hover, .yesSup:hover, .noSup:hover, #addTeam a:hover, #addMembre a:hover
+.compteTeam a:hover, .compteTeam button:hover, .yesSup:hover, .noSup:hover, #addTeam a:hover, #addMembre a:hover,
+#addSponsor a:hover
 {
     background-color: #dd650f;
     color: white;
@@ -828,8 +829,8 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     padding: 9px;
     border-radius: 5px;
     color: white;
+    margin: auto;
     margin-top: -9px;
-    margin-right: 30px;
 }
 
 .miseEnPage
@@ -845,9 +846,20 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-bottom: 30px;
 }
 
+.bigBlocMember .typeTeam, .bigBlocOther .typeTeam
+{
+    margin-bottom: 30px;
+}
+
+.bigBlocOther .actionMember
+{
+    width: 50%;
+}
+
 .miseEnPageOther
 {
     margin: auto;
+    margin-top: 0;
 }
 
 
@@ -2261,6 +2273,20 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 50px;
 }
 
+.blocSponsor
+{
+    position: relative;
+}
+
+.sponsors
+{
+    margin-bottom: 600px;
+}
+
+.blocSponsor .diaporama
+{
+    text-align: center;
+}
 
 
 
@@ -2529,7 +2555,7 @@ td
 {
     nav a, #nav-team
     {
-        font-size: 1.7em;
+        font-size: 1.6em;
     }
     
     img
@@ -2733,6 +2759,35 @@ td
         top: 85px;
         margin-left: 285px;
     }
+    
+                                            /* Gestion club, equipe, membre */
+    .bigBlocMember .blocTeam
+    {
+        margin: auto;
+    }
+    
+    .nameSponsor
+    {
+        margin-left: 0;
+    }
+    
+                                                /* page club */
+    
+    .sponsors .play, .sponsors .pause, .sponsors .chevron-gauche, .sponsors .chevron-droit
+    {
+        top: 75px;
+    }
+    
+    .trombiBureau
+    {
+        width: 50%;
+    }
+    
+    .sponsors
+    {
+        margin-bottom: 350px;
+    }
+    
 }
 
                         /* Responsive Mobile */
@@ -3276,15 +3331,21 @@ td
     
                                         /* Gestion CLUB - MEMBRES */
         
-    .bigBlocMember .compteTeam
+    .bigBlocMember .compteTeam, .bigBlocOther .compteTeam
     {
         flex-direction: column;
         margin-bottom: 50px;
+        width: 100%;
     }
     
-    .bigBlocMember .nameTeam
+    .bigBlocMember .nameTeam, .bigBlocOther .nameTeam
     {
         margin-right: 0;
+    }
+    
+    .bigBlocOther .actionMember
+    {
+        width: 100%;
     }
     
     .blocActionMember
@@ -3292,17 +3353,21 @@ td
         margin-top: 40px;
     }
     
-    #addTeam, .bigBlocTeam, .addTeamForm div, .editTeamForm div, #addMembre
+    #addTeam, .bigBlocTeam, .addTeamForm div, .editTeamForm div
     {
         flex-direction: column;
     }
     
-    #addTeam a, #addMembre a
+    #addTeam a, #addMembre a, #addSponsor a
     {
         text-align: center;
         margin-bottom: 30px;
     }
     
+    .nameSponsor
+    {
+        margin: auto;
+    }
     
                                             /* Gestion USERS */
     
@@ -3586,6 +3651,23 @@ td
     .blocDiapo
     {
         display: none;
+    }
+    
+                                            /* Page club */
+    
+    .h3Club
+    {
+        width: 80%;
+    }
+    
+    .trombiBureau
+    {
+        width: 80%;
+    }
+    
+    .sponsors .play, .sponsors .pause, .sponsors .chevron-gauche, .sponsors .chevron-droit
+    {
+        top: 58px;
     }
     
     

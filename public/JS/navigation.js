@@ -146,7 +146,7 @@ function deleteConfirm(id, text, dataText, routeSup, div) {
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
         " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
         ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil, .modifMDP, thead, .userName," +
-        ".userEmail, .userRole, .userFonction, .modifRole ")
+        ".userEmail, .userRole, .userFonction, .modifRole, .nameTeam, .modifTeam, #addMembre, #addSponsor ")
         .css("opacity", 0.5).css("pointer-events", "none");
 }
 
@@ -156,7 +156,7 @@ function cancelConfirm(div) {
         "#addConvoc, #selectTeam, #trierArticle, .divCategory, .divTitle, .modifPostDiv, .supPostDiv, .post," +
         " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
         ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil, .modifMDP, thead, .userName," +
-        ".userEmail, .userRole, .userFonction, .modifRole ")
+        ".userEmail, .userRole, .userFonction, .modifRole, .nameTeam, .modifTeam, #addMembre, #addSponsor ")
         .css("opacity", 1).css("pointer-events", "auto");
 }
 
