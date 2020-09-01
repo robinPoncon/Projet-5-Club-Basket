@@ -1,0 +1,166 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Liste des photos {% endblock %}
+
+{% block body %}
+    <h1>Liste des photos du BCM</h1>
+    <div class="selects">
+        <select name="listPhotosEquipes" id="selectEquipePhoto">
+            <option value="all">Toutes les photos des équipes</option>
+            <option value="none">Masquer les photos des équipes</option>
+            <optgroup label="Equipes Garçons">
+                {% for equipeB in equipesBoy %}
+                    <option value="{{ equipeB.id }}">{{ equipeB.name }}</option>
+                {% endfor %}
+            </optgroup>
+            <optgroup label="Equipes Filles">
+                {% for equipeF in equipesGirl %}
+                    <option value="{{ equipeF.id }}">{{ equipeF.name }}</option>
+                {% endfor %}
+            </optgroup>
+            <optgroup label="Equipes Loisir">
+                {% for equipeL in equipesLoisir %}
+                    <option value="{{ equipeL.id }}">{{ equipeL.name }}</option>
+                {% endfor %}
+            </optgroup>
+        </select>
+
+        <select name="listPhotosArticles" id="selectArticlePhoto">
+            <option value="all">Toutes les photos des articles</option>
+            <option value="none">Masquer les photos des équipes</option>
+            <optgroup label="Articles News">
+                {% for article in articlesNews %}
+                    <option value="{{ article.id }}">{{ article.title }}</option>
+                {% endfor %}
+            </optgroup>
+            <optgroup label="Articles Tournois">
+                {% for article in articlesTournois %}
+                    <option value="{{ article.id }}">{{ article.title }}</option>
+                {% endfor %}
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="blocPhotoEquipeAll">
+        <div class="blocEquipe">
+            <h2> Equipes garçons</h2>
+            <div class="d-flex blocEquipePhoto">
+                {% for equipeB in equipesBoy %}
+                    {% for photoEquipeB in equipeB.photoEquipes %}
+                        <div class="picture">
+                            {% if photoEquipeB.imageName is defined and photoEquipeB.imageName is not null %}
+                                <img src="{{ asset(vich_uploader_asset(photoEquipeB, "imageFile") |
+                                    imagine_filter("thumb")) }}" alt="photo de l'équipe {{ equipeB.name }}">
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="blocEquipe">
+            <h2> Equipes filles</h2>
+            <div class="d-flex blocEquipePhoto">
+                {% for equipeF in equipesGirl %}
+                    {% for photoEquipeF in equipeF.photoEquipes %}
+                        <div class="picture">
+                            {% if photoEquipeF.imageName is defined and photoEquipeF.imageName is not null %}
+                                <img src="{{ asset(vich_uploader_asset(photoEquipeF, "imageFile") |
+                                    imagine_filter("thumb")) }}" alt="photo de l'équipe {{ equipeF.name }}">
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="blocEquipe">
+            <h2> Equipes loisir</h2>
+            <div class="d-flex blocEquipePhoto">
+                {% for equipeL in equipesLoisir %}
+                    {% for photoEquipeL in equipeL.photoEquipes %}
+                        <div class="picture">
+                            {% if photoEquipeL.imageName is defined and photoEquipeL.imageName is not null %}
+                                <img src="{{ asset(vich_uploader_asset(photoEquipeL, "imageFile") |
+                                    imagine_filter("thumb")) }}" alt="photo de l'équipe {{ equipeL.name }}">
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="blocPhotoEquipeAjax">
+        <div class="blocEquipe">
+            <h2>Equipes garçons</h2>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+
+        function sendAjaxController(id) {
+            $.ajax({
+                method: "POST",
+                url: "{{ path("ajax_PhotoEquipe") }}",
+                data: {id: id},
+                success: function (responses) {
+                    //console.log(responses);
+                    if (responses.length === 0)
+                    {
+                        let noPhotoEquipe = $("<p>", {
+                            text: "Il n'y a aucune photos de cette équipe",
+                            class: "anyEquipe"
+                        });
+
+                        $(".blocPhotoEquipeAjax").append(noPhotoEquipe);
+                    }
+                    else
+                    {
+                        responses.forEach((datas) => {
+                            console.log(datas);
+                            htmlResponseAjaxPhotoEquipe("{{ asset(vich_uploader_asset(datas, "imageFile") |
+                                imagine_filter("thumb")) }}", datas.equipe.name);
+                        });
+                    }
+                }
+            });
+        }
+
+        let idEquipe = $("#selectEquipePhoto option:selected").val();
+        if (idEquipe === "all")
+        {
+            $(".blocPhotoEquipeAll").css("display", "block");
+        }
+        else if(idEquipe === "none")
+        {
+            $(".blocPhotoEquipeAll").css("display", "none");
+
+        }
+        else
+        {
+            sendAjaxController(idEquipe);
+        }
+
+        $("#selectEquipePhoto").change(function () {
+            idEquipe = $("#selectEquipePhoto option:selected").val();
+            $(".blocPhotoEquipeAjax").text("");
+
+            if (idEquipe === "all")
+            {
+                $(".blocPhotoEquipeAll").css("display", "block");
+            }
+            else if(idEquipe === "none")
+            {
+                $(".blocPhotoEquipeAll").css("display", "none");
+            }
+            else
+            {
+                sendAjaxController(idEquipe);
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -42,49 +42,48 @@ class ConvocationController extends AbstractController
      */
     public function ajaxConvoc(Request $request, EquipeRepository $equipeRepo)
     {
-            if($request->isXmlHttpRequest()) {
-                // On récupère l'id de la requête
-                $idEquipe = $request->request->get('id');
-                //dump($idEquipe);
+        if($request->isXmlHttpRequest()) {
+            // On récupère l'id de la requête
+            $idEquipe = $request->request->get('id');
+            //dump($idEquipe);
 
-                $equipeObject = $equipeRepo->find($idEquipe);
-                // On récupère l'équipe correspondant à l'id
+            $equipeObject = $equipeRepo->find($idEquipe);
+            // On récupère l'équipe correspondant à l'id
 
-                $convocations = $equipeObject->getConvocations();
-                //dump($convocations);
+            $convocations = $equipeObject->getConvocations();
+            //dump($convocations);
 
-                // On spécifie qu'on utilise un encodeur en json
-                $encoders = [new JsonEncoder()];
+            // On spécifie qu'on utilise un encodeur en json
+            $encoders = [new JsonEncoder()];
 
-                // On instancie le "normaliseur" pour convertir la collection en tableau
-                $normalizers = [new ObjectNormalizer()];
+            // On instancie le "normaliseur" pour convertir la collection en tableau
+            $normalizers = [new ObjectNormalizer()];
 
-                // On instancie le convertisseur
-                $serializer = new Serializer($normalizers, $encoders);
+            // On instancie le convertisseur
+            $serializer = new Serializer($normalizers, $encoders);
 
-                // On convertit en json
-                $jsonContent = $serializer->serialize($convocations, "json", [
-                    "circular_reference_handler" => function ($object) {
-                        return $object->getId();
-                    }
-                ]);
+            // On convertit en json
+            $jsonContent = $serializer->serialize($convocations, "json", [
+                "circular_reference_handler" => function ($object) {
+                    return $object->getId();
+                }
+            ]);
 
-                //dump($jsonContent);
+            //dump($jsonContent);
 
-                // On instancie la réponse
-                $response = new Response($jsonContent);
+            // On instancie la réponse
+            $response = new Response($jsonContent);
 
-                // On ajoute l'entête HTTP
-                $response->headers->set("Content-Type", "application/json");
+            // On ajoute l'entête HTTP
+            $response->headers->set("Content-Type", "application/json");
 
-                //dump($response);
-                // On envoie la réponse
-                return $response;
-            }
-            else {
-                return new Response("erreur");
-            }
-
+            //dump($response);
+            // On envoie la réponse
+            return $response;
+        }
+        else {
+            return new Response("erreur");
+        }
     }
 
     /**

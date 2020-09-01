@@ -310,6 +310,16 @@ function htmlResponseAjaxConvoc(routeModif, routeSup, dayData, horaireData, addr
     $(".convocations").append(div);
 }
 
+function htmlResponseAjaxPhotoEquipe(source, name)
+{
+    let img = $("<img>", {
+        src: source,
+        alt: "Photo de l'équipe " + name
+    });
+
+    $(".blocPhotoEquipeAjax .blocEquipe").append(img);
+}
+
 // CSS MENU HAMBURGER
 
 $(window).resize();

@@ -2288,6 +2288,45 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     text-align: center;
 }
 
+                                        /* Page Photos */
+
+#selectEquipePhoto, #selectArticlePhoto
+{
+    position: relative;
+}
+
+.blocEquipe h2
+{
+    margin-top: 100px;
+}
+
+.blocEquipePhoto
+{
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.blocEquipePhoto .picture
+{
+    width: 25%;
+    text-align: center;
+}
+
+.blocEquipePhoto img
+{
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+    border: 5px #074592 solid;
+    box-shadow: 0 0 20px black;
+    border-radius: 10px;
+}
+
+
+
+
+
+
 
 
                                                     /* Gestion Users */
