@@ -90,8 +90,9 @@
     </div>
 
     <div class="blocPhotoEquipeAjax">
+        <h2></h2>
         <div class="blocEquipe">
-            <h2>Equipes garçons</h2>
+
         </div>
     </div>
 
@@ -115,14 +116,18 @@
                             class: "anyEquipe"
                         });
 
-                        $(".blocPhotoEquipeAjax").append(noPhotoEquipe);
+                        $(".blocPhotoEquipeAjax .blocEquipe").append(noPhotoEquipe);
                     }
                     else
                     {
                         responses.forEach((datas) => {
                             console.log(datas);
-                            htmlResponseAjaxPhotoEquipe("{{ asset(vich_uploader_asset(datas, "imageFile") |
-                                imagine_filter("thumb")) }}", datas.equipe.name);
+                            let path = "/" + datas.imageName;
+                            let asset = "{{ asset('pictures/equipe') }}";
+                            $(".blocPhotoEquipeAjax h2").text("Photos de l'équipe " + datas.equipe.name);
+
+                            {# let url = "{{ asset(vich_uploader_asset(" + datas.photoEquipe + ", 'imageFile'))}}";#}
+                            htmlResponseAjaxPhotoEquipe(asset + path, datas.equipe.name);
                         });
                     }
                 }
@@ -146,7 +151,7 @@
 
         $("#selectEquipePhoto").change(function () {
             idEquipe = $("#selectEquipePhoto option:selected").val();
-            $(".blocPhotoEquipeAjax").text("");
+            $(".blocPhotoEquipeAjax .blocEquipe").text("");
 
             if (idEquipe === "all")
             {
@@ -158,6 +163,7 @@
             }
             else
             {
+                $(".blocPhotoEquipeAll").css("display", "none");
                 sendAjaxController(idEquipe);
             }
         });

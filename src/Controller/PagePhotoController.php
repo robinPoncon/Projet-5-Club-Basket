@@ -64,7 +64,7 @@ class PagePhotoController extends AbstractController
             $jsonContent = $serializer->serialize($photos, "json", [
                 "circular_reference_handler" => function ($object) {
                     return $object->getId();
-                }
+                },
             ]);
 
             //dump($jsonContent);

@@ -318,6 +318,7 @@ function htmlResponseAjaxPhotoEquipe(source, name)
     });
 
     $(".blocPhotoEquipeAjax .blocEquipe").append(img);
+
 }
 
 // CSS MENU HAMBURGER
