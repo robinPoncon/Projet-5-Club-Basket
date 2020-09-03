@@ -28,7 +28,7 @@
         <select name="listPhotosArticles" id="selectArticlePhoto">
             <option value="all">Toutes les photos des articles</option>
             <option value="none">Masquer les photos des équipes</option>
-            <optgroup label="Articles News">
+            <optgroup label="Articles Actualités">
                 {% for article in articlesNews %}
                     <option value="{{ article.id }}">{{ article.title }}</option>
                 {% endfor %}
@@ -41,60 +41,66 @@
         </select>
     </div>
 
-    <div class="blocPhotoEquipeAll">
-        <div class="blocEquipe">
-            <h2> Equipes garçons</h2>
-            <div class="d-flex blocEquipePhoto">
-                {% for equipeB in equipesBoy %}
-                    {% for photoEquipeB in equipeB.photoEquipes %}
-                        <div class="picture">
-                            {% if photoEquipeB.imageName is defined and photoEquipeB.imageName is not null %}
-                                <img src="{{ asset(vich_uploader_asset(photoEquipeB, "imageFile") |
-                                    imagine_filter("thumb")) }}" alt="photo de l'équipe {{ equipeB.name }}">
-                            {% endif %}
-                        </div>
+    <div class="allPhotos">
+        <div class="blocPhotoEquipeAll">
+            <div class="blocEquipe">
+                <h2> Equipes garçons</h2>
+                <div class="blocEquipePhoto">
+                    {% for equipeB in equipesBoy %}
+                        {% for photoEquipeB in equipeB.photoEquipes %}
+                            <div class="picture">
+                                {% if photoEquipeB.imageName is defined and photoEquipeB.imageName is not null %}
+                                    <img id="imagePetite{{ photoEquipeB.id }}" class="imagePetite"
+                                         src="{{ asset(vich_uploader_asset(photoEquipeB, "imageFile")) }}"
+                                         alt="photo de l'équipe {{ equipeB.name }}">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                </div>
+            </div>
+            <div class="blocEquipe">
+                <h2> Equipes filles</h2>
+                <div class="blocEquipePhoto">
+                    {% for equipeF in equipesGirl %}
+                        {% for photoEquipeF in equipeF.photoEquipes %}
+                            <div class="picture">
+                                {% if photoEquipeF.imageName is defined and photoEquipeF.imageName is not null %}
+                                    <img id="imagePetite{{ photoEquipeF.id }}" class="imagePetite"
+                                         src="{{ asset(vich_uploader_asset(photoEquipeF, "imageFile")) }}"
+                                         alt="photo de l'équipe {{ equipeF.name }}">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="blocEquipe">
+                <h2> Equipes loisir</h2>
+                <div class="blocEquipePhoto">
+                    {% for equipeL in equipesLoisir %}
+                        {% for photoEquipeL in equipeL.photoEquipes %}
+                            <div class="picture">
+                                {% if photoEquipeL.imageName is defined and photoEquipeL.imageName is not null %}
+                                    <img id="imagePetite{{ photoEquipeL.id }}" class="imagePetite"
+                                         src="{{ asset(vich_uploader_asset(photoEquipeL, "imageFile")) }}"
+                                         alt="photo de l'équipe {{ equipeL.name }}">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
-        <div class="blocEquipe">
-            <h2> Equipes filles</h2>
-            <div class="d-flex blocEquipePhoto">
-                {% for equipeF in equipesGirl %}
-                    {% for photoEquipeF in equipeF.photoEquipes %}
-                        <div class="picture">
-                            {% if photoEquipeF.imageName is defined and photoEquipeF.imageName is not null %}
-                                <img src="{{ asset(vich_uploader_asset(photoEquipeF, "imageFile") |
-                                    imagine_filter("thumb")) }}" alt="photo de l'équipe {{ equipeF.name }}">
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        </div>
-        <div class="blocEquipe">
-            <h2> Equipes loisir</h2>
-            <div class="d-flex blocEquipePhoto">
-                {% for equipeL in equipesLoisir %}
-                    {% for photoEquipeL in equipeL.photoEquipes %}
-                        <div class="picture">
-                            {% if photoEquipeL.imageName is defined and photoEquipeL.imageName is not null %}
-                                <img src="{{ asset(vich_uploader_asset(photoEquipeL, "imageFile") |
-                                    imagine_filter("thumb")) }}" alt="photo de l'équipe {{ equipeL.name }}">
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
+
+        <div class="blocPhotoEquipeAjax">
+            <h2></h2>
+            <div class="blocEquipeAjax">
+
             </div>
         </div>
     </div>
 
-    <div class="blocPhotoEquipeAjax">
-        <h2></h2>
-        <div class="blocEquipe">
-
-        </div>
-    </div>
 
 {% endblock %}
 
@@ -116,14 +122,15 @@
                             class: "anyEquipe"
                         });
 
-                        $(".blocPhotoEquipeAjax .blocEquipe").append(noPhotoEquipe);
+                        $(".blocPhotoEquipeAjax .blocEquipeAjax").append(noPhotoEquipe);
+                        $(".blocPhotoEquipeAjax h2").text("");
                     }
                     else
                     {
                         responses.forEach((datas) => {
                             console.log(datas);
                             let path = "/" + datas.imageName;
-                            let asset = "{{ asset('pictures/equipe') }}";
+                            let asset = "{{ asset('media/cache/equipeAffichage/pictures/equipe') }}";
                             $(".blocPhotoEquipeAjax h2").text("Photos de l'équipe " + datas.equipe.name);
 
                             {# let url = "{{ asset(vich_uploader_asset(" + datas.photoEquipe + ", 'imageFile'))}}";#}
@@ -138,6 +145,7 @@
         if (idEquipe === "all")
         {
             $(".blocPhotoEquipeAll").css("display", "block");
+            $(".blocPhotoEquipeAjax").css("display", "none");
         }
         else if(idEquipe === "none")
         {
@@ -146,16 +154,19 @@
         }
         else
         {
+            $(".blocPhotoEquipeAll").css("display", "none");
+            $(".blocPhotoEquipeAjax").css("display", "block");
             sendAjaxController(idEquipe);
         }
 
         $("#selectEquipePhoto").change(function () {
             idEquipe = $("#selectEquipePhoto option:selected").val();
-            $(".blocPhotoEquipeAjax .blocEquipe").text("");
+            $(".blocPhotoEquipeAjax .blocEquipeAjax").text("");
 
             if (idEquipe === "all")
             {
                 $(".blocPhotoEquipeAll").css("display", "block");
+                $(".blocPhotoEquipeAjax").css("display", "none");
             }
             else if(idEquipe === "none")
             {
@@ -164,6 +175,7 @@
             else
             {
                 $(".blocPhotoEquipeAll").css("display", "none");
+                $(".blocPhotoEquipeAjax").css("display", "block");
                 sendAjaxController(idEquipe);
             }
         });

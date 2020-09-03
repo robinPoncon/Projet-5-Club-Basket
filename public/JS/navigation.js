@@ -317,7 +317,10 @@ function htmlResponseAjaxPhotoEquipe(source, name)
         alt: "Photo de l'équipe " + name
     });
 
-    $(".blocPhotoEquipeAjax .blocEquipe").append(img);
+    let divPicture = $("<div>", {class: "picture"});
+
+    $(divPicture).append(img);
+    $(".blocPhotoEquipeAjax .blocEquipeAjax").append(divPicture);
 
 }
 
@@ -385,17 +388,9 @@ if ($(window).width() <= 768)
 
                 // Aggrandir image
 
-function aggrandirImage(id)
-{
-    $("#imageAggrandit" + id).fadeIn();
-    $(".imageReduitEquipe").fadeOut();
-}
 
-function reduireImage(id)
-{
-    $("#imageAggrandit" + id).fadeOut();
-    $(".imageReduitEquipe").fadeIn();
-}
+
+
 
     $(".imageImportant").click(function(){
         $(".imageAggrandit").fadeIn();
