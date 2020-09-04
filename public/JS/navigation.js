@@ -310,17 +310,17 @@ function htmlResponseAjaxConvoc(routeModif, routeSup, dayData, horaireData, addr
     $(".convocations").append(div);
 }
 
-function htmlResponseAjaxPhotoEquipe(source, name)
+function htmlResponseAjaxPhoto(source, alt, parent)
 {
     let img = $("<img>", {
         src: source,
-        alt: "Photo de l'équipe " + name
+        alt: alt
     });
 
     let divPicture = $("<div>", {class: "picture"});
 
     $(divPicture).append(img);
-    $(".blocPhotoEquipeAjax .blocEquipeAjax").append(divPicture);
+    $(parent).append(divPicture);
 
 }
 
@@ -387,10 +387,6 @@ if ($(window).width() <= 768)
     });
 
                 // Aggrandir image
-
-
-
-
 
     $(".imageImportant").click(function(){
         $(".imageAggrandit").fadeIn();

@@ -1,10 +1,14 @@
 
     <div id="nomClub">
-        <h2 id="name"><a href="{{ path("home") }}">BASKET CLUB MEXIMIEUX</a></h2>
-        <h2 class="nameMobile">
+        <h2 id="name"><a href="{{ path("home") }}">Basket Club Meximieux</a>
+            <span>|</span> <a href="{{ path("home") }}"> Boutique</a></h2>
+        <div class="d-flex nameMobile">
             <img src="{{ asset("pictures/logo-meximieux.png") }}" alt="logo du club">
-            <a href="{{ path("home") }}">BCM</a>
-        </h2>
+            <p class="d-flex flex-column">
+                <a href="{{ path("home") }}">BCM</a>
+                <a href="{{ path("home") }}">Boutique</a>
+            </p>
+        </div>
         <div id="connexion">
             {% if not app.user %}
                 <a href="{{ path("security_login") }}"> Connexion </a>

@@ -82,6 +82,55 @@ class PagePhotoController extends AbstractController
         else {
             return new Response("erreur");
         }
+    }
+
+    /**
+     * @Route("editor/photos/articles/data", name="ajax_PhotoArticle")
+     */
+    public function ajaxPhotoArticle(Request $request, ArticleRepository $articleRepo)
+    {
+        if($request->isXmlHttpRequest()) {
+            // On récupère l'id de la requête
+            $idArticle = $request->request->get('id');
+            //dump($idEquipe);
+
+            $articleObject = $articleRepo->find($idArticle);
+            // On récupère l'équipe correspondant à l'id
+
+            $photoArticles = $articleObject->getPhotoArticles();
+            //dump($convocations);
+
+            // On spécifie qu'on utilise un encodeur en json
+            $encoders = [new JsonEncoder()];
+
+            // On instancie le "normaliseur" pour convertir la collection en tableau
+            $normalizers = [new ObjectNormalizer()];
+
+            // On instancie le convertisseur
+            $serializer = new Serializer($normalizers, $encoders);
+
+            // On convertit en json
+            $jsonContent = $serializer->serialize($photoArticles, "json", [
+                "circular_reference_handler" => function ($object) {
+                    return $object->getId();
+                },
+            ]);
+
+            //dump($jsonContent);
+
+            // On instancie la réponse
+            $response = new Response($jsonContent);
+
+            // On ajoute l'entête HTTP
+            $response->headers->set("Content-Type", "application/json");
+
+            //dump($response);
+            // On envoie la réponse
+            return $response;
+        }
+        else {
+            return new Response("erreur");
+        }
 
     }
 }

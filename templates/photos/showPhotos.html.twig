@@ -99,6 +99,48 @@
 
             </div>
         </div>
+
+        <div class="blocPhotoArticleAll">
+            <div class="blocArticle">
+                <h2> Articles actualités</h2>
+                <div class="blocArticlePhoto">
+                    {% for article in articlesNews %}
+                        {% for photoArticle in article.photoArticles %}
+                            <div class="picture">
+                                {% if photoArticle.imageName is defined and photoArticle.imageName is not null %}
+                                    <img id="imagePetite{{ photoArticle.id }}" class="imagePetite"
+                                         src="{{ asset(vich_uploader_asset(photoArticle, "imageFile")) }}"
+                                         alt="photo de l'article {{ article.title }}">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="blocArticle">
+                <h2> Articles tournois</h2>
+                <div class="blocArticlePhoto">
+                    {% for article in articlesTournois %}
+                        {% for photoArticle in article.photoArticles %}
+                            <div class="picture">
+                                {% if photoArticle.imageName is defined and photoArticle.imageName is not null %}
+                                    <img id="imagePetite{{ photoArticle.id }}" class="imagePetite"
+                                         src="{{ asset(vich_uploader_asset(photoArticle, "imageFile")) }}"
+                                         alt="photo de l'article {{ article.title }}">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="blocPhotoArticleAjax">
+            <h2></h2>
+            <div class="blocArticleAjax">
+
+            </div>
+        </div>
     </div>
 
 
@@ -107,6 +149,8 @@
 {% block javascripts %}
 
     <script>
+
+        /* Ajax pour les équipes */
 
         function sendAjaxController(id) {
             $.ajax({
@@ -130,11 +174,12 @@
                         responses.forEach((datas) => {
                             console.log(datas);
                             let path = "/" + datas.imageName;
-                            let asset = "{{ asset('media/cache/equipeAffichage/pictures/equipe') }}";
+                            let asset = "{{ asset('pictures/equipe') }}";
                             $(".blocPhotoEquipeAjax h2").text("Photos de l'équipe " + datas.equipe.name);
 
                             {# let url = "{{ asset(vich_uploader_asset(" + datas.photoEquipe + ", 'imageFile'))}}";#}
-                            htmlResponseAjaxPhotoEquipe(asset + path, datas.equipe.name);
+                            htmlResponseAjaxPhoto(asset + path, "Photo de l'équipe " + datas.equipe.name,
+                                ".blocPhotoEquipeAjax .blocEquipeAjax");
                         });
                     }
                 }
@@ -150,7 +195,7 @@
         else if(idEquipe === "none")
         {
             $(".blocPhotoEquipeAll").css("display", "none");
-
+            $(".blocPhotoEquipeAjax").css("display", "none");
         }
         else
         {
@@ -171,12 +216,94 @@
             else if(idEquipe === "none")
             {
                 $(".blocPhotoEquipeAll").css("display", "none");
+                $(".blocPhotoEquipeAjax").css("display", "none");
             }
             else
             {
                 $(".blocPhotoEquipeAll").css("display", "none");
                 $(".blocPhotoEquipeAjax").css("display", "block");
                 sendAjaxController(idEquipe);
+            }
+        });
+
+
+
+
+
+        /* Ajax pour les articles */
+
+        function sendAjaxControllerArticle(id) {
+            $.ajax({
+                method: "POST",
+                url: "{{ path("ajax_PhotoArticle") }}",
+                data: {id: id},
+                success: function (responses) {
+                    //console.log(responses);
+                    if (responses.length === 0)
+                    {
+                        let noPhotoArticle = $("<p>", {
+                            text: "Il n'y a aucune photos de cet article",
+                            class: "anyEquipe"
+                        });
+
+                        $(".blocPhotoArticleAjax .blocArticleAjax").append(noPhotoArticle);
+                        $(".blocPhotoArticleAjax h2").text("");
+                    }
+                    else
+                    {
+                        responses.forEach((datas) => {
+                            console.log(datas);
+                            let path = "/" + datas.imageName;
+                            let asset = "{{ asset('pictures/article') }}";
+                            $(".blocPhotoArticleAjax h2").text("Photos de l'article " + datas.article.title);
+
+                            {# let url = "{{ asset(vich_uploader_asset(" + datas.photoEquipe + ", 'imageFile'))}}";#}
+                            htmlResponseAjaxPhoto(asset + path, "Photo de l'article " + datas.article.title,
+                                ".blocPhotoArticleAjax .blocArticleAjax");
+                        });
+                    }
+                }
+            });
+        }
+
+        let idArticle = $("#selectArticlePhoto option:selected").val();
+
+        if (idArticle === "all")
+        {
+            $(".blocPhotoArticleAll").css("display", "block");
+            $(".blocPhotoArticleAjax").css("display", "none");
+        }
+        else if(idArticle === "none")
+        {
+            $(".blocPhotoArticleAll").css("display", "none");
+            $(".blocPhotoArticleAjax").css("display", "none");
+        }
+        else
+        {
+            $(".blocPhotoArticleAll").css("display", "none");
+            $(".blocPhotoArticleAjax").css("display", "block");
+            sendAjaxControllerArticle(idArticle);
+        }
+
+        $("#selectArticlePhoto").change(function () {
+            idArticle = $("#selectArticlePhoto option:selected").val();
+            $(".blocPhotoArticleAjax .blocArticleAjax").text("");
+
+            if (idArticle === "all")
+            {
+                $(".blocPhotoArticleAll").css("display", "block");
+                $(".blocPhotoArticleAjax").css("display", "none");
+            }
+            else if(idArticle === "none")
+            {
+                $(".blocPhotoArticleAll").css("display", "none");
+                $(".blocPhotoArticleAjax").css("display", "none");
+            }
+            else
+            {
+                $(".blocPhotoArticleAll").css("display", "none");
+                $(".blocPhotoArticleAjax").css("display", "block");
+                sendAjaxControllerArticle(idArticle);
             }
         });
     </script>
