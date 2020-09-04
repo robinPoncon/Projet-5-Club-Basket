@@ -338,7 +338,7 @@
         "version": "v4.4.8"
     },
     "symfony/http-kernel": {
-        "version": "v4.4.8"
+        "version": "v4.4.13"
     },
     "symfony/inflector": {
         "version": "v4.4.8"
