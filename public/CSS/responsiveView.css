@@ -299,6 +299,11 @@
         font-weight: bold;
     }
     
+    .nameMobile a:hover
+    {
+        color: #ef8108 !important;
+    }
+    
     .nameMobile p
     {
         margin-top: 11px;

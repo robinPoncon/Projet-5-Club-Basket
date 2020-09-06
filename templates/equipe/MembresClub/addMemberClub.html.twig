@@ -56,6 +56,15 @@
         </div>
         <div class="divForm">
             <div class="errorForm">
+                {{ form_errors(formMemberClub.description) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formMemberClub.description) }}
+                {{ form_widget(formMemberClub.description) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
                 {{ form_errors(formMemberClub.fonctionClub) }}
             </div>
             <div class="d-flex">

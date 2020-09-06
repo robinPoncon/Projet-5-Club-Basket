@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\FonctionClub;
 use App\Entity\MemberClub;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,7 +30,8 @@ class MemberClubType extends AbstractType
                 "attr" => [
                     "placeholder" => "Président, secrétariat, etc",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => false
             ])
             ->add('surname', TextType::class, [
                 "label" => "Nom",
@@ -67,6 +70,17 @@ class MemberClubType extends AbstractType
                 ],
                 "attr" => [
                     "placeholder" => "06-35-76-54-53",
+                    "class" => "form-control input"
+                ],
+                "required" => false
+            ])
+            ->add('description', TextareaType::class, [
+                "label" => "infos supplémentaires",
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "placeholder" => "président, coach equipe xx, etc",
                     "class" => "form-control input"
                 ],
                 "required" => false

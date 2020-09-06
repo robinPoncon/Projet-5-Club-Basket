@@ -1,7 +1,7 @@
 
 var path = window.location.href; // On récupère l'url
 
-$('.menu a, #connexion a').each(function () {
+$('.menu a, #connexion a, #name a, .nameMobile a').each(function () {
     if (this.href === path) { // Si l'url correspond on ajoute la classe active
         $(this).addClass('active');
         let cCedille = "%C3%A7";
@@ -9,6 +9,7 @@ $('.menu a, #connexion a').each(function () {
         let regexGirl = RegExp("filles");
         let regexLoisir = RegExp("loisir");
         let regexClub = RegExp("club-BCM");
+
 
         if (regexBoy.test(path))
         {
@@ -38,17 +39,30 @@ $(".menu-compte a").each(function () {
         let regExpUsers = RegExp("utilisateurs");
         let regExpArticles = RegExp("articles");
         let regExpEquipes = RegExp("equipes");
-        if (regExpCompte.test(path)) {
+        let regExpProduits = RegExp("produits");
+        if (regExpCompte.test(path))
+        {
             $("#compte1").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
-        } else if (regExpArticles.test(path)) {
+        }
+        else if (regExpArticles.test(path))
+        {
             $("#compte2").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
-        } else if (regExpEquipes.test(path)) {
+        }
+        else if (regExpEquipes.test(path))
+        {
             $("#compte3").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
-        } else if (regExpUsers.test(path)) {
+        }
+        else if (regExpUsers.test(path))
+        {
             $("#compte4").addClass("activeCompte");
+            $("#connexion :first-child").addClass("active");
+        }
+        else if (regExpProduits.test(path))
+        {
+            $("#compte5").addClass("activeCompte");
             $("#connexion :first-child").addClass("active");
         }
     }
@@ -70,6 +84,7 @@ compteCssOver("#compte1child", "#compte1");
 compteCssOver("#compte2child", "#compte2");
 compteCssOver("#compte3child", "#compte3");
 compteCssOver("#compte4child", "#compte4");
+compteCssOver("#compte5child", "#compte5");
 
 
 

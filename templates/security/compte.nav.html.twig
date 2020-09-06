@@ -12,6 +12,9 @@
                 <div id="compte3">
                     <p><a id="compte3child" href="{{ path("equipes") }}">Gestion Club</a></p>
                 </div>
+                <div id="compte5">
+                    <p><a id="compte5child" href="{{ path("produits") }}">Gestion Boutique</a></p>
+                </div>
                 {% if is_granted("ROLE_ADMIN") %}
                     <div id="compte4">
                         <p><a id="compte4child" href="{{ path("users") }}">Gestion Utilisateurs</a></p>

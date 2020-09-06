@@ -5,6 +5,11 @@ html, body
 }
                                             /* Navigation Menu */
 
+#logo img
+{
+    margin-top: -77px;
+}
+
 .nameMobile, .menu-hamburger
 {
     display: none;
@@ -433,7 +438,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     display: flex;
     list-style-type: none;
     position: relative;
-    top: 134px;
+    top: 139px;
 }
 
 .menu-compte a
@@ -871,7 +876,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 0;
 }
 
-
+#cke_member_club_description
+{
+    width: 101%;
+    margin-bottom: 40px;
+}
 
 
 

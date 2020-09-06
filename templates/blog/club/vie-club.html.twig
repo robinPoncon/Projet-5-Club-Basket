@@ -60,6 +60,11 @@
                             {% else %}
                                 <p> TÉLÉPHONE : <span>Non renseigné</span></p>
                             {% endif %}
+                            {% if member.description %}
+                                <p> Infos supplémentaires : <span>{{ member.description | raw }}</span></p>
+                            {% else %}
+                                <p> Infos supplémentaires : <span>Non renseigné</span></p>
+                            {% endif %}
                         </div>
                     </div>
                 {% endif %}
