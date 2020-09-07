@@ -1,0 +1,72 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Ajout d'un nouveau produit {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+
+    <h1>Ajouter un produit</h1>
+    <div class="addProduitForm">
+        {{ form_start(formProduit) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formProduit.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formProduit.name) }}
+                {{ form_widget(formProduit.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formProduit.taille) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formProduit.taille) }}
+                {{ form_widget(formProduit.taille) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formProduit.color) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formProduit.color) }}
+                {{ form_widget(formProduit.color) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formProduit.price) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formProduit.price) }}
+                {{ form_widget(formProduit.price) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formProduit.quantity) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formProduit.quantity) }}
+                {{ form_widget(formProduit.quantity) }}
+            </div>
+        </div>
+
+        <ul id="photo-fields-list" class="photoDiv"
+            data-prototype="{{ form_widget(formProduit.photoProduits.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ formProduit.photoProduits|length }}">
+
+        </ul>
+
+        <button type="button"
+                class="add-another-collection-widget"
+                data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+
+        <button class="form-control submit" type="submit">Ajouter</button>
+        {{ form_end(formProduit) }}
+    </div>
+
+{% endblock %}

@@ -63,7 +63,12 @@
         flex-direction: column;
     }
     
-    /* Page équipe et article */
+    .menu-compte
+    {
+        top: 127px;
+    }
+    
+                                            /* Page équipe et article */
     
     .diapos
     {
@@ -126,7 +131,7 @@
     
     
     
-    /* Accueil */
+                                            /* Accueil */
     
     .postNews .aggrandirImage
     {
@@ -211,7 +216,7 @@
         margin-left: 285px;
     }
     
-    /* Gestion club, equipe, membre */
+                                            /* Gestion club, equipe, membre */
     .bigBlocMember .blocTeam
     {
         margin: auto;
@@ -222,7 +227,7 @@
         margin-left: 0;
     }
     
-    /* page club */
+                                            /* page club */
     
     .sponsors .play, .sponsors .pause, .sponsors .chevron-gauche, .sponsors .chevron-droit
     {
@@ -239,7 +244,7 @@
         margin-bottom: 350px;
     }
     
-    /* Page Photo */
+                                            /* Page Photo */
     
     .allPhotos .picture
     {

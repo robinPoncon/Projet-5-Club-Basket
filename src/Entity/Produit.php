@@ -31,24 +31,24 @@ class Produit
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $taille;
-
-    /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
      */
     private $price;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $color;
-
-    /**
      * @ORM\Column(type="smallint")
      */
     private $quantity;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $taille;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $color;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -57,7 +57,7 @@ class Produit
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity=PhotoProduit::class, mappedBy="produit", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PhotoProduit::class, mappedBy="produit", cascade={"persist", "remove"})
      */
     private $photoProduits;
 
@@ -83,18 +83,6 @@ class Produit
         return $this;
     }
 
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(string $taille): self
-    {
-        $this->taille = $taille;
-
-        return $this;
-    }
-
     public function getPrice(): ?string
     {
         return $this->price;
@@ -107,18 +95,6 @@ class Produit
         return $this;
     }
 
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
     public function getQuantity(): ?int
     {
         return $this->quantity;
@@ -127,6 +103,30 @@ class Produit
     public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getTaille(): ?string
+    {
+        return $this->taille;
+    }
+
+    public function setTaille(string $taille): self
+    {
+        $this->taille = $taille;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }

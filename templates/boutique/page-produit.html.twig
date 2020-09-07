@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Produit {{ produit.name }}{% endblock %}
+
+{% block body %}
+
+    <h1>Page produit "{{ produit.name }}"</h1>
+
+    <div>
+        <img src="" alt="image mise en avant du produit">
+        <div class="d-flex vente">
+            <div class="d-flex flex-column images">
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+            </div>
+            <div>
+                <h2>{{ produit.name }}</h2>
+                <p>{{ produit.taille }}</p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
