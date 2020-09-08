@@ -7,6 +7,26 @@
 
     <h1>Gestion de la Boutique</h1>
 
-    <a href="{{ path("addProduit") }}">Ajouter un produit</a>
+    <div class="d-flex justify-content-center position-relative ajoutBoutique">
+        <a href="{{ path("addProduit") }}">Ajouter un produit</a>
+        <a href="{{ path("addCaract") }}">Ajouter une caractéristique à un produit</a>
+    </div>
+
+    {% for produit in produits %}
+
+        <div class="blocListeProduits">
+            <div class="d-flex">
+                <a href="{{ path("pageProduit", {"slug": produit.slug}) }}">{{ produit.name }}</a>
+                <p>Prix : {{ produit.price }} €</p>
+            </div>
+            <select name="listCaract">
+                {% for caract in produit.caracts %}
+                <option value="{{ caract.id }}">{{ caract.color }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    {% endfor %}
+
 
 {% endblock %}

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Caracteristique;
 use App\Entity\Produit;
+use App\Form\CaracteristiqueType;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -90,12 +92,36 @@ class BoutiqueController extends AbstractController
 
             $this->addFlash("success", "Le produit a bien été ajouté !");
             return $this->redirectToRoute("produits", [
-                "slug" => $produit->getSlug()
             ]);
         }
 
         return $this->render("boutique/addProduit.html.twig", [
             "formProduit" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/produit/caracteristique/ajouter", name="addCaract")
+     */
+    public function addCaract(Request $request, EntityManagerInterface $manager)
+    {
+        $caract = new Caracteristique();
+
+        $form = $this->createForm(CaracteristiqueType::class, $caract);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($caract);
+            $manager->flush();
+
+            $this->addFlash("success", "La caractéristique a bien été ajouté au produit !");
+            return $this->redirectToRoute("produits", [
+            ]);
+        }
+
+        return $this->render("boutique/addCaract.html.twig", [
+            "formCaract" => $form->createView()
         ]);
     }
 

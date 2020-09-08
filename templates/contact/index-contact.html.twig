@@ -5,7 +5,8 @@
 {% block body %}
     <h1> Nous contacter </h1>
 
-    {{ form_start(formContact) }}
+    <div class="contact">
+        {{ form_start(formContact) }}
         <div class="divForm">
             <div class="errorForm">
                 {{ form_errors(formContact.surname) }}
@@ -58,6 +59,7 @@
 
         <button class="form-control submit" type="submit">Envoyer</button>
 
-    {{ form_end(formContact) }}
+        {{ form_end(formContact) }}
+    </div>
 
 {% endblock %}

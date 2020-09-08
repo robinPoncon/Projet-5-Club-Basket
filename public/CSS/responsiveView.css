@@ -762,13 +762,15 @@
         margin-top: -130px;
     }
     
-    .addArticleForm div, .editArticleForm div
+    .addArticleForm div, .editArticleForm div, .contact div, .addCaractForm div, .addProduitForm div
     {
         flex-direction: column;
     }
     
     .addArticleForm label, .addArticleForm input, #article_prioritaire, .editArticleForm label,
-    .editArticleForm input
+    .editArticleForm input, .contact label, .contact input, #contact_objet, #contact_message,
+    .addCaractForm label, .addCaractForm input, #caracteristique_produit, .addProduitForm label,
+    .addProduitForm input
     {
         width: 100% !important;
     }
@@ -1161,13 +1163,39 @@
         top: 58px;
     }
     
-    /* Page Photo */
+                                        /* Page Photo */
     
     .allPhotos img
     {
         width: 250px;
         height: 200px;
     }
+    
+                                        /* Gestion Boutique */
+    
+    #photo-fields-list, .add-another-collection-widget
+    {
+        margin-top: 20px;
+    }
+    
+    .ajoutBoutique
+    {
+        flex-direction: column;
+    }
+    
+    .ajoutBoutique a:nth-child(1)
+    {
+        margin-bottom: 30px !important;
+        margin-right: auto;
+    }
+    
+    .ajoutBoutique a
+    {
+        width: 90%;
+        margin: auto;
+    }
+    
+    
     
     
     

@@ -2620,6 +2620,28 @@ td
 }
 
 
+                                /* Gestion Boutique */
+
+.ajoutBoutique a
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.ajoutBoutique a:nth-child(1)
+{
+    margin-right: 50px;
+}
+
+.ajoutBoutique a:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
 
 
 

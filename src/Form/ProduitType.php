@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Caracteristique;
 use App\Entity\Produit;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -28,6 +30,7 @@ class ProduitType extends AbstractType
             ])
             ->add('price', MoneyType::class, [
                 "label" => "Prix",
+                "currency" => "",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
@@ -35,38 +38,6 @@ class ProduitType extends AbstractType
                     "placeholder" => "80, 44, 15, etc",
                     "class" => "form-control input"
                 ]
-            ])
-            ->add('quantity', IntegerType::class, [
-                "label" => "Quantité",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "11, 5, 34, etc",
-                    "class" => "form-control input"
-                ]
-            ])
-            ->add('taille', TextType::class, [
-                "label" => "Tailles",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "M, XL, 12ans, 42, etc",
-                    "class" => "form-control input"
-                ],
-                'property_path' => 'taille[0]',
-            ])
-            ->add('color', TextType::class, [
-                "label" => "Couleurs",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "blanc, bleu, noir, etc",
-                    "class" => "form-control input"
-                ],
-                'property_path' => 'taille[0]',
             ])
             ->add('photoProduits', CollectionType::class, [
                 'entry_type' => PhotoProduitType::class,

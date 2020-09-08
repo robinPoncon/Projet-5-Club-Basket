@@ -36,21 +36,6 @@ class Produit
     private $price;
 
     /**
-     * @ORM\Column(type="smallint")
-     */
-    private $quantity;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $taille;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $color;
-
-    /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
@@ -61,9 +46,15 @@ class Produit
      */
     private $photoProduits;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Caracteristique::class, mappedBy="produit", orphanRemoval=true)
+     */
+    private $caracts;
+
     public function __construct()
     {
         $this->photoProduits = new ArrayCollection();
+        $this->caracts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -91,42 +82,6 @@ class Produit
     public function setPrice(string $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(string $taille): self
-    {
-        $this->taille = $taille;
-
-        return $this;
-    }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
 
         return $this;
     }
@@ -167,6 +122,37 @@ class Produit
             // set the owning side to null (unless already changed)
             if ($photoProduit->getProduit() === $this) {
                 $photoProduit->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Caracteristique[]
+     */
+    public function getCaracts(): Collection
+    {
+        return $this->caracts;
+    }
+
+    public function addCaract(Caracteristique $caract): self
+    {
+        if (!$this->caracts->contains($caract)) {
+            $this->caracts[] = $caract;
+            $caract->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCaract(Caracteristique $caract): self
+    {
+        if ($this->caracts->contains($caract)) {
+            $this->caracts->removeElement($caract);
+            // set the owning side to null (unless already changed)
+            if ($caract->getProduit() === $this) {
+                $caract->setProduit(null);
             }
         }
 
