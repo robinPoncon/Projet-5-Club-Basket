@@ -762,14 +762,14 @@
         margin-top: -130px;
     }
     
-    .addArticleForm div, .editArticleForm div, .contact div, .addCaractForm div, .addProduitForm div
+    .addArticleForm div, .editArticleForm div, .contact div, .addColorForm div, .addProduitForm div
     {
         flex-direction: column;
     }
     
     .addArticleForm label, .addArticleForm input, #article_prioritaire, .editArticleForm label,
     .editArticleForm input, .contact label, .contact input, #contact_objet, #contact_message,
-    .addCaractForm label, .addCaractForm input, #caracteristique_produit, .addProduitForm label,
+    .addColorForm label, .addColorForm input, #caracteristique_produit, .addProduitForm label,
     .addProduitForm input
     {
         width: 100% !important;

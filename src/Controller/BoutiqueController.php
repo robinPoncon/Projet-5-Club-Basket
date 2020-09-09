@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Caracteristique;
+use App\Entity\Color;
 use App\Entity\Produit;
-use App\Form\CaracteristiqueType;
+use App\Entity\Taille;
+use App\Form\ColorType;
 use App\Form\ProduitType;
+use App\Form\TailleType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +42,7 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("boutique/produit/{slug}", name="pageProduit")
+     * @Route("boutique/produit/{slug}", name="ficheProduit")
      */
     public function show(Produit $produit)
     {
@@ -101,27 +103,52 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("editor/boutique/produit/caracteristique/ajouter", name="addCaract")
+     * @Route("editor/boutique/couleur/ajouter", name="addColor")
      */
-    public function addCaract(Request $request, EntityManagerInterface $manager)
+    public function addColor(Request $request, EntityManagerInterface $manager)
     {
-        $caract = new Caracteristique();
+        $color = new Color();
 
-        $form = $this->createForm(CaracteristiqueType::class, $caract);
+        $form = $this->createForm(ColorType::class, $color);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $manager->persist($caract);
+            $manager->persist($color);
             $manager->flush();
 
-            $this->addFlash("success", "La caractéristique a bien été ajouté au produit !");
+            $this->addFlash("success", "La couleur a bien été ajoutée !");
             return $this->redirectToRoute("produits", [
             ]);
         }
 
-        return $this->render("boutique/addCaract.html.twig", [
-            "formCaract" => $form->createView()
+        return $this->render("boutique/addColor.html.twig", [
+            "formColor" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/taille/ajouter", name="addTaille")
+     */
+    public function addTaille(Request $request, EntityManagerInterface $manager)
+    {
+        $taille = new Taille();
+
+        $form = $this->createForm(TailleType::class, $taille);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($taille);
+            $manager->flush();
+
+            $this->addFlash("success", "La taille a bien été ajoutée !");
+            return $this->redirectToRoute("produits", [
+            ]);
+        }
+
+        return $this->render("boutique/addTaille.html.twig", [
+            "formTaille" => $form->createView()
         ]);
     }
 

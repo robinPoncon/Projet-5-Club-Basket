@@ -47,14 +47,20 @@ class Produit
     private $photoProduits;
 
     /**
-     * @ORM\OneToMany(targetEntity=Caracteristique::class, mappedBy="produit", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity=Color::class, inversedBy="produit")
      */
-    private $caracts;
+    private $colors;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Taille::class, mappedBy="produit")
+     */
+    private $tailles;
 
     public function __construct()
     {
         $this->photoProduits = new ArrayCollection();
-        $this->caracts = new ArrayCollection();
+        $this->colors = new ArrayCollection();
+        $this->tailles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -129,30 +135,58 @@ class Produit
     }
 
     /**
-     * @return Collection|Caracteristique[]
+     * @return Collection|Color[]
      */
-    public function getCaracts(): Collection
+    public function getColors(): Collection
     {
-        return $this->caracts;
+        return $this->colors;
     }
 
-    public function addCaract(Caracteristique $caract): self
+    public function addColor(Color $color): self
     {
-        if (!$this->caracts->contains($caract)) {
-            $this->caracts[] = $caract;
-            $caract->setProduit($this);
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addProduit($this);
         }
 
         return $this;
     }
 
-    public function removeCaract(Caracteristique $caract): self
+    public function removeColor(Color $color): self
     {
-        if ($this->caracts->contains($caract)) {
-            $this->caracts->removeElement($caract);
+        if ($this->colors->contains($color)) {
+            $this->colors->removeElement($color);
+            $color->removeProduit($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Taille[]
+     */
+    public function getTailles(): Collection
+    {
+        return $this->tailles;
+    }
+
+    public function addTaille(Taille $taille): self
+    {
+        if (!$this->tailles->contains($taille)) {
+            $this->tailles[] = $taille;
+            $taille->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTaille(Taille $taille): self
+    {
+        if ($this->tailles->contains($taille)) {
+            $this->tailles->removeElement($taille);
             // set the owning side to null (unless already changed)
-            if ($caract->getProduit() === $this) {
-                $caract->setProduit(null);
+            if ($taille->getProduit() === $this) {
+                $taille->setProduit(null);
             }
         }
 

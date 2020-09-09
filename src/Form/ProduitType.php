@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Caracteristique;
+use App\Entity\Color;
 use App\Entity\Produit;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -36,6 +37,19 @@ class ProduitType extends AbstractType
                 ],
                 "attr" => [
                     "placeholder" => "80, 44, 15, etc",
+                    "class" => "form-control input"
+                ]
+            ])
+            ->add("colors", EntityType::class, [
+                "class" => Color::class,
+                "choice_label" => "name",
+                "multiple" => true,
+                'expanded' => true,
+                "label" => "couleur",
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
                     "class" => "form-control input"
                 ]
             ])

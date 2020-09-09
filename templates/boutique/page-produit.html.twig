@@ -14,9 +14,21 @@
                 <img src="" alt="">
                 <img src="" alt="">
             </div>
-            <div>
-                <h2>{{ produit.name }}</h2>
-                <p>{{ produit.taille }}</p>
+            <div class="ficheProduit">
+                <h2>{{ produit.name }} - {{ produit.price }}€</h2>
+
+                {% for couleur in produit.colors %}
+                    <p>{{ couleur.name }}</p>
+                    <p>Taille :
+                        {% for tailleC in couleur.tailles %}
+                            {% for tailleP in produit.tailles %}
+                            {% if tailleP.name == tailleC.name %}
+                                {{ tailleC.name }} - {{ tailleC.quantity}}
+                            {% endif %}
+                                {% endfor %}
+                        {% endfor %}
+                    </p>
+                {% endfor %}
 
             </div>
         </div>
