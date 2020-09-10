@@ -336,8 +336,26 @@ function htmlResponseAjaxPhoto(source, alt, parent)
 
     $(divPicture).append(img);
     $(parent).append(divPicture);
-
 }
+
+function htmlResponseAjaxTailleProduit(id, name, select)
+{
+    let option = $("<option>", {
+        value: id,
+        text: name
+    });
+
+    $(select).append(option);
+}
+
+
+
+
+
+
+
+
+
 
 // CSS MENU HAMBURGER
 

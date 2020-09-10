@@ -47,20 +47,14 @@ class Produit
     private $photoProduits;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Color::class, inversedBy="produit")
+     * @ORM\OneToMany(targetEntity=Color::class, mappedBy="produit", cascade={"persist", "remove"})
      */
     private $colors;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Taille::class, mappedBy="produit")
-     */
-    private $tailles;
 
     public function __construct()
     {
         $this->photoProduits = new ArrayCollection();
         $this->colors = new ArrayCollection();
-        $this->tailles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,7 +140,7 @@ class Produit
     {
         if (!$this->colors->contains($color)) {
             $this->colors[] = $color;
-            $color->addProduit($this);
+            $color->setProduit($this);
         }
 
         return $this;
@@ -156,37 +150,9 @@ class Produit
     {
         if ($this->colors->contains($color)) {
             $this->colors->removeElement($color);
-            $color->removeProduit($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Taille[]
-     */
-    public function getTailles(): Collection
-    {
-        return $this->tailles;
-    }
-
-    public function addTaille(Taille $taille): self
-    {
-        if (!$this->tailles->contains($taille)) {
-            $this->tailles[] = $taille;
-            $taille->setProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTaille(Taille $taille): self
-    {
-        if ($this->tailles->contains($taille)) {
-            $this->tailles->removeElement($taille);
             // set the owning side to null (unless already changed)
-            if ($taille->getProduit() === $this) {
-                $taille->setProduit(null);
+            if ($color->getProduit() === $this) {
+                $color->setProduit(null);
             }
         }
 

@@ -2647,6 +2647,32 @@ td
     position: relative;
 }
 
+#selectProduit, #taille_color
+{
+    width: 99%;
+}
+
+.choixProduit
+{
+    color: white !important;
+    background-color: #074592 !important;
+    margin-right: 20px;
+    width: 50% !important;
+    text-align: center;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.blocProduit
+{
+    width: 80%;
+    margin: auto;
+    position: relative;
+    bottom: 20px;
+    margin-top: 40px;
+}
+
 
 
 

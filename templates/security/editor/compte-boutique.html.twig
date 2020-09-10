@@ -20,12 +20,8 @@
             {% for couleur in produit.colors %}
                 <p>{{ couleur.name }} -
                     Tailles :
-                    {% for tailleC in couleur.tailles %}
-                        {% for tailleP in produit.tailles %}
-                            {% if tailleP.name == tailleC.name %}
-                                {{ tailleC.name }} (quantité = {{ tailleC.quantity}})
-                            {% endif %}
-                        {% endfor %}
+                    {% for taille in couleur.tailles %}
+                        {{ taille.name }} (quantité = {{ taille.quantity}})
                     {% endfor %}
                 </p>
             {% endfor %}

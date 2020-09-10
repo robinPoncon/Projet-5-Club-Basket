@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class BoutiqueController extends AbstractController
 {
@@ -130,9 +133,11 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("editor/boutique/taille/ajouter", name="addTaille")
      */
-    public function addTaille(Request $request, EntityManagerInterface $manager)
+    public function addTaille(Request $request, EntityManagerInterface $manager, ProduitRepository $produitRepo)
     {
         $taille = new Taille();
+
+        $produits = $produitRepo->findAll();
 
         $form = $this->createForm(TailleType::class, $taille);
         $form->handleRequest($request);
@@ -148,8 +153,58 @@ class BoutiqueController extends AbstractController
         }
 
         return $this->render("boutique/addTaille.html.twig", [
-            "formTaille" => $form->createView()
+            "formTaille" => $form->createView(),
+            "produits" => $produits
         ]);
+    }
+
+    /**
+     * @Route("editor/produits/ajouterTaille/data", name="ajax_produit")
+     */
+    public function ajaxConvoc(Request $request, ProduitRepository $produitRepo)
+    {
+        if($request->isXmlHttpRequest()) {
+            // On récupère l'id de la requête
+            $idProduit = $request->request->get('id');
+            //dump($idEquipe);
+
+            $produitObject = $produitRepo->find($idProduit);
+            // On récupère l'équipe correspondant à l'id
+
+            $couleurs = $produitObject->getColors();
+            //dump($convocations);
+
+            // On spécifie qu'on utilise un encodeur en json
+            $encoders = [new JsonEncoder()];
+
+            // On instancie le "normaliseur" pour convertir la collection en tableau
+            $normalizers = [new ObjectNormalizer()];
+
+            // On instancie le convertisseur
+            $serializer = new Serializer($normalizers, $encoders);
+
+            // On convertit en json
+            $jsonContent = $serializer->serialize($couleurs, "json", [
+                "circular_reference_handler" => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+
+            //dump($jsonContent);
+
+            // On instancie la réponse
+            $response = new Response($jsonContent);
+
+            // On ajoute l'entête HTTP
+            $response->headers->set("Content-Type", "application/json");
+
+            //dump($response);
+            // On envoie la réponse
+            return $response;
+        }
+        else {
+            return new Response("erreur");
+        }
     }
 
 }

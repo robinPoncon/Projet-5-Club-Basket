@@ -8,15 +8,15 @@
     <h1>Ajouter une taille</h1>
     <div class="addTailleForm">
         {{ form_start(formTaille) }}
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formTaille.produit) }}
-            </div>
-            <div class="d-flex">
-                {{ form_label(formTaille.produit) }}
-                {{ form_widget(formTaille.produit) }}
-            </div>
+        <div class="d-flex blocProduit">
+            <p class="choixProduit">Choisir un produit</p>
+            <select class="form-control" name="listProduit" id="selectProduit">
+                {% for produit in produits %}
+                    <option value="{{ produit.id }}">{{ produit.name }}</option>
+                {% endfor %}
+            </select>
         </div>
+
         <div class="divForm">
             <div class="errorForm">
                 {{ form_errors(formTaille.color) }}
@@ -26,6 +26,7 @@
                 {{ form_widget(formTaille.color) }}
             </div>
         </div>
+
         <div class="divForm">
             <div class="errorForm">
                 {{ form_errors(formTaille.name) }}
@@ -49,5 +50,53 @@
         <button class="form-control submit" type="submit">Ajouter</button>
         {{ form_end(formTaille) }}
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+
+        function sendAjaxController(id)
+        {
+            $.ajax({
+                method: "POST",
+                url: "{{ path("ajax_produit") }}",
+                data: {id: id},
+                success: function (responses) {
+                    //console.log(responses);
+                    if (responses.length === 0)
+                    {
+                        let noOption = $("<option>", {
+                            text: "Veuillez d'abord ajouter une couleur au produit",
+                            value: 0
+                        });
+
+                        $("#taille_color").append(noOption);
+                    }
+                    else
+                    {
+                        responses.forEach((datas) => {
+                            //console.log(datas.horaire.timestamp);
+                            htmlResponseAjaxTailleProduit(datas.id, datas.name, $("#taille_color"));
+                        });
+                    }
+                }
+            });
+        }
+
+        let valProduit = $("#selectProduit option:selected").val();
+        $("#taille_color").text("");
+        sendAjaxController(valProduit);
+
+        $("#selectProduit").change(function () {
+            valProduit = $("#selectProduit option:selected").val();
+            //console.log(valProduit);
+            $("#taille_color").text("");
+            sendAjaxController(valProduit);
+        });
+
+
+    </script>
 
 {% endblock %}

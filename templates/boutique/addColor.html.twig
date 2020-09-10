@@ -9,6 +9,15 @@
         {{ form_start(formColor) }}
             <div class="divForm">
                 <div class="errorForm">
+                    {{ form_errors(formColor.produit) }}
+                </div>
+                <div class="d-flex">
+                    {{ form_label(formColor.produit) }}
+                    {{ form_widget(formColor.produit) }}
+                </div>
+            </div>
+            <div class="divForm">
+                <div class="errorForm">
                     {{ form_errors(formColor.name) }}
                 </div>
                 <div class="d-flex">

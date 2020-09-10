@@ -26,15 +26,6 @@
                 {{ form_widget(formProduit.price) }}
             </div>
         </div>
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formProduit.colors) }}
-            </div>
-            <div class="d-flex">
-                {{ form_label(formProduit.colors) }}
-                {{ form_widget(formProduit.colors) }}
-            </div>
-        </div>
 
         <ul id="photo-fields-list" class="photoDiv"
             data-prototype="{{ form_widget(formProduit.photoProduits.vars.prototype)|e }}"

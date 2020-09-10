@@ -40,19 +40,6 @@ class ProduitType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add("colors", EntityType::class, [
-                "class" => Color::class,
-                "choice_label" => "name",
-                "multiple" => true,
-                'expanded' => true,
-                "label" => "couleur",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "class" => "form-control input"
-                ]
-            ])
             ->add('photoProduits', CollectionType::class, [
                 'entry_type' => PhotoProduitType::class,
                 'allow_add' => true,

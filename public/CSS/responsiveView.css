@@ -1195,6 +1195,20 @@
         margin: auto;
     }
     
+    .blocProduit
+    {
+        flex-direction: column;
+    }
+    
+    .choixProduit, .addTailleForm label, .addTailleForm input, #taille_color, #color_produit
+    {
+        width: 100% !important;
+    }
+    
+    .addTailleForm div
+    {
+        flex-direction: column;
+    }
     
     
     

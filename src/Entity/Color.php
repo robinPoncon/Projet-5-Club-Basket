@@ -25,18 +25,17 @@ class Color
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produit::class, mappedBy="colors")
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="colors")
      */
     private $produit;
 
     /**
-     * @ORM\OneToMany(targetEntity=Taille::class, mappedBy="color")
+     * @ORM\OneToMany(targetEntity=Taille::class, mappedBy="color", cascade={"persist", "remove"})
      */
     private $tailles;
 
     public function __construct()
     {
-        $this->produit = new ArrayCollection();
         $this->tailles = new ArrayCollection();
     }
 
@@ -57,28 +56,14 @@ class Color
         return $this;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduit(): Collection
+    public function getProduit(): ?Produit
     {
         return $this->produit;
     }
 
-    public function addProduit(Produit $produit): self
+    public function setProduit(?Produit $produit): self
     {
-        if (!$this->produit->contains($produit)) {
-            $this->produit[] = $produit;
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->produit->contains($produit)) {
-            $this->produit->removeElement($produit);
-        }
+        $this->produit = $produit;
 
         return $this;
     }

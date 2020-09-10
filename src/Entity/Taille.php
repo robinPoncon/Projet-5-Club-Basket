@@ -34,11 +34,6 @@ class Taille
      */
     private $color;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="tailles")
-     */
-    private $produit;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -76,18 +71,6 @@ class Taille
     public function setColor(?Color $color): self
     {
         $this->color = $color;
-
-        return $this;
-    }
-
-    public function getProduit(): ?Produit
-    {
-        return $this->produit;
-    }
-
-    public function setProduit(?Produit $produit): self
-    {
-        $this->produit = $produit;
 
         return $this;
     }

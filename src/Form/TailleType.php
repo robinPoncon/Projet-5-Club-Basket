@@ -17,20 +17,10 @@ class TailleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("produit", EntityType::class, [
-                "class" => Produit::class,
-                "choice_label" => "name",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "class" => "form-control input"
-                ]
-            ])
             ->add("color", EntityType::class, [
                 "class" => Color::class,
                 "choice_label" => "name",
-                "label" => "couleur",
+                "label" => "Couleur du produit",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
@@ -39,7 +29,7 @@ class TailleType extends AbstractType
                 ]
             ])
             ->add('name', TextType::class, [
-                "label" => "Taille",
+                "label" => "Taille du produit",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
@@ -49,7 +39,7 @@ class TailleType extends AbstractType
                 ]
             ])
             ->add('quantity', IntegerType::class, [
-                "label" => "Quantité",
+                "label" => "Quantité du produit",
                 "label_attr" => [
                     "class" => "form-control label",
                 ],
