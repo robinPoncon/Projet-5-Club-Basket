@@ -5,10 +5,7 @@ html, body
 }
                                             /* Navigation Menu */
 
-#logo img
-{
-    margin-top: -77px;
-}
+
 
 .nameMobile, .menu-hamburger
 {
@@ -114,7 +111,7 @@ nav
 img
 {
     width: 160px;
-    margin-top: -74px;
+    margin-top: -77px;
 }
 
 nav a, #nav-team
@@ -573,7 +570,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-left: 5px;
     width: 200px;
     height: 200px;
+    -webkit-clip-path: circle(100px at center);
     clip-path: circle(100px at center);
+    
 }
 
 .profilPicture img:hover
@@ -1205,7 +1204,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     width: 150px;
     height: 150px;
+    -webkit-clip-path: circle(75px at center);
     clip-path: circle(75px at center);
+    
 }
 
 .bloc-coach .profilPicture img:hover
@@ -2255,7 +2256,9 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     margin-top: 0;
     margin-left: 1px;
     background-color: #dd650f;
+    -webkit-clip-path: circle(75px at center);
     clip-path: circle(75px at center);
+    
 }
 
 .trombiBureau .profilPictureVide .fas.fa-portrait:hover
@@ -2673,6 +2676,78 @@ td
     margin-top: 40px;
 }
 
+.blocGestionProduits
+{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.blocGestionProduit
+{
+    width: 45%;
+    border: 5px #074592 solid;
+    border-radius: 10px;
+}
+
+.blocGestionProduit h2
+{
+    background-color: #074592;
+    padding: 5px;
+}
+
+.blocGestionProduit a
+{
+    color: white;
+}
+
+.blocGestionProduit a:hover
+{
+    color: #dd650f;
+}
+
+.blocGestionProduit div
+{
+    padding: 10px;
+}
+
+.blocGestionProduit .colors
+{
+    font-weight: bold;
+    color: #074592;
+    text-decoration: underline;
+}
+
+.blocGestionProduit .tailles
+{
+    color: #dd650f;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* POLICE - FONT */
+
+@font-face
+{
+    font-family: 'Alegre Sans';
+    src: url('../font/AlegreSans-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 

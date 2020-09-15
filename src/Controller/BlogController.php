@@ -194,7 +194,7 @@ class BlogController extends AbstractController
     {
         $categorys = $categoryRepo->findAll();
         $articles = $articleRepo->findByCategory(1, 2);
-        dump($articles);
+        //dump($articles);
         return $this->render('security/editor/compte-articles.html.twig', [
             "articles" => $articles,
             "categorys" => $categorys
@@ -457,7 +457,7 @@ class BlogController extends AbstractController
 
             $this->addFlash("success", "L'article a bien été modifié !");
 
-            dump($article->getCategory());
+            //dump($article->getCategory());
             $categorys = $article->getCategory();
             foreach($categorys as $key => $category) {
                 if($category->getTitle() === "Club")
