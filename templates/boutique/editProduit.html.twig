@@ -1,0 +1,69 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modification d'une produit {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+    <h1>Modifier le produit </h1>
+
+    <div class="editTeamForm">
+        {{ form_start(formEditProduit) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditProduit.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditProduit.name) }}
+                {{ form_widget(formEditProduit.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditProduit.price) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditProduit.price) }}
+                {{ form_widget(formEditProduit.price) }}
+            </div>
+        </div>
+
+        <div>Liste des couleurs du produit :
+            {% for color in produit.colors %}
+                <p>{{ color.name }}</p>
+                <a href="{{ path("modifierColor", {"id": color.id}) }}">modifier</a>
+                <a href="{{ path("supprimerColor", {"id": color.id}) }}">supprimer</a>
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-center blocPhotoEdit">
+            {% for photoProduit in photoProduits %}
+                <div class="d-flex flex-column divPhoto">
+                    <img src="{{ asset(vich_uploader_asset(photoProduit, "imageFile") | imagine_filter("equipeModif")) }}"
+                         alt="photo du produit">
+                    {% if photoProduit.getImportant == 0 %}
+                        <a href="{{ path("mettreEnAvantPhotoProduit", {"id": photoProduit.id}) }}">Mettre en avant</a>
+                    {% else %}
+                        <p>Image mise en avant</p>
+                    {% endif %}
+                    <a href="{{ path("supprimerPhotoProduit", {"id": photoProduit.id}) }}">Supprimer</a>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <ul id="photo-fields-list" class="photoDiv"
+            data-prototype="{{ form_widget(formEditProduit.photoProduits.vars.prototype)|e }}"
+            data-widget-tags="{{ '<li></li>'|e }}"
+            data-widget-counter="{{ formEditProduit.photoProduits|length }}">
+
+        </ul>
+
+        <button type="button"
+                class="add-another-collection-widget"
+                data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+
+        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formEditProduit) }}
+    </div>
+
+{% endblock %}

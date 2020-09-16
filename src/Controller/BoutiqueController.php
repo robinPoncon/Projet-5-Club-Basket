@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Color;
+use App\Entity\PhotoProduit;
 use App\Entity\Produit;
 use App\Entity\Taille;
 use App\Form\ColorType;
@@ -161,7 +162,7 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("editor/produits/ajouterTaille/data", name="ajax_produit")
      */
-    public function ajaxConvoc(Request $request, ProduitRepository $produitRepo)
+    public function ajaxProduitAddTaille(Request $request, ProduitRepository $produitRepo)
     {
         if($request->isXmlHttpRequest()) {
             // On récupère l'id de la requête
@@ -205,6 +206,171 @@ class BoutiqueController extends AbstractController
         else {
             return new Response("erreur");
         }
+    }
+
+    /**
+     * @Route("editor/produits/modifier/{slug}", name="modifierProduit")
+     */
+    public function editProduit(Produit $produit, Request $request, EntityManagerInterface $manager)
+    {
+        $allPhotoProduit = $produit->getPhotoProduits();
+
+        $form = $this->createForm(ProduitType::class, $produit);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $photoProduits = $produit->getPhotoProduits();
+            foreach($photoProduits as $key => $photoProduit)
+            {
+                $photoProduit->setProduit($produit);
+                if($photoProduit->getImportant() == NULL)
+                {
+                    $photoProduit->setImportant(0);
+                }
+                $photoProduits->set($key,$photoProduit);
+                $manager->persist($photoProduit);
+
+                $img_nom = $photoProduit->getImageName();
+                $extension = strrchr($img_nom, '.');
+                if($extension == ".jpeg" || $extension == ".jpg")
+                {
+                    $img = imagecreatefromjpeg("pictures/produit/" . $img_nom);
+                    imagejpeg($img, "pictures/produit/" . $img_nom, 50);
+                }
+                else
+                {
+                    $img = imagecreatefrompng("pictures/produit/" . $img_nom);
+                    imagepng($img, "pictures/produit/" . $img_nom, 5);
+                }
+            }
+
+            $manager->persist($produit);
+            $manager->flush();
+
+            $this->addFlash("success", "Le produit a bien été modifié !");
+            return $this->redirectToRoute("produits", [
+            ]);
+        }
+
+        return $this->render("boutique/editProduit.html.twig", [
+            "formEditProduit" => $form->createView(),
+            "photoProduits" => $allPhotoProduit,
+            "produit" => $produit
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/mettreEnAvant/produit/photo/{id}", name="mettreEnAvantPhotoProduit")
+     */
+    public function mettreEnAvantPhotoProduit(PhotoProduit $photoProduit, Request $request, EntityManagerInterface $manager)
+    {
+        $produit = $photoProduit->getProduit();
+        $photoProduits = $produit->getPhotoProduits();
+        foreach($photoProduits as $photoPasImportante)
+        {
+            $photoPasImportante->setImportant(0);
+            $manager->persist($photoPasImportante);
+        }
+        $photoProduit->setImportant(1);
+        $manager->persist($photoProduit);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été mise en avant !");
+        return $this->redirectToRoute("modifierProduit", [
+            "slug" => $produit->getSlug()
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/produit/supprimer/photo/{id}", name="supprimerPhotoProduit")
+     */
+    public function deletePhoto(PhotoProduit $photoProduit, Request $request, EntityManagerInterface $manager)
+    {
+        $produit = $photoProduit->getProduit();
+        $manager->remove($photoProduit);
+        $manager->flush();
+
+        $this->addFlash("success", "La photo a bien été supprimée !");
+        return $this->redirectToRoute("modifierProduit", [
+            "slug" => $produit->getSlug()
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/couleur/modifier/{id}", name="modifierColor")
+     */
+    public function editColor(Color $color, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(ColorType::class, $color);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($color);
+            $manager->flush();
+
+            $this->addFlash("success", "La couleur a bien été modifiée !");
+            return $this->redirectToRoute("produits", [
+            ]);
+        }
+
+        return $this->render("boutique/editColor.html.twig", [
+            "formEditColor" => $form->createView(),
+            "couleur" => $color
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/produit/supprimer/couleur/{id}", name="supprimerColor")
+     */
+    public function deleteColor(Color $color, Request $request, EntityManagerInterface $manager)
+    {
+        $produit = $color->getProduit();
+        $manager->remove($color);
+        $manager->flush();
+
+        $this->addFlash("success", "La couleur a bien été supprimée !");
+        return $this->redirectToRoute("produits", [
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/taille/modifier/{id}", name="modifierTaille")
+     */
+    public function editTaille(Taille $taille, Request $request, EntityManagerInterface $manager)
+    {
+        $form = $this->createForm(TailleType::class, $taille);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($taille);
+            $manager->flush();
+
+            $this->addFlash("success", "La taille a bien été modifiée !");
+            return $this->redirectToRoute("produits", [
+            ]);
+        }
+
+        return $this->render("boutique/editTaille.html.twig", [
+            "formEditTaille" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("editor/boutique/produit/couleur/taille/supprimer/{id}", name="supprimerTaille")
+     */
+    public function deleteTaille(Taille $taille, Request $request, EntityManagerInterface $manager)
+    {
+        $color = $taille->getColor();
+        $manager->remove($taille);
+        $manager->flush();
+
+        $this->addFlash("success", "La taille a bien été supprimée !");
+        return $this->redirectToRoute("produits", [
+        ]);
     }
 
 }

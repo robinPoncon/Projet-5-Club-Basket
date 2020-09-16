@@ -33,6 +33,9 @@
                             <p>Il n'y a pas encore de couleur pour ce produit</p>
                     {% endfor %}
                 </div>
+                <div>
+                    <a class="modifProduit" href="{{ path("modifierProduit", {"slug": produit.slug}) }}">Modifier</a>
+                </div>
             </div>
         {% endfor %}
     </div>

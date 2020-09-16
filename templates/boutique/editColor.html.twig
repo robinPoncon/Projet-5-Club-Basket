@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modification d'une couleur {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+    <h1>Modifier une couleur</h1>
+    <div class="addColorForm">
+        {{ form_start(formEditColor) }}
+        <div class="d-none divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditColor.produit) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditColor.produit) }}
+                {{ form_widget(formEditColor.produit) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditColor.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditColor.name) }}
+                {{ form_widget(formEditColor.name) }}
+            </div>
+        </div>
+
+        <div>Liste des tailles du produit :
+            {% for taille in couleur.tailles %}
+                <p>{{ taille.name }}</p>
+                <a href="{{ path("modifierTaille", {"id": taille.id}) }}">modifier</a>
+                <a href="{{ path("supprimerTaille", {"id": taille.id}) }}">supprimer</a>
+            {% endfor %}
+        </div>
+
+        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formEditColor) }}
+    </div>
+
+{% endblock %}

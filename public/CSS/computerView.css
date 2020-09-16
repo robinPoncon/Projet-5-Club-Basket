@@ -2634,7 +2634,7 @@ td
     text-align: center;
 }
 
-.ajoutBoutique a:nth-child(1)
+.ajoutBoutique a:nth-child(1), .ajoutBoutique a:nth-child(2)
 {
     margin-right: 50px;
 }
@@ -2689,6 +2689,7 @@ td
     width: 45%;
     border: 5px #074592 solid;
     border-radius: 10px;
+    margin-top: 50px;
 }
 
 .blocGestionProduit h2
@@ -2704,7 +2705,7 @@ td
 
 .blocGestionProduit a:hover
 {
-    color: #dd650f;
+    color: #ef8108;
 }
 
 .blocGestionProduit div
@@ -2723,6 +2724,14 @@ td
 {
     color: #dd650f;
     font-weight: bold;
+}
+
+.blocGestionProduit .modifProduit
+{
+    background-color: #074592;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 

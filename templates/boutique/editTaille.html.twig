@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Modification d'une taille {% endblock %}
+
+{% block body %}
+    {% include "security/compte.nav.html.twig" %}
+    <h1>Modifier une taille</h1>
+    <div class="addTailleForm">
+        {{ form_start(formEditTaille) }}
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditTaille.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditTaille.name) }}
+                {{ form_widget(formEditTaille.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditTaille.quantity) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditTaille.quantity) }}
+                {{ form_widget(formEditTaille.quantity) }}
+            </div>
+        </div>
+        <div class="d-none divForm">
+            <div class="errorForm">
+                {{ form_errors(formEditTaille.color) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formEditTaille.color) }}
+                {{ form_widget(formEditTaille.color) }}
+            </div>
+        </div>
+
+        <button class="form-control submit" type="submit">Modifier</button>
+        {{ form_end(formEditTaille) }}
+    </div>
+
+{% endblock %}
