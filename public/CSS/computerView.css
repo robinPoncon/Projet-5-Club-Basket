@@ -2708,7 +2708,7 @@ td
     color: #ef8108;
 }
 
-.blocGestionProduit div
+.blocGestionProduit div:nth-child(1)
 {
     padding: 10px;
 }
@@ -2726,15 +2726,55 @@ td
     font-weight: bold;
 }
 
-.blocGestionProduit .modifProduit
+.actionProduit .confirm
+{
+    margin-top: -130px;
+}
+
+.actionProduit a
 {
     background-color: #074592;
     color: white;
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    height: 46px;
+    margin-right: 50px;
 }
 
+.actionProduit a:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
 
+.textGestionProduit
+{
+    padding: 20px;
+}
+
+.legend
+{
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.actionColor .supPostDiv div, .actionTaille .supPostDiv div
+{
+    background-color: #074592;
+    color: white;
+    border-radius: 5px;
+    border: 1px #074592 solid;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.actionColor .supPostDiv div:hover, .actionTaille .supPostDiv div:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
 
 
 

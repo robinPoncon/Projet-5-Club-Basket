@@ -29,9 +29,17 @@
 
         <div>Liste des couleurs du produit :
             {% for color in produit.colors %}
-                <p>{{ color.name }}</p>
-                <a href="{{ path("modifierColor", {"id": color.id}) }}">modifier</a>
-                <a href="{{ path("supprimerColor", {"id": color.id}) }}">supprimer</a>
+                <div class="d-flex justify-content-center actionColor">
+                    <p>{{ color.name }}</p>
+                    <a class="modifProduit" href="{{ path("modifierColor", {"id": color.id}) }}">Modifier</a>
+                    <div class="supPostDiv">
+                        <div onclick='deleteConfirm({{ color.id }}, "Voulez-vous vraiment supprimer cette couleur",
+                                "{{ color.name | replace({'"':'\''}) }}", "{{ path("supprimerColor", {"id": "text"}) }}",
+                                "#confirmationSupColor{{ color.id }}")'
+                                class="confirmSup">Supprimer</div>
+                    </div>
+                    <div class="confirmationSupPost" id="confirmationSupColor{{ color.id }}"></div>
+                </div>
             {% endfor %}
         </div>
 

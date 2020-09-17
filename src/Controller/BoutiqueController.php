@@ -299,6 +299,19 @@ class BoutiqueController extends AbstractController
     }
 
     /**
+     * @Route("editor/boutique/produit/supprimer/{id}", name="supprimerProduit")
+     */
+    public function deleteProduit(Produit $produit, Request $request, EntityManagerInterface $manager)
+    {
+        $manager->remove($produit);
+        $manager->flush();
+
+        $this->addFlash("success", "Le produit a bien été supprimé !");
+        return $this->redirectToRoute("produits", [
+        ]);
+    }
+
+    /**
      * @Route("editor/boutique/couleur/modifier/{id}", name="modifierColor")
      */
     public function editColor(Color $color, Request $request, EntityManagerInterface $manager)
@@ -327,7 +340,6 @@ class BoutiqueController extends AbstractController
      */
     public function deleteColor(Color $color, Request $request, EntityManagerInterface $manager)
     {
-        $produit = $color->getProduit();
         $manager->remove($color);
         $manager->flush();
 

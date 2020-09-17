@@ -28,9 +28,17 @@
 
         <div>Liste des tailles du produit :
             {% for taille in couleur.tailles %}
-                <p>{{ taille.name }}</p>
-                <a href="{{ path("modifierTaille", {"id": taille.id}) }}">modifier</a>
-                <a href="{{ path("supprimerTaille", {"id": taille.id}) }}">supprimer</a>
+                <div class="d-flex justify-content-center actionTaille">
+                    <p>{{ taille.name }}</p>
+                    <a class="modifProduit" href="{{ path("modifierTaille", {"id": taille.id}) }}">Modifier</a>
+                    <div class="supPostDiv">
+                        <div onclick='deleteConfirm({{ taille.id }}, "Voulez-vous vraiment supprimer cette taille",
+                                "{{ taille.name | replace({'"':'\''}) }}", "{{ path("supprimerTaille", {"id": "text"}) }}",
+                                "#confirmationSupTaille{{ taille.id }}")'
+                                class="confirmSup">Supprimer</div>
+                    </div>
+                    <div class="confirmationSupPost" id="confirmationSupTaille{{ taille.id }}"></div>
+                </div>
             {% endfor %}
         </div>
 

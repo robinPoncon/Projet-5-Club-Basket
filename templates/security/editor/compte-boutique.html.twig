@@ -13,14 +13,14 @@
         <a href="{{ path("addTaille") }}">Ajouter une taille</a>
     </div>
 
-    <p>Q = Quantité restante d'une taille par rapport à la couleur d'un produit</p>
+    <p class="legend">Q = Quantité restante d'une taille par rapport à la couleur d'un produit</p>
 
     <div class="blocGestionProduits">
         {% for produit in produits %}
             <div class="blocGestionProduit">
                 <h2><a href="{{ path("ficheProduit", {"slug": produit.slug}) }}">{{ produit.name }} -
                     {{ produit.price }} €</a></h2>
-                <div>
+                <div class="textGestionProduit">
                     {% for couleur in produit.colors %}
                         <p> <span class="colors">{{ couleur.name|upper }}</span> -> tailles :
                         {% for taille in couleur.tailles %}
@@ -33,8 +33,16 @@
                             <p>Il n'y a pas encore de couleur pour ce produit</p>
                     {% endfor %}
                 </div>
-                <div>
+                <div class="d-flex justify-content-center actionProduit">
                     <a class="modifProduit" href="{{ path("modifierProduit", {"slug": produit.slug}) }}">Modifier</a>
+                    <div class="supPostDiv">
+                        <button onclick='deleteConfirm({{ produit.id }}, "Voulez-vous vraiment supprimer ce produit",
+                                "{{ produit.name | replace({'"':'\''}) }}", "{{ path("supprimerProduit", {"id": "text"}) }}",
+                                "#confirmationSupProduit{{ produit.id }}")'
+                                class="confirmSup">Supprimer</button>
+                    </div>
+                    <div class="confirmationSupPost" id="confirmationSupProduit{{ produit.id }}">
+                    </div>
                 </div>
             </div>
         {% endfor %}
