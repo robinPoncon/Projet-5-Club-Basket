@@ -257,6 +257,13 @@
         height: 500px;
     }
     
+                                            /* Gestion boutique */
+    
+    .produitAffichage
+    {
+        width: 50%;
+    }
+    
 }
 
 
@@ -1208,6 +1215,34 @@
     .addTailleForm div
     {
         flex-direction: column;
+    }
+    
+    .produitAffichage
+    {
+        width: 80%;
+    }
+    
+    .actionColor, .actionTaille
+    {
+        flex-direction: row !important;
+    }
+    
+    .ajoutBoutique a:nth-child(1), .ajoutBoutique a:nth-child(2)
+    {
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+    
+    .legend
+    {
+        width: 90%;
+        margin: auto;
+        margin-top: 50px !important;
+    }
+    
+    .blocGestionProduit
+    {
+        width: 80%;
     }
     
     

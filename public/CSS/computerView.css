@@ -2768,6 +2768,7 @@ td
     border: 1px #074592 solid;
     margin-bottom: 20px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .actionColor .supPostDiv div:hover, .actionTaille .supPostDiv div:hover
@@ -2776,8 +2777,143 @@ td
     border: 1px #dd650f solid;
 }
 
+.colorName, .tailleName
+{
+    margin-right: 30px;
+    color: white;
+    background-color: #dd650f;
+    padding: 10px;
+    border-radius: 5px;
+    height: 45px;
+}
+
+.modifProduit
+{
+    margin-right: 30px;
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    height: 45px;
+}
+
+.modifProduit:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
+.listColor, .listTaille
+{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.listColor h2, .listTaille h2
+{
+    margin-bottom: 30px;
+}
 
 
+
+
+
+
+
+
+.allProduits
+{
+    position: relative;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.produitAffichage
+{
+    width: 33%;
+    margin-top: 50px;
+}
+
+.produit
+{
+    border: 5px #074592 solid;
+    border-radius: 5px;
+    width: 210px;
+    margin: auto;
+}
+
+.produit h2
+{
+    background-color: #074592;
+    padding: 10px;
+}
+
+.produit h2 a
+{
+    color: white;
+}
+
+.produit h2 a:hover
+{
+    color: #ef8108;
+}
+
+.produit p
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: -5px;
+}
+
+.produit img
+{
+    margin-top: -8px;
+    width: 200px;
+    height: 200px;
+}
+
+.produit strong
+{
+    color: #ef8108;
+}
+
+.produit div
+{
+    margin-top: -8px;
+    width: 200px;
+    height: 200px;
+}
+
+.produit em
+{
+    font-size: 5em;
+    color: #074592;
+}
+
+.produit div a
+{
+    color: #074592;
+    padding: 5px;
+    display: block;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    margin-top: 40px !important;
+}
+
+.produit div a:hover
+{
+    color: #ef8108;
+}
+
+.produit div p
+{
+    background-color: white;
+    position: relative;
+    top: 20%;
+}
 
 
 

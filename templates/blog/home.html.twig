@@ -110,14 +110,14 @@
 			<h3>Infos FFBB</h3>
 			<a href="https://resultats.ffbb.com/organisation/7eb.html">Classement des équipes du département</a>
 			<h3>Actualités FFBB</h3>
-			{% for item in rssItems|slice(0, 3) %}
+			{#{% for item in rssItems|slice(0, 3) %}
 				<div class="blocNewsFFBB">
 					<h4>{{ item.title }} - <span>{{ item.pubDate }}</span></h4>
 					<a href="{{ item.link }}">Lien de l'article</a>
-					<!-- <img src="{#{{ preg_match('<img href=(.*)\/>', item.description) | replace({'"':''}) }}#}"
+					<!-- <img src="{#{{ preg_match('<img href=(.*)\/>', item.description) | replace({'"':''}) }}"
 						 alt="image de la FFBB"> -->
 				</div>
-			{% endfor %}
+			{% endfor %}#}
 			<a href="http://www.ffbb.com/ffbb/listes-actus">Autres actus</a>
 		</div>
 

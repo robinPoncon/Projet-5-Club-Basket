@@ -60,17 +60,6 @@ class RegistrationType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add("telephone", TelType::class, [
-                "label" => "Numéro de téléphone",
-                "label_attr" => [
-                    "class" => "form-control label",
-                ],
-                "attr" => [
-                    "placeholder" => "06-35-76-54-53",
-                    "class" => "form-control input"
-                ],
-                "required" => false
-            ])
             ->add('password', PasswordType::class, [
                 "label" => "Mot de passe",
                 "label_attr" => [

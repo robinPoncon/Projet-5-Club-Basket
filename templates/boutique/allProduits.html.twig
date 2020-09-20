@@ -5,5 +5,33 @@
 {% block body %}
 
     <h1>Boutique de vente du BCM</h1>
+    
+    <div class="d-flex justify-content-around allProduits">
+        {% for produit in produits %}
+            <div class="produitAffichage">
+                <div class="produit">
+                    <h2><a href="{{ path("ficheProduit",{"slug": produit.slug}) }}">{{ produit.name }}</a></h2>
+                    {% for photo in produit.photoProduits %}
+                        {% if photo.important == 1 %}
+                            {% if photo.imageName is defined and photo.imageName is not null %}
+                                <img alt="image du produit" class="imageProduit" src="{{ asset(vich_uploader_asset(photo, "imageFile") |
+                                    imagine_filter("thumb")) }}">
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        <div>
+                            <p><em class="fas fa-shopping-basket"></em></p>
+                            {% if is_granted("ROLE_EDITOR") %}
+                                <a class="position-relative" href="{{ path("modifierProduit", {"slug": produit.slug}) }}">
+                                    Ajouter une photo</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <p>PRIX : <strong>{{ produit.price }} €</strong></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
 
 {% endblock %}

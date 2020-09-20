@@ -26,10 +26,11 @@
             </div>
         </div>
 
-        <div>Liste des tailles du produit :
+        <div class="listTaille">
+            <h2>Liste des tailles du produit :</h2>
             {% for taille in couleur.tailles %}
                 <div class="d-flex justify-content-center actionTaille">
-                    <p>{{ taille.name }}</p>
+                    <p class="tailleName">{{ taille.name }}</p>
                     <a class="modifProduit" href="{{ path("modifierTaille", {"id": taille.id}) }}">Modifier</a>
                     <div class="supPostDiv">
                         <div onclick='deleteConfirm({{ taille.id }}, "Voulez-vous vraiment supprimer cette taille",

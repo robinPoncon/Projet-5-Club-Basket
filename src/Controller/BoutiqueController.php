@@ -9,6 +9,7 @@ use App\Entity\Taille;
 use App\Form\ColorType;
 use App\Form\ProduitType;
 use App\Form\TailleType;
+use App\Repository\PhotoProduitRepository;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("boutique/produits", name="allProduits")
      */
-    public function allProduits(ProduitRepository $produitRepo)
+    public function allProduits(ProduitRepository $produitRepo, PhotoProduitRepository $photoProduitRepo)
     {
         $produits = $produitRepo->findAll();
 

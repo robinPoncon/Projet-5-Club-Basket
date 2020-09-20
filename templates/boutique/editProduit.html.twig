@@ -4,7 +4,7 @@
 
 {% block body %}
     {% include "security/compte.nav.html.twig" %}
-    <h1>Modifier le produit </h1>
+    <h1>Modifier le produit</h1>
 
     <div class="editTeamForm">
         {{ form_start(formEditProduit) }}
@@ -27,10 +27,11 @@
             </div>
         </div>
 
-        <div>Liste des couleurs du produit :
+        <div class="listColor">
+            <h2>Liste des couleurs du produit :</h2>
             {% for color in produit.colors %}
                 <div class="d-flex justify-content-center actionColor">
-                    <p>{{ color.name }}</p>
+                    <p class="colorName">{{ color.name }}</p>
                     <a class="modifProduit" href="{{ path("modifierColor", {"id": color.id}) }}">Modifier</a>
                     <div class="supPostDiv">
                         <div onclick='deleteConfirm({{ color.id }}, "Voulez-vous vraiment supprimer cette couleur",
