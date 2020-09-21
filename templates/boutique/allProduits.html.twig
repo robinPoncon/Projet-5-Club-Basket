@@ -10,12 +10,16 @@
         {% for produit in produits %}
             <div class="produitAffichage">
                 <div class="produit">
-                    <h2><a href="{{ path("ficheProduit",{"slug": produit.slug}) }}">{{ produit.name }}</a></h2>
+                    <h2><a href="{{ path("ficheProduit",{"slug": produit.slug}) }}" title="Cliquer pour plus d'infos !">
+                            {{ produit.name }}</a></h2>
                     {% for photo in produit.photoProduits %}
                         {% if photo.important == 1 %}
                             {% if photo.imageName is defined and photo.imageName is not null %}
-                                <img alt="image du produit" class="imageProduit" src="{{ asset(vich_uploader_asset(photo, "imageFile") |
-                                    imagine_filter("thumb")) }}">
+                                <a href="{{ path("ficheProduit", {"slug": produit.slug}) }}">
+                                    <img alt="image du produit" class="imageProduit"
+                                         src="{{ asset(vich_uploader_asset(photo, "imageFile") |imagine_filter("thumb")) }}"
+                                         title="Cliquer pour plus d'infos !">
+                                </a>
                             {% endif %}
                         {% endif %}
                     {% else %}

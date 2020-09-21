@@ -9,6 +9,7 @@ use App\Entity\Taille;
 use App\Form\ColorType;
 use App\Form\ProduitType;
 use App\Form\TailleType;
+use App\Repository\ColorRepository;
 use App\Repository\PhotoProduitRepository;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,10 +50,14 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("boutique/produit/{slug}", name="ficheProduit")
      */
-    public function show(Produit $produit)
+    public function show(Produit $produit, PhotoProduitRepository $photoProduitRepo)
     {
+        $photoProduits = $photoProduitRepo->findBy(["important" => 0, "produit" => $produit->getId()]);
+        $photoImportante = $photoProduitRepo->findOneBy(["important" => 1, "produit" => $produit->getId()]);
         return $this->render("boutique/page-produit.html.twig", [
-            "produit" => $produit
+            "produit" => $produit,
+            "photoImportante" => $photoImportante,
+            "photoProduits" => $photoProduits
         ]);
     }
 
@@ -161,9 +166,9 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("editor/produits/ajouterTaille/data", name="ajax_produit")
+     * @Route("editor/produits/afficherCouleurs/data", name="ajax_produit")
      */
-    public function ajaxProduitAddTaille(Request $request, ProduitRepository $produitRepo)
+    public function ajaxProduitGetColors(Request $request, ProduitRepository $produitRepo)
     {
         if($request->isXmlHttpRequest()) {
             // On récupère l'id de la requête
@@ -187,6 +192,55 @@ class BoutiqueController extends AbstractController
 
             // On convertit en json
             $jsonContent = $serializer->serialize($couleurs, "json", [
+                "circular_reference_handler" => function ($object) {
+                    return $object->getId();
+                }
+            ]);
+
+            //dump($jsonContent);
+
+            // On instancie la réponse
+            $response = new Response($jsonContent);
+
+            // On ajoute l'entête HTTP
+            $response->headers->set("Content-Type", "application/json");
+
+            //dump($response);
+            // On envoie la réponse
+            return $response;
+        }
+        else {
+            return new Response("erreur");
+        }
+    }
+
+    /**
+     * @Route("editor/produits/afficherTailles/data", name="ajax_colors")
+     */
+    public function ajaxProduitGetTailles(Request $request, ColorRepository $colorRepo)
+    {
+        if($request->isXmlHttpRequest()) {
+            // On récupère l'id de la requête
+            $idColor = $request->request->get('id');
+            //dump($idEquipe);
+
+            $colorObject = $colorRepo->find($idColor);
+            // On récupère l'équipe correspondant à l'id
+
+            $tailles = $colorObject->getTailles();
+            //dump($convocations);
+
+            // On spécifie qu'on utilise un encodeur en json
+            $encoders = [new JsonEncoder()];
+
+            // On instancie le "normaliseur" pour convertir la collection en tableau
+            $normalizers = [new ObjectNormalizer()];
+
+            // On instancie le convertisseur
+            $serializer = new Serializer($normalizers, $encoders);
+
+            // On convertit en json
+            $jsonContent = $serializer->serialize($tailles, "json", [
                 "circular_reference_handler" => function ($object) {
                     return $object->getId();
                 }

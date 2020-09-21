@@ -2824,14 +2824,14 @@ td
 .allProduits
 {
     position: relative;
-    margin-top: 50px;
+    margin-top: -50px;
     flex-wrap: wrap;
 }
 
 .produitAffichage
 {
     width: 33%;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .produit
@@ -2913,6 +2913,36 @@ td
     background-color: white;
     position: relative;
     top: 20%;
+}
+
+.fullImage, .imageImportanteFull
+{
+    display: none;
+}
+
+.imageImportanteProduit
+{
+    cursor: zoom-in;
+    width: 600px;
+    height: 450px;
+    margin-top: 20px;
+}
+
+.imageImportanteFull
+{
+    cursor: zoom-out;
+    width: 1000px;
+    height: 600px;
+    position: absolute;
+    left: 50%;
+    margin-left: -498px;
+    top: 97px;
+}
+
+.blocFicheProduit
+{
+    position: relative;
+    text-align: center;
 }
 
 

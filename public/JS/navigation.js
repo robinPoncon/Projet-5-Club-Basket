@@ -348,6 +348,15 @@ function htmlResponseAjaxTailleProduit(id, name, select)
     $(select).append(option);
 }
 
+function htmlResponseAjaxTailleColors(name, quantity)
+{
+    let taille = $("<p>", {
+        text: "Taille : " + name + ", Quantité = " + quantity
+    });
+
+    $(".allTailles").append(taille);
+}
+
 
 
 
@@ -459,6 +468,10 @@ if ($(window).width() <= 768)
         $(".blocAutrePhotoArticle").toggle();
     });
 
+
+
+
+
     // Reduction opacité image avec bouton play et pause
 
 $(".play, .pause, .diaporama").mouseenter(function(){
@@ -468,6 +481,27 @@ $(".play, .pause, .diaporama").mouseenter(function(){
 $(".play, .pause, .diaporama").mouseleave(function(){
     $(".diaporama").css("opacity", 1);
 });
+
+
+
+
+
+
+    // Zoom image au survol
+
+$(".imageImportanteProduit").click(function(){
+   $(".imageImportanteFull").css("display", "inline");
+});
+
+$(".imageImportanteFull").click(function(){
+    $(this).css("display", "none");
+});
+
+
+
+
+
+
 
     // Diaporama 3D
 
