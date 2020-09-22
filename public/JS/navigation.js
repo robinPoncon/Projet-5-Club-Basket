@@ -350,11 +350,22 @@ function htmlResponseAjaxTailleProduit(id, name, select)
 
 function htmlResponseAjaxTailleColors(name, quantity)
 {
-    let taille = $("<p>", {
-        text: "Taille : " + name + ", Quantité = " + quantity
+    let taille = $("<option>", {
+        text: name,
+        val: quantity
     });
 
-    $(".allTailles").append(taille);
+    $("#selectTaille").append(taille);
+
+    let quantityTaille = $("#selectTaille option:selected").val();
+
+    $(".quantityTaille").text(quantityTaille);
+
+}
+
+function showQuantityTaille(variable)
+{
+    $(".quantityTaille").text(variable);
 }
 
 

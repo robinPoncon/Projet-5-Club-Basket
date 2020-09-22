@@ -34,6 +34,11 @@ class Taille
      */
     private $color;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Order::class, mappedBy="tailleProduit")
+     */
+    private $orderUser;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,24 @@ class Taille
     public function setColor(?Color $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    public function getOrderUser(): ?Order
+    {
+        return $this->orderUser;
+    }
+
+    public function setOrderUser(?Order $orderUser): self
+    {
+        $this->orderUser = $orderUser;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newTailleProduit = null === $orderUser ? null : $this;
+        if ($orderUser->getTailleProduit() !== $newTailleProduit) {
+            $orderUser->setTailleProduit($newTailleProduit);
+        }
 
         return $this;
     }

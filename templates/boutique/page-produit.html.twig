@@ -37,11 +37,13 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     <h3>Tailles disponibles pour cette couleur :</h3>
-                    <div class="allTailles">
+                    <select class="form-control" name="listTaille" id="selectTaille">
 
-                    </div>
+                    </select>
                 </div>
-
+                <div>
+                    <h3>Quantité pour cette taille = <span class="quantityTaille"></span></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -60,11 +62,13 @@
                     //console.log(responses);
                     if (responses.length === 0)
                     {
-                        let noColor = $("<p>", {
-                            text: "Il n'y a plus de stock pour cette couleur"
+                        let noColor = $("<option>", {
+                            text: "Il n'y a plus de stock pour cette couleur."
                         });
 
-                        $(".allTailles").append(noColor);
+                        $("#selectTaille").append(noColor);
+
+                        $(".quantityTaille").text(0);
                     }
                     else
                     {
@@ -78,14 +82,18 @@
         }
 
         let valColor = $("#selectColor option:selected").val();
-        $(".allTailles").text("");
         sendAjaxController(valColor);
 
         $("#selectColor").change(function () {
             valColor = $("#selectColor option:selected").val();
             //console.log(valProduit);
-            $(".allTailles").text("");
+            $("#selectTaille").text("");
             sendAjaxController(valColor);
+        });
+
+        $("#selectTaille").change(function(){
+            valTaille = $("#selectTaille option:selected").val();
+            showQuantityTaille(valTaille);
         });
     </script>
 {% endblock %}
