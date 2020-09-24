@@ -48,6 +48,58 @@
         </div>
     </div>
 
+    {{ form_start(formOrder) }}
+    <div class="addOrder">
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formOrder.name) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formOrder.name) }}
+                {{ form_widget(formOrder.name) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formOrder.color) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formOrder.color) }}
+                {{ form_widget(formOrder.color) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formOrder.tailleOrder) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formOrder.tailleOrder) }}
+                {{ form_widget(formOrder.tailleOrder) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formOrder.price) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formOrder.price) }}
+                {{ form_widget(formOrder.price) }}
+            </div>
+        </div>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formOrder.tailleProduit) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formOrder.tailleProduit) }}
+                {{ form_widget(formOrder.tailleProduit) }}
+            </div>
+        </div>
+        <button class="form-control submit" type="submit">Commander</button>
+    </div>
+
+    {{ form_end(formOrder) }}
+
 {% endblock %}
 
 {% block javascripts %}
@@ -74,12 +126,15 @@
                     {
                         responses.forEach((datas) => {
                             //console.log(datas.horaire.timestamp);
-                            htmlResponseAjaxTailleColors(datas.name, datas.quantity);
+                            htmlResponseAjaxTailleColors(datas.name, datas.quantity, datas.id);
                         });
                     }
                 }
             });
         }
+
+        remplirChampProduit("{{ produit.name }}", "{{ produit.price }}");
+        $("#order_color").val($("#selectColor option:selected").text());
 
         let valColor = $("#selectColor option:selected").val();
         sendAjaxController(valColor);
@@ -88,12 +143,17 @@
             valColor = $("#selectColor option:selected").val();
             //console.log(valProduit);
             $("#selectTaille").text("");
+            $("#order_color").val($("#selectColor option:selected").text());
             sendAjaxController(valColor);
         });
 
         $("#selectTaille").change(function(){
-            valTaille = $("#selectTaille option:selected").val();
-            showQuantityTaille(valTaille);
+            valQuantity = $("#selectTaille option:selected").val();
+            valTaille = $("#selectTaille option:selected").text();
+            valId = $("#selectTaille option:selected").attr("id");
+            $("#order_tailleOrder").val(valTaille);
+            $("#order_tailleProduit").val(valId);
+            showQuantityTaille(valQuantity);
         });
     </script>
 {% endblock %}

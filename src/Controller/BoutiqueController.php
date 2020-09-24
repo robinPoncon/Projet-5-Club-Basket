@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Color;
+use App\Entity\Order;
 use App\Entity\PhotoProduit;
 use App\Entity\Produit;
 use App\Entity\Taille;
 use App\Form\ColorType;
+use App\Form\OrderType;
 use App\Form\ProduitType;
 use App\Form\TailleType;
 use App\Repository\ColorRepository;
@@ -50,12 +52,34 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("boutique/produit/{slug}", name="ficheProduit")
      */
-    public function show(Produit $produit, PhotoProduitRepository $photoProduitRepo)
+    public function show(Produit $produit, PhotoProduitRepository $photoProduitRepo, Request $request,
+                         EntityManagerInterface $manager)
     {
         $photoProduits = $photoProduitRepo->findBy(["important" => 0, "produit" => $produit->getId()]);
         $photoImportante = $photoProduitRepo->findOneBy(["important" => 1, "produit" => $produit->getId()]);
+
+        $user = $this->getUser();
+        $order = new Order();
+
+        $form = $this->createForm(OrderType::class, $order);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $order->setUser($user);
+            $order->setValidate(0);
+            $order->setQuantity(1);
+            $manager->persist($order);
+            $manager->flush();
+
+            $this->addFlash("success", "La commande a bien été prise en compte !");
+            return $this->redirectToRoute("homeCompte", [
+            ]);
+        }
+
         return $this->render("boutique/page-produit.html.twig", [
             "produit" => $produit,
+            "formOrder" => $form->createView(),
             "photoImportante" => $photoImportante,
             "photoProduits" => $photoProduits
         ]);

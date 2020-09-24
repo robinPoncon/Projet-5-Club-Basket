@@ -348,24 +348,36 @@ function htmlResponseAjaxTailleProduit(id, name, select)
     $(select).append(option);
 }
 
-function htmlResponseAjaxTailleColors(name, quantity)
+function htmlResponseAjaxTailleColors(name, quantity, idTaille)
 {
     let taille = $("<option>", {
         text: name,
-        val: quantity
+        val: quantity,
+        id: idTaille
     });
 
     $("#selectTaille").append(taille);
 
     let quantityTaille = $("#selectTaille option:selected").val();
 
-    $(".quantityTaille").text(quantityTaille);
+    $("#order_tailleOrder").val($("#selectTaille option:selected").text());
 
+    let getId = $("#selectTaille option:selected").attr("id");
+
+    $("#order_tailleProduit").val(getId);
+
+    $(".quantityTaille").text(quantityTaille);
 }
 
 function showQuantityTaille(variable)
 {
     $(".quantityTaille").text(variable);
+}
+
+function remplirChampProduit(name, price)
+{
+    $("#order_name").val(name);
+    $("#order_price").val(price);
 }
 
 

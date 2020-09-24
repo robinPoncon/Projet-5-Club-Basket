@@ -31,7 +31,7 @@ class Order
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $taille;
+    private $tailleOrder;
 
     /**
      * @ORM\Column(type="decimal", precision=5, scale=2)
@@ -87,14 +87,14 @@ class Order
         return $this;
     }
 
-    public function getTaille(): ?string
+    public function getTailleOrder(): ?string
     {
-        return $this->taille;
+        return $this->tailleOrder;
     }
 
-    public function setTaille(string $taille): self
+    public function setTailleOrder(string $tailleOrder): self
     {
-        $this->taille = $taille;
+        $this->tailleOrder = $tailleOrder;
 
         return $this;
     }
