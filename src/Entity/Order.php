@@ -49,14 +49,14 @@ class Order
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Taille::class, inversedBy="orderUser", cascade={"persist", "remove"})
-     */
-    private $tailleProduit;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $validate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Taille::class, inversedBy="orders")
+     */
+    private $tailleProduit;
 
     public function getId(): ?int
     {
@@ -135,18 +135,6 @@ class Order
         return $this;
     }
 
-    public function getTailleProduit(): ?Taille
-    {
-        return $this->tailleProduit;
-    }
-
-    public function setTailleProduit(?Taille $tailleProduit): self
-    {
-        $this->tailleProduit = $tailleProduit;
-
-        return $this;
-    }
-
     public function getValidate(): ?bool
     {
         return $this->validate;
@@ -155,6 +143,18 @@ class Order
     public function setValidate(bool $validate): self
     {
         $this->validate = $validate;
+
+        return $this;
+    }
+
+    public function getTailleProduit(): ?Taille
+    {
+        return $this->tailleProduit;
+    }
+
+    public function setTailleProduit(?Taille $tailleProduit): self
+    {
+        $this->tailleProduit = $tailleProduit;
 
         return $this;
     }

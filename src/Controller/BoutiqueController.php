@@ -55,7 +55,7 @@ class BoutiqueController extends AbstractController
     public function show(Produit $produit, PhotoProduitRepository $photoProduitRepo, Request $request,
                          EntityManagerInterface $manager)
     {
-        $photoProduits = $photoProduitRepo->findBy(["important" => 0, "produit" => $produit->getId()]);
+        $photoProduits = $photoProduitRepo->findBy(["important" => 0, "produit" => $produit->getId()], [], 2);
         $photoImportante = $photoProduitRepo->findOneBy(["important" => 1, "produit" => $produit->getId()]);
 
         $user = $this->getUser();
@@ -69,6 +69,11 @@ class BoutiqueController extends AbstractController
             $order->setUser($user);
             $order->setValidate(0);
             $order->setQuantity(1);
+            $tailleProduit = $order->getTailleProduit();
+            $quantityProduit = $tailleProduit->getQuantity();
+            $total = $quantityProduit -1;
+            $tailleProduit->setQuantity($total);
+            $manager->persist($tailleProduit);
             $manager->persist($order);
             $manager->flush();
 

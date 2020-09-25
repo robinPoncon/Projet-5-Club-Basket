@@ -66,4 +66,13 @@
             <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ user.id }}"></div>
         </div>
     </div>
+    <div>
+        {% for commande in user.orders %}
+            <h3> {{ commande.name }}</h3>
+            <p> Couleur : {{ commande.color }}</p>
+            <p> Taille : {{ commande.tailleOrder }}</p>
+            <p> Quantité : {{ commande.quantity }}</p>
+            <p> Prix : {{ commande.price }} €</p>
+        {% endfor %}
+    </div>
 {% endblock %}

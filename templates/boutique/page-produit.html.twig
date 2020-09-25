@@ -10,23 +10,23 @@
         {% if photoImportante.imageName is defined and photoImportante.imageName is not null %}
             <img alt="image du produit mise en avant" class="imageImportanteProduit"
                  src="{{ asset(vich_uploader_asset(photoImportante, "imageFile") |imagine_filter("equipeAffichage")) }}"
-                 title="Cliquer pour aggrandire l'image">
+                 title="Cliquer pour aggrandir l'image">
             <img alt="image du produit mise en avant" class="imageImportanteFull"
                  src="{{ asset(vich_uploader_asset(photoImportante, "imageFile")) }}" title="Cliquer pour réduire l'image">
         {% endif %}
         <div class="d-flex vente">
-            <div class="d-flex flex-column images">
+            <div class="d-flex justify-content-center images">
                 {% for photo in photoProduits %}
                 <img src="{{ asset(vich_uploader_asset(photo, "imageFile") |imagine_filter("equipeAffichage")) }}"
-                     alt="les autres images du produit" class="miniature">
+                     alt="les autres images du produit" id="miniature{{ photo.id }}" class="miniature"
+                     onclick="afficherFullImage({{ photo.id }})" title="Cliquer pour aggrandir l'image">
                     <img src="{{ asset(vich_uploader_asset(photo, "imageFile")) }}"
-                         alt="les autres images du produit" class="fullImage">
+                         alt="les autres images du produit" id="fullImage{{ photo.id }}" class="fullImage"
+                         title="Cliquer pour réduire l'image">
                 {% endfor %}
             </div>
             <div class="ficheProduit">
-                <h2>Prix - {{ produit.price }}€</h2>
-
-                <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
                     <h3>Couleurs disponibles : </h3>
                     <select class="form-control" name="listColors" id="selectColor">
                         {% for color in produit.colors %}
@@ -35,7 +35,7 @@
                     </select>
 
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
                     <h3>Tailles disponibles pour cette couleur :</h3>
                     <select class="form-control" name="listTaille" id="selectTaille">
 
@@ -44,6 +44,8 @@
                 <div>
                     <h3>Quantité pour cette taille = <span class="quantityTaille"></span></h3>
                 </div>
+
+                <h3>Prix - {{ produit.price }}€</h3>
             </div>
         </div>
     </div>
@@ -95,8 +97,9 @@
                 {{ form_widget(formOrder.tailleProduit) }}
             </div>
         </div>
-        <button class="form-control submit" type="submit">Commander</button>
     </div>
+        <button id="submitOrder" class="form-control submit" type="submit">Commander</button>
+        <p class="noOrder">Produit non disponible pour cette taille</p>
 
     {{ form_end(formOrder) }}
 
@@ -121,6 +124,9 @@
                         $("#selectTaille").append(noColor);
 
                         $(".quantityTaille").text(0);
+
+                        $("#submitOrder").hide();
+                        $(".noOrder").show();
                     }
                     else
                     {

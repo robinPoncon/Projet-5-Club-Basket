@@ -2928,7 +2928,17 @@ td
     margin-top: 20px;
 }
 
-.imageImportanteFull
+.miniature
+{
+    cursor: zoom-in;
+    width: 303px;
+    height: 250px;
+    border-top: 6px white solid;
+    border-right: 3px white solid;
+    border-left: 3px white solid;
+}
+
+.imageImportanteFull, .fullImage
 {
     cursor: zoom-out;
     width: 1000px;
@@ -2945,10 +2955,42 @@ td
     text-align: center;
 }
 
+.noOrder
+{
+    text-align: center;
+    width: 350px;
+    margin: auto;
+    background-color: #074592;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+}
 
+.addOrder
+{
+    display: none;
+}
 
+.vente
+{
+    flex-direction: column;
+}
 
+.vente .images
+{
+    margin-top: 77px;
+}
 
+.vente select
+{
+    width: 50%;
+    margin: auto;
+}
+
+.vente h3
+{
+    font-size: 1.3em;
+}
 
 
 

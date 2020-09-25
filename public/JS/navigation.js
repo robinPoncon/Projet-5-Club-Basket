@@ -367,11 +367,32 @@ function htmlResponseAjaxTailleColors(name, quantity, idTaille)
     $("#order_tailleProduit").val(getId);
 
     $(".quantityTaille").text(quantityTaille);
+
+    if ($(".quantityTaille").text() < 1)
+    {
+        $("#submitOrder").hide();
+        $(".noOrder").show();
+    }
+    else
+    {
+        $("#submitOrder.submit").show();
+        $(".noOrder").hide();
+    }
 }
 
 function showQuantityTaille(variable)
 {
     $(".quantityTaille").text(variable);
+    if ($(".quantityTaille").text() < 1)
+    {
+        $("#submitOrder").hide();
+        $(".noOrder").show();
+    }
+    else
+    {
+        $("#submitOrder").show();
+        $(".noOrder").hide();
+    }
 }
 
 function remplirChampProduit(name, price)
@@ -380,6 +401,16 @@ function remplirChampProduit(name, price)
     $("#order_price").val(price);
 }
 
+if ($(".quantityTaille").text() < 1)
+{
+    $("#submitOrder").hide();
+    $(".noOrder").show();
+}
+else
+{
+    $("#submitOrder.submit").show();
+    $(".noOrder").hide();
+}
 
 
 
@@ -520,6 +551,17 @@ $(".imageImportanteFull").click(function(){
     $(this).css("display", "none");
 });
 
+function afficherFullImage(id)
+{
+    $("#miniature" + id).click(function(){
+        $("#fullImage" + id).css("display", "inline");
+    });
+}
+
+
+$(".fullImage").click(function(){
+   $(this).css("display", "none");
+});
 
 
 
