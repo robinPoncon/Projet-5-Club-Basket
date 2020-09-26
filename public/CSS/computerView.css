@@ -2926,16 +2926,18 @@ td
     width: 600px;
     height: 450px;
     margin-top: 20px;
+    border: 5px #074592 solid;
 }
 
 .miniature
 {
     cursor: zoom-in;
-    width: 303px;
+    width: 295px;
     height: 250px;
-    border-top: 6px white solid;
-    border-right: 3px white solid;
-    border-left: 3px white solid;
+    border: 5px #074592 solid;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: -67px;
 }
 
 .imageImportanteFull, .fullImage
@@ -2990,6 +2992,17 @@ td
 .vente h3
 {
     font-size: 1.3em;
+    margin-top: 30px;
+}
+
+.vente h3 span
+{
+    color: #dd650f;
+}
+
+#submitOrder, .noOrder
+{
+    margin-top: 30px !important;
 }
 
 

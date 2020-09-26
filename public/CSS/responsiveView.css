@@ -264,6 +264,14 @@
         width: 50%;
     }
     
+    .imageImportanteFull, .fullImage
+    {
+        width: 700px;
+        height: 500px;
+        margin-left: -348px;
+        top: 67px;
+    }
+    
 }
 
 
@@ -1244,6 +1252,46 @@
     {
         width: 80%;
     }
+    
+    .imageImportanteProduit
+    {
+        width: 280px;
+        height: 250px;
+        cursor: initial;
+    }
+    
+    .vente .images
+    {
+        flex-direction: column;
+        margin-top: 0;
+    }
+    
+    .vente h3
+    {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+    
+    .miniature
+    {
+        width: 280px;
+        cursor: initial;
+        margin: auto;
+        margin-top: 30px !important;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

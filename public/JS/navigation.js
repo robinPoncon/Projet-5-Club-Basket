@@ -542,26 +542,28 @@ $(".play, .pause, .diaporama").mouseleave(function(){
 
 
     // Zoom image au survol
-
-$(".imageImportanteProduit").click(function(){
-   $(".imageImportanteFull").css("display", "inline");
-});
-
-$(".imageImportanteFull").click(function(){
-    $(this).css("display", "none");
-});
-
-function afficherFullImage(id)
+if ($(window).width() >= 768)
 {
-    $("#miniature" + id).click(function(){
-        $("#fullImage" + id).css("display", "inline");
+    $(".imageImportanteProduit").click(function(){
+        $(".imageImportanteFull").css("display", "inline");
+    });
+
+    $(".imageImportanteFull").click(function(){
+        $(this).css("display", "none");
+    });
+
+    function afficherFullImage(id)
+    {
+        $("#miniature" + id).click(function(){
+            $("#fullImage" + id).css("display", "inline");
+        });
+    }
+
+    $(".fullImage").click(function(){
+        $(this).css("display", "none");
     });
 }
 
-
-$(".fullImage").click(function(){
-   $(this).css("display", "none");
-});
 
 
 

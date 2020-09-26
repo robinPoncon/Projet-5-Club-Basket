@@ -29,9 +29,13 @@
                 <div class="d-flex flex-column">
                     <h3>Couleurs disponibles : </h3>
                     <select class="form-control" name="listColors" id="selectColor">
-                        {% for color in produit.colors %}
-                            <option value="{{ color.id }}">{{ color.name }}</option>
-                        {% endfor %}
+                        {% if produit.colors|length > 0 %}
+                            {% for color in produit.colors %}
+                                <option value="{{ color.id }}">{{ color.name }}</option>
+                            {% endfor %}
+                        {% else %}
+                        <option>Il n'y a aucune couleur pour ce produit</option>
+                        {% endif %}
                     </select>
 
                 </div>
@@ -45,7 +49,7 @@
                     <h3>Quantité pour cette taille = <span class="quantityTaille"></span></h3>
                 </div>
 
-                <h3>Prix - {{ produit.price }}€</h3>
+                <h3>Prix - <span>{{ produit.price }}€</span></h3>
             </div>
         </div>
     </div>

@@ -67,9 +67,11 @@
 
         </ul>
 
+        {% if photoProduits|length > 3  %}
         <button type="button"
                 class="add-another-collection-widget"
                 data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+        {% endif %}
 
         <button class="form-control submit" type="submit">Modifier</button>
         {{ form_end(formEditProduit) }}
