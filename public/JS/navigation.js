@@ -162,7 +162,8 @@ function deleteConfirm(id, text, dataText, routeSup, div) {
         " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
         ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil, .modifMDP, thead, .userName," +
         ".userEmail, .userRole, .userFonction, .modifRole, .nameTeam, .modifTeam, #addMembre, #addSponsor," +
-        ".ajoutBoutique, .legend, .textGestionProduit, .modifProduit ")
+        ".ajoutBoutique, .legend, .textGestionProduit, .modifProduit, .viewOrder h3, .hideOrder, .divForm," +
+        ".colorName, .divPhoto, .add-another-collection-widget, .submit")
         .css("opacity", 0.5).css("pointer-events", "none");
 }
 
@@ -173,7 +174,8 @@ function cancelConfirm(div) {
         " .addComment, .addCommentPost, .showComment h3, .commentEdit, .commentContent, .confirmSup," +
         ".profil, .profilPicture, .modifInfosProfil, .modifPhotoProfil, .modifMDP, thead, .userName," +
         ".userEmail, .userRole, .userFonction, .modifRole, .nameTeam, .modifTeam, #addMembre, #addSponsor," +
-        ".ajoutBoutique, .legend, .textGestionProduit, .modifProduit ")
+        ".ajoutBoutique, .legend, .textGestionProduit, .modifProduit, .viewOrder h3, .hideOrder, .divForm," +
+        ".colorName, .divPhoto, .add-another-collection-widget, .submit")
         .css("opacity", 1).css("pointer-events", "auto");
 }
 

@@ -66,13 +66,29 @@
             <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ user.id }}"></div>
         </div>
     </div>
-    <div>
+    <div class="d-flex justify-content-around flex-wrap viewAllOrders">
         {% for commande in user.orders %}
-            <h3> {{ commande.name }}</h3>
-            <p> Couleur : {{ commande.color }}</p>
-            <p> Taille : {{ commande.tailleOrder }}</p>
-            <p> Quantité : {{ commande.quantity }}</p>
-            <p> Prix : {{ commande.price }} €</p>
+            <div class="viewOrder">
+                <h3><a href="{{ path("ficheProduit", {"slug": commande.tailleProduit.color.produit.slug }) }}">
+                        {{ commande.tailleProduit.color.produit.name }}
+                    </a></h3>
+                <p class="hideOrder"> Couleur : <span>{{ commande.color }}</span></p>
+                <p class="hideOrder"> Taille : <span>{{ commande.tailleOrder }}</span></p>
+                <p class="hideOrder"> Quantité : <span>{{ commande.quantity }}</span></p>
+                <p class="hideOrder"> Prix : <span>{{ commande.price }} €</span></p>
+                <p class="hideOrder">Etat de la commande :
+                    {% if commande.validate == 0 %}
+                        <span>En cours</span>
+                    {% else %}
+                        <span>Validée</span>
+                    {% endif %}
+                </p>
+                <button onclick='deleteConfirm({{ commande.id }}, "Voulez-vous vraiment annuler la commande pour le produit",
+                        "{{ commande.name }}", "{{ path("supprimerOrder", {"id": "text"}) }}",
+                        "#confirmationSupOrder{{ commande.id }}")'
+                        class="confirmSup">Annuler la commande</button>
+                <div class="confirmationSupPhoto" id="confirmationSupOrder{{ commande.id }}"></div>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

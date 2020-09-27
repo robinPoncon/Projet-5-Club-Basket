@@ -3005,6 +3005,86 @@ td
     margin-top: 30px !important;
 }
 
+.viewAllOrders
+{
+    margin-top: 50px;
+}
+
+.viewOrder
+{
+    border: 5px #074592 solid;
+    border-radius: 5px;
+    width: 30%;
+    margin-bottom: 50px;
+}
+
+.viewOrder h3
+{
+    background-color: #074592;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+.viewOrder p
+{
+    font-weight: bold;
+    padding: 5px;
+}
+
+.viewOrder span
+{
+    color: #dd650f;
+    font-style: italic;
+}
+
+.viewOrder h3 a
+{
+    color: white;
+}
+
+.viewOrder h3 a:hover
+{
+    color: #ef8108;
+}
+
+.viewOrder .confirm
+{
+    height: 170px;
+    margin-top: -250px;
+}
+
+.viewOrder .confirmSup
+{
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px !important;
+}
+
+.viewOrder .confirmSup:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -50,4 +50,23 @@ class OrderController extends AbstractController
             "formColor" => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("profil/commande/supprimer/order/{id}", name="supprimerOrder")
+     */
+    public function deleteOrder(Order $order, Request $request, EntityManagerInterface $manager)
+    {
+        $tailleObject = $order->getTailleProduit();
+        $quantityObject = $tailleObject->getQuantity();
+        $total = $quantityObject + 1;
+        $tailleObject->setQuantity($total);
+        $manager->persist($tailleObject);
+        $manager->remove($order);
+        $manager->flush();
+
+        $this->addFlash("success", "La commande a bien été supprimée !");
+        return $this->redirectToRoute("homeCompte", [
+
+        ]);
+    }
 }
