@@ -83,11 +83,13 @@
                         <span>Validée</span>
                     {% endif %}
                 </p>
-                <button onclick='deleteConfirm({{ commande.id }}, "Voulez-vous vraiment annuler la commande pour le produit",
-                        "{{ commande.name }}", "{{ path("supprimerOrder", {"id": "text"}) }}",
-                        "#confirmationSupOrder{{ commande.id }}")'
-                        class="confirmSup">Annuler la commande</button>
-                <div class="confirmationSupPhoto" id="confirmationSupOrder{{ commande.id }}"></div>
+                {% if commande.validate == 0 %}
+                    <button onclick='deleteConfirm({{ commande.id }}, "Voulez-vous vraiment annuler la commande pour le produit",
+                            "{{ commande.name }}", "{{ path("supprimerOrder", {"id": "text"}) }}",
+                            "#confirmationSupOrder{{ commande.id }}")'
+                            class="confirmSup">Annuler la commande</button>
+                    <div class="confirmationSupPhoto" id="confirmationSupOrder{{ commande.id }}"></div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

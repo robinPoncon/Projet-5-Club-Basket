@@ -5,7 +5,22 @@
 {% block body %}
 
     <h1>Boutique de vente du BCM</h1>
-    
+
+    <div class="infoOrder">
+        <h2>Comment ça marche ?</h2>
+        <p>Pour commander un produit du club, suivez ces étapes ! <br>
+            <strong><em>- Sélectionner un produit</em></strong> <br>
+            <strong><em>- Sélectionner une couleur du produit disponible</em></strong> <br>
+            <strong><em>- Sélectionner une taille disponible de la couleur choisie</em></strong> <br>
+            <strong><em>- Cliquer sur le bouton "Commander"</em></strong> <br>
+            <strong><em>- Aller au club avec les sous pour récupérer votre produit !</em></strong> <br>
+            <br>
+            Dans votre partie compte vous pourrez voir l'historique de vos commandes et leur état ! (en cours ou validée). <br>
+            Si vous avez des questions n'hésitez pas à nous les envoyer en remplissant le formulaire de contact dans la
+            partie <strong>"CONTACT"</strong> du site !
+        </p>
+    </div>
+
     <div class="d-flex justify-content-around allProduits">
         {% for produit in produits %}
             <div class="produitAffichage">

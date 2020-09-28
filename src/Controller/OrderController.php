@@ -69,4 +69,20 @@ class OrderController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("admin/utilisateurs/validerCommande/{id}", name="validateOrder")
+     */
+    public function validateOrder(Order $order, Request $request, EntityManagerInterface $manager)
+    {
+        $user = $order->getUser();
+        $order->setValidate(1);
+        $manager->persist($order);
+        $manager->flush();
+
+        $this->addFlash("success", "La commande a bien été validée");
+        return $this->redirectToRoute("pageUtilisateur", [
+            "slug" => $user->getSlug()
+        ]);
+    }
 }

@@ -27,7 +27,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre nom d'utilisateur",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => true
             ])
             ->add('nom', TextType::class, [
                 "label" => "Nom",
@@ -38,7 +39,7 @@ class RegistrationType extends AbstractType
                     "placeholder" => "Votre nom",
                     "class" => "form-control input"
                 ],
-
+                "required" => true
             ])
             ->add('prenom', TextType::class, [
                 "label" => "Prénom",
@@ -49,6 +50,7 @@ class RegistrationType extends AbstractType
                     "placeholder" => "Votre prénom",
                     "class" => "form-control input"
                 ],
+                "required" => true
             ])
             ->add('email', EmailType::class, [
                 "label" => "Email",
@@ -58,7 +60,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre email",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => true
             ])
             ->add('password', PasswordType::class, [
                 "label" => "Mot de passe",
@@ -68,7 +71,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Votre mot de passe",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => true
             ])
             ->add("confirm_password", PasswordType::class, [
                 "label" => "Confirmation mot de passe",
@@ -78,7 +82,8 @@ class RegistrationType extends AbstractType
                 "attr" => [
                     "placeholder" => "Confirmer votre mot de passe",
                     "class" => "form-control input"
-                ]
+                ],
+                "required" => true
             ])
         ;
     }

@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\PhotoUserType;
 use App\Form\UserInfosModifType;
 use App\Form\UserRoleType;
+use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,11 +19,13 @@ class UserController extends AbstractController
     /**
      * @Route("admin/utilisateurs", name="users")
      */
-    public function index(UserRepository $userRepo)
+    public function index(UserRepository $userRepo, OrderRepository $orderRepo)
     {
+        $orders = $orderRepo->findBy(["validate" => 0]);
         $users = $userRepo->findAll();
         return $this->render('security/admin/compte-users.html.twig', [
-            "users" => $users
+            "users" => $users,
+            "commandes" => $orders
         ]);
     }
 

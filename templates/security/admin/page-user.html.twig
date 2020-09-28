@@ -44,7 +44,7 @@
         <div class="d-flex flex-column actionProfil">
             <a class="modifInfosProfil" href="{{ path("modifierInfosUtilisateur", {"slug": user.slug}) }}">
                 Modifier les infos de l'utilisateur</a>
-            <a href="{{ path("modifierRoleUtilisateur", {"slug": user.slug}) }}">Modifier le rôle de l'utilisateur</a>
+            <a class="modifRole" href="{{ path("modifierRoleUtilisateur", {"slug": user.slug}) }}">Modifier le rôle de l'utilisateur</a>
             {% if photoUser.imageName is defined and photoUser.imageName is not null %}
                 <a class="modifPhotoProfil" href="{{ path("modifierPhotoProfilUser", {"slug": user.slug}) }}">
                     Modifier la photo de l'utilisateur</a>
@@ -63,6 +63,34 @@
                     class="confirmSup">Supprimer le compte de l'utilisateur</button>
             <div class="confirmationSupPhoto" id="confirmationSupPhoto{{ user.id }}"></div>
         </div>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap viewAllOrders">
+        {% for commande in user.orders %}
+            <div class="viewOrder">
+                <h3><a href="{{ path("ficheProduit", {"slug": commande.tailleProduit.color.produit.slug }) }}">
+                        {{ commande.tailleProduit.color.produit.name }}
+                    </a></h3>
+                <p class="hideOrder"> Couleur : <span>{{ commande.color }}</span></p>
+                <p class="hideOrder"> Taille : <span>{{ commande.tailleOrder }}</span></p>
+                <p class="hideOrder"> Quantité : <span>{{ commande.quantity }}</span></p>
+                <p class="hideOrder"> Prix : <span>{{ commande.price }} €</span></p>
+                <p class="hideOrder">Etat de la commande :
+                    {% if commande.validate == 0 %}
+                        <span>En cours</span>
+                    {% else %}
+                        <span>Validée</span>
+                    {% endif %}
+                </p>
+                {% if commande.validate == 0 %}
+                    <a class="validateOrder" href="{{ path("validateOrder", {"id": commande.id}) }}">Valider la commande</a>
+                    <button onclick='deleteConfirm({{ commande.id }}, "Voulez-vous vraiment annuler la commande pour le produit",
+                            "{{ commande.name }}", "{{ path("supprimerOrder", {"id": "text"}) }}",
+                            "#confirmationSupOrder{{ commande.id }}")'
+                            class="confirmSup">Annuler la commande</button>
+                    <div class="confirmationSupPhoto" id="confirmationSupOrder{{ commande.id }}"></div>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
 
 

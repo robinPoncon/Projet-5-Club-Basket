@@ -272,7 +272,7 @@
         top: 67px;
     }
     
-    .viewOrder
+    .viewOrder, .orderWaiting
     {
         width: 44%;
     }
@@ -1285,17 +1285,20 @@
         margin-top: 30px !important;
     }
     
-    .viewOrder
+    .viewOrder, .orderWaiting
     {
         width: 80%;
     }
     
-    .viewOrder .confirm
+    .viewOrder .confirm, .orderWaiting .confirm
     {
         margin-top: -282px;
     }
     
-    
+    .infoOrder
+    {
+        width: 90%;
+    }
     
     
     

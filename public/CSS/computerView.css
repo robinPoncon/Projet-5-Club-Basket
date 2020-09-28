@@ -3068,7 +3068,107 @@ td
     border: 1px #dd650f solid;
 }
 
+.validateOrder
+{
+    color: white;
+    background-color: #074592;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px !important;
+    display: block;
+    text-align: center;
+}
 
+.validateOrder:hover
+{
+    color: white;
+    background-color: #dd650f;
+}
+
+.infoOrder
+{
+    width: 70%;
+    margin: auto;
+    border: 5px #074592 solid;
+    border-radius: 10px;
+}
+
+.infoOrder h2
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+}
+
+.infoOrder p
+{
+    padding: 10px;
+}
+
+.orderWaiting
+{
+    border: 5px #074592 solid;
+    width: 30%;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.orderWaiting h3
+{
+    background-color: #074592;
+    padding: 10px;
+    text-align: center;
+}
+
+.orderWaiting h3 a
+{
+    color: white;
+}
+
+.orderWaiting h3 a:hover
+{
+    color: #ef8108;
+}
+
+.orderWaiting p
+{
+    padding: 10px;
+}
+
+.orderWaiting span
+{
+    color: #dd650f;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.listUsers, .listOrders
+{
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.orderWaiting .confirmSup
+{
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px !important;
+}
+
+.orderWaiting .confirmSup:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.orderWaiting .confirm
+{
+    height: 170px;
+    margin-top: -250px;
+}
 
 
 

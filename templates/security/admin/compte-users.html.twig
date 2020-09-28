@@ -7,7 +7,7 @@
 
     <h1>Gestion des utilisateurs</h1>
 
-    <h2>Liste des utilisateurs</h2>
+    <h2 class="listUsers">Liste des utilisateurs</h2>
 
     <table class="table table-hover blocUser">
         <thead>
@@ -52,5 +52,29 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <h2 class="listOrders">Liste des commandes en attente de validation </h2>
+    <div class="d-flex flex-wrap justify-content-around">
+        {% for commande in commandes %}
+            <div class="orderWaiting">
+                <h3 class="hideOrder"><a href="{{ path("ficheProduit", {"slug": commande.tailleProduit.color.produit.slug }) }}">
+                        {{ commande.tailleProduit.color.produit.name }}
+                    </a></h3>
+                <p class="hideOrder">Caractéristiques : <br>
+                    - <strong>Couleur:</strong> <span>{{ commande.color }}</span><br>
+                    - <strong>Taille:</strong> <span>{{ commande.tailleOrder }}</span><br>
+                    - <strong>Quantité:</strong> <span>{{ commande.quantity }}</span><br>
+                </p>
+                <p class="hideOrder">Commandé par <span>{{ commande.user.nom|upper }} {{ commande.user.prenom|upper }}</span></p>
+                <a class="validateOrder" href="{{ path("validateOrder", {"id": commande.id}) }}">Valider la commande</a>
+                <button onclick='deleteConfirm({{ commande.id }}, "Voulez-vous vraiment annuler la commande pour le produit",
+                        "{{ commande.name }}", "{{ path("supprimerOrder", {"id": "text"}) }}",
+                        "#confirmationSupOrder{{ commande.id }}")'
+                        class="confirmSup">Annuler la commande</button>
+                <div class="confirmationSupPhoto" id="confirmationSupOrder{{ commande.id }}"></div>
+            </div>
+        {% endfor %}
+    </div>
+
 
 {% endblock %}
