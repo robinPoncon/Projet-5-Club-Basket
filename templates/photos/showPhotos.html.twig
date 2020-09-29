@@ -158,7 +158,7 @@
                 url: "{{ path("ajax_PhotoEquipe") }}",
                 data: {id: id},
                 success: function (responses) {
-                    //console.log(responses);
+                    console.log(responses);
                     if (responses.length === 0)
                     {
                         let noPhotoEquipe = $("<p>", {
@@ -172,12 +172,11 @@
                     else
                     {
                         responses.forEach((datas) => {
-                            console.log(datas);
+                            //console.log(datas);
                             let path = "/" + datas.imageName;
                             let asset = "{{ asset('pictures/equipe') }}";
                             $(".blocPhotoEquipeAjax h2").text("Photos de l'équipe " + datas.equipe.name);
 
-                            {# let url = "{{ asset(vich_uploader_asset(" + datas.photoEquipe + ", 'imageFile'))}}";#}
                             htmlResponseAjaxPhoto(asset + path, "Photo de l'équipe " + datas.equipe.name,
                                 ".blocPhotoEquipeAjax .blocEquipeAjax");
                         });

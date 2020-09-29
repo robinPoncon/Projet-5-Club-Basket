@@ -54,14 +54,14 @@ class BlogController extends AbstractController
             6 // Nombre de résultats par page
         );
 
-        //$rss = simplexml_load_file('http://www.ffbb.com/rss2.xml');
+        $rss = simplexml_load_file('http://www.ffbb.com/rss2.xml');
 
         return $this->render("blog/home.html.twig", [
             "articles" => $articles,
             "articlePrio" => $articlePrio,
             "photoImportantePrios" => $photoImportantePrios,
             "diaporama" => $diaporama,
-            //'rssItems' => $rss->channel->item
+            'rssItems' => $rss->channel->item
         ]);
     }
 

@@ -36,7 +36,7 @@ class PagePhotoController extends AbstractController
     }
 
     /**
-     * @Route("editor/photos/equipes/data", name="ajax_PhotoEquipe")
+     * @Route("photos/equipes/data", name="ajax_PhotoEquipe")
      */
     public function ajaxPhotoEquipe(Request $request, EquipeRepository $equipeRepo)
     {
@@ -85,7 +85,7 @@ class PagePhotoController extends AbstractController
     }
 
     /**
-     * @Route("editor/photos/articles/data", name="ajax_PhotoArticle")
+     * @Route("photos/articles/data", name="ajax_PhotoArticle")
      */
     public function ajaxPhotoArticle(Request $request, ArticleRepository $articleRepo)
     {
