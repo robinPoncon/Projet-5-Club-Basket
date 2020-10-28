@@ -244,7 +244,7 @@ class BoutiqueController extends AbstractController
     }
 
     /**
-     * @Route("editor/produits/afficherTailles/data", name="ajax_colors")
+     * @Route("produits/afficherTailles/data", name="ajax_colors")
      */
     public function ajaxProduitGetTailles(Request $request, ColorRepository $colorRepo)
     {

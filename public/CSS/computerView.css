@@ -1732,10 +1732,7 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     color: white;
 }
 
-#article_photoArticles
-{
-    display: none;
-}
+
 
 .postContent .imageImportant
 {
@@ -2494,7 +2491,7 @@ td
     height: 150px;
     color: white;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 170px;
     display: flex;
     justify-content: space-around;
 }
@@ -2973,6 +2970,25 @@ td
     display: none;
 }
 
+.orderConnect
+{
+    background-color: #074592;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    margin-top: 30px !important;
+    width: 310px;
+    display: block;
+}
+
+.orderConnect:hover
+{
+    background-color: #dd650f;
+    color: white;
+}
+
 .vente
 {
     flex-direction: column;
@@ -3169,7 +3185,6 @@ td
     height: 170px;
     margin-top: -250px;
 }
-
 
 
 

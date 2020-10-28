@@ -313,6 +313,7 @@ class BlogController extends AbstractController
 
                 $img_nom = $photoArticle->getImageName();
                 $extension = strrchr($img_nom, '.');
+                dump($img_nom);
                 if($extension == ".jpeg" || $extension == ".jpg")
                 {
                     $img = imagecreatefromjpeg("pictures/article/" . $img_nom);

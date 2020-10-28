@@ -2,6 +2,7 @@
 namespace App\Form;
 
 use App\Entity\PhotoArticle;
+use App\Form\FilesToPicturesTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,8 +24,10 @@ class PhotoArticleType extends AbstractType
                 'row_attr' => [
                     'class' => 'divFormPhoto',
                 ],
-                "required" => false
+                "required" => false,
+                "multiple" => true
             ])
+            ->addModelTransformer(new FilesToPicturesTransformer())
         ;
     }
 

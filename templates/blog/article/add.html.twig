@@ -45,16 +45,15 @@
             </div>
         </div>
 
-        <ul id="photo-fields-list" class="photoDiv"
-            data-prototype="{{ form_widget(formArticle.photoArticles.vars.prototype)|e }}"
-            data-widget-tags="{{ '<li></li>'|e }}"
-            data-widget-counter="{{ formArticle.photoArticles|length }}">
-
-        </ul>
-
-        <button type="button"
-                class="add-another-collection-widget"
-                data-list-selector="#photo-fields-list">Ajouter une autre photo</button>
+        <div class="divForm">
+            <div class="errorForm">
+                {{ form_errors(formArticle.photoArticles) }}
+            </div>
+            <div class="d-flex">
+                {{ form_label(formArticle.photoArticles) }}
+                {{ form_widget(formArticle.photoArticles) }}
+            </div>
+        </div>
 
         <button class="form-control submit" type="submit">Ajouter</button>
         {{ form_end(formArticle) }}

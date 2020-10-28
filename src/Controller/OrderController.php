@@ -23,7 +23,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("editor/boutique/commande/ajouter/{id}", name="addOrder")
+     * @Route("boutique/commande/ajouter/{id}", name="addOrder")
      */
     public function addOrder(Request $request, EntityManagerInterface $manager, Taille $tailleId)
     {

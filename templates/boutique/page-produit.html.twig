@@ -102,7 +102,11 @@
             </div>
         </div>
     </div>
+        {% if is_granted('ROLE_USER') %}
         <button id="submitOrder" class="form-control submit" type="submit">Commander</button>
+        {% else %}
+            <a class="orderConnect" href="{{ path("security_login") }}">Il faut vous connecter pour commander</a>
+        {% endif %}
         <p class="noOrder">Produit non disponible pour cette taille</p>
 
     {{ form_end(formOrder) }}
