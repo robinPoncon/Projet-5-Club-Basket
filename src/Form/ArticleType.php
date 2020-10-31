@@ -74,12 +74,12 @@ class ArticleType extends AbstractType
                     "class" => "form-control input"
                 ]
             ])
-            ->add('photoArticles', FileType::class, [
+            ->add('images', FileType::class, [
                 "required" => false,
                 "label" => "photo",
+                "mapped" => false,
                 "multiple" => true
             ])
-            ->addModelTransformer(new FilesToPicturesTransformer())
         ;
     }
 

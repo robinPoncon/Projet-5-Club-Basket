@@ -24,8 +24,8 @@ class FilesToPicturesTransformer implements DataTransformerInterface
             if (!$pictures->contains($picture)) {
                 $pictures->add($picture);
             }
-            return $pictures;
         }
+        return $pictures;
         // TODO: Implement reverseTransform() method.
     }
 }
