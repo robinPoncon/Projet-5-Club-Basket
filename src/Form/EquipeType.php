@@ -74,13 +74,17 @@ class EquipeType extends AbstractType
                     "class" => "form-control input"
                 ],
             ])
-            ->add('photoEquipes', CollectionType::class, [
-                'entry_type' => PhotoEquipesType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true,
-                "label" => " ",
-                "required" => false
+            ->add('images', FileType::class, [
+                "required" => false,
+                "label" => "photo",
+                "mapped" => false,
+                "multiple" => true,
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "class" => "form-control input"
+                ]
             ])
         ;
     }

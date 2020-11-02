@@ -78,7 +78,13 @@ class ArticleType extends AbstractType
                 "required" => false,
                 "label" => "photo",
                 "mapped" => false,
-                "multiple" => true
+                "multiple" => true,
+                "label_attr" => [
+                    "class" => "form-control label",
+                ],
+                "attr" => [
+                    "class" => "form-control input"
+                ]
             ])
         ;
     }

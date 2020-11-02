@@ -301,7 +301,6 @@ class BlogController extends AbstractController
             $article->setCreatedAt(new \DateTime());
 
             $images = $form->get("images")->getData();
-            //dump($images);
 
             foreach($images as $image)
             {
@@ -374,6 +373,16 @@ class BlogController extends AbstractController
                     $article->setPrioritaire(1);
                     $manager->persist($autreArticle);
                 }
+            }
+
+            $images = $form->get("images")->getData();
+
+            foreach($images as $image)
+            {
+                $photo = new PhotoArticle();
+                $photo->setImageFile($image);
+                $article->addPhotoArticle($photo);
+                $manager->persist($article);
             }
 
             $photoArticles = $article->getPhotoArticles();

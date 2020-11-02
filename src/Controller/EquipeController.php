@@ -62,6 +62,16 @@ class EquipeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $images = $form->get("images")->getData();
+
+            foreach($images as $image)
+            {
+                $photo = new PhotoEquipe();
+                $photo->setImageFile($image);
+                $equipe->addPhotoEquipe($photo);
+                $manager->persist($equipe);
+            }
+
             $photoEquipes = $equipe->getPhotoEquipes();
             foreach($photoEquipes as $key => $photoEquipe){
                 $photoEquipe->setEquipe($equipe);
@@ -113,6 +123,16 @@ class EquipeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            $images = $form->get("images")->getData();
+
+            foreach($images as $image)
+            {
+                $photo = new PhotoEquipe();
+                $photo->setImageFile($image);
+                $equipe->addPhotoEquipe($photo);
+                $manager->persist($equipe);
+            }
+
             $photoEquipes = $equipe->getPhotoEquipes();
             foreach($photoEquipes as $key => $photoEquipe){
                 $photoEquipe->setEquipe($equipe);
@@ -252,7 +272,7 @@ class EquipeController extends AbstractController
         $manager->flush();
 
         $this->addFlash("success", "L'équipe a bien été supprimée !");
-        return $this->render("security/editor/compte-equipe.html.twig");
+        return $this->redirectToRoute("equipes");
     }
 
 }
