@@ -8,22 +8,23 @@
 
     <div class="addTeamForm">
         {{ form_start(formSponsor) }}
-        <div class="divForm">
-            <div class="errorForm">
-                {{ form_errors(formSponsor.name) }}
-            </div>
-            <div class="d-flex">
-                {{ form_label(formSponsor.name) }}
-                {{ form_widget(formSponsor.name) }}
-            </div>
+        <div class="d-flex justify-content-center blocPhotoEdit">
+            {% for sponsor in sponsors %}
+                <div class="d-flex flex-column divPhoto">
+                    <img src="{{ asset(vich_uploader_asset(sponsor, "imageFile") | imagine_filter("equipeModif")) }}"
+                         alt="photo d'un sponsor">
+                    <a href="{{ path("supprimerPhotoArticle", {"id": photoArticle.id}) }}">Supprimer</a>
+                </div>
+            {% endfor %}
         </div>
+
         <div class="divForm">
             <div class="errorForm">
-                {{ form_errors(formSponsor.imageFile) }}
+                {{ form_errors(formSponsor.images) }}
             </div>
             <div class="d-flex">
-                {{ form_label(formSponsor.imageFile) }}
-                {{ form_widget(formSponsor.imageFile) }}
+                {{ form_label(formSponsor.images) }}
+                {{ form_widget(formSponsor.images) }}
             </div>
         </div>
         <button class="form-control submit" type="submit">Modifier</button>

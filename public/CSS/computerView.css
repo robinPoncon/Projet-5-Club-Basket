@@ -836,16 +836,6 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
     width: 25%;
 }
 
-.nameSponsor
-{
-    background-color: #dd650f;
-    padding: 9px;
-    border-radius: 5px;
-    color: white;
-    margin: auto;
-    margin-top: -9px;
-}
-
 .miseEnPage
 {
     width: 100%;
@@ -879,6 +869,11 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 {
     width: 101%;
     margin-bottom: 40px;
+}
+
+.addTeamForm
+{
+    position: relative;
 }
 
 

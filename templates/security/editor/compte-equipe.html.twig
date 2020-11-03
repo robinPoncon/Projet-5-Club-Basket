@@ -190,26 +190,9 @@
     <h2 class="titreMembre"> Gestion des sponsors </h2>
 
     <div id="addSponsor">
-        <a href="{{ path("ajouterSponsor") }}">Ajouter un sponsor + </a>
+        <a href="{{ path("ajouterSponsor") }}">modifier les sponsor </a>
     </div>
 
-    <div class="bigBlocOther">
-        <ul class="blocTeam">
-            {% for sponsor in sponsors %}
-                <li><ul class="d-flex justify-content-center compteTeam">
-                        <li class="nameSponsor">{{ sponsor.name }}</li>
-                        <li class="actionMember"><ul class="d-flex justify-content-center blocActionMember">
-                                <li class="modifTeam"><a href="{{ path("modifierSponsor", {"id": sponsor.id}) }}">Modifier</a></li>
-                                <li><button onclick='deleteConfirm({{ sponsor.id }}, "Voulez-vous vraiment supprimer ce membre",
-                                            "{{ sponsor.name }}", "{{ path("supprimerSponsor", {"id": "text"}) }}",
-                                            "#confirmationSupSponsor{{ sponsor.id }}")'
-                                            class="confirmSup">Supprimer</button></li>
-                                <li class="confirmationSupTeam" id="confirmationSupSponsor{{ sponsor.id }}"></li>
-                            </ul></li>
-                    </ul></li>
-            {% endfor %}
-        </ul>
-    </div>
 
 
 

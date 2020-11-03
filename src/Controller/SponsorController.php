@@ -1,8 +1,9 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\PhotoSponsor;
 use App\Entity\Sponsor;
-use App\Form\SponsorType;
+use App\Form\PhotoSponsorType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,27 +20,39 @@ class SponsorController extends AbstractController
     {
         $sponsor = new Sponsor();
 
-        $form = $this->createForm(SponsorType::class, $sponsor);
+        $form = $this->createForm(PhotoSponsorType::class, $sponsor);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $manager->persist($sponsor);
+            $images = $form->get("images")->getData();
+
+            foreach($images as $image)
+            {
+                $photo = new PhotoSponsor();
+                $photo->setImageFile($image);
+                $sponsor->addPhotoSponsor($photo);
+                $manager->persist($sponsor);
+            }
             $manager->flush();
 
-            $img_nom = $sponsor->getImageName();
-            if ($sponsor->getImageName() !== NULL)
+            $photoSponsors = $sponsor->getPhotoSponsor();
+            foreach($photoSponsors as $key => $photoSponsor)
             {
-                $extension = strrchr($img_nom, '.');
-                if($extension == ".jpeg" || $extension == ".jpg")
+                $img_nom = $photoSponsor->getImageName();
+                if ($photoSponsor->getImageName() !== NULL)
                 {
-                    $img = imagecreatefromjpeg("pictures/sponsor/" . $img_nom);
-                    imagejpeg($img, "pictures/sponsor/" . $img_nom, 50);
-                }
-                else
-                {
-                    $img = imagecreatefrompng("pictures/sponsor/" . $img_nom);
-                    imagepng($img, "pictures/sponsor/" . $img_nom, 5);
+                    $extension = strrchr($img_nom, '.');
+                    if($extension == ".jpeg" || $extension == ".jpg")
+                    {
+                        $img = imagecreatefromjpeg("pictures/sponsor/" . $img_nom);
+                        imagejpeg($img, "pictures/sponsor/" . $img_nom, 50);
+                    }
+                    else
+                    {
+                        $img = imagecreatefrompng("pictures/sponsor/" . $img_nom);
+                        imagepng($img, "pictures/sponsor/" . $img_nom, 5);
+                    }
                 }
             }
 
@@ -56,9 +69,9 @@ class SponsorController extends AbstractController
     /**
      * @Route("editor/sponsor/modifier/{id}", name="modifierSponsor")
      */
-    public function editSponsor(Sponsor $sponsor, Request $request, EntityManagerInterface $manager)
+    public function editSponsor(PhotoSponsor $sponsor, Request $request, EntityManagerInterface $manager)
     {
-        $form = $this->createForm(SponsorType::class, $sponsor);
+        $form = $this->createForm(PhotoSponsorType::class, $sponsor);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
@@ -95,7 +108,7 @@ class SponsorController extends AbstractController
     /**
      * @Route("editor/sponsor/supprimer/{id}", name="supprimerSponsor")
      */
-    public function deleteSponsor(Sponsor $sponsor, Request $request, EntityManagerInterface $manager)
+    public function deleteSponsor(PhotoSponsor $sponsor, Request $request, EntityManagerInterface $manager)
     {
         $manager->remove($sponsor);
         $manager->flush();

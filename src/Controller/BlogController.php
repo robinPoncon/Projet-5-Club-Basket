@@ -20,7 +20,7 @@ use App\Repository\CommentRepository;
 use App\Repository\DiaporamaRepository;
 use App\Repository\MemberClubRepository;
 use App\Repository\PhotoArticleRepository;
-use App\Repository\SponsorRepository;
+use App\Repository\PhotoSponsorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -151,7 +151,7 @@ class BlogController extends AbstractController
     /**
      * @Route("club-BCM/la-vie-au-club", name="club")
      */
-    public function club(ArticleRepository $articleRepo, MemberClubRepository $memberClubRepo, SponsorRepository $sponsorRepo)
+    public function club(ArticleRepository $articleRepo, MemberClubRepository $memberClubRepo, PhotoSponsorRepository $sponsorRepo)
     {
         $sponsors = $sponsorRepo->findAll();
         $memberClubs = $memberClubRepo->findAll();

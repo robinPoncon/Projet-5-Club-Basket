@@ -3,15 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\SponsorRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SponsorRepository::class)
- * @Vich\Uploadable()
  */
 class Sponsor
 {
@@ -23,91 +20,47 @@ class Sponsor
     private $id;
 
     /**
-     * @Assert\File(
-     *     maxSize = "16M",
-     *     maxSizeMessage = "Fichier trop lourd, veuillez réduire son poids avec un convertisseur par exemple.",
-     *     mimeTypes = {"image/jpg", "image/png", "image/jpeg"},
-     *     mimeTypesMessage = "Mauvais format d'image, veuillez mettre une image de format JPG, PNG ou JPEG."
-     * )
-     * @Vich\UploadableField(mapping="sponsor_upload", fileNameProperty="imageName")
-     * @var File|null
+     * @ORM\OneToMany(targetEntity=PhotoSponsor::class, mappedBy="sponsor", cascade={"persist", "remove"})
      */
-    private $imageFile;
+    private $photoSponsor;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageName;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
+    public function __construct()
+    {
+        $this->photoSponsor = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName( ?string $imageName): self
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
     /**
-     * @return File|null
+     * @return Collection|PhotoSponsor[]
      */
-    public function getImageFile(): ?File
+    public function getPhotoSponsor(): Collection
     {
-        return $this->imageFile;
+        return $this->photoSponsor;
     }
 
-    /**
-     * @param File|null $imageFile
-     * @return Sponsor
-     */
-    public function setImageFile(?File $imageFile): Sponsor
+    public function addPhotoSponsor(PhotoSponsor $photoSponsor): self
     {
-        $this->imageFile = $imageFile;
-        if ($this->imageFile instanceof UploadedFile)
-        {
-            $this->updatedAt = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        if (!$this->photoSponsor->contains($photoSponsor)) {
+            $this->photoSponsor[] = $photoSponsor;
+            $photoSponsor->setSponsor($this);
         }
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getName(): ?string
+    public function removePhotoSponsor(PhotoSponsor $photoSponsor): self
     {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
+        if ($this->photoSponsor->contains($photoSponsor)) {
+            $this->photoSponsor->removeElement($photoSponsor);
+            // set the owning side to null (unless already changed)
+            if ($photoSponsor->getSponsor() === $this) {
+                $photoSponsor->setSponsor(null);
+            }
+        }
 
         return $this;
     }
