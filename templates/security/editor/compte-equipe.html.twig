@@ -190,7 +190,9 @@
     <h2 class="titreMembre"> Gestion des sponsors </h2>
 
     <div id="addSponsor">
-        <a href="{{ path("ajouterSponsor") }}">modifier les sponsor </a>
+        {% for sponsor in sponsors %}
+        <a href="{{ path("modifierSponsor", {"id": sponsor.id}) }}">modifier les sponsor </a>
+        {% endfor %}
     </div>
 
 

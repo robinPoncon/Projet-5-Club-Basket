@@ -69,29 +69,42 @@ class SponsorController extends AbstractController
     /**
      * @Route("editor/sponsor/modifier/{id}", name="modifierSponsor")
      */
-    public function editSponsor(PhotoSponsor $sponsor, Request $request, EntityManagerInterface $manager)
+    public function editSponsor(sponsor $sponsor, Request $request, EntityManagerInterface $manager)
     {
+        $photoSponsors = $sponsor->getPhotoSponsor();
+
         $form = $this->createForm(PhotoSponsorType::class, $sponsor);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
         {
-            $manager->persist($sponsor);
+            $images = $form->get("images")->getData();
+
+            foreach($images as $image)
+            {
+                $photo = new PhotoSponsor();
+                $photo->setImageFile($image);
+                $sponsor->addPhotoSponsor($photo);
+                $manager->persist($sponsor);
+            }
             $manager->flush();
 
-            $img_nom = $sponsor->getImageName();
-            if ($sponsor->getImageName() !== NULL)
+            foreach($photoSponsors as $key => $photoSponsor)
             {
-                $extension = strrchr($img_nom, '.');
-                if($extension == ".jpeg" || $extension == ".jpg")
+                $img_nom = $photoSponsor->getImageName();
+                if ($photoSponsor->getImageName() !== NULL)
                 {
-                    $img = imagecreatefromjpeg("pictures/sponsor/" . $img_nom);
-                    imagejpeg($img, "pictures/sponsor/" . $img_nom, 50);
-                }
-                else
-                {
-                    $img = imagecreatefrompng("pictures/sponsor/" . $img_nom);
-                    imagepng($img, "pictures/sponsor/" . $img_nom, 5);
+                    $extension = strrchr($img_nom, '.');
+                    if($extension == ".jpeg" || $extension == ".jpg")
+                    {
+                        $img = imagecreatefromjpeg("pictures/sponsor/" . $img_nom);
+                        imagejpeg($img, "pictures/sponsor/" . $img_nom, 50);
+                    }
+                    else
+                    {
+                        $img = imagecreatefrompng("pictures/sponsor/" . $img_nom);
+                        imagepng($img, "pictures/sponsor/" . $img_nom, 5);
+                    }
                 }
             }
 
@@ -101,19 +114,23 @@ class SponsorController extends AbstractController
         }
 
         return $this->render("equipe/sponsor/editSponsor.html.twig", [
-            "formSponsor" => $form->createView()
+            "formSponsor" => $form->createView(),
+            "photoSponsors" => $photoSponsors
         ]);
     }
 
     /**
-     * @Route("editor/sponsor/supprimer/{id}", name="supprimerSponsor")
+     * @Route("editor/sponsor/supprimer/{id}", name="supprimerPhotoSponsor")
      */
-    public function deleteSponsor(PhotoSponsor $sponsor, Request $request, EntityManagerInterface $manager)
+    public function deletePhotoSponsor(PhotoSponsor $photoSponsor, Request $request, EntityManagerInterface $manager)
     {
-        $manager->remove($sponsor);
+        $sponsor = $photoSponsor->getSponsor();
+        $manager->remove($photoSponsor);
         $manager->flush();
 
-        $this->addFlash("success", "Le sponsor a bien été supprimé !");
-        return $this->redirectToRoute("equipes");
+        $this->addFlash("success", "La photo du sponsor a bien été supprimée !");
+        return $this->redirectToRoute("modifierSponsor", [
+            "id" => $sponsor->getId()
+        ]);
     }
 }

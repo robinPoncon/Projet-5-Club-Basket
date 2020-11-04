@@ -9,11 +9,11 @@
     <div class="addTeamForm">
         {{ form_start(formSponsor) }}
         <div class="d-flex justify-content-center blocPhotoEdit">
-            {% for sponsor in sponsors %}
+            {% for photoSponsor in photoSponsors %}
                 <div class="d-flex flex-column divPhoto">
-                    <img src="{{ asset(vich_uploader_asset(sponsor, "imageFile") | imagine_filter("equipeModif")) }}"
+                    <img src="{{ asset(vich_uploader_asset(photoSponsor, "imageFile") | imagine_filter("equipeModif")) }}"
                          alt="photo d'un sponsor">
-                    <a href="{{ path("supprimerPhotoArticle", {"id": photoArticle.id}) }}">Supprimer</a>
+                    <a href="{{ path("supprimerPhotoSponsor", {"id": photoSponsor.id}) }}">Supprimer</a>
                 </div>
             {% endfor %}
         </div>

@@ -11,6 +11,7 @@ use App\Repository\EquipeRepository;
 use App\Repository\MemberClubRepository;
 use App\Repository\PhotoEquipeRepository;
 use App\Repository\PhotoSponsorRepository;
+use App\Repository\SponsorRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,7 +41,7 @@ class EquipeController extends AbstractController
      * @Route("editor/equipes", name="equipes")
      * @return Response
      */
-    public function show(MemberClubRepository $memberClubRepository, PhotoSponsorRepository $sponsorRepo)
+    public function show(MemberClubRepository $memberClubRepository, SponsorRepository $sponsorRepo)
     {
         $memberClubs = $memberClubRepository->findAll();
         $sponsors = $sponsorRepo->findAll();

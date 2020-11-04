@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\SponsorRepository;
+use App\Repository\PhotoSponsorRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
