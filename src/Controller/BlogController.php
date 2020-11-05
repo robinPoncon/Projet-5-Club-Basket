@@ -39,8 +39,9 @@ class BlogController extends AbstractController
      * @Route("/", name="home")
      */
     public function home(Request $request, PaginatorInterface $paginator, ArticleRepository $articleRepo,
-                         DiaporamaRepository $diaporamaRepo)
+                         DiaporamaRepository $diaporamaRepo, PhotoSponsorRepository $photoSponsor)
     {
+        $photoSponsors = $photoSponsor->findAll();
         $diaporama = $diaporamaRepo->find(2);
         $articlePrio = $articleRepo->findOneBy(["prioritaire" => 1], ["createdAt" => "DESC"]);
         $photoImportantePrios = $articlePrio->getPhotoArticles();
@@ -61,7 +62,8 @@ class BlogController extends AbstractController
             "articlePrio" => $articlePrio,
             "photoImportantePrios" => $photoImportantePrios,
             "diaporama" => $diaporama,
-            'rssItems' => $rss->channel->item
+            'rssItems' => $rss->channel->item,
+            "photoSponsors" => $photoSponsors
         ]);
     }
 

@@ -598,4 +598,13 @@ function rotate(e){
 }
 
 
+//$('.diapo-sponsor').slick();
+
+$('.diapo-sponsor').slick({
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3
+});
+
+
 

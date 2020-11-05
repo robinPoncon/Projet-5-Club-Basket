@@ -101,6 +101,12 @@
 				{% endfor %}
 			{% endfor %}
 			{{ knp_pagination_render(articles) }}
+			<div class="diapo-sponsor">
+				{% for photoSponsor in photoSponsors %}
+					<img class="imageImportant" src="{{ asset(vich_uploader_asset(photoSponsor, "imageFile") |
+						imagine_filter("thumb")) }}" alt="photo sponsor">
+				{% endfor %}
+			</div>
 		</div>
 		<div class="bandeRight">
 			<h3>Inscription au club</h3>
@@ -118,6 +124,8 @@
 			{% endfor %}
 			<a href="http://www.ffbb.com/ffbb/listes-actus">Autres actus</a>
 		</div>
+
+
 
 	</div>
 {% endblock %}
