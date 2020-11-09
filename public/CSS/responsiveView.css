@@ -216,6 +216,26 @@
         margin-left: 285px;
     }
     
+    .diapo-sponsor .imageImportant
+    {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    .slick-next.slick-arrow
+    {
+        top: -71px;
+        margin-left: -27px;
+    }
+    
+    .slick-prev.slick-arrow
+    {
+        top: 69px;
+        left: -10px;
+    }
+    
+    
+    
                                             /* Gestion club, equipe, membre */
     .bigBlocMember .blocTeam
     {
@@ -814,6 +834,18 @@
     .afficherPhotoArticle
     {
         width: 80%;
+    }
+    
+    .slick-next.slick-arrow
+    {
+        top: 30px;
+        margin-left: -90px;
+    }
+    
+    .slick-prev.slick-arrow
+    {
+        top: 167px;
+        left: 54px;
     }
     
     /* Gestion CLUB - EQUIPES */

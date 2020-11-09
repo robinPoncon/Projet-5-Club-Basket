@@ -2118,6 +2118,59 @@ nav > ul li ul li:hover #listBoy, nav > ul li ul li:hover #listGirl, nav > ul li
 }
 
 
+.slick-slide.slick-active
+{
+    text-align: center;
+}
+
+.slick-list.draggable
+{
+    width: 95%;
+}
+
+.slick-prev.slick-arrow
+{
+    background-color: #074592;
+    border: 1px #074592 solid;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+    top: 80px;
+    z-index: 5;
+}
+
+.slick-next.slick-arrow
+{
+    background-color: #074592;
+    border: 1px #074592 solid;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+    top: -87px;
+    left: 95%;
+    margin-left: -20px;
+    z-index: 5;
+}
+
+.slick-prev.slick-arrow:hover, .slick-next.slick-arrow:hover
+{
+    background-color: #dd650f;
+    border: 1px #dd650f solid;
+}
+
+.diapo-sponsor.slick-initialized.slick-slider
+{
+    width: 95%;
+    margin: auto;
+}
+
+.diapo-sponsor .imageImportant
+{
+    border-right: 0 !important;
+    width: 150px !important;
+    height: 150px !important;
+}
+
 
 
 
